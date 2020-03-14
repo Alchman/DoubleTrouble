@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6495580397594224943}
   m_Layer: 0
   m_Name: ThingsForShootLeg
-  m_TagString: Untagged
+  m_TagString: ThingsOnGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,3 +106,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012149d47611b30418aa4276bb389402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  height: 0

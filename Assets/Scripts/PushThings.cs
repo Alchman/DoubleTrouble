@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PushThings : MonoBehaviour
 {
-    [SerializeField] float height;
+  
+    [SerializeField] float pushRunWithoutForce;
 
 
     PlayerController playerController;
@@ -27,4 +28,12 @@ public class PushThings : MonoBehaviour
 
     }
   
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            rigidbody.AddForce(0, 0, pushRunWithoutForce, ForceMode.Impulse);
+        }
+    }
+
 }

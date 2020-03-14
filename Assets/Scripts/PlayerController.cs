@@ -6,21 +6,26 @@ public class PlayerController : MonoBehaviour
 {
   
     [SerializeField] float moveSpeed;
+    [SerializeField] float staySpeed;
+    [SerializeField] float coefSpeed;
     [SerializeField] float health;
     [SerializeField] float forcePush;
+   
     [SerializeField] Transform player;
     [SerializeField] Transform target;
     [SerializeField] float radiusForPush;
     [SerializeField] float hightY;
-   
+
+    private float speedPlayer;
 
 
 
 
-
-     PushThings pushThings;
+    PushThings pushThings;
     Rigidbody rigidbody;
     DamageDealer damageDealer;
+   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,38 +51,39 @@ public class PlayerController : MonoBehaviour
 
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * moveSpeed;
        direction = Vector3.ClampMagnitude(direction, moveSpeed);
-
+        speedPlayer = direction.magnitude;
         if (direction != Vector3.zero)
         {
+            Debug.Log(direction.magnitude);
             /* rigidbody.velocity = direction;*/
             rigidbody.MovePosition(transform.position + direction * Time.deltaTime);
-
             rigidbody.MoveRotation(Quaternion.LookRotation(direction));
         }
     }
 
     public void PushAway()
     {
+
         if (Input.GetKeyDown(KeyCode.F))
 
         {
-            //проверять предметы в определенном радиусе
-           // Debug.Log("Push");
             var direction = target.position - player.position;
             Debug.Log(direction);
             if (direction.sqrMagnitude < radiusForPush * radiusForPush)
             {
                 direction.y += hightY;
                 Debug.DrawLine(target.position, target.position + direction);
-                pushThings.Push(direction.normalized * forcePush);
+                pushThings.Push(direction.normalized *forcePush* (1 + coefSpeed * speedPlayer));
                 Debug.Log("Bum");
+
 
             }
         }
-
-
+      
+       
     }
 
+   
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Bullet")
@@ -86,13 +92,10 @@ public class PlayerController : MonoBehaviour
             health-=  damageDealer.GetDamage();
         }
     }
-
     public float GetHealth()
     {
         return health;
     }
- 
-    
      private void OnDrawGizmosSelected()
    {
        Gizmos.color = Color.red;

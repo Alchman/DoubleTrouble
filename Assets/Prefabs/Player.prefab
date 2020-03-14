@@ -219,6 +219,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  staySpeed: 0
+  coefSpeed: 0
   health: 100
   forcePush: 50
   player: {fileID: 1731880516280132711}

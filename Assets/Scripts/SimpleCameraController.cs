@@ -6,6 +6,8 @@ namespace UnityTemplateProjects
     {
         class CameraState
         {
+            
+            //hhghg
             public float yaw;
             public float pitch;
             public float roll;

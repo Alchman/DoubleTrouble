@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,18 +13,38 @@ public class Enemy : MonoBehaviour
     private SecondCharacter _secondCharacter;
     private Rigidbody rb;
     private float distance;
+    private NavMeshAgent agent;
+    private Camera mainCamera;
     
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         _secondCharacter = FindObjectOfType<SecondCharacter>();
-        
+        mainCamera = Camera.main;
+        agent = GetComponent<NavMeshAgent>();
+
     }
 
     void FixedUpdate()
     {
-      Move();
-        ChekDistance();
+     // Move();
+     //   ChekDistance();
+     
+    }
+
+    private void Update()
+    {
+
+        if (Input.GetMouseButton(0))
+        {
+        RaycastHit hit;
+        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition),out hit))
+        {
+            agent.SetDestination(hit.point);
+        }
+            
+        }
+        
     }
 
     private void Move()

@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PushThings : MonoBehaviour
 {
-    [SerializeField] float forcePush;
-   
-   
+    [SerializeField] float height;
+
 
     PlayerController playerController;
     Rigidbody rigidbody;
@@ -14,20 +13,18 @@ public class PushThings : MonoBehaviour
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
-        rigidbody = FindObjectOfType<Rigidbody>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
   
-    public void Push()
+    public void Push(Vector3 force)
     {
-        rigidbody.AddForce(Vector3.up,ForceMode.Impulse );
+   
+        rigidbody.AddForce(force, ForceMode.Impulse);
+
 
 
     }
-   /* private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, radiusForPush);
-    }*/
+  
 }

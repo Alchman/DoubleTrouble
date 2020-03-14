@@ -6,6 +6,10 @@ public class PushThings : MonoBehaviour
 {
   
     [SerializeField] float pushRunWithoutForce;
+    [SerializeField] Transform player;
+    [SerializeField] float hightY;
+    [SerializeField] bool push;
+   
 
 
     PlayerController playerController;
@@ -21,8 +25,11 @@ public class PushThings : MonoBehaviour
   
     public void Push(Vector3 force)
     {
-   
-        rigidbody.AddForce(force, ForceMode.Impulse);
+        if (push)
+        {
+            rigidbody.AddForce(force, ForceMode.Impulse);
+
+        }
 
 
 
@@ -30,10 +37,26 @@ public class PushThings : MonoBehaviour
   
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        //Толчок при столкновении с предметом
+        if (collision.gameObject.tag == "Ground")
         {
-            rigidbody.AddForce(0, 0, pushRunWithoutForce, ForceMode.Impulse);
-        }
-    }
 
+            push = true;
+
+
+        }
+        else  if (push && collision.gameObject.tag == "Player")
+        {
+            Debug.Log(1);
+            var direction = transform.position - player.transform.position;
+            direction.y += hightY;
+            rigidbody.AddForce(direction.normalized * pushRunWithoutForce);
+            Debug.DrawLine(player.position, player.position + direction);
+            push = false;
+        }
+
+
+
+    }
+    
 }

@@ -21,16 +21,22 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 target = _secondCharacter.transform.position;
-        Vector3 enemy = transform.position;
-        Vector3 direction = (target - enemy);
-            // direction.y = rb.velocity.y;
-        direction.y = 0;
-        rb.velocity = direction.normalized * speed;
-      distance =  Vector3.Distance(enemy, target);
+      Move();
         ChekDistance();
     }
 
+    private void Move()
+    {
+        Vector3 target = _secondCharacter.transform.position;
+        Vector3 enemy = transform.position;
+        Vector3 direction = (target - enemy);
+         direction.y = rb.velocity.y;
+       // direction.y = 0;
+        rb.velocity = direction.normalized * speed;
+        distance =  Vector3.Distance(enemy, target);  
+        print("moveEnemy");
+    }
+    
     private void ChekDistance()
     {
         if (distance < playerdistance)

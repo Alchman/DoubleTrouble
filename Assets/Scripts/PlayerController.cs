@@ -49,7 +49,8 @@ public class PlayerController : MonoBehaviour
 
         if (direction != Vector3.zero)
         {
-            rigidbody.velocity = direction;
+            /* rigidbody.velocity = direction;*/
+            rigidbody.MovePosition(transform.position + direction * Time.deltaTime);
 
             rigidbody.MoveRotation(Quaternion.LookRotation(direction));
         }

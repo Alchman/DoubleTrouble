@@ -11,10 +11,10 @@ public class SecondCharacter : MonoBehaviour
 
     void Update()
     {
-        Move();
+        //Move();
     }
 
-    private void Move()
+  /*  private void Move()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -25,5 +25,5 @@ public class SecondCharacter : MonoBehaviour
         {
             rb.velocity = Vector3.right * 10f;
         }
-    }
+    }*/
 }

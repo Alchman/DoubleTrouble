@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float coefSpeed;//Range
     [SerializeField] float health;
     [SerializeField] float forcePush;
+    [SerializeField] float damagePush;
    
    
-    [SerializeField] Transform target;
+    [SerializeField] Transform things;
+    [SerializeField] Transform thingsWithHealth;
     [SerializeField] float radiusForPush;
    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightY;
 
@@ -20,11 +22,13 @@ public class PlayerController : MonoBehaviour
     PushThings pushThings;
     Rigidbody rigidbody;
     DamageDealer damageDealer;
+    PushThingsWithHealth pushThingsWith;
    
 
     // Start is called before the first frame update
     void Start()
     {
+        pushThingsWith = FindObjectOfType<PushThingsWithHealth>();
         rigidbody = GetComponent<Rigidbody>();
         damageDealer = FindObjectOfType<DamageDealer>();
         pushThings = FindObjectOfType<PushThings>();
@@ -35,6 +39,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PushAway();
+        PushThingsWithHelath();
     }
 
     void FixedUpdate()
@@ -61,14 +66,29 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
 
         {
-            var direction = target.position - transform.position;
+            var direction = things.position - transform.position;
             Debug.Log(direction);
             if (direction.sqrMagnitude < radiusForPush * radiusForPush)
             {
                 direction.y += hightY;
-                Debug.DrawLine(target.position, target.position + direction);
+                Debug.DrawLine(things.position, things.position + direction);
                 pushThings.Push(direction.normalized *forcePush* (1 + coefSpeed * speedPlayer));
                 Debug.Log("Bum");
+            }
+
+        }
+    }
+    public void PushThingsWithHelath()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+
+        {
+            var direction = thingsWithHealth.position - transform.position;
+            Debug.Log(direction + "ThingsWithHEalth");
+            if (direction.sqrMagnitude < radiusForPush * radiusForPush)
+            {
+                pushThingsWith.Damage();
+                Debug.Log("Damage");
             }
         }
     }
@@ -76,6 +96,10 @@ public class PlayerController : MonoBehaviour
     public float GetHealth()
     {
         return health;
+    }
+    public float GetDamage()
+    {
+        return damagePush;
     }
      private void OnDrawGizmosSelected()
      {

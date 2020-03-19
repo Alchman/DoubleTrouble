@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - ThingsOnGround
   - SecondPlayer
+  - Enemy
   layers:
   - Default
   - TransparentFX

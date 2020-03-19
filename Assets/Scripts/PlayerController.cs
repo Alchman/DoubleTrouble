@@ -10,11 +10,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float health;
     [SerializeField] float forcePush;
     [SerializeField] float damagePush;
+    [SerializeField] float forcePushForEnemy;
    
    
     [SerializeField] Transform things;
     [SerializeField] Transform thingsWithHealth;
     [SerializeField] float radiusForPush;
+    [SerializeField] Transform enemy;
    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightY;
 
     private float speedPlayer;
@@ -22,13 +24,13 @@ public class PlayerController : MonoBehaviour
     PushThings pushThings;
     Rigidbody rigidbody;
     DamageDealer damageDealer;
-    PushThingsWithHealth pushThingsWith;
+    PushThingsWithHealth pushThingsWithHealth;
    
 
     // Start is called before the first frame update
     void Start()
     {
-        pushThingsWith = FindObjectOfType<PushThingsWithHealth>();
+        pushThingsWithHealth = FindObjectOfType<PushThingsWithHealth>();
         rigidbody = GetComponent<Rigidbody>();
         damageDealer = FindObjectOfType<DamageDealer>();
         pushThings = FindObjectOfType<PushThings>();
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         PushAway();
         PushThingsWithHelath();
+        PushEnemy();
     }
 
     void FixedUpdate()
@@ -67,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
         {
             var direction = things.position - transform.position;
-            Debug.Log(direction);
+            Debug.Log(direction + "Things");
             if (direction.sqrMagnitude < radiusForPush * radiusForPush)
             {
                 direction.y += hightY;
@@ -87,10 +90,31 @@ public class PlayerController : MonoBehaviour
             Debug.Log(direction + "ThingsWithHEalth");
             if (direction.sqrMagnitude < radiusForPush * radiusForPush)
             {
-                pushThingsWith.Damage();
+                pushThingsWithHealth.Damage();
                 Debug.Log("Damage");
             }
         }
+
+    }
+    public void PushEnemy()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log(("Enter Push enemy"));
+            var direction = enemy.position - transform.position;
+            Debug.Log(direction + "Enemy");
+            if (direction.sqrMagnitude < radiusForPush * radiusForPush)
+            {
+              
+                Debug.DrawLine(enemy.position, enemy.position + direction);
+                pushThings.Push(direction.normalized * forcePushForEnemy);
+                Debug.Log("Bum");
+            }
+
+        }
+                
+
+
     }
 
     public float GetHealth()

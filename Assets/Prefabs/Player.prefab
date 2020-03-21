@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a0759a22fd47e2b41a026b69739d06ec, type: 2}
+  - {fileID: 2100000, guid: aa1408f53d4f90b4092841661a3ee28c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,7 +155,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 5f1db03c2924eb943a5de5636629c47a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -209,9 +209,16 @@ MonoBehaviour:
   health: 100
   forcePush: 50
   damagePush: 0
+  forcePushForEnemy: 0
   things: {fileID: 0}
   thingsWithHealth: {fileID: 0}
   radiusForPush: 2
+  enemy: {fileID: 0}
+  radiusCheck: 0
+  maxDistanceForCheck: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   hightY: 0
 --- !u!136 &8013589443031771938
 CapsuleCollider:

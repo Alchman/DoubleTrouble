@@ -104,9 +104,9 @@ GameObject:
   - component: {fileID: 1731880516280132711}
   - component: {fileID: 1731880516280132708}
   - component: {fileID: 1731880516280132709}
-  - component: {fileID: 1731880516280132714}
   - component: {fileID: 1731880516280132710}
   - component: {fileID: 1731880516280132715}
+  - component: {fileID: 8013589443031771938}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -176,20 +176,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &1731880516280132714
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731880516280132712}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1731880516280132710
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -219,11 +205,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  staySpeed: 0
   coefSpeed: 0
   health: 100
   forcePush: 50
-  player: {fileID: 1731880516280132711}
-  target: {fileID: 0}
+  damagePush: 0
+  things: {fileID: 0}
+  thingsWithHealth: {fileID: 0}
   radiusForPush: 2
   hightY: 0
+--- !u!136 &8013589443031771938
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731880516280132712}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

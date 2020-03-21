@@ -9,10 +9,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float coefSpeed;//Range
     [SerializeField] float health;
     [SerializeField] float forcePush;
+    [SerializeField] float damagePush;
+    [SerializeField] float forcePushForEnemy;
    
    
-    [SerializeField] Transform target;
+    [SerializeField] Transform things;
+    [SerializeField] Transform thingsWithHealth;
     [SerializeField] float radiusForPush;
+    [SerializeField] Transform enemy;
+
+    [SerializeField] float radiusCheck;
+    [SerializeField] float maxDistanceForCheck;
+
+    public LayerMask layerMask;
    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightY;
 
     private float speedPlayer;
@@ -20,21 +29,26 @@ public class PlayerController : MonoBehaviour
     PushThings pushThings;
     Rigidbody rigidbody;
     DamageDealer damageDealer;
+    PushThingsWithHealth pushThingsWithHealth;
    
 
     // Start is called before the first frame update
     void Start()
     {
+       
         rigidbody = GetComponent<Rigidbody>();
         damageDealer = FindObjectOfType<DamageDealer>();
-        pushThings = FindObjectOfType<PushThings>();
+       
      
     }
 
     // Update is called once per frame
     void Update()
     {
-        PushAway();
+        CheckEnemy();
+       /* PushAway();
+        PushThingsWithHelath();
+        PushEnemy();*/
     }
 
     void FixedUpdate()
@@ -56,26 +70,115 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void PushAway()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
 
+
+    private void CheckEnemy()
+    {
+        if ((Input.GetKeyDown(KeyCode.F)))
         {
-            var direction = target.position - transform.position;
-            Debug.Log(direction);
-            if (direction.sqrMagnitude < radiusForPush * radiusForPush)
+            Collider[] allItemsInRadius = Physics.OverlapSphere(transform.position, radiusCheck, layerMask);
+
+            float minDistance = float.MaxValue;
+            Collider target = null;
+
+            foreach (Collider item in allItemsInRadius)
             {
-                direction.y += hightY;
-                Debug.DrawLine(target.position, target.position + direction);
-                pushThings.Push(direction.normalized *forcePush* (1 + coefSpeed * speedPlayer));
-                Debug.Log("Bum");
+
+                var distance = Vector3.Distance(transform.position, item.transform.position);
+                if (distance < minDistance)
+                {
+                    target = item;
+                    minDistance = distance;
+                }
+            }
+            if (target == null)
+            {
+                return;
+            }
+
+            PushThings pushThings = target.GetComponent<PushThings>();
+            if (pushThings != null)
+            {
+                var direction = target.transform.position - transform.position;
+                if (target.gameObject.tag == "Enemy")
+                {
+                    pushThings.Push(direction.normalized * forcePushForEnemy);
+                }
+                if (target.gameObject.tag == "ThingsForPush")
+                {
+                    direction.y += hightY;
+                    pushThings.Push(direction.normalized * forcePush * (1 + coefSpeed * speedPlayer));
+                }
+            }
+          PushThingsWithHealth  pushThingsWithHealth = target.GetComponent<PushThingsWithHealth>();
+            if (pushThingsWithHealth != null)
+            {
+                var direction = thingsWithHealth.position - transform.position;
+                pushThingsWithHealth.Damage();
             }
         }
+
     }
+    /*  public void PushAway()
+      {
+          if (Input.GetKeyDown(KeyCode.F))
+
+          {
+            
+              Debug.Log(direction + "Things");
+              if ()
+              {
+                  direction.y += hightY;
+                  Debug.DrawLine(things.position, things.position + direction);
+                  pushThings.Push(direction.normalized *forcePush* (1 + coefSpeed * speedPlayer));
+                  Debug.Log("Bum");
+              }
+
+          }
+      }
+      public void PushThingsWithHelath()
+      {
+          if (Input.GetKeyDown(KeyCode.F))
+
+          {
+              var direction = thingsWithHealth.position - transform.position;
+              Debug.Log(direction + "ThingsWithHEalth");
+              if (direction.sqrMagnitude < radiusForPush * radiusForPush)
+              {
+                  pushThingsWithHealth.Damage();
+                  Debug.Log("Damage");
+              }
+          }
+
+      }
+      public void PushEnemy()
+      {
+          if (Input.GetKeyDown(KeyCode.F))
+          {
+
+              var direction = enemy.position - transform.position;
+              Debug.Log(direction + "Enemy");
+              if (direction.sqrMagnitude < radiusForPush * radiusForPush)
+              {
+
+                  Debug.DrawLine(enemy.position, enemy.position + direction);
+                  pushThings.Push(direction.normalized * forcePushForEnemy);
+                  Debug.Log("Bum Enemy");
+              }
+
+          }
+
+
+
+      }*/
 
     public float GetHealth()
     {
         return health;
+    }
+    public float GetDamage()
+    {
+        return damagePush;
     }
      private void OnDrawGizmosSelected()
      {

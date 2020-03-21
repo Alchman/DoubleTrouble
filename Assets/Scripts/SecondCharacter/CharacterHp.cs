@@ -6,11 +6,24 @@ using UnityEngine.UI;
 
 public class CharacterHp : MonoBehaviour
 {
-  public int health = 100;
+  public float health = 100;
   public Slider slider;
 
-  private void Update()
+    Regeneration regeneration;
+
+ /* private void Update()
   {
     slider.value = health;
-  }
+  }*/
+
+    private void Start()
+    {
+        regeneration = FindObjectOfType<Regeneration>();
+    }
+
+    public void RegenerationHealth()
+    {
+        health += regeneration.GetRegeneration();
+    }
+
 }

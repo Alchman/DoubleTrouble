@@ -7,6 +7,9 @@ TagManager:
   - Bullet
   - Ground
   - ThingsOnGround
+  - SecondPlayer
+  - Enemy
+  - ThingsForPush
   layers:
   - Default
   - TransparentFX
@@ -17,8 +20,8 @@ TagManager:
   - 
   - 
   - Player
-  - 
-  - 
+  - Things
+  - Enemy
   - 
   - 
   - 

@@ -9,6 +9,7 @@ public class PushThings : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] float hightY;
     [SerializeField] bool push;
+    [SerializeField] float health;
   
    
 
@@ -16,12 +17,14 @@ public class PushThings : MonoBehaviour
     PlayerController playerController;
     Rigidbody rigidbody;
     CharacterHp characterHp;
+    DamageDealer damageDealer;
     // Start is called before the first frame update
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
         rigidbody = GetComponent<Rigidbody>();
         characterHp = FindObjectOfType<CharacterHp>();
+        damageDealer = FindObjectOfType<DamageDealer>();
     }
 
     // Update is called once per frame
@@ -31,6 +34,12 @@ public class PushThings : MonoBehaviour
         if (push)
         {
             rigidbody.AddForce(force, ForceMode.Impulse);
+
+            health -= damageDealer.GetDamage();
+
+
+
+
 
         }
 
@@ -64,7 +73,7 @@ public class PushThings : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
+      
 
 
 

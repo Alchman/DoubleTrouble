@@ -9,32 +9,28 @@ public class SecondCharacter : MonoBehaviour
     public float maxDistance;
     public LayerMask layerMask;
     private Collider target;
+    private float futureTimeForTarget;
+    [SerializeField] private Transform Bullet;
+    
     
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        futureTimeForTarget += Time.time + 1f;
     }
 
     void Update()
     {
-        // Move();
         CheckEnemy();
+      Shooting();
     }
 
-    private void Move()
-    {
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            rb.velocity = -Vector3.right * 10f;
-        }
 
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            rb.velocity = Vector3.right * 10f;
-        }
-    }
-
-    private Vector3 CheckEnemy() {
+    private void CheckEnemy() {
+        // if(futureTimeForTarget < Time.time) {
+        // return;    
+        // }
+      // print("futureTimeForTarget");
         Collider[] allItemsInRadius = Physics.OverlapSphere(transform.position, 100f, layerMask);
        print(allItemsInRadius.Length);
 
@@ -52,11 +48,28 @@ public class SecondCharacter : MonoBehaviour
             }
         }
         print(target);
+        
         target.transform.localScale = new Vector3(2, 2, 2) ;
-        return target.transform.position;
-    }
-
-    private void  Shooting(Vector3 target) {
+        futureTimeForTarget += Time.time + 1f;
+        // return target.transform.position;
         
     }
+
+    private void  Shooting() {
+
+        if(target == null) {
+            return;
+        }
+
+        transform.LookAt(target.transform.position);
+        BulletFly();
+    }
+
+    private void BulletFly() {
+        if(Time.time > futureTimeForTarget) {
+            
+        }
+        Instantiate(Bullet, transform.position, transform.rotation);
+    }
+   
 }

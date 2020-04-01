@@ -13,23 +13,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float forcePushForEnemy;
    
    
-    [SerializeField] Transform things;
-    [SerializeField] Transform thingsWithHealth;
+  
     [SerializeField] float radiusForPush;
-    [SerializeField] Transform enemy;
+
 
     [SerializeField] float radiusCheck;
-    [SerializeField] float maxDistanceForCheck;
+  
 
     public LayerMask layerMask;
    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightY;
 
     private float speedPlayer;
 
-    PushThings pushThings;
+   
     Rigidbody rigidbody;
     DamageDealer damageDealer;
-    PushThingsWithHealth pushThingsWithHealth;
+  
    
 
     // Start is called before the first frame update
@@ -46,9 +45,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CheckEnemy();
-       /* PushAway();
-        PushThingsWithHelath();
-        PushEnemy();*/
+     
     }
 
     void FixedUpdate()
@@ -113,7 +110,7 @@ public class PlayerController : MonoBehaviour
           PushThingsWithHealth  pushThingsWithHealth = target.GetComponent<PushThingsWithHealth>();
             if (pushThingsWithHealth != null)
             {
-                var direction = thingsWithHealth.position - transform.position;
+              
                 pushThingsWithHealth.Damage();
             }
         }

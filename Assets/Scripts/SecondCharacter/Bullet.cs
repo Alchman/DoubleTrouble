@@ -6,8 +6,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour{
     
     private Rigidbody rb;
-
-
+    [SerializeField] private float speed =1f;
+    
     private void Awake() {
       
     }
@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour{
 
 
         rb = GetComponent<Rigidbody>();
-        rb.velocity = Vector3.forward *5f;
+        rb.velocity = transform.forward * speed;
     }
 
     // Update is called once per frame

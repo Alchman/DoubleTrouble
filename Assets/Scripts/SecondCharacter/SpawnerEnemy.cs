@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnerEnemy : MonoBehaviour
 {
     [SerializeField] private GameObject Enemy;
-    [SerializeField] private float timeRespawn =12f;
+    [SerializeField] private float timeRespawn = 12f;
     
     
     void Start()
@@ -15,9 +15,11 @@ public class SpawnerEnemy : MonoBehaviour
    
     IEnumerator SpawnEnemy()
     {
-        Spawner();
-        yield return new WaitForSeconds(timeRespawn);
-        StartCoroutine(SpawnEnemy());
+        while(true)
+        {
+            Spawner();
+            yield return new WaitForSeconds(timeRespawn);
+        }
     }
 
     private void Spawner()

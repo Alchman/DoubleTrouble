@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
-{
-
-    [SerializeField] private float speed = 14f;
-    [SerializeField] private float playerdistance = 5f;
+public class Enemy : MonoBehaviour{
+  
+    [SerializeField][Tooltip("Скорость передвижения")] private float speed = 14f;
+    [SerializeField][Tooltip("Дистанция для плеера для атаки")] private float playerdistance = 5f;
     
     private SecondCharacter _secondCharacter;
     private Rigidbody rb;
@@ -18,7 +17,7 @@ public class Enemy : MonoBehaviour
     
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+       rb = GetComponent<Rigidbody>();
         _secondCharacter = FindObjectOfType<SecondCharacter>();
         mainCamera = Camera.main;
         agent = GetComponent<NavMeshAgent>();

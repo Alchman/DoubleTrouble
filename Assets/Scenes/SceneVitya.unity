@@ -323,7 +323,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a0759a22fd47e2b41a026b69739d06ec, type: 2}
+  - {fileID: 2100000, guid: 5f1db03c2924eb943a5de5636629c47a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -473,7 +473,6 @@ MonoBehaviour:
   m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
-    serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_RenderPostProcessing: 0
@@ -525,11 +524,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1731880516280132709, guid: 58643f78370824a418c9654ada95a606,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3adb56b3302734c8d8e5a18699302e85, type: 2}
     - target: {fileID: 1731880516280132711, guid: 58643f78370824a418c9654ada95a606,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1408,6 +1402,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a60b9b4b55ae143bba996f3eab2b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sphereRadius: 0
+  maxDistance: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &1313682828
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1764,7 +1763,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 6220dd8a7d57c184ba9fd455db50c9a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

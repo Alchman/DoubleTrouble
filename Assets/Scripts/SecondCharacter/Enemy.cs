@@ -78,6 +78,8 @@ public class Enemy : MonoBehaviour{
             print("popal");
             SetDamage();
             checkHp();
+            Destroy(other.gameObject);
+                
            
         }
     }

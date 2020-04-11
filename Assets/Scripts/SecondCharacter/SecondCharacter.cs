@@ -12,6 +12,8 @@ public class SecondCharacter : MonoBehaviour
     private float futureTimeForTarget;
     [SerializeField] private Transform Bullet;
     [SerializeField] private float ReloadBullet = 1f;
+    [SerializeField] private float RadiusCanon =50f;
+    
     
     
     void Start()
@@ -31,7 +33,7 @@ public class SecondCharacter : MonoBehaviour
         // return;    
         // }
       // print("futureTimeForTarget");
-        Collider[] allItemsInRadius = Physics.OverlapSphere(transform.position, 100f, layerMask);
+        Collider[] allItemsInRadius = Physics.OverlapSphere(transform.position, RadiusCanon, layerMask);
        // print(allItemsInRadius.Length);
 
         float     minDistance = float.MaxValue;

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Regeneration : MonoBehaviour
-
+public class Bullets : MonoBehaviour
 {
-    [Tooltip("Кол-во здоровья для восстановления")] [SerializeField] float regeneration;
-    
+
+    [Tooltip("Кол-во здоровья для восстановления")] [SerializeField] int bullets;
+
 
 
     CharacterHp characterHp;
@@ -21,18 +21,15 @@ public class Regeneration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-   
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "SecondPlayer")
         {
-            characterHp.RegenerationHealth(regeneration);
+            characterHp.RegenerationBullets(bullets);
             Destroy(gameObject);
         }
     }
-      
-
-   
 }

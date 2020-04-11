@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class CharacterHp : MonoBehaviour
 {
   public float health = 100;
+    public int bulletsAll;  
   public Slider slider;
 
     Regeneration regeneration;
@@ -21,9 +22,14 @@ public class CharacterHp : MonoBehaviour
         regeneration = FindObjectOfType<Regeneration>();
     }
 
-    public void RegenerationHealth()
+    public void RegenerationHealth(float regeneration)
     {
-        health += regeneration.GetRegeneration();
+        health += regeneration;
+    }
+
+    public void RegenerationBullets(int bullets)
+    {
+        bulletsAll += bullets;
     }
 
 }

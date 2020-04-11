@@ -4,26 +4,21 @@ using UnityEngine;
 
 public class PushThings : MonoBehaviour
 {
-  
-    [SerializeField] float pushRunWithoutForce;
+    [Tooltip("Сила удара при столкновении с предметом")] [SerializeField] float pushRunWithoutForce;
+    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightY;
+    [Tooltip("Было ли столкновение")] [SerializeField] bool push;
     [SerializeField] Transform player;
-    [SerializeField] float hightY;
-    [SerializeField] bool push;
-    [SerializeField] float health;
-  
-   
-
 
     PlayerController playerController;
     Rigidbody rigidbody;
-    CharacterHp characterHp;
+  
     DamageDealer damageDealer;
     // Start is called before the first frame update
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
         rigidbody = GetComponent<Rigidbody>();
-        characterHp = FindObjectOfType<CharacterHp>();
+      
         damageDealer = FindObjectOfType<DamageDealer>();
     }
 
@@ -34,17 +29,7 @@ public class PushThings : MonoBehaviour
         if (push)
         {
             rigidbody.AddForce(force, ForceMode.Impulse);
-
-            health -= damageDealer.GetDamage();
-
-
-
-
-
         }
-
-
-
     }
   
     private void OnCollisionEnter(Collision collision)
@@ -52,10 +37,7 @@ public class PushThings : MonoBehaviour
         //Толчок при столкновении с предметом
         if (collision.gameObject.tag == "Ground")
         {
-
             push = true;
-
-
         }
         else  if (push && collision.gameObject.tag == "Player")
         {
@@ -66,17 +48,6 @@ public class PushThings : MonoBehaviour
             Debug.DrawLine(player.position, player.position + direction);
             push = false;
         }
-
-        if (collision.gameObject.tag == "SecondPlayer")
-        {
-            characterHp.RegenerationHealth();
-            Destroy(gameObject);
-        }
-
-      
-
-
-
     }
     
 }

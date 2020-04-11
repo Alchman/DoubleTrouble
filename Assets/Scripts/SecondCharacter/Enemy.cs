@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour{
   
     [SerializeField][Tooltip("Скорость передвижения")] private float speed = 14f;
     [SerializeField][Tooltip("Дистанция для плеера для атаки")] private float playerdistance = 5f;
+    [SerializeField] private float HP = 150f;
+    
     
     private SecondCharacter _secondCharacter;
     private Rigidbody rb;
@@ -31,19 +33,19 @@ public class Enemy : MonoBehaviour{
      
     }
 
-    private void Update()
-    {
+    private void Update() {
+        agent.SetDestination(_secondCharacter.transform.position);
 
-        if (Input.GetMouseButton(0))
-        {
-        RaycastHit hit;
-        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition),out hit))
-        {
-            agent.SetDestination(hit.point);
-        }
-            
-        }
-        
+        // if (Input.GetMouseButton(0))
+        // {
+        // RaycastHit hit;
+        // if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition),out hit))
+        // {
+        //     agent.SetDestination(hit.point);
+        // }
+        //     
+        // }
+
     }
 
     private void Move()
@@ -65,4 +67,29 @@ public class Enemy : MonoBehaviour{
             rb.velocity = Vector3.zero;
         }
     }
+
+    private void DeathEnemy() {
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other) {
+     
+        if(other.CompareTag("Bullet")) {
+            print("popal");
+            SetDamage();
+            checkHp();
+           
+        }
+    }
+
+    private void checkHp() {
+        if(HP <= 0) {
+            DeathEnemy();
+        }
+    }
+
+    private void SetDamage() {
+        HP -= 50;
+        print(HP);
+    } 
 }

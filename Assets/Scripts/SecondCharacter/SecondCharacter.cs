@@ -11,6 +11,7 @@ public class SecondCharacter : MonoBehaviour
     private Collider target;
     private float futureTimeForTarget;
     [SerializeField] private Transform Bullet;
+    [SerializeField] private float ReloadBullet = 1f;
     
     
     void Start()
@@ -24,15 +25,14 @@ public class SecondCharacter : MonoBehaviour
         CheckEnemy();
       Shooting();
     }
-
-
+    
     private void CheckEnemy() {
         // if(futureTimeForTarget < Time.time) {
         // return;    
         // }
       // print("futureTimeForTarget");
         Collider[] allItemsInRadius = Physics.OverlapSphere(transform.position, 100f, layerMask);
-       print(allItemsInRadius.Length);
+       // print(allItemsInRadius.Length);
 
         float     minDistance = float.MaxValue;
        // target = null;
@@ -47,12 +47,11 @@ public class SecondCharacter : MonoBehaviour
               minDistance = distance;
             }
         }
-        print(target);
+        // print(futureTimeForTarget);
         
-        target.transform.localScale = new Vector3(2, 2, 2) ;
-        futureTimeForTarget += Time.time + 1f;
+        // target.transform.localScale = new Vector3(2, 2, 2) ;
+        // futureTimeForTarget += Time.time + 3f;
         // return target.transform.position;
-        
     }
 
     private void  Shooting() {
@@ -67,9 +66,10 @@ public class SecondCharacter : MonoBehaviour
 
     private void BulletFly() {
         if(Time.time > futureTimeForTarget) {
+        Instantiate(Bullet, transform.position, transform.rotation);
+        futureTimeForTarget = Time.time + ReloadBullet;
             
         }
-        Instantiate(Bullet, transform.position, transform.rotation);
     }
    
 }

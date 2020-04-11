@@ -2,20 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PushThingsWithHealth : MonoBehaviour
+public class PushEnemy : MonoBehaviour
 {
-    [Tooltip("Кол-во здоровья предмета")] [SerializeField] float health;
+
+    [Tooltip("Здоровье врага")] [SerializeField] float health;
     PlayerController playerController;
+    Rigidbody rigidbody;
+  
     // Start is called before the first frame update
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
+        rigidbody = GetComponent<Rigidbody>();
+      
     }
-
-    // Update is called once per frame
-    void Update()
+    public void Push(Vector3 force)
     {
-        
+            rigidbody.AddForce(force, ForceMode.Impulse);   
+       
     }
 
     public void Damage(float damageFoot)
@@ -26,8 +30,10 @@ public class PushThingsWithHealth : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
 
-
-
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }

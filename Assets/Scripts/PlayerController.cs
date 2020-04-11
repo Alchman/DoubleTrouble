@@ -4,38 +4,29 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-  
-    [SerializeField] float moveSpeed;
-    [SerializeField] float coefSpeed;//Range
-    [SerializeField] float health;
-    [SerializeField] float forcePush;
-    [SerializeField] float damagePush;
-    [SerializeField] float forcePushForEnemy;
-   
-   
-    [SerializeField] Transform things;
-    [SerializeField] Transform thingsWithHealth;
-    [SerializeField] float radiusForPush;
-    [SerializeField] Transform enemy;
 
-    [SerializeField] float radiusCheck;
-    [SerializeField] float maxDistanceForCheck;
-
-    public LayerMask layerMask;
+    [Tooltip("Скорость движения")] [SerializeField] float moveSpeed;
+    [Tooltip("Коеф зависящий от скорости при ударе предмета ")] [Range (0,5)] [SerializeField] float coefSpeed;
+    [Tooltip("Коеф зависящий от скорости при ударе врага ")] [Range (0,5)] [SerializeField] float coefSpeedEnemy;
+    [Tooltip("Кол-во здоровья")] [SerializeField] float health;
+    [Tooltip("Сила удара ")] [SerializeField] float forcePush;
+    [Tooltip("Сила удара врага")] [SerializeField] float forcePushForEnemy;
+    [SerializeField] float damageFoot;
+   
+    [Tooltip("Радиус проверки рядом предметов")] [SerializeField] float radiusCheck;
    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightY;
 
-    private float speedPlayer;
+    public LayerMask layerMask;
 
-    PushThings pushThings;
+    [Tooltip("динамическая скорость игрока")] private float speedPlayer;
+
     Rigidbody rigidbody;
     DamageDealer damageDealer;
-    PushThingsWithHealth pushThingsWithHealth;
-   
-
+  
     // Start is called before the first frame update
     void Start()
     {
-       
+    
         rigidbody = GetComponent<Rigidbody>();
         damageDealer = FindObjectOfType<DamageDealer>();
        
@@ -46,9 +37,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CheckEnemy();
-       /* PushAway();
-        PushThingsWithHelath();
-        PushEnemy();*/
+     
     }
 
     void FixedUpdate()
@@ -63,14 +52,10 @@ public class PlayerController : MonoBehaviour
         speedPlayer = direction.magnitude;
         if (direction != Vector3.zero)
         {
-          // Debug.Log(direction.magnitude);
              rigidbody.velocity = direction;
-         //   rigidbody.MovePosition(transform.position + direction * Time.deltaTime);
             rigidbody.MoveRotation(Quaternion.LookRotation(direction));
         }
     }
-
-
 
     private void CheckEnemy()
     {
@@ -100,98 +85,41 @@ public class PlayerController : MonoBehaviour
             if (pushThings != null)
             {
                 var direction = target.transform.position - transform.position;
-                if (target.gameObject.tag == "Enemy")
-                {
-                    pushThings.Push(direction.normalized * forcePushForEnemy);
-                }
                 if (target.gameObject.tag == "ThingsForPush")
                 {
                     direction.y += hightY;
                     pushThings.Push(direction.normalized * forcePush * (1 + coefSpeed * speedPlayer));
+                    
                 }
             }
-          PushThingsWithHealth  pushThingsWithHealth = target.GetComponent<PushThingsWithHealth>();
+            PushEnemy pushEnemy = target.GetComponent<PushEnemy>();
+            if (pushEnemy != null)
+            {
+                var direction = target.transform.position - transform.position;
+                if (target.gameObject.tag == "Enemy")
+                {
+                    Debug.Log("find enemy");
+                    pushEnemy.Push(direction.normalized * forcePushForEnemy*(1 + coefSpeedEnemy * speedPlayer));
+                    pushEnemy.Damage(damageFoot);
+                }
+            }
+
+            PushThingsWithHealth  pushThingsWithHealth = target.GetComponent<PushThingsWithHealth>();
             if (pushThingsWithHealth != null)
             {
-                var direction = thingsWithHealth.position - transform.position;
-                pushThingsWithHealth.Damage();
+              
+                pushThingsWithHealth.Damage(damageFoot);
             }
         }
 
     }
-    /*  public void PushAway()
-      {
-          if (Input.GetKeyDown(KeyCode.F))
-
-          {
-            
-              Debug.Log(direction + "Things");
-              if ()
-              {
-                  direction.y += hightY;
-                  Debug.DrawLine(things.position, things.position + direction);
-                  pushThings.Push(direction.normalized *forcePush* (1 + coefSpeed * speedPlayer));
-                  Debug.Log("Bum");
-              }
-
-          }
-      }
-      public void PushThingsWithHelath()
-      {
-          if (Input.GetKeyDown(KeyCode.F))
-
-          {
-              var direction = thingsWithHealth.position - transform.position;
-              Debug.Log(direction + "ThingsWithHEalth");
-              if (direction.sqrMagnitude < radiusForPush * radiusForPush)
-              {
-                  pushThingsWithHealth.Damage();
-                  Debug.Log("Damage");
-              }
-          }
-
-      }
-      public void PushEnemy()
-      {
-          if (Input.GetKeyDown(KeyCode.F))
-          {
-
-              var direction = enemy.position - transform.position;
-              Debug.Log(direction + "Enemy");
-              if (direction.sqrMagnitude < radiusForPush * radiusForPush)
-              {
-
-                  Debug.DrawLine(enemy.position, enemy.position + direction);
-                  pushThings.Push(direction.normalized * forcePushForEnemy);
-                  Debug.Log("Bum Enemy");
-              }
-
-          }
-
-
-
-      }*/
-
+  
     public float GetHealth()
     {
         return health;
     }
-    public float GetDamage()
-    {
-        return damagePush;
-    }
-     private void OnDrawGizmosSelected()
-     {
-       Gizmos.color = Color.red;
-       Gizmos.DrawWireSphere(transform.position, radiusForPush);
-     }
+    
+    
+    
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Bullet")
-        {
-            Debug.LogError(collision);
-            health -= damageDealer.GetDamage();
-        }
-    }
 }

@@ -6,12 +6,12 @@ public class PlayerController : MonoBehaviour
 {
 
     [Tooltip("Скорость движения")] [SerializeField] float moveSpeed;
-    [Tooltip("Коеф зависящий от скорости при ударе предмета ")] [Range (0,5)] [SerializeField] float coefSpeed;
-    [Tooltip("Коеф зависящий от скорости при ударе врага ")] [Range (0,5)] [SerializeField] float coefSpeedEnemy;
+    [Tooltip("Коеф зависящий от скорости влияющий на силу удара предмета ")] [Range (0,5)] [SerializeField] float coefSpeed;
+    [Tooltip("Коеф зависящий от скорости влиюящий на силу при ударе врага ")] [Range (0,5)] [SerializeField] float coefSpeedEnemy;
     [Tooltip("Кол-во здоровья")] [SerializeField] float health;
     [Tooltip("Сила удара ")] [SerializeField] float forcePush;
-    [Tooltip("Сила удара врага")] [SerializeField] float forcePushForEnemy;
-    [SerializeField] float damageFoot;
+    [Tooltip("Сила с которой бьем врага")] [SerializeField] float forcePushForEnemy;
+    [Tooltip("Урон по врагу ударом ногой")] [SerializeField] float damageFoot;
    
     [Tooltip("Радиус проверки рядом предметов")] [SerializeField] float radiusCheck;
    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightY;

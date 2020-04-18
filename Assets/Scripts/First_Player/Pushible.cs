@@ -5,15 +5,14 @@ using UnityEngine;
 public class Pushible : MonoBehaviour
 {
     [SerializeField] float massCoef;
-    bool pushOnRun;
+    [SerializeField] bool pushOnRun;
     [SerializeField] GameObject player;
     
-    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightY;
-    FirstPlayer firstPlayer;
+    public bool PushOnRun { get; }
+
     // Start is called before the first frame update
     void Start()
     {
-        pushOnRun = true;
        // firstPlayer.GetComponent<FirstPlayer>().SetBoolean(true);
     }
 
@@ -26,15 +25,10 @@ public class Pushible : MonoBehaviour
     }
     public void Push(Vector3 forcePush)
     {  
-        forcePush*= massCoef;
+        forcePush *= massCoef;
        
     }
-    public void PushOnRun(Vector3 pushOnRunForce)
-    {
-        var direction = transform.position - player.transform.position;
-        direction.y += hightY;
-        pushOnRunForce *= massCoef;
-    }
+
    
 
 }

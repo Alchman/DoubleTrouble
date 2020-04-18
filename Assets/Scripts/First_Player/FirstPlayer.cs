@@ -7,7 +7,7 @@ public class FirstPlayer : MonoBehaviour
     public LayerMask pushMask;
 
     [Tooltip("Радиус проверки рядом предметов")] [SerializeField] float radiusCheck;
-    [Tooltip("Сила  удара ")] Vector3 forcePush;
+    [Tooltip("Сила  удара ")] float forcePush;
     [SerializeField] Health health;
     [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightY;
     [Tooltip("Урон по врагу ударом ногой")] [SerializeField] float damageFoot;
@@ -26,12 +26,6 @@ public class FirstPlayer : MonoBehaviour
     {
         CheckEnemy();
         Move();
-    }
-    
-    public void DoDeath()
-    {
-     
-        Destroy(gameObject);
     }
 
     public void Move()
@@ -70,13 +64,15 @@ public class FirstPlayer : MonoBehaviour
             {
                 return;
             }
+            //pushable
             Pushible pushible = target.GetComponent<Pushible>();
           
             if (pushible != null)
             {
                 var direction = target.transform.position - transform.position;
                 direction.y += hightY;
-                pushible.Push(forcePush * (1 + coefSpeed * speedPlayer));
+
+                pushible.Push(direction * forcePush * (1 + coefSpeed * speedPlayer));
                 Debug.Log("Do Push");
             }
 
@@ -90,29 +86,23 @@ public class FirstPlayer : MonoBehaviour
 
         }
     }
-    public void SetBoolean(bool pushOnRun)
+
+    Vector3 CalculateDirection(Vector3 forcePush)
     {
-        pushOnRun = true;
+        Vector3 direction = Vector3.zero;
+
+        return direction;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Pushible pushible = GetComponent<Pushible>();
-        if (pushible != null )
+        Pushible pushible = collision.gameObject.GetComponent<Pushible>();
+        if (pushible != null && pushible.PushOnRun)
         {
-            SetBoolean(true);  
+            //pushible.Push with push on run force
         }
-
-         if (collision.gameObject.tag == "Ground")
-         {
-             SetBoolean(true);
-         }
-         else if ( collision.gameObject.tag == "Player")
-         {
-            pushible.PushOnRun(forcePush * (1 + coefSpeed * speedPlayer));
-            SetBoolean(false);
-         }
     }
+
    public void OnDeath()
     {
         health.OnDeath();

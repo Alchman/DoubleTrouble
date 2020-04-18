@@ -5,11 +5,12 @@ using UnityEngine;
 public class DamagebleByPush : MonoBehaviour
 {
     [SerializeField] float damageCoef;
-    [SerializeField] Health health;
+
+    Health health;
     // Start is called before the first frame update
     void Start()
     {
-        
+        health = GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -17,8 +18,10 @@ public class DamagebleByPush : MonoBehaviour
     {
         
     }
-  public  void DoDamage(float damage)
+
+    public  void DoDamage(float damage)
     {
         damage *= damageCoef;
+        //health update health
     }
 }

@@ -13,8 +13,6 @@ public class EnemyController : MonoBehaviour{
     [SerializeField] [Tooltip("Дистанция до плеера для атаки")]
     private float playerdistance = 5f;
 
-    [SerializeField] private float EnemyHealth = 150f;
-
     private SecondPlayer secondPlayer;
     private Rigidbody    rb;
     private float        distanceToTarget;

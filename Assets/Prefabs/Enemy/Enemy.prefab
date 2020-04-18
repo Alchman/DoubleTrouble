@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4912712045438661319}
   - component: {fileID: 4912712045438661318}
   - component: {fileID: 4912712045438661317}
-  - component: {fileID: 4912712045438661316}
   - component: {fileID: 4912712045438661371}
   - component: {fileID: 4912712045438661370}
+  - component: {fileID: -7084153100677260823}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -95,23 +95,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5290775, y: 2.0205421, z: 1.9105206}
-  m_Center: {x: 0.049100876, y: 0.5102711, z: -0.044962883}
---- !u!114 &4912712045438661316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4912712045438661369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da4f41431c05a0d46a1c95e41aea0f87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 14
-  playerdistance: 5
-  HP: 150
+  m_Size: {x: 1.4141712, y: 2.0205421, z: 1.9105206}
+  m_Center: {x: -0.00835228, y: 0.5102711, z: -0.044962883}
 --- !u!54 &4912712045438661371
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -137,19 +122,34 @@ NavMeshAgent:
   m_GameObject: {fileID: 4912712045438661369}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2
+  m_Radius: 0.8
   m_Speed: 10
   m_Acceleration: 30
-  avoidancePriority: 50
+  avoidancePriority: 12
   m_AngularSpeed: 120
   m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 2.02
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-7084153100677260823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912712045438661369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba11f23a3220484ba1d936c7a5bb61b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 14
+  playerdistance: 5
+  EnemyHealth: 150
 --- !u!1 &5195783461553213834
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +209,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -238,7 +238,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5195783461553213834}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 0
   m_Radius: 0.13434444
   m_Height: 1.9999998

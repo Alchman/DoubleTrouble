@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour{
   
     [SerializeField][Tooltip("Скорость передвижения")] private float speed = 14f;
-    [SerializeField][Tooltip("Дистанция для плеера для атаки")] private float playerdistance = 5f;
+    [SerializeField][Tooltip("Дистанция до плеера для атаки")] private float playerdistance = 5f;
     [SerializeField] private float HP = 150f;
-    
     
     private SecondCharacter _secondCharacter;
     private Rigidbody rb;
@@ -35,16 +31,6 @@ public class Enemy : MonoBehaviour{
 
     private void Update() {
         agent.SetDestination(_secondCharacter.transform.position);
-
-        // if (Input.GetMouseButton(0))
-        // {
-        // RaycastHit hit;
-        // if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition),out hit))
-        // {
-        //     agent.SetDestination(hit.point);
-        // }
-        //     
-        // }
 
     }
 

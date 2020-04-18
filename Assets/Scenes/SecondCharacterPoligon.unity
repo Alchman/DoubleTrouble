@@ -1317,12 +1317,12 @@ PrefabInstance:
     - target: {fileID: 5957270615669595010, guid: 3628a4ce4844514449eab4fcfda0ce6a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.84
+      value: 12.98
       objectReference: {fileID: 0}
     - target: {fileID: 5957270615669595010, guid: 3628a4ce4844514449eab4fcfda0ce6a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.4099998
+      value: 2.36
       objectReference: {fileID: 0}
     - target: {fileID: 5957270615669595010, guid: 3628a4ce4844514449eab4fcfda0ce6a,
         type: 3}
@@ -1579,6 +1579,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce523147905ca3749a77d955212ef2c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sphereRadius: 0
+  maxDistance: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  Bullet: {fileID: 8137466641498131981, guid: 3346304138e3f5840a80ef60676edd4e, type: 3}
+  ReloadBullet: 1
+  RadiusCanon: 50
 --- !u!1 &1753542678
 GameObject:
   m_ObjectHideFlags: 0

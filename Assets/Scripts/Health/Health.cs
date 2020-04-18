@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -24,5 +22,14 @@ public class Health : MonoBehaviour
         {
             OnDeath();
         }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        DamageDealer damageDealer = other.GetComponent<DamageDealer>();
+        if(damageDealer != null) {
+            print("damage diller");
+            ChangeHealth(damageDealer.damage);
+        }
+       
     }
 }

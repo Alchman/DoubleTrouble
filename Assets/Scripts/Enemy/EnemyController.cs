@@ -18,11 +18,14 @@ public class EnemyController : MonoBehaviour{
     private float        distanceToTarget;
     private NavMeshAgent agent;
     private StateEnemy   currientStateEnemy;
+    private Health health;
 
     void Start() {
         rb           = GetComponent<Rigidbody>();
         secondPlayer = FindObjectOfType<SecondPlayer>();
         agent        = GetComponent<NavMeshAgent>();
+        health = GetComponent<Health>();
+        health.OnDeath += OnDeath;
     }
 
     private void Update() {

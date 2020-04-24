@@ -107,7 +107,6 @@ GameObject:
   - component: {fileID: 5957270615669595036}
   - component: {fileID: 5957270615669595039}
   - component: {fileID: 5957270615669595038}
-  - component: {fileID: 1701724441092362235}
   m_Layer: 0
   m_Name: SecondCharacter
   m_TagString: Untagged
@@ -207,20 +206,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &1701724441092362235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5957270615669595033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a60b9b4b55ae143bba996f3eab2b65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sphereRadius: 0
-  maxDistance: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 1024

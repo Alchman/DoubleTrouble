@@ -12,32 +12,26 @@ public class SecondPlayer : MonoBehaviour{
     private Enemy     enemy;
 
     Dictionary<BulletType, int> bulets = new Dictionary<BulletType, int>();
-    
-    public                   float     sphereRadius;
-    public                   float     maxDistance;
-    public                   LayerMask layerMask;
-    private                  Collider  target;
-    private                  float     futureTimeForTarget;
-    private                  Weapon    activeWeapon;
-    private                  Bullet    bullet;
+
+    public  LayerMask         layerMask;
+    private Collider          target;
+    private float             futureTimeForTarget;
+    private Weapon            activeWeapon;
     private StateSecondPlayer currientStateSecondPlayer;
- 
+
     [SerializeField] private Transform Bullet;
     [SerializeField] private float     ReloadBullet = 1f;
     [SerializeField] private float     RadiusCanon  = 50f;
 
     void Start() {
-        activeWeapon              =  GetComponent<Weapon>();
-        bullet              =  FindObjectOfType<Bullet>();
-        rb                  =  GetComponent<Rigidbody>();
-        futureTimeForTarget += Time.time + 1f;
-        activeWeapon.magzineSize  =  15f;
+        rb                       =  GetComponent<Rigidbody>();
+        futureTimeForTarget      += Time.time + 1f;
+
     }
 
     void Update() {
-        
         switch(currientStateSecondPlayer) {
-            case StateSecondPlayer.Start:
+            case StateSecondPlayer.Start :
                 print("StateSecondPlayer.Start");
                 currientStateSecondPlayer = StateSecondPlayer.Atack;
                 break;
@@ -46,13 +40,12 @@ public class SecondPlayer : MonoBehaviour{
                 print("StateSecondPlayer.Atack ");
                 CheckEnemy();
                 AutoShooting();
-             
+
                 break;
             case StateSecondPlayer.Reload :
                 print("StateSecondPlayer.Reload");
                 break;
         }
-        
     }
 
     private void CheckEnemy() {

@@ -2,11 +2,8 @@
 using UnityEngine;
 
 public class Health : MonoBehaviour{
-    public Action OnHealthUpdate = delegate {
-                                   };
-
-    public Action OnDeath = delegate {
-                            };
+    public Action OnHealthUpdate = delegate {};
+    public Action OnDeath = delegate {};
 
     public float HealthLeft {get; private set;}
     public float MaxHealth;

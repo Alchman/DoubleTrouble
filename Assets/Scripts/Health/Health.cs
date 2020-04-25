@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -11,18 +9,31 @@ public class Health : MonoBehaviour
     [SerializeField] float maxHealth;
 
     public float HealthLeft { get; private set; }
-    public float MaxHealth { get; }
+    public float MaxHealth { get { return maxHealth; } }
 
+
+
+    private void Awake()
+    {
+        HealthLeft = MaxHealth;
+    }
 
     public void ChangeHealth(float amount)
     {
         HealthLeft -= amount;
 
-        OnHealthUpdate();
-
         if (HealthLeft <= 0)
         {
             OnDeath();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        DamageDealer damageDealer = other.GetComponent<DamageDealer>();
+        if (damageDealer != null)
+        {
+            ChangeHealth(damageDealer.damage);
         }
     }
 }

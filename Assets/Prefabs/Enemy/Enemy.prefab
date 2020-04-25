@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 4912712045438661319}
   - component: {fileID: 4912712045438661318}
   - component: {fileID: 4912712045438661317}
-  - component: {fileID: 4912712045438661316}
   - component: {fileID: 4912712045438661371}
   - component: {fileID: 4912712045438661370}
+  - component: {fileID: -7084153100677260823}
+  - component: {fileID: 3014455255414052134}
+  - component: {fileID: 6736395070302823943}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -63,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 71604d7771c6b414297136138e443554, type: 2}
+  - {fileID: 2100000, guid: aa1408f53d4f90b4092841661a3ee28c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,26 +94,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4912712045438661369}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5290775, y: 2.0205421, z: 1.9105206}
-  m_Center: {x: 0.049100876, y: 0.5102711, z: -0.044962883}
---- !u!114 &4912712045438661316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4912712045438661369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da4f41431c05a0d46a1c95e41aea0f87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 14
-  playerdistance: 5
-  HP: 150
+  m_Size: {x: 1.4141712, y: 2.0205421, z: 1.9105206}
+  m_Center: {x: -0.00835228, y: 0.5102711, z: -0.044962883}
 --- !u!54 &4912712045438661371
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -120,7 +107,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4912712045438661369}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 30
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -137,19 +124,60 @@ NavMeshAgent:
   m_GameObject: {fileID: 4912712045438661369}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2
+  m_Radius: 0.69
   m_Speed: 10
   m_Acceleration: 30
-  avoidancePriority: 50
+  avoidancePriority: 34
   m_AngularSpeed: 120
   m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 2.02
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-7084153100677260823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912712045438661369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba11f23a3220484ba1d936c7a5bb61b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  playerdistance: 10
+  attackRate: 1
+--- !u!114 &3014455255414052134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912712045438661369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 366090a6ef056904ca782e960e15f39c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 150
+--- !u!114 &6736395070302823943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912712045438661369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a0fe9a0fe0f0b4e9d05bd131cd5d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 15
 --- !u!1 &5195783461553213834
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +237,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: bb395604ad0eaf749961515d378b8b57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -238,7 +266,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5195783461553213834}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 0
   m_Radius: 0.13434444
   m_Height: 1.9999998

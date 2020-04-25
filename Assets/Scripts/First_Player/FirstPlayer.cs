@@ -47,6 +47,7 @@ public class FirstPlayer : MonoBehaviour
         }
     }
 
+  
     public void CheckEnemy()
     {
         if ((Input.GetButtonDown("Fire1")))
@@ -89,6 +90,12 @@ public class FirstPlayer : MonoBehaviour
         }
     }
 
+    void OnDrawGizmos()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(playerPosition.position, radiusCheck);
+    }
     Vector3 CalculateDirection(Vector3 from, float forcePush,float hightY)
     {
         var direction = from - transform.position;

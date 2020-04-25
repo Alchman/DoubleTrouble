@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 1268095459698097924}
   - component: {fileID: 8521895097427858491}
   - component: {fileID: 8521895097427858490}
-  - component: {fileID: 8521895097427858489}
+  - component: {fileID: 509897787}
+  - component: {fileID: 1220451941057947262}
   m_Layer: 9
-  m_Name: DestroyThings
+  m_Name: Detail
   m_TagString: ThingsOnGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5f1db03c2924eb943a5de5636629c47a, type: 2}
+  - {fileID: 2100000, guid: 6a824bcafa859cf4390ea232ddbbd5d7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,7 +112,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8521895097427858489
+--- !u!114 &509897787
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,7 +121,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 7557027107649329746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f95f64a70f175540a04d27a8b3730de, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e1ba57069dca5c489aad4e4d6541434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  massCoef: 0.5
+  pushOnRun: 1
+--- !u!114 &1220451941057947262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7557027107649329746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 366090a6ef056904ca782e960e15f39c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0

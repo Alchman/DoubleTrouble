@@ -22,6 +22,6 @@ public class UI : MonoBehaviour
     }
     public void Slider()
     {
-        healthBar.value = playerController.GetHealth();
+     //   healthBar.value = playerController.GetHealth();
     }
 }

@@ -1,31 +1,38 @@
 ﻿using System;
 using UnityEngine;
 
-public class Health : MonoBehaviour{
-    public Action OnHealthUpdate = delegate {
-                                   };
+public class Health : MonoBehaviour
+{
+    public Action OnHealthUpdate = delegate { };
+    public Action OnDeath = delegate { };
 
-    public Action OnDeath = delegate {
-                            };
+    [SerializeField] float maxHealth;
 
-    public float HealthLeft {get; private set;}
-    public float MaxHealth;
+    public float HealthLeft { get; private set; }
+    public float MaxHealth { get { return maxHealth; } }
 
-    private void Start() {
+
+
+    private void Awake()
+    {
         HealthLeft = MaxHealth;
     }
 
-    public void ChangeHealth(float amount) {
+    public void ChangeHealth(float amount)
+    {
         HealthLeft -= amount;
 
-        if(HealthLeft <= 0) {
+        if (HealthLeft <= 0)
+        {
             OnDeath();
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other)
+    {
         DamageDealer damageDealer = other.GetComponent<DamageDealer>();
-        if(damageDealer != null) {
+        if (damageDealer != null)
+        {
             ChangeHealth(damageDealer.damage);
         }
     }

@@ -12,10 +12,10 @@ public class SecondCharacter : MonoBehaviour
     private float futureTimeForTarget;
     [SerializeField] private Transform Bullet;
     [SerializeField] private float ReloadBullet = 1f;
-    [SerializeField] private float RadiusCanon =50f;
-    
-    
-    
+    [SerializeField] private float RadiusCanon = 50f;
+
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -25,40 +25,43 @@ public class SecondCharacter : MonoBehaviour
     void Update()
     {
         CheckEnemy();
-      Shooting();
+        Shooting();
     }
-    
-    private void CheckEnemy() {
+
+    private void CheckEnemy()
+    {
         // if(futureTimeForTarget < Time.time) {
         // return;    
         // }
-      // print("futureTimeForTarget");
+        // print("futureTimeForTarget");
         Collider[] allItemsInRadius = Physics.OverlapSphere(transform.position, RadiusCanon, layerMask);
-       // print(allItemsInRadius.Length);
+        // print(allItemsInRadius.Length);
 
-        float     minDistance = float.MaxValue;
-       // target = null;
-        
+        float minDistance = float.MaxValue;
+        // target = null;
+
         foreach (Collider item in allItemsInRadius)
         {
             // var direction = item.transform.position - transform.position;
             var distance = Vector3.Distance(transform.position, item.transform.position);
             if (distance < minDistance)
             {
-                target      = item;
-              minDistance = distance;
+                target = item;
+                minDistance = distance;
             }
         }
         // print(futureTimeForTarget);
-        
+
         // target.transform.localScale = new Vector3(2, 2, 2) ;
         // futureTimeForTarget += Time.time + 3f;
         // return target.transform.position;
     }
 
-    private void  Shooting() {
+    private void Shooting()
+    {
 
-        if(target == null) {
+        if (target == null)
+        {
             return;
         }
 
@@ -66,12 +69,14 @@ public class SecondCharacter : MonoBehaviour
         BulletFly();
     }
 
-    private void BulletFly() {
-        if(Time.time > futureTimeForTarget) {
-        Instantiate(Bullet, transform.position, transform.rotation);
-        futureTimeForTarget = Time.time + ReloadBullet;
-            
+    private void BulletFly()
+    {
+        if (Time.time > futureTimeForTarget)
+        {
+            Instantiate(Bullet, transform.position, transform.rotation);
+            futureTimeForTarget = Time.time + ReloadBullet;
+
         }
     }
-   
+
 }

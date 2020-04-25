@@ -7,39 +7,39 @@ enum StateSecondPlayer{
     Reload
 }
 
-public class SecondPlayer : MonoBehaviour{
+public class SecondPlayer : MonoBehaviour
+{
     private Rigidbody rb;
-    private Enemy     enemy;
 
-    Dictionary<BulletType, int> bulets = new Dictionary<BulletType, int>();
-    
-    public                   float     sphereRadius;
-    public                   float     maxDistance;
     public                   LayerMask layerMask;
+    public                  Weapon    activeWeapon;
+
+    [Header("Bullets")]
+    public int pistolBullets;
+    public int rifleBullets;
+
     private                  Collider  target;
-    private                  float     futureTimeForTarget;
-    private                  Weapon    activeWeapon;
-    private                  Bullet    bullet;
-    private StateSecondPlayer currientStateSecondPlayer;
- 
-    [SerializeField] private Transform Bullet;
-    [SerializeField] private float     ReloadBullet = 1f;
-    [SerializeField] private float     RadiusCanon  = 50f;
+    private                  float     nextFire;
+    private StateSecondPlayer currentStateSecondPlayer;
+
+    Dictionary<BulletType, int> bullets = new Dictionary<BulletType, int>();
+
+    [SerializeField] private float     RadiusCanon  = 50f; //TODO move to weapon class
 
     void Start() {
-        activeWeapon              =  GetComponent<Weapon>();
-        bullet              =  FindObjectOfType<Bullet>();
+        bullets.Add(BulletType.PISTOL, pistolBullets);
+        bullets.Add(BulletType.RIFLE, rifleBullets);
+
         rb                  =  GetComponent<Rigidbody>();
-        futureTimeForTarget += Time.time + 1f;
-        activeWeapon.magzineSize  =  15f;
+        nextFire = 1f;
     }
 
     void Update() {
         
-        switch(currientStateSecondPlayer) {
+        switch(currentStateSecondPlayer) {
             case StateSecondPlayer.Start:
                 print("StateSecondPlayer.Start");
-                currientStateSecondPlayer = StateSecondPlayer.Atack;
+                currentStateSecondPlayer = StateSecondPlayer.Atack;
                 break;
 
             case StateSecondPlayer.Atack :
@@ -75,23 +75,61 @@ public class SecondPlayer : MonoBehaviour{
         }
 
         transform.LookAt(target.transform.position);
-        BulletFly();
+        //BulletFly();
+        Shoot();
     }
 
-    private void BulletFly() {
-        if(Time.time > futureTimeForTarget) {
-            MagazineWeapon();
-            activeWeapon.magzineSize--;
-            Instantiate(Bullet, transform.position, transform.rotation);
-            futureTimeForTarget = Time.time + ReloadBullet;
-            print(activeWeapon.magzineSize + " magazine");
+    private void Shoot()
+    {
+        nextFire -= Time.deltaTime;
+        if (nextFire <= 0)
+        {
+            if (bullets[activeWeapon.bulletType] < 0)
+            {
+                //no bullets
+                return;
+            }
+
+            bullets[activeWeapon.bulletType]--;
+            activeWeapon.Fire();
+
+            if (activeWeapon.NeedsReload())
+            {
+                //play sound
+                //enable animation
+                if (bullets[activeWeapon.bulletType] > 0)
+                {
+                    nextFire = activeWeapon.reloadTime;
+                }
+                else
+                {
+                    //TODO change weapon
+
+                    //state -> NO BULLETS
+                    nextFire = float.PositiveInfinity;
+                }
+            }
+            else
+            {
+                nextFire = activeWeapon.fireRate;
+            }
         }
+
     }
 
-    private void MagazineWeapon() {
-        if(activeWeapon.magzineSize <= 0) {
-            print("закончилось патроны");
-            currientStateSecondPlayer = StateSecondPlayer.Reload;
-        }
-    }
+    //private void BulletFly() {
+    //    if(Time.time > nextFire) {
+    //        MagazineWeapon();
+    //        activeWeapon.magzineSize--;
+    //        nextFire = Time.time + activeWeapon.reloadTime;
+    //        print(activeWeapon.magzineSize + " magazine");
+    //    }
+    //}
+
+    //private void MagazineWeapon() {
+    //    if(activeWeapon.magzineSize <= 0) {
+    //        print("закончилось патроны");
+    //        currentStateSecondPlayer = StateSecondPlayer.Reload;
+    //    }
+    //}
 }

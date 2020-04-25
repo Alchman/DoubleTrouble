@@ -16,7 +16,8 @@ public class FirstPlayer : MonoBehaviour
     [Tooltip("динамическая скорость игрока")] private float speedPlayer;
     [Tooltip("Скорость движения")] [SerializeField] float moveSpeed;
     [Tooltip("Коеф зависящий от скорости влияющий на силу удара предмета ")] [Range(0, 5)] [SerializeField] float coefSpeed;
-    [SerializeField] Transform playerPosition;
+    [SerializeField] Transform capsulePosition1;
+    [SerializeField] Transform capsulePosition2;
     Rigidbody rigidbody;
     Health health;
     // Start is called before the first frame update
@@ -53,7 +54,7 @@ public class FirstPlayer : MonoBehaviour
         if ((Input.GetButtonDown("Fire1")))
         {
           
-            Collider[] allItemsInRadius = Physics.OverlapSphere(playerPosition.position, radiusCheck, pushMask);;
+            Collider[] allItemsInRadius = Physics.OverlapCapsule(capsulePosition1.position, capsulePosition2.position, radiusCheck, pushMask);;
 
             float minDistance = float.MaxValue;
             Collider target = null;
@@ -93,8 +94,10 @@ public class FirstPlayer : MonoBehaviour
     void OnDrawGizmos()
     {
         // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(playerPosition.position, radiusCheck);
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(capsulePosition1.position, radiusCheck);
+        Gizmos.DrawWireSphere(capsulePosition2.position, radiusCheck);
     }
     Vector3 CalculateDirection(Vector3 from, float forcePush,float hightY)
     {

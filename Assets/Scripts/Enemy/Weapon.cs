@@ -1,21 +1,33 @@
 ﻿using System;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour{
-    private Bullet bullet;
-    private BulletType bulletType;
-
-    public float magzineSize;
+public class Weapon : MonoBehaviour
+{
+    [SerializeField] Bullet bulletPrefab;
     public float buletSpeed;
     public float bulletDamage;
+    public BulletType bulletType;
+
+    public int magazineSize;
     public float reloadTime;
     public float fireRate;
 
-    private void Start() {
-        bullet = FindObjectOfType<Bullet>();
+    int magazineBulletLeft;
+
+    private void Start()
+    {
+        magazineBulletLeft = magazineSize;
     }
 
-    public void Fire() {
-        bullet.FireDamege(bulletDamage, buletSpeed);
+    public void Fire()
+    {
+        magazineBulletLeft--;
+        Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        bullet.FireBullet(bulletDamage, buletSpeed);
+    }
+
+    public bool NeedsReload()
+    {
+        return magazineBulletLeft <= 0;
     }
 }

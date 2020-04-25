@@ -1,17 +1,23 @@
 ﻿using UnityEngine;
 
-public class Bullet : MonoBehaviour{
+[RequireComponent(typeof(DamageDealer))]
+public class Bullet : MonoBehaviour
+{
     private Rigidbody rb;
     //
     // [SerializeField] [Tooltip("Скорость пули")]
     private float speed = 40f;
 
-    void Start() {
+    void Awake()
+    {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = transform.forward * speed;
     }
 
-    public void FireDamege(float damage, float speed) {
+    public void FireBullet(float damage, float speed)
+    {
+        DamageDealer dd = GetComponent<DamageDealer>();
+        dd.damage = damage;
+
         rb.velocity = transform.forward * speed;
     }
 }

@@ -16,6 +16,7 @@ public class FirstPlayer : MonoBehaviour
     [Tooltip("динамическая скорость игрока")] private float speedPlayer;
     [Tooltip("Скорость движения")] [SerializeField] float moveSpeed;
     [Tooltip("Коеф зависящий от скорости влияющий на силу удара предмета ")] [Range(0, 5)] [SerializeField] float coefSpeed;
+    [SerializeField] Transform playerPosition;
     Rigidbody rigidbody;
     Health health;
     // Start is called before the first frame update
@@ -50,7 +51,8 @@ public class FirstPlayer : MonoBehaviour
     {
         if ((Input.GetButtonDown("Fire1")))
         {
-            Collider[] allItemsInRadius = Physics.OverlapSphere(transform.position, radiusCheck, pushMask);
+          
+            Collider[] allItemsInRadius = Physics.OverlapSphere(playerPosition.position, radiusCheck, pushMask);;
 
             float minDistance = float.MaxValue;
             Collider target = null;

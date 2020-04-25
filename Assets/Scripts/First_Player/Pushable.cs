@@ -15,7 +15,7 @@ public class Pushable : MonoBehaviour
     public bool PushOnRun { get { return pushOnRun; } }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
        // firstPlayer.GetComponent<FirstPlayer>().SetBoolean(true);
@@ -28,9 +28,9 @@ public class Pushable : MonoBehaviour
     {
         
     }
-    public void Push(Vector3 force)
+    public void Push(Vector3 force, bool ignoreGround= false)
     {
-        if (isOnGround)
+        if (isOnGround || ignoreGround==true)
         {
             force *= massCoef;
             rigidbody.AddForce(force, ForceMode.Impulse);

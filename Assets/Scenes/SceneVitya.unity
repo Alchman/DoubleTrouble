@@ -408,7 +408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 509897788, guid: 40a1d68d53737f44ba021560d2c21e59, type: 3}
       propertyPath: push
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7557027107649329746, guid: 40a1d68d53737f44ba021560d2c21e59,
         type: 3}

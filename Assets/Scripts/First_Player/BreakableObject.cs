@@ -4,31 +4,46 @@ using UnityEngine;
 
 public class BreakableObject : MonoBehaviour
 {
-    [SerializeField] Health health;
+  Health health;
     [SerializeField] GameObject[] gameLoot;
+     [SerializeField] float push;
+    Pushable pushable;
+ 
+  [SerializeField] GameObject player;
+    
     // Start is called before the first frame update
     void Start()
     {
-
+        health = GetComponent<Health>();
+      
+       
+        health.OnDeath = DoDeath;
     }
 
-    // Update is called once per frame
-    void Update()
+   
+    public void DoDeath()
     {
-
-    }
-    public void OnDeath()
-    {
-        health.OnDeath();
+       
+         
         Destroy(gameObject);
+       
         if (gameLoot != null && gameLoot.Length > 0)
         {
+           
             var randomLoot = Random.Range(0, gameLoot.Length);
-            Instantiate(gameLoot[randomLoot], transform.position, Quaternion.identity);
+           GameObject loot=  Instantiate(gameLoot[randomLoot], Vector3.zero, Quaternion.identity);
+            pushable=loot.GetComponent<Pushable>();
+            Vector3 direction = new Vector3(0, 1, 0);
+            Debug.Log(direction);
+            direction = direction.normalized * push;
+            pushable.Push(direction);
+
+
 
         }
 
-
-
     }
+
+    
+
 }

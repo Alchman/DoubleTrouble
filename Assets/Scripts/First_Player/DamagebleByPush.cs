@@ -10,6 +10,7 @@ public class DamagebleByPush : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+      
         health = GetComponent<Health>();
     }
 
@@ -22,6 +23,8 @@ public class DamagebleByPush : MonoBehaviour
     public  void DoDamage(float damage)
     {
         damage *= damageCoef;
+        health.ChangeHealth(damage);
+       
         //health update health
     }
 }

@@ -7,18 +7,24 @@ public class FirstPlayer : MonoBehaviour
     public LayerMask pushMask;
 
     [Tooltip("Радиус проверки рядом предметов")] [SerializeField] float radiusCheck;
-    [Tooltip("Сила  удара ")] float forcePush;
-    [SerializeField] Health health;
-    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightY;
+    [Tooltip("Сила  удара ")] [SerializeField] float forcePush;
+    [SerializeField] float forcePushOnRun;
+    
+    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightYforRun;
+    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightYforShot;
     [Tooltip("Урон по врагу ударом ногой")] [SerializeField] float damageFoot;
     [Tooltip("динамическая скорость игрока")] private float speedPlayer;
     [Tooltip("Скорость движения")] [SerializeField] float moveSpeed;
     [Tooltip("Коеф зависящий от скорости влияющий на силу удара предмета ")] [Range(0, 5)] [SerializeField] float coefSpeed;
     Rigidbody rigidbody;
+    Health health;
     // Start is called before the first frame update
     void Start()
     {
+        health = GetComponent<Health>();
         rigidbody = GetComponent<Rigidbody>();
+        health.OnDeath += DoDeath;
+      
     }
 
     // Update is called once per frame
@@ -42,9 +48,8 @@ public class FirstPlayer : MonoBehaviour
 
     public void CheckEnemy()
     {
-        if ((Input.GetKeyDown(KeyCode.F)))
+        if ((Input.GetButtonDown("Fire1")))
         {
-            Debug.Log("Press");
             Collider[] allItemsInRadius = Physics.OverlapSphere(transform.position, radiusCheck, pushMask);
 
             float minDistance = float.MaxValue;
@@ -65,47 +70,45 @@ public class FirstPlayer : MonoBehaviour
                 return;
             }
             //pushable
-            Pushible pushible = target.GetComponent<Pushible>();
+            Pushable pushable = target.GetComponent<Pushable>();
           
-            if (pushible != null)
+            if (pushable != null)
             {
-                var direction = target.transform.position - transform.position;
-                direction.y += hightY;
-
-                pushible.Push(direction * forcePush * (1 + coefSpeed * speedPlayer));
+                Vector3 direction = CalculateDirection(target.transform.position, forcePush,hightYforShot);
+                pushable.Push(direction);
                 Debug.Log("Do Push");
             }
 
             DamagebleByPush damagebleByPush = target.GetComponent<DamagebleByPush>();
             if (damagebleByPush != null)
             {
-              
                 damagebleByPush.DoDamage(damageFoot);
             }
-
-
         }
     }
 
-    Vector3 CalculateDirection(Vector3 forcePush)
+    Vector3 CalculateDirection(Vector3 from, float forcePush,float hightY)
     {
-        Vector3 direction = Vector3.zero;
-
+        var direction = from - transform.position;
+        direction.y += hightY;
+      direction= direction * forcePush * (1 + coefSpeed * speedPlayer);
         return direction;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Pushible pushible = collision.gameObject.GetComponent<Pushible>();
-        if (pushible != null && pushible.PushOnRun)
-        {
+
+        Pushable pushable = collision.gameObject.GetComponent<Pushable>();
+        if (pushable != null && pushable.PushOnRun)
+        { 
+            Vector3 direction = CalculateDirection(collision.transform.position, forcePushOnRun,hightYforRun);
+                pushable.Push(direction);
             //pushible.Push with push on run force
         }
+        
     }
-
-   public void OnDeath()
+   public void DoDeath()
     {
-        health.OnDeath();
         Destroy(gameObject);
     }
 

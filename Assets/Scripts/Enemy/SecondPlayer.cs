@@ -7,52 +7,48 @@ enum StateSecondPlayer{
     Reload
 }
 
-public class SecondPlayer : MonoBehaviour
-{
+public class SecondPlayer : MonoBehaviour{
     private Rigidbody rb;
 
-    public                   LayerMask layerMask;
-    public                  Weapon    activeWeapon;
+    public LayerMask layerMask;
+    public Weapon    activeWeapon;
 
-    [Header("Bullets")]
-    public int pistolBullets;
-    public int rifleBullets;
+    [Header("Bullets")] public int pistolBullets;
+    public                     int rifleBullets;
 
-    private                  Collider  target;
-    private                  float     nextFire;
+    private Collider          target;
+    private float             nextFire;
     private StateSecondPlayer currentStateSecondPlayer;
 
     Dictionary<BulletType, int> bullets = new Dictionary<BulletType, int>();
 
-    [SerializeField] private float     RadiusCanon  = 50f; //TODO move to weapon class
+    [SerializeField] private float RadiusCanon = 50f; //TODO move to weapon class
 
     void Start() {
         bullets.Add(BulletType.PISTOL, pistolBullets);
-        bullets.Add(BulletType.RIFLE, rifleBullets);
+        bullets.Add(BulletType.RIFLE,  rifleBullets);
 
-        rb                  =  GetComponent<Rigidbody>();
+        rb       = GetComponent<Rigidbody>();
         nextFire = 1f;
     }
 
     void Update() {
-        
         switch(currentStateSecondPlayer) {
-            case StateSecondPlayer.Start:
-                print("StateSecondPlayer.Start");
+            case StateSecondPlayer.Start :
+                // print("StateSecondPlayer.Start");
                 currentStateSecondPlayer = StateSecondPlayer.Atack;
                 break;
 
             case StateSecondPlayer.Atack :
-                print("StateSecondPlayer.Atack ");
+                // print("StateSecondPlayer.Atack ");
                 CheckEnemy();
                 AutoShooting();
-             
+
                 break;
             case StateSecondPlayer.Reload :
-                print("StateSecondPlayer.Reload");
+                // print("StateSecondPlayer.Reload");
                 break;
         }
-        
     }
 
     private void CheckEnemy() {
@@ -75,61 +71,40 @@ public class SecondPlayer : MonoBehaviour
         }
 
         transform.LookAt(target.transform.position);
-        //BulletFly();
         Shoot();
     }
 
-    private void Shoot()
-    {
+    private void Shoot() {
         nextFire -= Time.deltaTime;
-        if (nextFire <= 0)
-        {
-            if (bullets[activeWeapon.bulletType] < 0)
-            {
+        if(nextFire <= 0) {
+            if(bullets[activeWeapon.bulletType] < 0) {
                 //no bullets
+                print("no bullets");
                 return;
             }
 
             bullets[activeWeapon.bulletType]--;
-            activeWeapon.Fire();
+            activeWeapon.Fire(transform.rotation);
 
-            if (activeWeapon.NeedsReload())
-            {
+            if(activeWeapon.NeedsReload()) {
                 //play sound
                 //enable animation
-                if (bullets[activeWeapon.bulletType] > 0)
-                {
+                activeWeapon.Reload();
+                print("Reload");
+                if(bullets[activeWeapon.bulletType] > 0) {
                     nextFire = activeWeapon.reloadTime;
                 }
-                else
-                {
+                else {
                     //TODO change weapon
 
                     //state -> NO BULLETS
+                    print("//state -> NO BULLETS");
                     nextFire = float.PositiveInfinity;
                 }
             }
-            else
-            {
+            else {
                 nextFire = activeWeapon.fireRate;
             }
         }
-
     }
-
-    //private void BulletFly() {
-    //    if(Time.time > nextFire) {
-    //        MagazineWeapon();
-    //        activeWeapon.magzineSize--;
-    //        nextFire = Time.time + activeWeapon.reloadTime;
-    //        print(activeWeapon.magzineSize + " magazine");
-    //    }
-    //}
-
-    //private void MagazineWeapon() {
-    //    if(activeWeapon.magzineSize <= 0) {
-    //        print("закончилось патроны");
-    //        currentStateSecondPlayer = StateSecondPlayer.Reload;
-    //    }
-    //}
 }

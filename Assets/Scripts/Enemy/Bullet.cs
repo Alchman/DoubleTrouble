@@ -4,10 +4,6 @@
 public class Bullet : MonoBehaviour
 {
     private Rigidbody rb;
-    //
-    // [SerializeField] [Tooltip("Скорость пули")]
-    private float speed = 40f;
-
     void Awake()
     {
         rb = GetComponent<Rigidbody>();

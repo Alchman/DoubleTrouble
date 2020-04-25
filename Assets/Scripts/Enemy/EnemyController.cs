@@ -38,16 +38,16 @@ public class EnemyController : MonoBehaviour{
     private void Update() {
         switch(currientStateEnemy) {
             case StateEnemy.Start :
-                print("StartState");
+                // print("StartState");
                 currientStateEnemy = StateEnemy.Move;
                 break;
 
             case StateEnemy.Move :
-                print("StateEnemy.Move :");
+                // print("StateEnemy.Move :");
                 MoveToTarget();
                 break;
             case StateEnemy.Atack :
-                print("StateEnemy.Atack :");
+                // print("StateEnemy.Atack :");
                 agent.Stop();
                 TargetAtack();
 

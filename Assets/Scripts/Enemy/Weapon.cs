@@ -19,11 +19,16 @@ public class Weapon : MonoBehaviour
         magazineBulletLeft = magazineSize;
     }
 
-    public void Fire()
+    public void Fire(Quaternion rotation)
     {
         magazineBulletLeft--;
-        Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        Bullet bullet = Instantiate(bulletPrefab, transform.position, rotation);
         bullet.FireBullet(bulletDamage, buletSpeed);
+    }
+    
+    public void Reload()
+    {
+        magazineBulletLeft = magazineSize;
     }
 
     public bool NeedsReload()

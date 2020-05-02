@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoPack : MonoBehaviour
+public class Regeneration : MonoBehaviour
 {
-    [Tooltip("Выбор типа пули ")] public BulletType bulletType;
-    [Tooltip("Количество пуль в паке ")] [SerializeField] int amount= 10;
+
+    [Tooltip("Кол-во восстановления здоровья ")] [SerializeField] int health=30;
+    // Start is called before the first frame update
     SecondPlayer secondPlayer;
- 
-    void Start()
+
+    private void Start()
     {
         secondPlayer = GetComponent<SecondPlayer>();
     }
@@ -17,9 +18,8 @@ public class AmmoPack : MonoBehaviour
     {
         if (other.gameObject.tag == "SecondPlayer")
         {
-            Destroy(gameObject);
-            secondPlayer.AddAmmo(bulletType, amount);
-
+            Destroy(gameObject,1f);
+            secondPlayer.HealthUpdate(health);
         }
     }
 }

@@ -12,51 +12,49 @@ public class SecondPlayer : MonoBehaviour{
 
     public LayerMask layerMask;
     public Weapon    activeWeapon;
- 
 
 
-    [Header("Bullets")] public int pistolBullets;
-    public                     int rifleBullets;
+    [Header("Bullets")] [Tooltip("Пистолетные пули")]
+    public int pistolBullets;
+    public int rifleBullets;
+    [SerializeField] [Tooltip("Панель для геймовера")]
+    private GameObject GameOver;
 
     private Collider          target;
     private float             nextFire;
     private StateSecondPlayer currentStateSecondPlayer;
 
-
     Dictionary<BulletType, int> bullets = new Dictionary<BulletType, int>();
-    
 
     Dictionary<ResourceType, int> resourses = new Dictionary<ResourceType, int>();
- 
+
     public int gearsCount;
     public int woodCount;
     public int metalCount;
     public int stoneCount;
     public int regenCount;
-    Health health;
- 
+    Health     health;
 
-
-
-    [SerializeField] private float RadiusCanon = 50f; //TODO move to weapon class
+    [SerializeField] [Tooltip("радиус второго игрока, что бы начать стрелять")]
+    private float RadiusCanon = 50f; //TODO move to weapon class
 
     void Start() {
+        GameOver.SetActive(false);
+
         bullets.Add(BulletType.PISTOL, pistolBullets);
         bullets.Add(BulletType.RIFLE,  rifleBullets);
 
         resourses.Add(ResourceType.GEARS, gearsCount);
-        resourses.Add(ResourceType.WOOD, woodCount);
+        resourses.Add(ResourceType.WOOD,  woodCount);
         resourses.Add(ResourceType.METAL, metalCount);
         resourses.Add(ResourceType.STONE, stoneCount);
         resourses.Add(ResourceType.REGEN, regenCount);
 
         health = GetComponent<Health>();
 
-
-        rb       = GetComponent<Rigidbody>();
+        rb             =  GetComponent<Rigidbody>();
         health.OnDeath += DoDeath;
-        nextFire = 1f;
-
+        nextFire       =  1f;
     }
 
     void Update() {
@@ -135,27 +133,22 @@ public class SecondPlayer : MonoBehaviour{
         }
     }
 
-  public void AddResourses(ResourceType resourceType, int amount )
-    {
+    public void AddResourses(ResourceType resourceType, int amount) {
         resourses[resourceType] += amount;
-       
     }
 
-    public void AddAmmo(BulletType bulletType, int amount)
-    {
+    public void AddAmmo(BulletType bulletType, int amount) {
         bullets[bulletType] += amount;
     }
 
-    public void DoDeath()
-    {
-        Destroy(gameObject);
+    public void DoDeath() {
+        // Destroy(gameObject);
+        gameObject.SetActive(false);
+        GameOver.SetActive(true);
+        print("player dead");
     }
 
-    public void HealthUpdate(int count)
-    {
+    public void HealthUpdate(int count) {
         health.ChangeHealth(count);
-        
     }
-
-
 }

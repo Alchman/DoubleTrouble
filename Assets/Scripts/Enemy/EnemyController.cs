@@ -13,9 +13,12 @@ public class EnemyController : MonoBehaviour{
 
     [SerializeField] [Tooltip("Дистанция до плеера для атаки")]
     private float playerdistance = 5f;
-    
+
     [SerializeField] [Tooltip("Частота удара")]
     private float attackRate = 1f;
+
+    [SerializeField] [Tooltip("Сила дамага для энеми")]
+    private float damage = 30f;
 
     private SecondPlayer secondPlayer;
     private Rigidbody    rb;
@@ -23,17 +26,17 @@ public class EnemyController : MonoBehaviour{
     private NavMeshAgent agent;
     private StateEnemy   currientStateEnemy;
     private Health       health;
-    private Health healthSecondPlayer;
+    private Health       healthSecondPlayer;
     private float        nextAttack;
-   
+
     void Start() {
-        rb             =  GetComponent<Rigidbody>();
-        secondPlayer   =  FindObjectOfType<SecondPlayer>();
-        agent          =  GetComponent<NavMeshAgent>();
-        health         =  GetComponent<Health>();
-        healthSecondPlayer = secondPlayer.GetComponent<Health>();
-        health.OnDeath += OnDeath;
-        }
+        rb                 =  GetComponent<Rigidbody>();
+        secondPlayer       =  FindObjectOfType<SecondPlayer>();
+        agent              =  GetComponent<NavMeshAgent>();
+        health             =  GetComponent<Health>();
+        healthSecondPlayer =  secondPlayer.GetComponent<Health>();
+        health.OnDeath     += OnDeath;
+    }
 
     private void Update() {
         switch(currientStateEnemy) {
@@ -53,7 +56,6 @@ public class EnemyController : MonoBehaviour{
 
                 break;
         }
-
     }
 
     private void OnDeath() {
@@ -75,8 +77,8 @@ public class EnemyController : MonoBehaviour{
         }
 
         // print("attack");
-       
-        healthSecondPlayer.ChangeHealth(30f);
+
+        healthSecondPlayer.ChangeHealth(damage);
         // print( ""  + healthSecondPlayer.HealthLeft);
         nextAttack = Time.time + attackRate;
     }

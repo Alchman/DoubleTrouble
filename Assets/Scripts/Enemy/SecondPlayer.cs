@@ -24,8 +24,6 @@ public class SecondPlayer : MonoBehaviour{
 
 
     Dictionary<BulletType, int> bullets = new Dictionary<BulletType, int>();
-    
-
     Dictionary<ResourceType, int> resourses = new Dictionary<ResourceType, int>();
  
     public int gearsCount;
@@ -34,8 +32,6 @@ public class SecondPlayer : MonoBehaviour{
     public int stoneCount;
     public int regenCount;
     Health health;
- 
-
 
 
     [SerializeField] private float RadiusCanon = 50f; //TODO move to weapon class
@@ -106,7 +102,7 @@ public class SecondPlayer : MonoBehaviour{
         if(nextFire <= 0) {
             if(bullets[activeWeapon.bulletType] < 0) {
                 //no bullets
-                print("no bullets");
+                //print("no bullets");
                 return;
             }
 
@@ -117,7 +113,7 @@ public class SecondPlayer : MonoBehaviour{
                 //play sound
                 //enable animation
                 activeWeapon.Reload();
-                print("Reload");
+                //print("Reload");
                 if(bullets[activeWeapon.bulletType] > 0) {
                     nextFire = activeWeapon.reloadTime;
                 }
@@ -125,7 +121,7 @@ public class SecondPlayer : MonoBehaviour{
                     //TODO change weapon
 
                     //state -> NO BULLETS
-                    print("//state -> NO BULLETS");
+                   // print("//state -> NO BULLETS");
                     nextFire = float.PositiveInfinity;
                 }
             }

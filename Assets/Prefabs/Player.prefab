@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 634176579}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Position1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634176578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.69, y: -0.11, z: 0.36}
+  m_LocalPosition: {x: 0.69, y: -0.79999995, z: 1.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5402778585948708904}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 898065077}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Position2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898065076}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.52, y: -0.15, z: 0.33}
+  m_LocalPosition: {x: -0.52, y: -0.8, z: 1.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5402778585948708904}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 5402778586005056722}
   - component: {fileID: 5402778585764555489}
   - component: {fileID: 5402778585764555498}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -191,11 +191,11 @@ MonoBehaviour:
   pushMask:
     serializedVersion: 2
     m_Bits: 1536
-  radiusCheck: 1
-  forcePush: 10
-  forcePushOnRun: 10
+  radiusCheck: 1.3
+  forcePush: 6
+  forcePushOnRun: 4
   hightYforRun: 1.3
-  hightYforShot: 2
+  hightYforShot: 1.5
   damageFoot: 10
   moveSpeed: 7
   coefSpeed: 0.32
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366090a6ef056904ca782e960e15f39c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 1000
 --- !u!1 &5402778586260763933
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 5402778586260763905}
   - component: {fileID: 5402778586260763904}
   - component: {fileID: 5402778586260763907}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

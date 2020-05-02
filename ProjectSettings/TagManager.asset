@@ -22,9 +22,9 @@ TagManager:
   - Player
   - Things
   - Enemy
-  - 
+  - GroundObject
   - Bullet
-  - 
+  - Ground
   - 
   - 
   - 

@@ -84,7 +84,6 @@ public class FirstPlayer : MonoBehaviour
             {
                 Vector3 direction = CalculateDirection(target.transform.position, forcePush,hightYforShot);
                 pushable.Push(direction);
-                Debug.Log("Do Push");
             }
             DamagebleByPush damagebleByPush = target.GetComponent<DamagebleByPush>();
             if (damagebleByPush != null)
@@ -109,18 +108,27 @@ public class FirstPlayer : MonoBehaviour
         return direction;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Pushable pushable = collision.gameObject.GetComponent<Pushable>();
+    //    if (pushable != null && pushable.PushOnRun)
+    //    { 
+    //        Vector3 direction = CalculateDirection(collision.transform.position, forcePushOnRun,hightYforRun);
+    //            pushable.Push(direction);
+    //    }   
+    //}
 
-        Pushable pushable = collision.gameObject.GetComponent<Pushable>();
+    private void OnTriggerEnter(Collider other)
+    {
+        Pushable pushable = other.gameObject.GetComponent<Pushable>();
         if (pushable != null && pushable.PushOnRun)
-        { 
-            Vector3 direction = CalculateDirection(collision.transform.position, forcePushOnRun,hightYforRun);
-                pushable.Push(direction);
+        {
+            Vector3 direction = CalculateDirection(other.transform.position, forcePushOnRun, hightYforRun);
+            pushable.Push(direction);
         }
-        
     }
-   public void DoDeath()
+
+    public void DoDeath()
     {
         Destroy(gameObject);
     }

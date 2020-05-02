@@ -28,15 +28,18 @@ public class Pushable : MonoBehaviour
             rigidbody.AddForce(force, ForceMode.Impulse);
             rigidbody.AddTorque(force, ForceMode.Impulse);  
             isOnGround = false;
-            Debug.Log("Push");
+
+            Invoke(nameof(ResetGround), 1f);
         }
     }
 
     private void OnCollisionEnter(Collision collision)
-    { 
-        if (collision.gameObject.tag == "Ground")
-        {
-            isOnGround = true;   
-        } 
+    {
+        ResetGround();
+    }
+
+    void ResetGround()
+    {
+        isOnGround = true;
     }
 }

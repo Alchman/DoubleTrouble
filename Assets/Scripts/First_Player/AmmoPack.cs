@@ -4,20 +4,13 @@ using UnityEngine;
 
 public class AmmoPack : MonoBehaviour
 {
-    public BulletType bulletType;
-   [SerializeField] int amount;
-
+    [Tooltip("Выбор типа пули ")] public BulletType bulletType;
+    [Tooltip("Количество пуль в паке ")] [SerializeField] int amount= 10;
     SecondPlayer secondPlayer;
-    // Start is called before the first frame update
+ 
     void Start()
     {
         secondPlayer = GetComponent<SecondPlayer>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter(Collider other)

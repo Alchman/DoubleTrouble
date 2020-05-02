@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8521895097427858491}
   - component: {fileID: 8521895097427858490}
   - component: {fileID: 509897787}
-  - component: {fileID: 509897788}
   m_Layer: 9
   m_Name: PowerUps
   m_TagString: ThingsOnGround
@@ -126,20 +125,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massCoef: 0.5
   pushOnRun: 1
---- !u!114 &509897788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7557027107649329746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21c9dfc035e8ebe4bac6487c4c5a1910, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameLoot:
-  - {fileID: 0}
-  - {fileID: 0}
-  valueForce: 0
-  target: {fileID: 5402778585948708903, guid: d9bda198b58a4b04899612cf039658e2, type: 3}

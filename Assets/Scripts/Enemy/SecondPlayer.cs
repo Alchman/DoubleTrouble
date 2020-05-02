@@ -27,13 +27,12 @@ public class SecondPlayer : MonoBehaviour{
     
 
     Dictionary<ResourceType, int> resourses = new Dictionary<ResourceType, int>();
-    public Resources activeResource;
+ 
     public int gearsCount;
     public int woodCount;
     public int metalCount;
     public int stoneCount;
     public int regenCount;
-    [SerializeField] int amountResourcesStart;
     Health health;
  
 
@@ -138,12 +137,13 @@ public class SecondPlayer : MonoBehaviour{
 
   public void AddResourses(ResourceType resourceType, int amount )
     {
-        resourses.Add(resourceType, amount);
+        resourses[resourceType] += amount;
+       
     }
 
     public void AddAmmo(BulletType bulletType, int amount)
     {
-        bullets.Add(bulletType, amount);
+        bullets[bulletType] += amount;
     }
 
     public void DoDeath()

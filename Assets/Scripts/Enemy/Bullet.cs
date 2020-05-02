@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        Destroy(gameObject, 7f);
     }
 
     public void FireBullet(float damage, float speed)

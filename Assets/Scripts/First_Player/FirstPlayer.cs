@@ -6,30 +6,41 @@ public class FirstPlayer : MonoBehaviour
 {
     public LayerMask pushMask;
 
-    [Tooltip("Радиус проверки рядом предметов")] [SerializeField] float radiusCheck;
-    [Tooltip("Сила  удара ")] [SerializeField] float forcePush;
-    [SerializeField] float forcePushOnRun;
+    [Header("Radius")]
+    [Tooltip("Радиус проверки рядом предметов")] [SerializeField] float radiusCheck=1;
+
+    [Header("Force")]
+    [Tooltip("Сила  удара ")] [SerializeField] float forcePush=10;
+    [SerializeField] float forcePushOnRun=3;
+
+    [Header("Hight")]
+    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightYforRun= 1.5f;
+    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightYforShot=2f;
     
-    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightYforRun;
-    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightYforShot;
-    [Tooltip("Урон по врагу ударом ногой")] [SerializeField] float damageFoot;
+    [Header("Damage")]
+    [Tooltip("Урон по врагу ударом ногой")] [SerializeField] float damageFoot=10;
+   
+    [Header("Speed")]
+    [Tooltip("Скорость движения")] [SerializeField] float moveSpeed=7;
     [Tooltip("динамическая скорость игрока")] private float speedPlayer;
-    [Tooltip("Скорость движения")] [SerializeField] float moveSpeed;
-    [Tooltip("Коеф зависящий от скорости влияющий на силу удара предмета ")] [Range(0, 5)] [SerializeField] float coefSpeed;
-    [SerializeField] Transform capsulePosition1;
-    [SerializeField] Transform capsulePosition2;
+
+    [Header("Coef")]
+    [Tooltip("Коеф зависящий от скорости влияющий на силу удара предмета ")] [Range(0, 5)] [SerializeField] float coefSpeed=0.32f;
+   
+    [Header("Position")]
+    [Tooltip("Позиция 1 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition1;
+    [Tooltip("Позиция 2 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition2;
+   
     Rigidbody rigidbody;
     Health health;
-    // Start is called before the first frame update
+  
     void Start()
     {
         health = GetComponent<Health>();
         rigidbody = GetComponent<Rigidbody>();
         health.OnDeath += DoDeath;
-      
     }
 
-    // Update is called once per frame
     void Update()
     {
         CheckEnemy();
@@ -48,20 +59,15 @@ public class FirstPlayer : MonoBehaviour
         }
     }
 
-  
     public void CheckEnemy()
     {
         if ((Input.GetButtonDown("Fire1")))
         {
-          
             Collider[] allItemsInRadius = Physics.OverlapCapsule(capsulePosition1.position, capsulePosition2.position, radiusCheck, pushMask);;
-
             float minDistance = float.MaxValue;
             Collider target = null;
-
             foreach (Collider item in allItemsInRadius)
-            {
-
+            { 
                 var distance = Vector3.Distance(transform.position, item.transform.position);
                 if (distance < minDistance)
                 {
@@ -73,16 +79,13 @@ public class FirstPlayer : MonoBehaviour
             {
                 return;
             }
-            //pushable
             Pushable pushable = target.GetComponent<Pushable>();
-          
             if (pushable != null)
             {
                 Vector3 direction = CalculateDirection(target.transform.position, forcePush,hightYforShot);
                 pushable.Push(direction);
                 Debug.Log("Do Push");
             }
-
             DamagebleByPush damagebleByPush = target.GetComponent<DamagebleByPush>();
             if (damagebleByPush != null)
             {
@@ -95,7 +98,6 @@ public class FirstPlayer : MonoBehaviour
     {
         // Draw a yellow sphere at the transform's position
         Gizmos.color = Color.red;
-
         Gizmos.DrawWireSphere(capsulePosition1.position, radiusCheck);
         Gizmos.DrawWireSphere(capsulePosition2.position, radiusCheck);
     }
@@ -115,7 +117,6 @@ public class FirstPlayer : MonoBehaviour
         { 
             Vector3 direction = CalculateDirection(collision.transform.position, forcePushOnRun,hightYforRun);
                 pushable.Push(direction);
-            //pushible.Push with push on run force
         }
         
     }

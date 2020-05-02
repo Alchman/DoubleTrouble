@@ -4,27 +4,20 @@ using UnityEngine;
 
 public class DamagebleByPush : MonoBehaviour
 {
-    [SerializeField] float damageCoef;
+    [Tooltip("Коэффициент урона:На него умножается количество урона." +
+        "При значении 1 - наносится полный урон." +
+        "При значении 0.5 - половина урона." +
+        "При значении 0 - не наносится урон")] [Range(0, 1)] [SerializeField] float damageCoef=1;
 
     Health health;
-    // Start is called before the first frame update
     void Start()
     {
-      
         health = GetComponent<Health>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public  void DoDamage(float damage)
     {
         damage *= damageCoef;
         health.ChangeHealth(damage);
-       
-        //health update health
     }
 }

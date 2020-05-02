@@ -1954,7 +1954,7 @@ PrefabInstance:
     - target: {fileID: 7805921321293276861, guid: 40a1d68d53737f44ba021560d2c21e59,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.8781843
+      value: -10.93
       objectReference: {fileID: 0}
     - target: {fileID: 7805921321293276861, guid: 40a1d68d53737f44ba021560d2c21e59,
         type: 3}
@@ -1964,7 +1964,7 @@ PrefabInstance:
     - target: {fileID: 7805921321293276861, guid: 40a1d68d53737f44ba021560d2c21e59,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.375162
+      value: -1.56
       objectReference: {fileID: 0}
     - target: {fileID: 7805921321293276861, guid: 40a1d68d53737f44ba021560d2c21e59,
         type: 3}
@@ -2749,6 +2749,11 @@ MonoBehaviour:
   activeWeapon: {fileID: 452167746742173172}
   pistolBullets: 55
   rifleBullets: 55
+  gearsCount: 0
+  woodCount: 0
+  metalCount: 0
+  stoneCount: 0
+  regenCount: 0
   RadiusCanon: 50
 --- !u!4 &1749342861 stripped
 Transform:

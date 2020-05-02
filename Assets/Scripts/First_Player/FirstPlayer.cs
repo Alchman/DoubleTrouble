@@ -22,7 +22,7 @@ public class FirstPlayer : MonoBehaviour
    
     [Header("Speed")]
     [Tooltip("Скорость движения")] [SerializeField] float moveSpeed=7;
-    [Tooltip("динамическая скорость игрока")] private float speedPlayer;
+    [Tooltip("Динамическая скорость игрока")] private float speedPlayer;
 
     [Header("Coef")]
     [Tooltip("Коеф зависящий от скорости влияющий на силу удара предмета ")] [Range(0, 5)] [SerializeField] float coefSpeed=0.32f;

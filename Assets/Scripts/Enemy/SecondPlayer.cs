@@ -12,6 +12,8 @@ public class SecondPlayer : MonoBehaviour{
 
     public LayerMask layerMask;
     public Weapon    activeWeapon;
+ 
+
 
     [Header("Bullets")] public int pistolBullets;
     public                     int rifleBullets;
@@ -20,7 +22,22 @@ public class SecondPlayer : MonoBehaviour{
     private float             nextFire;
     private StateSecondPlayer currentStateSecondPlayer;
 
+
     Dictionary<BulletType, int> bullets = new Dictionary<BulletType, int>();
+    
+
+    Dictionary<ResourceType, int> resourses = new Dictionary<ResourceType, int>();
+    public Resources activeResource;
+    public int gearsCount;
+    public int woodCount;
+    public int metalCount;
+    public int stoneCount;
+    public int regenCount;
+    [SerializeField] int amountResourcesStart;
+    Health health;
+ 
+
+
 
     [SerializeField] private float RadiusCanon = 50f; //TODO move to weapon class
 
@@ -28,8 +45,19 @@ public class SecondPlayer : MonoBehaviour{
         bullets.Add(BulletType.PISTOL, pistolBullets);
         bullets.Add(BulletType.RIFLE,  rifleBullets);
 
+        resourses.Add(ResourceType.GEARS, gearsCount);
+        resourses.Add(ResourceType.WOOD, woodCount);
+        resourses.Add(ResourceType.METAL, metalCount);
+        resourses.Add(ResourceType.STONE, stoneCount);
+        resourses.Add(ResourceType.REGEN, regenCount);
+
+        health = GetComponent<Health>();
+
+
         rb       = GetComponent<Rigidbody>();
+        health.OnDeath += DoDeath;
         nextFire = 1f;
+
     }
 
     void Update() {
@@ -107,4 +135,27 @@ public class SecondPlayer : MonoBehaviour{
             }
         }
     }
+
+  public void AddResourses(ResourceType resourceType, int amount )
+    {
+        resourses.Add(resourceType, amount);
+    }
+
+    public void AddAmmo(BulletType bulletType, int amount)
+    {
+        bullets.Add(bulletType, amount);
+    }
+
+    public void DoDeath()
+    {
+        Destroy(gameObject);
+    }
+
+    public void HealthUpdate(int count)
+    {
+        health.ChangeHealth(count);
+        
+    }
+
+
 }

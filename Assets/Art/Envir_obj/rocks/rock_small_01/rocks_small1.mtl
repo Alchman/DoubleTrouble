@@ -1,0 +1,67 @@
+# Blender MTL File: 'rocks_lowpoly2.blend'
+# Material Count: 5
+
+newmtl rock1
+Ns 99.999988
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump rocks_small1_rock1_nmap.tga
+map_Kd rocks_small1_rock1_color.tga
+map_Ks rocks_small1_rock1_rough.tga
+
+newmtl rock2
+Ns 99.999988
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump rocks_small1_rock2_nmap.tga
+map_Kd rocks_small1_rock2_color.tga
+map_Ks rocks_small1_rock2_rough.tga
+
+newmtl rock3
+Ns 99.999988
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump rocks_small1_rock3_nmap.tga
+map_Kd rocks_small1_rock3_color.tga
+map_Ks rocks_small1_rock3_rough.tga
+
+newmtl rock4
+Ns 99.999988
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump rocks_small1_rock4_nmap.tga
+map_Kd rocks_small1_rock4_color.tga
+map_Ks rocks_small1_rock4_rough.tga
+
+newmtl rock5
+Ns 99.999988
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump rocks_small1_rock5_nmap.tga
+map_Kd rocks_small1_rock5_color.tga
+map_Ks rocks_small1_rock5_rough.tga

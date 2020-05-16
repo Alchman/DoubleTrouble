@@ -6,7 +6,6 @@ enum StateEnemy{
     Move,
     Atack
 }
-
 public class EnemyController : MonoBehaviour{
     [SerializeField] [Tooltip("Скорость передвижения")]
     private float speed = 1f;
@@ -31,7 +30,7 @@ public class EnemyController : MonoBehaviour{
 
     void Start() {
         rb                 =  GetComponent<Rigidbody>();
-        secondPlayer       =  FindObjectOfType<SecondPlayer>();
+        secondPlayer = SecondPlayer.Instance;
         agent              =  GetComponent<NavMeshAgent>();
         health             =  GetComponent<Health>();
         healthSecondPlayer =  secondPlayer.GetComponent<Health>();
@@ -39,6 +38,7 @@ public class EnemyController : MonoBehaviour{
     }
 
     private void Update() {
+        
         switch(currientStateEnemy) {
             case StateEnemy.Start :
                 // print("StartState");
@@ -60,9 +60,12 @@ public class EnemyController : MonoBehaviour{
 
     private void OnDeath() {
         Destroy(gameObject);
-    }
+     }
 
     private void MoveToTarget() {
+        if(!secondPlayer.gameObject.activeSelf) {
+           agent.Stop();
+        }
         agent.SetDestination(secondPlayer.transform.position);
         distanceToTarget = Vector3.Distance(transform.position, secondPlayer.transform.position);
         if(distanceToTarget < playerdistance) {

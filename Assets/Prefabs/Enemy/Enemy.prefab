@@ -152,6 +152,7 @@ MonoBehaviour:
   speed: 3
   playerdistance: 10
   attackRate: 1
+  damage: 70
 --- !u!114 &3014455255414052134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a0fe9a0fe0f0b4e9d05bd131cd5d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 333
 --- !u!1 &5195783461553213834
 GameObject:
   m_ObjectHideFlags: 0

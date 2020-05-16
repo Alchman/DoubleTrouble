@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Lean.Pool;
 
 public class Weapon : MonoBehaviour
 {
@@ -22,7 +23,8 @@ public class Weapon : MonoBehaviour
     public void Fire(Quaternion rotation)
     {
         magazineBulletLeft--;
-        Bullet bullet = Instantiate(bulletPrefab, transform.position, rotation);
+        
+        Bullet bullet = LeanPool.Spawn(bulletPrefab, transform.position, rotation);
         bullet.FireBullet(bulletDamage, buletSpeed);
     }
     

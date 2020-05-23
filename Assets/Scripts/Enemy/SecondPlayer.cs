@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 enum StateSecondPlayer{
     Start,
@@ -15,6 +16,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
  
     [Header("Bullets")] public int pistolBullets;
     public                     int rifleBullets;
+    public int rocketBullets;
 
     private Collider          target;
     private float             nextFire;
@@ -31,12 +33,17 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     public int regenCount;
     Health health;
 
+    public Text tableResourses;
+   
+  
+
 
     [SerializeField] private float RadiusCanon = 50f; //TODO move to weapon class
 
     void Start() {
         bullets.Add(BulletType.PISTOL, pistolBullets);
         bullets.Add(BulletType.RIFLE,  rifleBullets);
+        bullets.Add(BulletType.ROCKET,  rocketBullets);
 
         resourses.Add(ResourceType.GEARS, gearsCount);
         resourses.Add(ResourceType.WOOD, woodCount);
@@ -151,6 +158,31 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
         health.ChangeHealth(count);
         
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            tableResourses.gameObject.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        tableResourses.gameObject.SetActive(false);
+    }
+
+    public int GetResourses(ResourceType resourceType)
+    {
+        return resourses[resourceType];
+    }
+
+    public int GetBullets(BulletType bulletType)
+    {
+        return bullets[bulletType];
+    }
+
+
 
 
 }

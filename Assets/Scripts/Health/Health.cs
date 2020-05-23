@@ -11,8 +11,6 @@ public class Health : MonoBehaviour
     public float HealthLeft { get; private set; }
     public float MaxHealth { get { return maxHealth; } }
 
-
-
     private void Awake()
     {
         HealthLeft = MaxHealth;
@@ -21,6 +19,7 @@ public class Health : MonoBehaviour
     public void ChangeHealth(float amount)
     {
         HealthLeft -= amount;
+        OnHealthUpdate();
 
         if (HealthLeft <= 0)
         {

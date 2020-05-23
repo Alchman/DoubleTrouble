@@ -1,0 +1,11 @@
+newmtl wire_148177027
+Ns 100.000
+d 1.00000
+illum 2
+Kd 1.00000 1.00000 1.00000
+Ka 0.00000 0.00000 0.00000
+Ks 1.00000 1.00000 1.00000
+Ke 0.00000e+0 0.00000e+0 0.00000e+0
+map_Kd Chemodan1_wire_148177027_color.png
+map_Ks Chemodan1_wire_148177027_rough.png
+map_bump Chemodan1_wire_148177027_nmap.png

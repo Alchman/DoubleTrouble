@@ -22,10 +22,6 @@ public class ChangeCamera : MonoBehaviour
     }
     void Update()
     {
-       
-        
-     
-      
         if (Input.GetKeyDown(KeyCode.F1))
         {
 

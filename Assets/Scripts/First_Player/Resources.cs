@@ -8,10 +8,10 @@ public class Resources : MonoBehaviour
     [Tooltip("Количество ресурса ")] [SerializeField] int count=1;
     // Start is called before the first frame update
 
-    SecondPlayer secondPlayer;
+    
     private void Start()
     {
-        secondPlayer = GetComponent<SecondPlayer>();
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,7 +19,7 @@ public class Resources : MonoBehaviour
         if (other.gameObject.tag == "SecondPlayer")
         {
             Destroy(gameObject,1f);
-            secondPlayer.AddResourses(resourceType, count); 
+            SecondPlayer.Instance.AddResourses(resourceType, count); 
         }
     }
 }

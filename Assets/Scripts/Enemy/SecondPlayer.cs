@@ -7,14 +7,12 @@ enum StateSecondPlayer{
     Reload
 }
 
-public class SecondPlayer : MonoBehaviour{
+public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     private Rigidbody rb;
 
     public LayerMask layerMask;
     public Weapon    activeWeapon;
  
-
-
     [Header("Bullets")] public int pistolBullets;
     public                     int rifleBullets;
 
@@ -144,7 +142,8 @@ public class SecondPlayer : MonoBehaviour{
 
     public void DoDeath()
     {
-        Destroy(gameObject);
+       gameObject.SetActive(false);
+        print("Game Over");
     }
 
     public void HealthUpdate(int count)

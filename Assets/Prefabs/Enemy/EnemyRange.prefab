@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3014455255414052134}
   - component: {fileID: 6736395070302823943}
   m_Layer: 10
-  m_Name: Enemy
+  m_Name: EnemyRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,9 +150,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  playerdistance: 10
+  playerdistance: 30
   attackRate: 1
-  damage: 70
+  damage: 30
 --- !u!114 &3014455255414052134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a0fe9a0fe0f0b4e9d05bd131cd5d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 333
+  damage: 15
 --- !u!1 &5195783461553213834
 GameObject:
   m_ObjectHideFlags: 0

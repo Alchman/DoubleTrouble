@@ -33,9 +33,9 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     public int regenCount;
     Health health;
 
-    public Text tableResourses;
+    public ResoursesUI tableResourses;
+
    
-  
 
 
     [SerializeField] private float RadiusCanon = 50f; //TODO move to weapon class
@@ -53,7 +53,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
 
         health = GetComponent<Health>();
 
-
+     
         rb       = GetComponent<Rigidbody>();
         health.OnDeath += DoDeath;
         nextFire = 1f;
@@ -163,13 +163,18 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     {
         if (other.gameObject.tag == "Player")
         {
-            tableResourses.gameObject.SetActive(true);
+            tableResourses.Show() ;
         }
     }
 
+   
     private void OnTriggerExit(Collider other)
-    {
-        tableResourses.gameObject.SetActive(false);
+    { 
+       
+        tableResourses.Hide();
+
+
+
     }
 
     public int GetResourses(ResourceType resourceType)

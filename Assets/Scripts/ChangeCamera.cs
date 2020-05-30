@@ -49,6 +49,7 @@ public class ChangeCamera : MonoBehaviour
         camera.transform.position = mainCamera.transform.position;
         camera.transform.rotation = mainCamera.transform.rotation;
         camera.orthographicSize = mainCamera.orthographicSize;
+        camera.fieldOfView = mainCamera.fieldOfView;
         mainCamera.gameObject.SetActive(false);
         camera.gameObject.SetActive(true);
         moveCamera = true;

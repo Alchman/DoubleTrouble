@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8606583180877234107}
   - component: {fileID: 4164916526436174033}
   - component: {fileID: 1560223249460715960}
+  - component: {fileID: 2133355076456128489}
   m_Layer: 0
   m_Name: rock5
   m_TagString: Untagged
@@ -79,6 +80,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &2133355076456128489
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302345518199827289}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7228239601360751719, guid: 401b949089221c741a6ab0b07aaf5d4d, type: 3}
 --- !u!1 &5730807847794392022
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8781089667234187717}
   m_Layer: 0
-  m_Name: rock5
+  m_Name: rock5_p
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

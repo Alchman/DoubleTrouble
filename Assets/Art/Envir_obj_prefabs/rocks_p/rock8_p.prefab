@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4508917680197282477}
   m_Layer: 0
-  m_Name: rock8
+  m_Name: rock8_p
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 2348875796498664598}
   - component: {fileID: 8780358856646536290}
   - component: {fileID: 7313764655292517821}
+  - component: {fileID: 5229383993762916266}
   m_Layer: 0
   m_Name: kk1
   m_TagString: Untagged
@@ -110,3 +111,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5229383993762916266
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8159204655081989256}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8049429593372437251, guid: ec0d6bd665eccc1478e0cc400d33a7ae, type: 3}

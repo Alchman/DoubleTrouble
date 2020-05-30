@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ResoursesUI : MonoBehaviour
 {
@@ -13,12 +14,18 @@ public class ResoursesUI : MonoBehaviour
     public Text metal;
     public Text rocket;
 
+    [Tooltip("Скорость выезда таблицы")] [SerializeField] [Range(0, 1)] float duration;
+
+    RectTransform rectTransform;
     SecondPlayer player;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
-       
+        rectTransform = GetComponent<RectTransform>();
+
     }
+    // Start is called before the first frame update
+ 
 
     // Update is called once per frame
     void Update()
@@ -32,5 +39,22 @@ public class ResoursesUI : MonoBehaviour
         rifle.text = SecondPlayer.Instance.GetBullets(BulletType.RIFLE).ToString();
         rocket.text = SecondPlayer.Instance.GetBullets(BulletType.ROCKET).ToString();
     }
-   
+    public void Show()
+    {
+        gameObject.SetActive(true);
+        rectTransform.DOAnchorPosX(620, duration);
+       
+
+    }
+    public void Hide()
+    {
+        rectTransform.DOAnchorPosX(620, duration).SetRelative(true).OnComplete(() => gameObject.SetActive(false));
+    }
+
 }
+
+
+
+
+
+

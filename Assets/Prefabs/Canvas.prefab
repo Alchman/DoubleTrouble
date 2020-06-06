@@ -812,7 +812,7 @@ MonoBehaviour:
   stone: {fileID: 1596219790604037780}
   metal: {fileID: 1596219791144112093}
   rocket: {fileID: 1596219790406555214}
-  duration: 0
+  duration: 0.25
 --- !u!1 &1596219790593438656
 GameObject:
   m_ObjectHideFlags: 0

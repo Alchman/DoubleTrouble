@@ -19207,7 +19207,7 @@ PrefabInstance:
     - target: {fileID: 5402778585764555489, guid: d9bda198b58a4b04899612cf039658e2,
         type: 3}
       propertyPath: jumpForce
-      value: 300
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 5402778585764555489, guid: d9bda198b58a4b04899612cf039658e2,
         type: 3}
@@ -19223,6 +19223,11 @@ PrefabInstance:
         type: 3}
       propertyPath: forcePushOnRun
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402778585764555489, guid: d9bda198b58a4b04899612cf039658e2,
+        type: 3}
+      propertyPath: gravityScale
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 5402778585948708903, guid: d9bda198b58a4b04899612cf039658e2,
         type: 3}
@@ -19282,6 +19287,11 @@ PrefabInstance:
     - target: {fileID: 5402778585948708904, guid: d9bda198b58a4b04899612cf039658e2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402778586005056722, guid: d9bda198b58a4b04899612cf039658e2,
+        type: 3}
+      propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

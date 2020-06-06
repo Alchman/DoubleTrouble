@@ -5,43 +5,40 @@ using UnityEngine.UI;
 
 public class Compass : MonoBehaviour
 {
+
+    public Vector3 northDirection;
     public Transform player;
-    public Transform target;
+    public Quaternion missionDirection;
 
-    public RectTransform arrow; // изображение UI, указатель цели, дочерний объект фона
-    public RectTransform compassBG; // изображение UI, фон компаса, в пределах которого будет двигаться указатель
+    public RectTransform northPlayer;
+    public RectTransform missionLayer;
 
-    public Color arrowIn = Color.white;
-    public Color arrowOut = Color.gray;
+    public Transform missionPlace;
 
-    private float minSize;
-    private float maxSize;
 
-    void Start()
+    private void Update()
     {
-        arrow.anchoredPosition = new Vector2(0, 0);
-        maxSize = arrow.sizeDelta.x;
-        minSize = maxSize/2;
+        ChangeForDirection();
+        ChangeMissionDirection();
     }
 
-    void LateUpdate()
+    public void ChangeForDirection()
     {
-        float posX = Camera.main.WorldToScreenPoint(target.position).x; // находим позицию цели в пространстве экрана, по оси Х
-        float center = Screen.width /2; // определяем центр экрана
-
-        Vector3 forward = Camera.main.transform.TransformDirection(Vector3.forward);
-        Vector3 toOther = target.position - Camera.main.transform.position;
-        if (Vector3.Dot(forward, toOther) < 0) posX = 0; // если цель позади нас - позиция равна нулю
-
-        float minPos = center - compassBG.sizeDelta.x /2;
-        float maxPos = center + compassBG.sizeDelta.x /2;
-        posX = Mathf.Clamp(posX, minPos, maxPos); // фиксируем позицию цели в приделах бэкграунда компаса
-
-        posX = center - posX; // корректируем позицию, относительно центра
-        arrow.anchoredPosition = new Vector2(-posX, 0); // инвертируем
-
-        Color tmp = Color.Lerp(arrowIn, arrowOut, Mathf.Abs(posX) / (compassBG.sizeDelta.x/2));
-        arrow.GetComponent<Image>().color = tmp; // переключаем цвета, значения от 0 до 1, центр экрана = 0
+        northDirection.z = player.eulerAngles.y;
+        northPlayer.localEulerAngles = northDirection;
 
     }
+
+    public void ChangeMissionDirection()
+    {
+        Vector3 dir = transform.position - missionPlace.position;
+        missionDirection = Quaternion.LookRotation(dir);
+
+        missionDirection.z = -missionDirection.y;
+        missionDirection.x = 0;
+        missionDirection.y = 0;
+
+        missionLayer.localRotation = missionDirection * Quaternion.Euler(northDirection);
+    }
+
 }

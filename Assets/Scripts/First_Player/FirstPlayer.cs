@@ -27,6 +27,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     public Transform groundCheck;
     public LayerMask whatIsGround;
     bool isGrounded = false;
+    [Range(0, 2)] public float accelerationSpeed;
 
     [Header("Coef")]
     [Tooltip("Коеф зависящий от скорости влияющий на силу удара предмета ")] [Range(0, 5)] [SerializeField] float coefSpeed=0.32f;
@@ -67,6 +68,14 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
         Vector3 movment = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rigidbody.velocity = new Vector3(moveHorizontal * moveSpeed, rigidbody.velocity.y, moveVertical * moveSpeed);
+        if (Input.GetButton("Fire3"))
+        {
+            rigidbody.velocity = new Vector3(moveHorizontal * moveSpeed, rigidbody.velocity.y, moveVertical * moveSpeed) * accelerationSpeed;
+        }
+        else if (Input.GetButtonUp("Fire3"))
+        {
+            rigidbody.velocity = new Vector3(moveHorizontal * moveSpeed, rigidbody.velocity.y, moveVertical * moveSpeed);
+        }
         rigidbody.MoveRotation(Quaternion.LookRotation(movment));
         // rigidbody.AddForce(movment * moveSpeed);
 
@@ -84,18 +93,18 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log(2);
+         
             isGrounded = Physics.Linecast(transform.position, groundCheck.position, whatIsGround);
-            Debug.Log(isGrounded);
+            if (isGrounded)
+            {
+                rigidbody.AddForce(new Vector3(0, jumpForce));
+                isGrounded = false;
+            }
+
         }
 
-        if (isGrounded)
-        {
-            rigidbody.AddForce(new Vector3(0, jumpForce));
-        }
 
 
-        
     }
 
 public void CheckEnemy()

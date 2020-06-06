@@ -44,19 +44,31 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     void Update()
     {
         CheckEnemy();
+       // Move();
+    }
+
+    private void FixedUpdate()
+    {
         Move();
     }
 
     public void Move()
     {
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * moveSpeed;
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+
+        Vector3 movment = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        rigidbody.velocity = new Vector3(moveHorizontal * moveSpeed, rigidbody.velocity.y, moveVertical * moveSpeed);
+       // rigidbody.AddForce(movment * moveSpeed);
+
+       /* Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         direction = Vector3.ClampMagnitude(direction, moveSpeed);
         speedPlayer = direction.magnitude;
         if (direction != Vector3.zero)
         {
-            rigidbody.velocity = direction;
+            rigidbody.AddForce(direction * moveSpeed );
             rigidbody.MoveRotation(Quaternion.LookRotation(direction));
-        }
+        }*/
     }
 
     public void CheckEnemy()

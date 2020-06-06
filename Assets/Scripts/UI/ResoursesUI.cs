@@ -24,6 +24,7 @@ public class ResoursesUI : MonoBehaviour
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+        Hide();
 
     }
     // Start is called before the first frame update

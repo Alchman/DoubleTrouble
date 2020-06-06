@@ -23,6 +23,10 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [Header("Speed")]
     [Tooltip("Скорость движения")] [SerializeField] float moveSpeed=7;
     [Tooltip("Динамическая скорость игрока")] private float speedPlayer;
+    public float jumpForce = 10;
+    public Transform groundCheck;
+    public LayerMask whatIsGround;
+    bool isGrounded = false;
 
     [Header("Coef")]
     [Tooltip("Коеф зависящий от скорости влияющий на силу удара предмета ")] [Range(0, 5)] [SerializeField] float coefSpeed=0.32f;
@@ -44,12 +48,16 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     void Update()
     {
         CheckEnemy();
-       // Move();
+        // Move();
+        Jump();
+
+
     }
 
     private void FixedUpdate()
     {
         Move();
+      
     }
 
     public void Move()
@@ -59,19 +67,38 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
         Vector3 movment = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rigidbody.velocity = new Vector3(moveHorizontal * moveSpeed, rigidbody.velocity.y, moveVertical * moveSpeed);
-       // rigidbody.AddForce(movment * moveSpeed);
+        rigidbody.MoveRotation(Quaternion.LookRotation(movment));
+        // rigidbody.AddForce(movment * moveSpeed);
 
-       /* Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        direction = Vector3.ClampMagnitude(direction, moveSpeed);
-        speedPlayer = direction.magnitude;
-        if (direction != Vector3.zero)
-        {
-            rigidbody.AddForce(direction * moveSpeed );
-            rigidbody.MoveRotation(Quaternion.LookRotation(direction));
-        }*/
+        /* Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+         direction = Vector3.ClampMagnitude(direction, moveSpeed);
+         speedPlayer = direction.magnitude;
+         if (direction != Vector3.zero)
+         {
+             rigidbody.AddForce(direction * moveSpeed );
+             rigidbody.MoveRotation(Quaternion.LookRotation(direction));
+         }*/
     }
 
-    public void CheckEnemy()
+    public void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log(2);
+            isGrounded = Physics.Linecast(transform.position, groundCheck.position, whatIsGround);
+            Debug.Log(isGrounded);
+        }
+
+        if (isGrounded)
+        {
+            rigidbody.AddForce(new Vector3(0, jumpForce));
+        }
+
+
+        
+    }
+
+public void CheckEnemy()
     {
         if ((Input.GetButtonDown("Fire1")))
         {

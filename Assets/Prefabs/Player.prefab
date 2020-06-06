@@ -90,7 +90,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5402778585948708903}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.82, z: -0.16}
+  m_LocalPosition: {x: 0.15, y: 2.82, z: -0.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5402778586260763906}
@@ -198,6 +198,11 @@ MonoBehaviour:
   hightYforShot: 1.5
   damageFoot: 10
   moveSpeed: 7
+  jumpForce: 10
+  groundCheck: {fileID: 0}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
   coefSpeed: 0.32
   capsulePosition1: {fileID: 634176579}
   capsulePosition2: {fileID: 898065077}

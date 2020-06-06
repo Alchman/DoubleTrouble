@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstPlayer : MonoBehaviour
+public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 {
     public LayerMask pushMask;
 

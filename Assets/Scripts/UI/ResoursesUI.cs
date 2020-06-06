@@ -19,6 +19,8 @@ public class ResoursesUI : MonoBehaviour
     RectTransform rectTransform;
     SecondPlayer player;
 
+   
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();

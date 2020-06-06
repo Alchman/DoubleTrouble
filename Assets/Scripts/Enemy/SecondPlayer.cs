@@ -33,7 +33,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     public int regenCount;
     Health health;
 
-    public ResoursesUI tableResourses;
+    ResoursesUI tableResourses;
 
    
 
@@ -52,9 +52,8 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
         resourses.Add(ResourceType.REGEN, regenCount);
 
         health = GetComponent<Health>();
-
-     
         rb       = GetComponent<Rigidbody>();
+        tableResourses = FindObjectOfType<ResoursesUI>();
         health.OnDeath += DoDeath;
         nextFire = 1f;
 
@@ -169,12 +168,8 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
 
    
     private void OnTriggerExit(Collider other)
-    { 
-       
+    {  
         tableResourses.Hide();
-
-
-
     }
 
     public int GetResourses(ResourceType resourceType)

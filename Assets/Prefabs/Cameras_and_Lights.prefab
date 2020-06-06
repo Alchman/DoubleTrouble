@@ -502,7 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d2a362db8b89b4fb70c5942693ec7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 40
   mainCamera: {fileID: 4209814062831195636}
   camera: {fileID: 7586703388392193352}
 --- !u!1 &5763322921862198581

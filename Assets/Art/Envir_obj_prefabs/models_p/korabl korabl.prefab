@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2078420090442870958}
   - component: {fileID: 2483004435481501816}
   - component: {fileID: 8026703446448844787}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: korabl_korabl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4765663863057308298}
   - component: {fileID: 4989563179966641712}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: korabl korabl
   m_TagString: Untagged
   m_Icon: {fileID: 0}

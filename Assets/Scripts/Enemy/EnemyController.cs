@@ -47,13 +47,22 @@ public class EnemyController : MonoBehaviour{
 
             case StateEnemy.Move :
                 // print("StateEnemy.Move :");
+                agent.isStopped = false; 
+            
                 MoveToTarget();
                 break;
             case StateEnemy.Atack :
                 print("StateEnemy.Atack :");
-                agent.Stop();
+                agent.isStopped = true;
                 // agent.enabled = false;
+                distanceToTarget = Vector3.Distance(transform.position, secondPlayer.transform.position);
+                if(distanceToTarget > 7) {
+                    currientStateEnemy = StateEnemy.Move;
+                    print("distanse player move");
+                }
                 TargetAtack();
+
+            
 
                 break;
         }

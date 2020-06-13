@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -7084153100677260823}
   - component: {fileID: 3014455255414052134}
   - component: {fileID: 6736395070302823943}
+  - component: {fileID: -5288016989118730063}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -107,7 +108,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4912712045438661369}
   serializedVersion: 2
-  m_Mass: 30
+  m_Mass: 7
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -125,7 +126,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.69
-  m_Speed: 10
+  m_Speed: 5
   m_Acceleration: 30
   avoidancePriority: 34
   m_AngularSpeed: 120
@@ -179,6 +180,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 333
+--- !u!114 &-5288016989118730063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912712045438661369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e1ba57069dca5c489aad4e4d6541434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  massCoef: 0.5
+  pushOnRun: 0
 --- !u!1 &5195783461553213834
 GameObject:
   m_ObjectHideFlags: 0

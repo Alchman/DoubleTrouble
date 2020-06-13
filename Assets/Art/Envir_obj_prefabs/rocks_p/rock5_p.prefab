@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4164916526436174033}
   - component: {fileID: 1560223249460715960}
   - component: {fileID: 2133355076456128489}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: rock5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8781089667234187717}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: rock5_p
   m_TagString: Untagged
   m_Icon: {fileID: 0}

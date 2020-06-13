@@ -27,7 +27,7 @@ public class EnemyController : MonoBehaviour{
     private Health       health;
     private Health       healthSecondPlayer;
     private float        nextAttack;
-
+    
     void Start() {
         rb                 =  GetComponent<Rigidbody>();
         secondPlayer = SecondPlayer.Instance;
@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour{
         health             =  GetComponent<Health>();
         healthSecondPlayer =  secondPlayer.GetComponent<Health>();
         health.OnDeath     += OnDeath;
-    }
+  }
 
     private void Update() {
         
@@ -50,8 +50,9 @@ public class EnemyController : MonoBehaviour{
                 MoveToTarget();
                 break;
             case StateEnemy.Atack :
-                // print("StateEnemy.Atack :");
+                print("StateEnemy.Atack :");
                 agent.Stop();
+                // agent.enabled = false;
                 TargetAtack();
 
                 break;
@@ -60,7 +61,8 @@ public class EnemyController : MonoBehaviour{
 
     private void OnDeath() {
         Destroy(gameObject);
-     }
+      
+    }
 
     private void MoveToTarget() {
         if(!secondPlayer.gameObject.activeSelf) {
@@ -75,11 +77,12 @@ public class EnemyController : MonoBehaviour{
     }
 
     private void TargetAtack() {
+        print("StarAtack");
         if(Time.time < nextAttack) {
             return;
         }
 
-        // print("attack");
+        print("attack");
 
         healthSecondPlayer.ChangeHealth(damage);
         // print( ""  + healthSecondPlayer.HealthLeft);

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3978326134002838465}
   - component: {fileID: 7041378683012891738}
   - component: {fileID: 7797139073666850163}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Volume3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6731985144736913231}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: rocks_small2_p
   m_TagString: Untagged
   m_Icon: {fileID: 0}

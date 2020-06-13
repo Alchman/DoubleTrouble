@@ -221,8 +221,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 8
-  m_Height: 14.948225
+  m_Radius: 7
+  m_Height: 9.31
   m_Direction: 1
   m_Center: {x: -1.5215983, y: 0.44254398, z: 1.5178044}
 --- !u!114 &1749342856
@@ -249,7 +249,6 @@ MonoBehaviour:
   metalCount: 0
   stoneCount: 0
   regenCount: 0
-  tableResourses: {fileID: 0}
   RadiusCanon: 50
 --- !u!114 &1749342862
 MonoBehaviour:

@@ -19,9 +19,12 @@ public class ResoursesUI : MonoBehaviour
     RectTransform rectTransform;
     SecondPlayer player;
 
+   
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+        Hide();
 
     }
     // Start is called before the first frame update

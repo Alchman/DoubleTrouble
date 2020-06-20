@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TimeUi : MonoBehaviour{
+public  class TimeUi : MonoBehaviour{
     [SerializeField] private Text clock;
 
 

@@ -1,17 +1,16 @@
-﻿using System;
+﻿using Lean.Pool;
 using UnityEngine;
-using Lean.Pool;
 
 public class Weapon : MonoBehaviour
 {
     [SerializeField] Bullet bulletPrefab;
-    public float buletSpeed;
-    public float bulletDamage;
-    public BulletType bulletType;
+    [Tooltip("скорость полета пули")] public float buletSpeed;
+    [Tooltip("дамаг дял пули")] public float bulletDamage;
+    [Tooltip("тип пули")] public BulletType bulletType;
 
-    public int magazineSize;
-    public float reloadTime;
-    public float fireRate;
+    [Tooltip("размера магазиня для пуль")] public int magazineSize;
+    [Tooltip("время перезорядки оружия")] public float reloadTime;
+    [Tooltip("время между выстрелами")] public float fireRate;
 
     int magazineBulletLeft;
 

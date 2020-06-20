@@ -465,6 +465,7 @@ GameObject:
   - component: {fileID: 4209814062900575284}
   - component: {fileID: 2414354179308297407}
   - component: {fileID: 1514346557273820099}
+  - component: {fileID: 551704893005566455}
   m_Layer: 0
   m_Name: Cameras_and_Lights
   m_TagString: Untagged
@@ -518,7 +519,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f864fdf968b92f749b10ad99548e29d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DayDuration: 1440
+  DayDuration: 240
+--- !u!114 &551704893005566455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4209814062900575285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a06b3d78f5d89bb49abb806bdfcdc20a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorNightDay:
+    serializedVersion: 2
+    key0: {r: 0.30588236, g: 0.25882354, b: 0.8509804, a: 1}
+    key1: {r: 0.62839913, g: 0.5544483, b: 0.815054, a: 1}
+    key2: {r: 0.77345145, g: 0.7923312, b: 0.8584906, a: 1}
+    key3: {r: 1, g: 1, b: 1, a: 0}
+    key4: {r: 1, g: 1, b: 1, a: 0}
+    key5: {r: 0.6930847, g: 0.7202718, b: 0.8396226, a: 0}
+    key6: {r: 0.52470064, g: 0.51063544, b: 0.7075472, a: 0}
+    key7: {r: 0.30552956, g: 0.26032397, b: 0.8490566, a: 0}
+    ctime0: 386
+    ctime1: 10987
+    ctime2: 19853
+    ctime3: 29298
+    ctime4: 38357
+    ctime5: 47031
+    ctime6: 55898
+    ctime7: 65535
+    atime0: 0
+    atime1: 65535
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 8
+    m_NumAlphaKeys: 2
+  directionLight: {fileID: 4209814062785543899}
 --- !u!1 &5763322921862198581
 GameObject:
   m_ObjectHideFlags: 0

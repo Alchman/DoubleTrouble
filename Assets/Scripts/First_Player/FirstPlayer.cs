@@ -14,30 +14,44 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [SerializeField] float forcePushOnRun = 3;
 
     [Header("Hight")]
-    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightYforRun = 1.5f;
-    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightYforShot = 2f;
-
+   
     [Header("Damage")]
     [Tooltip("Урон по врагу ударом ногой")] [SerializeField] float damageFoot = 10;
 
     [Header("Speed")]
     [Tooltip("Скорость движения")] [SerializeField] float moveSpeed = 7;
     [Tooltip("Динамическая скорость игрока")] private float speedPlayer;
-   
-   private float startSpeed;
+
+    [Tooltip("Начальная скорость движения")] private float startSpeed;
 
 
-    public float jumpForce = 10;
+    [Tooltip("Сила с которой подпрыгнет игрок")] [SerializeField] float jumpForce = 10;
     public float gravityScale = -10;
 
-    public Transform groundCheck;
+    [Tooltip("Проверка если ли 'земля' под ногами")] [SerializeField] Transform groundCheck;
 
-    public LayerMask whatIsGround;
+    [Tooltip("На чем стоит игрок")] [SerializeField] LayerMask whatIsGround;
     bool isGrounded = false;
 
-    
 
-    [Range(0, 2)] public float accelerationSpeed;
+    [Tooltip("Сила пинания с места")] [SerializeField] float forceShotIdle;
+    [Tooltip("Сила пинания yf ,tue")] [SerializeField] float forceShotOnRun;
+    [Tooltip("Сила пинания при беге с шифтом")] [SerializeField] float forceShotSpeedUp;
+
+    
+    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightYforShot = 2f;
+    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightYforShotOnRun = 2f;
+    [Tooltip("Высота пиннания при беге с шифтом")] [SerializeField] float hightYforShotSpeedUp;
+
+
+
+
+
+    [Tooltip("Сила пинания при задевании")] [SerializeField] float forceShotOnCollision;
+    [Tooltip("Высота на которую кидается предмет при его задевании")] [SerializeField] float hightYOnCollision = 1.5f;
+
+
+    [Tooltip("На сколько ed  при нажатиии на shift")] [Range(0, 2)] [SerializeField] float accelerationSpeed;
 
     [Header("Coef")]
     [Tooltip("Коеф зависящий от скорости влияющий на силу удара предмета ")] [Range(0, 5)] [SerializeField] float coefSpeed = 0.32f;
@@ -48,13 +62,23 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     Rigidbody rigidbody;
     Health health;
-  
+    PlayerStates currentState;
 
+
+    enum PlayerStates
+    {
+        IDLE,
+        MOVE,
+        RUN
+    }
     void Start()
     {
         health = GetComponent<Health>();
         rigidbody = GetComponent<Rigidbody>();
         health.OnDeath += DoDeath;
+        startSpeed = moveSpeed;
+        currentState = PlayerStates.IDLE;
+
     }
 
   private  void Update()
@@ -89,11 +113,17 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         if (direction != Vector3.zero)
         {
             rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, rigidbody.velocity.y, Input.GetAxis("Vertical") * moveSpeed);
+            currentState = PlayerStates.MOVE;
             rigidbody.MoveRotation(Quaternion.LookRotation(direction));
             if (Input.GetButton("Fire3"))
             {
                 rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal") * moveSpeed * accelerationSpeed, rigidbody.velocity.y, Input.GetAxis("Vertical") * moveSpeed * accelerationSpeed);
+                currentState = PlayerStates.RUN;
             }
+        }
+        else
+        {
+            currentState = PlayerStates.IDLE;
         }
 
     }
@@ -141,7 +171,23 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
             Pushable pushable = target.GetComponent<Pushable>();
             if (pushable != null)
             {
-                Vector3 direction = CalculateDirection(target.transform.position, forcePush, hightYforShot);
+                Vector3 direction= Vector3.zero;
+                switch (currentState)
+                {
+                    case PlayerStates.IDLE:
+                         direction = CalculateDirection(target.transform.position, forceShotIdle, hightYforShot);
+                        Debug.Log("IDLE");
+                        break;
+                    case PlayerStates.MOVE:
+                        direction = CalculateDirection(target.transform.position, forceShotOnRun, hightYforShotOnRun);
+                        Debug.Log("Move");
+                        break;
+                    case PlayerStates.RUN:
+                        direction = CalculateDirection(target.transform.position, forceShotSpeedUp, hightYforShotSpeedUp);
+                        Debug.Log("Run");
+                        break;
+
+                }
                 pushable.Push(direction);
             }
             DamagebleByPush damagebleByPush = target.GetComponent<DamagebleByPush>();
@@ -175,29 +221,26 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         Pushable pushable = other.gameObject.GetComponent<Pushable>();
         if (pushable != null && pushable.PushOnRun)
         {
-            Vector3 direction = CalculateDirection(other.transform.position, forcePushOnRun, hightYforRun);
-            pushable.Push(direction);
-        }
-
-       
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "SpeedUp")
-        {
-            startSpeed = moveSpeed;
-            SpeedInPlane speedIn =collision.gameObject.GetComponent<SpeedInPlane>();
             
-            moveSpeed *= speedIn.GetSpeedAcceleration(); ;
+                    Vector3 direction = CalculateDirection(other.transform.position, forcePushOnRun, hightYOnCollision);
+                    pushable.Push(direction);
+
+                 
         }
-        
-
+        SpeedModificator speedInPlane = other.gameObject.GetComponent<SpeedModificator>();
+        if (speedInPlane)
+        {
+           
+            moveSpeed *= speedInPlane.GetSpeedFactor(); ;
+        }
 
     }
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-            moveSpeed = startSpeed;
+        moveSpeed = startSpeed;
     }
+
+   
 
     public void DoDeath()
     {

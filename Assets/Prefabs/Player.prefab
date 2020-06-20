@@ -225,8 +225,6 @@ MonoBehaviour:
   radiusCheck: 1.3
   forcePush: 12
   forcePushOnRun: 5
-  hightYforRun: 1.3
-  hightYforShot: 1.5
   damageFoot: 10
   moveSpeed: 7
   jumpForce: 500
@@ -235,6 +233,14 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 24576
+  forceShotIdle: 5
+  forceShotOnRun: 10
+  forceShotSpeedUp: 15
+  hightYforShot: 1.5
+  hightYforShotOnRun: 3
+  hightYforShotSpeedUp: 2
+  forceShotOnCollision: 1
+  hightYOnCollision: 1.5
   accelerationSpeed: 1.47
   coefSpeed: 0.76
   capsulePosition1: {fileID: 634176579}

@@ -23,11 +23,20 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [Header("Speed")]
     [Tooltip("Скорость движения")] [SerializeField] float moveSpeed = 7;
     [Tooltip("Динамическая скорость игрока")] private float speedPlayer;
+   
+   private float startSpeed;
+
+
     public float jumpForce = 10;
     public float gravityScale = -10;
+
     public Transform groundCheck;
+
     public LayerMask whatIsGround;
     bool isGrounded = false;
+
+    
+
     [Range(0, 2)] public float accelerationSpeed;
 
     [Header("Coef")]
@@ -39,6 +48,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     Rigidbody rigidbody;
     Health health;
+  
 
     void Start()
     {
@@ -51,7 +61,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     {
 
         CheckEnemy();
-        // Move();
+       
         Jump();
 
 
@@ -72,17 +82,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     private void Move()
     {
-        /*   float moveHorizontal = Input.GetAxis("Horizontal");
-           float moveVertical = Input.GetAxis("Vertical");
-
-           Vector3 movment = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
-
-           rigidbody.MoveRotation(Quaternion.LookRotation(movment));*/
-        // rigidbody.AddForce(movment * moveSpeed);
-
-
-
+     
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         direction = Vector3.ClampMagnitude(direction, moveSpeed);
         speedPlayer = direction.magnitude;
@@ -98,6 +98,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     }
 
+  
     private void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -106,6 +107,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
             isGrounded = Physics.Linecast(transform.position, groundCheck.position, whatIsGround);
             if (isGrounded)
             {
+              
                 rigidbody.AddForce(new Vector3(0, jumpForce));
                 isGrounded = false;
             }
@@ -165,15 +167,8 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         return direction;
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    Pushable pushable = collision.gameObject.GetComponent<Pushable>();
-    //    if (pushable != null && pushable.PushOnRun)
-    //    { 
-    //        Vector3 direction = CalculateDirection(collision.transform.position, forcePushOnRun,hightYforRun);
-    //            pushable.Push(direction);
-    //    }   
-    //}
+
+   
 
     private void OnTriggerEnter(Collider other)
     {
@@ -183,6 +178,25 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
             Vector3 direction = CalculateDirection(other.transform.position, forcePushOnRun, hightYforRun);
             pushable.Push(direction);
         }
+
+       
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "SpeedUp")
+        {
+            startSpeed = moveSpeed;
+            SpeedInPlane speedIn =collision.gameObject.GetComponent<SpeedInPlane>();
+            
+            moveSpeed *= speedIn.GetSpeedAcceleration(); ;
+        }
+        
+
+
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+            moveSpeed = startSpeed;
     }
 
     public void DoDeath()

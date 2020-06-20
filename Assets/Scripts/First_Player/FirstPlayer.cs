@@ -35,7 +35,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
 
     [Tooltip("Сила пинания с места")] [SerializeField] float forceShotIdle;
-    [Tooltip("Сила пинания yf ,tue")] [SerializeField] float forceShotOnRun;
+    [Tooltip("Сила пинания на бегу")] [SerializeField] float forceShotOnRun;
     [Tooltip("Сила пинания при беге с шифтом")] [SerializeField] float forceShotSpeedUp;
 
     
@@ -51,7 +51,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [Tooltip("Высота на которую кидается предмет при его задевании")] [SerializeField] float hightYOnCollision = 1.5f;
 
 
-    [Tooltip("На сколько ed  при нажатиии на shift")] [Range(0, 2)] [SerializeField] float accelerationSpeed;
+    [Tooltip("Во сколько раз увеличиться скорость при нажатиии на shift")] [Range(0, 2)] [SerializeField] float accelerationSpeed;
 
     [Header("Coef")]
     [Tooltip("Коеф зависящий от скорости влияющий на силу удара предмета ")] [Range(0, 5)] [SerializeField] float coefSpeed = 0.32f;
@@ -176,15 +176,15 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                 {
                     case PlayerStates.IDLE:
                          direction = CalculateDirection(target.transform.position, forceShotIdle, hightYforShot);
-                        Debug.Log("IDLE");
+                       
                         break;
                     case PlayerStates.MOVE:
                         direction = CalculateDirection(target.transform.position, forceShotOnRun, hightYforShotOnRun);
-                        Debug.Log("Move");
+                      
                         break;
                     case PlayerStates.RUN:
                         direction = CalculateDirection(target.transform.position, forceShotSpeedUp, hightYforShotSpeedUp);
-                        Debug.Log("Run");
+                     
                         break;
 
                 }

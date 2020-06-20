@@ -14,21 +14,44 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [SerializeField] float forcePushOnRun = 3;
 
     [Header("Hight")]
-    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightYforRun = 1.5f;
-    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightYforShot = 2f;
-
+   
     [Header("Damage")]
     [Tooltip("Урон по врагу ударом ногой")] [SerializeField] float damageFoot = 10;
 
     [Header("Speed")]
     [Tooltip("Скорость движения")] [SerializeField] float moveSpeed = 7;
     [Tooltip("Динамическая скорость игрока")] private float speedPlayer;
-    public float jumpForce = 10;
+
+    [Tooltip("Начальная скорость движения")] private float startSpeed;
+
+
+    [Tooltip("Сила с которой подпрыгнет игрок")] [SerializeField] float jumpForce = 10;
     public float gravityScale = -10;
-    public Transform groundCheck;
-    public LayerMask whatIsGround;
+
+    [Tooltip("Проверка если ли 'земля' под ногами")] [SerializeField] Transform groundCheck;
+
+    [Tooltip("На чем стоит игрок")] [SerializeField] LayerMask whatIsGround;
     bool isGrounded = false;
-    [Range(0, 2)] public float accelerationSpeed;
+
+
+    [Tooltip("Сила пинания с места")] [SerializeField] float forceShotIdle;
+    [Tooltip("Сила пинания на бегу")] [SerializeField] float forceShotOnRun;
+    [Tooltip("Сила пинания при беге с шифтом")] [SerializeField] float forceShotSpeedUp;
+
+    
+    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightYforShot = 2f;
+    [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightYforShotOnRun = 2f;
+    [Tooltip("Высота пиннания при беге с шифтом")] [SerializeField] float hightYforShotSpeedUp;
+
+
+
+
+
+    [Tooltip("Сила пинания при задевании")] [SerializeField] float forceShotOnCollision;
+    [Tooltip("Высота на которую кидается предмет при его задевании")] [SerializeField] float hightYOnCollision = 1.5f;
+
+
+    [Tooltip("Во сколько раз увеличиться скорость при нажатиии на shift")] [Range(0, 2)] [SerializeField] float accelerationSpeed;
 
     [Header("Coef")]
     [Tooltip("Коеф зависящий от скорости влияющий на силу удара предмета ")] [Range(0, 5)] [SerializeField] float coefSpeed = 0.32f;
@@ -39,19 +62,30 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     Rigidbody rigidbody;
     Health health;
+    PlayerStates currentState;
 
+
+    enum PlayerStates
+    {
+        IDLE,
+        MOVE,
+        RUN
+    }
     void Start()
     {
         health = GetComponent<Health>();
         rigidbody = GetComponent<Rigidbody>();
         health.OnDeath += DoDeath;
+        startSpeed = moveSpeed;
+        currentState = PlayerStates.IDLE;
+
     }
 
   private  void Update()
     {
 
         CheckEnemy();
-        // Move();
+       
         Jump();
 
 
@@ -72,32 +106,29 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     private void Move()
     {
-        /*   float moveHorizontal = Input.GetAxis("Horizontal");
-           float moveVertical = Input.GetAxis("Vertical");
-
-           Vector3 movment = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
-
-           rigidbody.MoveRotation(Quaternion.LookRotation(movment));*/
-        // rigidbody.AddForce(movment * moveSpeed);
-
-
-
+     
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         direction = Vector3.ClampMagnitude(direction, moveSpeed);
         speedPlayer = direction.magnitude;
         if (direction != Vector3.zero)
         {
             rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, rigidbody.velocity.y, Input.GetAxis("Vertical") * moveSpeed);
+            currentState = PlayerStates.MOVE;
             rigidbody.MoveRotation(Quaternion.LookRotation(direction));
             if (Input.GetButton("Fire3"))
             {
                 rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal") * moveSpeed * accelerationSpeed, rigidbody.velocity.y, Input.GetAxis("Vertical") * moveSpeed * accelerationSpeed);
+                currentState = PlayerStates.RUN;
             }
+        }
+        else
+        {
+            currentState = PlayerStates.IDLE;
         }
 
     }
 
+  
     private void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -106,6 +137,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
             isGrounded = Physics.Linecast(transform.position, groundCheck.position, whatIsGround);
             if (isGrounded)
             {
+              
                 rigidbody.AddForce(new Vector3(0, jumpForce));
                 isGrounded = false;
             }
@@ -139,7 +171,23 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
             Pushable pushable = target.GetComponent<Pushable>();
             if (pushable != null)
             {
-                Vector3 direction = CalculateDirection(target.transform.position, forcePush, hightYforShot);
+                Vector3 direction= Vector3.zero;
+                switch (currentState)
+                {
+                    case PlayerStates.IDLE:
+                         direction = CalculateDirection(target.transform.position, forceShotIdle, hightYforShot);
+                       
+                        break;
+                    case PlayerStates.MOVE:
+                        direction = CalculateDirection(target.transform.position, forceShotOnRun, hightYforShotOnRun);
+                      
+                        break;
+                    case PlayerStates.RUN:
+                        direction = CalculateDirection(target.transform.position, forceShotSpeedUp, hightYforShotSpeedUp);
+                     
+                        break;
+
+                }
                 pushable.Push(direction);
             }
             DamagebleByPush damagebleByPush = target.GetComponent<DamagebleByPush>();
@@ -165,25 +213,34 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         return direction;
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    Pushable pushable = collision.gameObject.GetComponent<Pushable>();
-    //    if (pushable != null && pushable.PushOnRun)
-    //    { 
-    //        Vector3 direction = CalculateDirection(collision.transform.position, forcePushOnRun,hightYforRun);
-    //            pushable.Push(direction);
-    //    }   
-    //}
+
+   
 
     private void OnTriggerEnter(Collider other)
     {
         Pushable pushable = other.gameObject.GetComponent<Pushable>();
         if (pushable != null && pushable.PushOnRun)
         {
-            Vector3 direction = CalculateDirection(other.transform.position, forcePushOnRun, hightYforRun);
-            pushable.Push(direction);
+            
+                    Vector3 direction = CalculateDirection(other.transform.position, forcePushOnRun, hightYOnCollision);
+                    pushable.Push(direction);
+
+                 
         }
+        SpeedModificator speedInPlane = other.gameObject.GetComponent<SpeedModificator>();
+        if (speedInPlane)
+        {
+           
+            moveSpeed *= speedInPlane.GetSpeedFactor(); ;
+        }
+
     }
+    private void OnTriggerExit(Collider other)
+    {
+        moveSpeed = startSpeed;
+    }
+
+   
 
     public void DoDeath()
     {

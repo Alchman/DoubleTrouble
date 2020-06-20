@@ -25,7 +25,9 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
 
     Dictionary<BulletType, int> bullets = new Dictionary<BulletType, int>();
     Dictionary<ResourceType, int> resourses = new Dictionary<ResourceType, int>();
- 
+
+  
+    [SerializeField]  float distanseToShowResourses;
     public int gearsCount;
     public int woodCount;
     public int metalCount;
@@ -76,6 +78,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
                 // print("StateSecondPlayer.Reload");
                 break;
         }
+        ShowResourses();
     }
 
     private void CheckEnemy() {
@@ -158,19 +161,28 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void ShowResourses()
     {
-        if (other.gameObject.tag == "Player")
+        
+        float distance = Vector3.Distance(transform.position, FirstPlayer.Instance.transform.position);
+        if (distance < distanseToShowResourses)
         {
-            tableResourses.Show() ;
+            tableResourses.Show();
+        }
+        else
+        {
+            tableResourses.Hide();
         }
     }
-
-   
-    private void OnTriggerExit(Collider other)
-    {  
-        tableResourses.Hide();
+    void OnDrawGizmos()
+    {
+      
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, distanseToShowResourses);
     }
+
+ 
+    
 
     public int GetResourses(ResourceType resourceType)
     {

@@ -10,6 +10,9 @@ TagManager:
   - SecondPlayer
   - Enemy
   - ThingsForPush
+  - SlowDown
+  - PlusSpeed
+  - SpeedUp
   layers:
   - Default
   - TransparentFX
@@ -26,8 +29,8 @@ TagManager:
   - Bullet
   - Ground
   - Obstacle
-  - 
-  - 
+  - SlowDown
+  - SpeedUp
   - 
   - 
   - 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5863774889945774432}
   - component: {fileID: 2971181519183445213}
   - component: {fileID: 7136765586601368301}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: barricade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 9194725593730717915}
   - component: {fileID: 6372416709135902809}
   - component: {fileID: 3877700407193233315}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: barricade2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7359623030501634710}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: "\xA1\xA1\xD7\xFD\xD7\xFB"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 7378195604249012358}
   - component: {fileID: 2075412392058189381}
   - component: {fileID: 3400399473910985658}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: barricade3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8866172312259229864}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Barricade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 5299723051185646103}
   - component: {fileID: 944977016002092966}
   - component: {fileID: 4217368801975674382}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: rock011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 2805275691727788725}
   - component: {fileID: 7836923140296114389}
   - component: {fileID: 2243126833849085480}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -471,7 +471,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1392889034797627949}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: "\xD7\xFE\xD7\xFC"
   m_TagString: Untagged
   m_Icon: {fileID: 0}

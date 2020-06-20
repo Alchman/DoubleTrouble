@@ -27,7 +27,7 @@ public class EnemyController : MonoBehaviour{
     private Health       health;
     private Health       healthSecondPlayer;
     private float        nextAttack;
-
+    
     void Start() {
         rb                 =  GetComponent<Rigidbody>();
         secondPlayer = SecondPlayer.Instance;
@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour{
         health             =  GetComponent<Health>();
         healthSecondPlayer =  secondPlayer.GetComponent<Health>();
         health.OnDeath     += OnDeath;
-    }
+  }
 
     private void Update() {
         
@@ -47,12 +47,22 @@ public class EnemyController : MonoBehaviour{
 
             case StateEnemy.Move :
                 // print("StateEnemy.Move :");
+                agent.isStopped = false; 
+            
                 MoveToTarget();
                 break;
             case StateEnemy.Atack :
-                // print("StateEnemy.Atack :");
-                agent.Stop();
+                print("StateEnemy.Atack :");
+                agent.isStopped = true;
+                // agent.enabled = false;
+                distanceToTarget = Vector3.Distance(transform.position, secondPlayer.transform.position);
+                if(distanceToTarget > 7) {
+                    currientStateEnemy = StateEnemy.Move;
+                    print("distanse player move");
+                }
                 TargetAtack();
+
+            
 
                 break;
         }
@@ -60,7 +70,8 @@ public class EnemyController : MonoBehaviour{
 
     private void OnDeath() {
         Destroy(gameObject);
-     }
+      
+    }
 
     private void MoveToTarget() {
         if(!secondPlayer.gameObject.activeSelf) {
@@ -75,11 +86,12 @@ public class EnemyController : MonoBehaviour{
     }
 
     private void TargetAtack() {
+        print("StarAtack");
         if(Time.time < nextAttack) {
             return;
         }
 
-        // print("attack");
+        print("attack");
 
         healthSecondPlayer.ChangeHealth(damage);
         // print( ""  + healthSecondPlayer.HealthLeft);

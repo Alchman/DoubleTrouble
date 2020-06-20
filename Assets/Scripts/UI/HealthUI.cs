@@ -8,6 +8,11 @@ public class HealthUI : MonoBehaviour
 
     void Start()
     {
+        if (health == null)
+        {
+            Debug.LogWarning("Health object is not set!");
+            return;
+        }
         health.OnHealthUpdate += HealthUpdate;
         slider.minValue = 0;
         slider.maxValue = health.MaxHealth;

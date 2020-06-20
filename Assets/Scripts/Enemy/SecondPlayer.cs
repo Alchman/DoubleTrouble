@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 enum StateSecondPlayer{
     Start,
@@ -11,70 +10,67 @@ enum StateSecondPlayer{
 public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     private Rigidbody rb;
 
-    public LayerMask layerMask;
-    public Weapon    activeWeapon;
- 
-    [Header("Bullets")] public int pistolBullets;
-    public                     int rifleBullets;
-    public int rocketBullets;
+    public                              LayerMask layerMask;
+    [Tooltip("активное оружие")] public Weapon    activeWeapon;
+
+    [Header("Bullets")] [Tooltip("Пули для пистолета")]
+    public int pistolBullets;
+
+    [Tooltip("Пули для винтовки")]  public int rifleBullets;
+    [Tooltip("Пули для рокетницы")] public int rocketBullets;
 
     private Collider          target;
     private float             nextFire;
     private StateSecondPlayer currentStateSecondPlayer;
 
 
-    Dictionary<BulletType, int> bullets = new Dictionary<BulletType, int>();
+    Dictionary<BulletType, int>   bullets   = new Dictionary<BulletType, int>();
     Dictionary<ResourceType, int> resourses = new Dictionary<ResourceType, int>();
- 
+
     public int gearsCount;
     public int woodCount;
     public int metalCount;
     public int stoneCount;
     public int regenCount;
-    Health health;
+    Health     health;
 
     ResoursesUI tableResourses;
 
-   
-
-
-    [SerializeField] private float RadiusCanon = 50f; //TODO move to weapon class
+    [Tooltip("радиус поражения для оружия")] [SerializeField]
+    private float RadiusCanon = 50f; //TODO move to weapon class
 
     void Start() {
         bullets.Add(BulletType.PISTOL, pistolBullets);
         bullets.Add(BulletType.RIFLE,  rifleBullets);
-        bullets.Add(BulletType.ROCKET,  rocketBullets);
+        bullets.Add(BulletType.ROCKET, rocketBullets);
 
         resourses.Add(ResourceType.GEARS, gearsCount);
-        resourses.Add(ResourceType.WOOD, woodCount);
+        resourses.Add(ResourceType.WOOD,  woodCount);
         resourses.Add(ResourceType.METAL, metalCount);
         resourses.Add(ResourceType.STONE, stoneCount);
         resourses.Add(ResourceType.REGEN, regenCount);
 
-        health = GetComponent<Health>();
-        rb       = GetComponent<Rigidbody>();
-        tableResourses = FindObjectOfType<ResoursesUI>();
+        health         =  GetComponent<Health>();
+        rb             =  GetComponent<Rigidbody>();
+        tableResourses =  FindObjectOfType<ResoursesUI>();
         health.OnDeath += DoDeath;
-        nextFire = 1f;
-
+        nextFire       =  1f;
     }
 
     void Update() {
         switch(currentStateSecondPlayer) {
             case StateSecondPlayer.Start :
-                // print("StateSecondPlayer.Start");
+
                 currentStateSecondPlayer = StateSecondPlayer.Atack;
                 break;
 
             case StateSecondPlayer.Atack :
-                // print("StateSecondPlayer.Atack ");
+
                 CheckEnemy();
                 AutoShooting();
 
                 break;
-            case StateSecondPlayer.Reload :
-                // print("StateSecondPlayer.Reload");
-                break;
+            case StateSecondPlayer.Reload : break;
         }
     }
 
@@ -125,7 +121,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
                     //TODO change weapon
 
                     //state -> NO BULLETS
-                   // print("//state -> NO BULLETS");
+                    // print("//state -> NO BULLETS");
                     nextFire = float.PositiveInfinity;
                 }
             }
@@ -135,54 +131,39 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
         }
     }
 
-  public void AddResourses(ResourceType resourceType, int amount )
-    {
+    public void AddResourses(ResourceType resourceType, int amount) {
         resourses[resourceType] += amount;
-       
     }
 
-    public void AddAmmo(BulletType bulletType, int amount)
-    {
+    public void AddAmmo(BulletType bulletType, int amount) {
         bullets[bulletType] += amount;
     }
 
-    public void DoDeath()
-    {
-       gameObject.SetActive(false);
+    public void DoDeath() {
+        gameObject.SetActive(false);
         print("Game Over");
     }
 
-    public void HealthUpdate(int count)
-    {
+    public void HealthUpdate(int count) {
         health.ChangeHealth(count);
-        
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            tableResourses.Show() ;
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.tag == "Player") {
+            tableResourses.Show();
         }
     }
 
-   
-    private void OnTriggerExit(Collider other)
-    {  
+
+    private void OnTriggerExit(Collider other) {
         tableResourses.Hide();
     }
 
-    public int GetResourses(ResourceType resourceType)
-    {
+    public int GetResourses(ResourceType resourceType) {
         return resourses[resourceType];
     }
 
-    public int GetBullets(BulletType bulletType)
-    {
+    public int GetBullets(BulletType bulletType) {
         return bullets[bulletType];
     }
-
-
-
-
 }

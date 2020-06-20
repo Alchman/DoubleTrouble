@@ -1,8 +1,5 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DamageDealer : MonoBehaviour
-{
-  //public LayerMask layerMask;
-  public float damage = 51f;
+public class DamageDealer : MonoBehaviour{
+    [Tooltip("Дамаг для пули")] public float damage = 51f;
 }

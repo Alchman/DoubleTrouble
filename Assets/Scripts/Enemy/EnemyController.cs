@@ -6,6 +6,7 @@ enum StateEnemy{
     Move,
     Atack
 }
+
 public class EnemyController : MonoBehaviour{
     [SerializeField] [Tooltip("Скорость передвижения")]
     private float speed = 1f;
@@ -27,42 +28,39 @@ public class EnemyController : MonoBehaviour{
     private Health       health;
     private Health       healthSecondPlayer;
     private float        nextAttack;
-    
+
     void Start() {
         rb                 =  GetComponent<Rigidbody>();
-        secondPlayer = SecondPlayer.Instance;
+        secondPlayer       =  SecondPlayer.Instance;
         agent              =  GetComponent<NavMeshAgent>();
         health             =  GetComponent<Health>();
         healthSecondPlayer =  secondPlayer.GetComponent<Health>();
         health.OnDeath     += OnDeath;
-  }
+    }
 
     private void Update() {
-        
         switch(currientStateEnemy) {
             case StateEnemy.Start :
-                // print("StartState");
+
                 currientStateEnemy = StateEnemy.Move;
                 break;
 
             case StateEnemy.Move :
-                // print("StateEnemy.Move :");
-                agent.isStopped = false; 
-            
+
+                agent.isStopped = false;
+
                 MoveToTarget();
                 break;
             case StateEnemy.Atack :
-                print("StateEnemy.Atack :");
+
                 agent.isStopped = true;
-                // agent.enabled = false;
+
                 distanceToTarget = Vector3.Distance(transform.position, secondPlayer.transform.position);
                 if(distanceToTarget > 7) {
                     currientStateEnemy = StateEnemy.Move;
-                    print("distanse player move");
                 }
-                TargetAtack();
 
-            
+                TargetAtack();
 
                 break;
         }
@@ -70,13 +68,13 @@ public class EnemyController : MonoBehaviour{
 
     private void OnDeath() {
         Destroy(gameObject);
-      
     }
 
     private void MoveToTarget() {
         if(!secondPlayer.gameObject.activeSelf) {
-           agent.Stop();
+            agent.Stop();
         }
+
         agent.SetDestination(secondPlayer.transform.position);
         distanceToTarget = Vector3.Distance(transform.position, secondPlayer.transform.position);
         if(distanceToTarget < playerdistance) {
@@ -86,15 +84,11 @@ public class EnemyController : MonoBehaviour{
     }
 
     private void TargetAtack() {
-        print("StarAtack");
         if(Time.time < nextAttack) {
             return;
         }
 
-        print("attack");
-
         healthSecondPlayer.ChangeHealth(damage);
-        // print( ""  + healthSecondPlayer.HealthLeft);
         nextAttack = Time.time + attackRate;
     }
 }

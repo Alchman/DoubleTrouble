@@ -247,23 +247,23 @@ MonoBehaviour:
   forcePush: 12
   forcePushOnRun: 5
   damageFoot: 10
-  moveSpeed: 7
+  moveSpeed: 6.5
   jumpForce: 500
   gravityScale: -30
   groundCheck: {fileID: 1742634643}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 24576
-  forceShotIdle: 5
-  forceShotOnRun: 8
-  forceShotSpeedUp: 10
-  hightYforShot: 1.5
-  hightYforShotOnRun: 2
-  hightYforShotSpeedUp: 1
+  forceShotIdle: 15
+  forceShotOnRun: 11
+  forceShotSpeedUp: 11
+  hightYforShot: 2.2
+  hightYforShotOnRun: 1.2
+  hightYforShotSpeedUp: 1.7
   forceShotOnCollision: 4
-  hightYOnCollision: 1.5
-  accelerationSpeed: 1.47
-  coefSpeed: 0.76
+  hightYOnCollision: 1.2
+  accelerationSpeed: 1.34
+  coefSpeed: 0.6
   capsulePosition1: {fileID: 634176579}
   capsulePosition2: {fileID: 898065077}
 --- !u!114 &5402778585764555498

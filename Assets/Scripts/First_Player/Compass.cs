@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Compass : MonoBehaviour
 {
 
-    public Vector3 northDirection;
+    //public Vector3 northDirection;
     public Transform player;
 
     public Quaternion missionDirection;

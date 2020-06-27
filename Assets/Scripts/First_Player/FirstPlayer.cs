@@ -31,7 +31,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [Tooltip("Проверка если ли 'земля' под ногами")] [SerializeField] Transform groundCheck;
 
     [Tooltip("На чем стоит игрок")] [SerializeField] LayerMask whatIsGround;
-    bool isGrounded = false;
+    bool isGrounded = true;
 
 
     [Tooltip("Сила пинания с места")] [SerializeField] float forceShotIdle;
@@ -60,10 +60,17 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [Tooltip("Позиция 1 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition1;
     [Tooltip("Позиция 2 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition2;
 
-    Rigidbody rigidbody;
+   // Rigidbody rigidbody;
     Health health;
     PlayerStates currentState;
 
+    CharacterController characterController;
+
+    [SerializeField] float jumpHeight = 20f;
+  
+    [SerializeField] float gravityAcceleration = 1f;
+    [SerializeField] float groundCheckRadius = 0.5f;
+    float gravity;
 
     enum PlayerStates
     {
@@ -73,8 +80,9 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     }
     void Start()
     {
+
         health = GetComponent<Health>();
-        rigidbody = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();
         health.OnDeath += DoDeath;
         startSpeed = moveSpeed;
         currentState = PlayerStates.IDLE;
@@ -87,37 +95,43 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         CheckEnemy();
        
         Jump();
+        Move();
+   //     ApplyGravity();
 
 
     }
 
-    private void FixedUpdate()
+   /* private void FixedUpdate()
     {
         Move();
         ApplyGravity();
 
-    }
+    }*/
 
-    public void ApplyGravity()
-    {
-        Vector3 gravity = gravityScale * Vector3.up;
-        rigidbody.AddForce(gravity, ForceMode.Acceleration);
-    }
-
+  
     private void Move()
     {
-     
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        direction = Vector3.ClampMagnitude(direction, moveSpeed);
+
+        float inputForward = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        float inputRight = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+       
+        Vector3 direction;
+      
+        direction = transform.forward * inputForward;
+        direction += transform.right * inputRight;
         speedPlayer = direction.magnitude;
         if (direction != Vector3.zero)
         {
-            rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, rigidbody.velocity.y, Input.GetAxis("Vertical") * moveSpeed);
-            currentState = PlayerStates.MOVE;
-            rigidbody.MoveRotation(Quaternion.LookRotation(direction));
+            
+           
+       
+            transform.rotation
+                = Quaternion.LookRotation(direction);
+         
             if (Input.GetButton("Fire3"))
             {
-                rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal") * moveSpeed * accelerationSpeed, rigidbody.velocity.y, Input.GetAxis("Vertical") * moveSpeed * accelerationSpeed);
+               
+
                 currentState = PlayerStates.RUN;
             }
         }
@@ -126,23 +140,76 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
             currentState = PlayerStates.IDLE;
         }
 
+      
+        bool isGrounded = Physics.CheckSphere(transform.position,radiusCheck,whatIsGround);
+        if (isGrounded)
+        {
+            Debug.Log(isGrounded);
+            if (gravity < 0)
+            {
+                gravity = gravityScale;
+            }
+            if (Input.GetButtonDown("Jump"))
+            {
+               
+                gravity = jumpHeight;
+                Debug.Log("Jump");
+               
+            }
+        }
+        else
+        {
+            gravity += gravityScale
+                * Time.deltaTime;
+        }
+       
+        direction.y = gravity * Time.deltaTime +
+            (gravityScale * Time.deltaTime * Time.deltaTime) / 2;
+        characterController.Move(direction);
+
+
+
+    }
+    private void OnDrawGizmosSelected()
+    {
+        //draw ground check
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 
-  
-    private void Jump()
+        private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+       // Vector3 gravity = gravityScale * Vector3.up;
+       // characterController.SimpleMove(gravity);
 
-            isGrounded = Physics.Linecast(transform.position, groundCheck.position, whatIsGround);
-            if (isGrounded)
+      
+        
+
+       /*     isGrounded = Physics.Linecast(transform.position, groundCheck.position, whatIsGround);
+        if (isGrounded)
+        {
+            if (gravity < 0)
             {
-              
-                rigidbody.AddForce(new Vector3(0, jumpForce));
+                gravity = gravityScale;
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                gravity = jumpHeight;
                 isGrounded = false;
             }
-
+          
         }
+        else
+        {
+            gravity += gravityScale
+                * Time.deltaTime;
+        }
+        Vector3 moveDirection;
+        moveDirection.y = gravity * Time.deltaTime +
+            (gravityScale * Time.deltaTime * Time.deltaTime) / 2;
+        characterController.Move(moveDirection);
+
+*/
 
 
 

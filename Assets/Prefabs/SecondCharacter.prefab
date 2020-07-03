@@ -149,7 +149,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5957270615669595033}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -224,7 +224,7 @@ CapsuleCollider:
   m_Radius: 7
   m_Height: 9.31
   m_Direction: 1
-  m_Center: {x: -1.5215983, y: 0.44254398, z: 1.5178044}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1749342856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366090a6ef056904ca782e960e15f39c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 50000
 --- !u!1001 &1910451548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -383,17 +383,17 @@ PrefabInstance:
     - target: {fileID: -2681706664102938647, guid: 53c7eca7f59bfc44898c49c5a375df60,
         type: 3}
       propertyPath: magazineSize
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -2681706664102938647, guid: 53c7eca7f59bfc44898c49c5a375df60,
         type: 3}
       propertyPath: reloadTime
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -2681706664102938647, guid: 53c7eca7f59bfc44898c49c5a375df60,
         type: 3}
       propertyPath: fireRate
-      value: 0.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -2681706664102938647, guid: 53c7eca7f59bfc44898c49c5a375df60,
         type: 3}

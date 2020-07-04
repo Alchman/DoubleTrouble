@@ -2,6 +2,8 @@
 using UnityEngine;
 
 public class Health : MonoBehaviour{
+
+   
     public Action OnHealthUpdate = delegate {
                                    };
 
@@ -21,19 +23,31 @@ public class Health : MonoBehaviour{
         HealthLeft = MaxHealth;
     }
 
-    public void ChangeHealth(float amount) {
-        HealthLeft -= amount;
-        OnHealthUpdate();
+    public void ChangeHealth(float amount) 
+    {
 
-        if(HealthLeft <= 0) {
-            OnDeath();
-        }
+       
+        
+     
+            HealthLeft -= amount;
+            OnHealthUpdate();
+
+            if (HealthLeft <= 0)
+            {
+                OnDeath();
+            }
+        
+       
     }
 
     private void OnTriggerEnter(Collider other) {
         DamageDealer damageDealer = other.GetComponent<DamageDealer>();
-        if(damageDealer != null) {
-            ChangeHealth(damageDealer.damage);
+        if (damageDealer.layerMask == (damageDealer.layerMask | (1 << gameObject.layer)))
+        {
+            if (damageDealer != null)
+            {
+                ChangeHealth(damageDealer.damage);
+            }
         }
     }
 }

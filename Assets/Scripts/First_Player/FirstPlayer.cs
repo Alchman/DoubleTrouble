@@ -28,10 +28,13 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [Tooltip("Сила с которой подпрыгнет игрок")] [SerializeField] float jumpForce = 10;
     public float gravityScale = -10;
 
-    [Tooltip("Проверка если ли 'земля' под ногами")] [SerializeField] Transform groundCheck;
 
     [Tooltip("На чем стоит игрок")] [SerializeField] LayerMask whatIsGround;
-    bool isGrounded = true;
+    [Tooltip("Точка проверки 'земли' под ногами")] [SerializeField] Transform groundCheck;
+    [Tooltip("Радиус проверки 'земли' под ногами")] [SerializeField] float groundCheckRadius = 1;
+    [Tooltip("Точка проверки 'стены' перед игроком")] [SerializeField] Transform wallCheck;
+    [Tooltip("Длина проверки 'стены' перед игроком")] [SerializeField] float wallCheckDistance = 1;
+    bool isGrounded = false;
 
 
     [Tooltip("Сила пинания с места")] [SerializeField] float forceShotIdle;
@@ -60,17 +63,10 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [Tooltip("Позиция 1 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition1;
     [Tooltip("Позиция 2 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition2;
 
-   // Rigidbody rigidbody;
+    Rigidbody rigidbody;
     Health health;
     PlayerStates currentState;
 
-    CharacterController characterController;
-
-    [SerializeField] float jumpHeight = 20f;
-  
-    [SerializeField] float gravityAcceleration = 1f;
-    [SerializeField] float groundCheckRadius = 0.5f;
-    float gravity;
 
     enum PlayerStates
     {
@@ -80,9 +76,8 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     }
     void Start()
     {
-
         health = GetComponent<Health>();
-        characterController = GetComponent<CharacterController>();
+        rigidbody = GetComponent<Rigidbody>();
         health.OnDeath += DoDeath;
         startSpeed = moveSpeed;
         currentState = PlayerStates.IDLE;
@@ -95,121 +90,76 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         CheckEnemy();
        
         Jump();
-        Move();
-   //     ApplyGravity();
 
 
     }
 
-   /* private void FixedUpdate()
+    private void FixedUpdate()
     {
         Move();
         ApplyGravity();
 
-    }*/
+    }
 
-  
+    public void ApplyGravity()
+    {
+        Vector3 gravity = gravityScale * Vector3.up;
+        rigidbody.AddForce(gravity, ForceMode.Acceleration);
+    }
+
     private void Move()
     {
-
-        float inputForward = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
-        float inputRight = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-       
-        Vector3 direction;
-      
-        direction = transform.forward * inputForward;
-        direction += transform.right * inputRight;
+        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        //direction = Vector3.ClampMagnitude(direction, moveSpeed);
         speedPlayer = direction.magnitude;
-        if (direction != Vector3.zero)
+        if (direction.magnitude > 0)
         {
-            
-           
-       
-            transform.rotation
-                = Quaternion.LookRotation(direction);
-         
+            rigidbody.MoveRotation(Quaternion.LookRotation(direction));
+
+            direction *= moveSpeed;
+            currentState = PlayerStates.MOVE;
+
             if (Input.GetButton("Fire3"))
             {
-               
-
+                direction *= accelerationSpeed;
                 currentState = PlayerStates.RUN;
             }
+
+            if (!isGrounded)
+            {
+                bool isWall = Physics.Raycast(wallCheck.position, direction, wallCheckDistance, whatIsGround);
+                if (isWall)
+                {
+                    direction = Vector3.zero;
+                }
+            }
+
+            direction.y = rigidbody.velocity.y;
+            rigidbody.velocity = direction;
+
         }
         else
         {
             currentState = PlayerStates.IDLE;
         }
 
-      
-        bool isGrounded = Physics.CheckSphere(transform.position,radiusCheck,whatIsGround);
-        if (isGrounded)
-        {
-            Debug.Log(isGrounded);
-            if (gravity < 0)
-            {
-                gravity = gravityScale;
-            }
-            if (Input.GetButtonDown("Jump"))
-            {
-               
-                gravity = jumpHeight;
-                Debug.Log("Jump");
-               
-            }
-        }
-        else
-        {
-            gravity += gravityScale
-                * Time.deltaTime;
-        }
-       
-        direction.y = gravity * Time.deltaTime +
-            (gravityScale * Time.deltaTime * Time.deltaTime) / 2;
-        characterController.Move(direction);
-
-
-
-    }
-    private void OnDrawGizmosSelected()
-    {
-        //draw ground check
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 
-        private void Jump()
+  
+    private void Jump()
     {
-       // Vector3 gravity = gravityScale * Vector3.up;
-       // characterController.SimpleMove(gravity);
-
-      
-        
-
-       /*     isGrounded = Physics.Linecast(transform.position, groundCheck.position, whatIsGround);
-        if (isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (gravity < 0)
+
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, whatIsGround);
+            if (isGrounded)
             {
-                gravity = gravityScale;
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                gravity = jumpHeight;
+              
+                rigidbody.AddForce(new Vector3(0, jumpForce));
                 isGrounded = false;
             }
-          
-        }
-        else
-        {
-            gravity += gravityScale
-                * Time.deltaTime;
-        }
-        Vector3 moveDirection;
-        moveDirection.y = gravity * Time.deltaTime +
-            (gravityScale * Time.deltaTime * Time.deltaTime) / 2;
-        characterController.Move(moveDirection);
 
-*/
+        }
 
 
 
@@ -271,6 +221,12 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(capsulePosition1.position, radiusCheck);
         Gizmos.DrawWireSphere(capsulePosition2.position, radiusCheck);
+
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(wallCheck.position, transform.forward * wallCheckDistance);
+
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
     Vector3 CalculateDirection(Vector3 from, float forcePush, float hightY)
     {

@@ -33,13 +33,14 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     public int stoneCount;
     public int regenCount;
     Health     health;
-
+ 
     ResoursesUI tableResourses;
 
     [Tooltip("радиус поражения для оружия")] [SerializeField]
     private float RadiusCanon = 50f; //TODO move to weapon class
 
     void Start() {
+        
         bullets.Add(BulletType.PISTOL, pistolBullets);
         bullets.Add(BulletType.RIFLE,  rifleBullets);
         bullets.Add(BulletType.ROCKET, rocketBullets);
@@ -58,6 +59,10 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     }
 
     void Update() {
+        
+        Debug.DrawRay(transform.position, transform.forward * 10f, Color.green, 0.2f);
+      
+        
         switch(currentStateSecondPlayer) {
             case StateSecondPlayer.Start :
 
@@ -98,6 +103,8 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     }
 
     private void Shoot() {
+        
+       
         nextFire -= Time.deltaTime;
         if(nextFire <= 0) {
             if(bullets[activeWeapon.bulletType] < 0) {

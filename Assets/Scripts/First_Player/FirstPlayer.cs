@@ -237,7 +237,12 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     }
     private void OnTriggerExit(Collider other)
     {
-        moveSpeed = startSpeed;
+        SpeedModificator speedInPlane = other.gameObject.GetComponent<SpeedModificator>();
+        if (!speedInPlane)
+        {
+            moveSpeed = startSpeed;
+        }
+       
     }
 
    

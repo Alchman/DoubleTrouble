@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 enum StateSecondPlayer{
@@ -33,6 +34,9 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     public int stoneCount;
     public int regenCount;
     Health     health;
+    public float force;
+    
+    Coroutine delayForce;
 
     ResoursesUI tableResourses;
 
@@ -152,8 +156,28 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
         if(other.gameObject.tag == "Player") {
             tableResourses.Show();
         }
+        if (other.gameObject.tag == "Stone")
+        {
+            Debug.Log(tag);
+          rb =  other.gameObject.GetComponent<Rigidbody>();
+            rb.velocity = Vector3.zero;
+            other.transform.position = transform.position;
+            delayForce = StartCoroutine(DelayForce());
+            Debug.Log(1);
+            
+          
+            
+        }
     }
 
+    IEnumerator DelayForce()
+    {
+        yield return new WaitForSeconds(3f);
+        Vector3 dir = transform.forward;
+        dir.y = 1;
+        rb.AddForce(dir * force); ;
+
+    }
 
     private void OnTriggerExit(Collider other) {
         tableResourses.Hide();

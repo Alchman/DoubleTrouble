@@ -99,6 +99,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
         }
 
         transform.LookAt(target.transform.position);
+        Debug.DrawRay(transform.position, target.transform.position, Color.yellow, 0.2f);
         Shoot();
     }
 

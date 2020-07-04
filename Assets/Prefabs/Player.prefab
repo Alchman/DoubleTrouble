@@ -146,6 +146,7 @@ Transform:
   - {fileID: 634176579}
   - {fileID: 898065077}
   - {fileID: 1742634643}
+  - {fileID: 8776594075973972678}
   - {fileID: 1568634584996974088}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -265,9 +266,6 @@ MonoBehaviour:
   coefSpeed: 0.6
   capsulePosition1: {fileID: 634176579}
   capsulePosition2: {fileID: 898065077}
-  jumpHeight: 10
-  gravityAcceleration: 1
-  groundCheckRadius: 0.5
 --- !u!114 &5402778585764555498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,6 +372,36 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7622921017296875251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8776594075973972678}
+  m_Layer: 8
+  m_Name: CheckGround
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8776594075973972678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7622921017296875251}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.35, z: 0.417}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5402778585948708904}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5818189020663555346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -419,7 +447,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 05c6c674574f5c343a32620d8c22240f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 05c6c674574f5c343a32620d8c22240f,
         type: 3}

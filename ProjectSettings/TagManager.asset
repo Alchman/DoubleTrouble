@@ -13,6 +13,7 @@ TagManager:
   - SlowDown
   - PlusSpeed
   - SpeedUp
+  - Stone
   layers:
   - Default
   - TransparentFX

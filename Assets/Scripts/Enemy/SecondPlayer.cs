@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 enum StateSecondPlayer{
@@ -33,14 +34,16 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     public int stoneCount;
     public int regenCount;
     Health     health;
- 
+    public float force;
+    
+    Coroutine delayForce;
+
     ResoursesUI tableResourses;
 
     [Tooltip("радиус поражения для оружия")] [SerializeField]
     private float RadiusCanon = 50f; //TODO move to weapon class
 
     void Start() {
-        
         bullets.Add(BulletType.PISTOL, pistolBullets);
         bullets.Add(BulletType.RIFLE,  rifleBullets);
         bullets.Add(BulletType.ROCKET, rocketBullets);
@@ -59,10 +62,6 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     }
 
     void Update() {
-        
-        Debug.DrawRay(transform.position, transform.forward * 10f, Color.green, 0.2f);
-      
-        
         switch(currentStateSecondPlayer) {
             case StateSecondPlayer.Start :
 
@@ -99,13 +98,10 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
         }
 
         transform.LookAt(target.transform.position);
-        Debug.DrawRay(transform.position, target.transform.position, Color.yellow, 0.2f);
         Shoot();
     }
 
     private void Shoot() {
-        
-       
         nextFire -= Time.deltaTime;
         if(nextFire <= 0) {
             if(bullets[activeWeapon.bulletType] < 0) {
@@ -160,8 +156,28 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
         if(other.gameObject.tag == "Player") {
             tableResourses.Show();
         }
+        if (other.gameObject.tag == "Stone")
+        {
+            Debug.Log(tag);
+          rb =  other.gameObject.GetComponent<Rigidbody>();
+            rb.velocity = Vector3.zero;
+            other.transform.position = transform.position;
+            delayForce = StartCoroutine(DelayForce());
+            Debug.Log(1);
+            
+          
+            
+        }
     }
 
+    IEnumerator DelayForce()
+    {
+        yield return new WaitForSeconds(3f);
+        Vector3 dir = transform.forward;
+        dir.y = 1;
+        rb.AddForce(dir * force); ;
+
+    }
 
     private void OnTriggerExit(Collider other) {
         tableResourses.Hide();

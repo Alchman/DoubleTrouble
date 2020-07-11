@@ -63,10 +63,13 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [Header("Position")]
     [Tooltip("Позиция 1 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition1;
     [Tooltip("Позиция 2 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition2;
+    
 
     Rigidbody rigidbody;
     Health health;
     PlayerStates currentState;
+    public bool allowInput = true;
+    Coroutine activeInput;
 
 
     enum PlayerStates
@@ -110,40 +113,49 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     private void Move()
     {
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        //direction = Vector3.ClampMagnitude(direction, moveSpeed);
-        speedPlayer = direction.magnitude;
-        if (direction.magnitude > 0)
+        if (allowInput)
         {
-            rigidbody.MoveRotation(Quaternion.LookRotation(direction));
-
-            direction *= moveSpeed;
-            currentState = PlayerStates.MOVE;
-            animator.SetTrigger("run");
-
-            if (Input.GetButton("Fire3"))
+            Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            direction.Normalize();
+            //direction = Vector3.ClampMagnitude(direction, moveSpeed);
+            speedPlayer = direction.magnitude;
+            if (direction.magnitude > 0)
             {
-                direction *= accelerationSpeed;
-                currentState = PlayerStates.RUN;
-            }
+                rigidbody.MoveRotation(Quaternion.LookRotation(direction));
 
-            if (!isGrounded)
-            {
-                bool isWall = Physics.Raycast(wallCheck.position, direction, wallCheckDistance, whatIsGround);
-                if (isWall)
+                direction *= moveSpeed;
+                currentState = PlayerStates.MOVE;
+                animator.SetTrigger("run");
+
+                if (Input.GetButton("Fire3"))
                 {
-                    direction = Vector3.zero;
+                    direction *= accelerationSpeed;
+                    currentState = PlayerStates.RUN;
                 }
-            }
 
-            direction.y = rigidbody.velocity.y;
-            rigidbody.velocity = direction;
+                if (!isGrounded)
+                {
+                    bool isWall = Physics.Raycast(wallCheck.position, direction, wallCheckDistance, whatIsGround);
+                    if (isWall)
+                    {
+                        direction = Vector3.zero;
+                    }
+                }
+
+                direction.y = rigidbody.velocity.y;
+                rigidbody.velocity = direction;
+
+            }
+            else
+            {
+                animator.SetTrigger("idle");
+                currentState = PlayerStates.IDLE;
+            }
 
         }
         else
         {
-            animator.SetTrigger("idle");
-            currentState = PlayerStates.IDLE;
+            
         }
 
     }
@@ -249,11 +261,8 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         Pushable pushable = other.gameObject.GetComponent<Pushable>();
         if (pushable != null && pushable.PushOnRun)
         {
-            
                     Vector3 direction = CalculateDirection(other.transform.position, forcePushOnRun, hightYOnCollision);
-                    pushable.Push(direction);
-
-                 
+                    pushable.Push(direction);     
         }
         SpeedModificator speedInPlane = other.gameObject.GetComponent<SpeedModificator>();
         if (speedInPlane)
@@ -261,8 +270,26 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
            
             moveSpeed *= speedInPlane.GetSpeedFactor(); ;
         }
+        PowerUpForce powerUpForce = other.gameObject.GetComponent<PowerUpForce>();
+        if (powerUpForce)
+        {
+            rigidbody.AddForce(transform.up * powerUpForce.GetForce());
+        }
+        PowerUpSpeed powerUpSpeed = other.gameObject.GetComponent<PowerUpSpeed>();
+        if (powerUpSpeed)
+        {
+            allowInput = false;
+            rigidbody.AddForce(powerUpSpeed.GetDirectionSpeed());
+            activeInput = StartCoroutine(ActiveInput());
+            
+
+            
+        }
+
 
     }
+
+
     private void OnTriggerExit(Collider other)
     {
         SpeedModificator speedInPlane = other.gameObject.GetComponent<SpeedModificator>();
@@ -273,9 +300,15 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
        
     }
 
-   
+    IEnumerator ActiveInput()
+    {
+        PowerUpSpeed powerUpSpeed = FindObjectOfType<PowerUpSpeed>();
+        yield return new WaitForSeconds(powerUpSpeed.GetTimeDeativeInput());
+        allowInput = true;
 
-    public void DoDeath()
+    }
+
+        public void DoDeath()
     {
         Destroy(gameObject);
     }

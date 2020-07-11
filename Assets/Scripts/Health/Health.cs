@@ -42,12 +42,13 @@ public class Health : MonoBehaviour{
 
     private void OnTriggerEnter(Collider other) {
         DamageDealer damageDealer = other.GetComponent<DamageDealer>();
-        if (damageDealer.layerMask == (damageDealer.layerMask | (1 << gameObject.layer)))
+        if (damageDealer != null)
         {
-            if (damageDealer != null)
+            if (damageDealer.layerMask == (damageDealer.layerMask | (1 << gameObject.layer)))
             {
                 ChangeHealth(damageDealer.damage);
             }
         }
+           
     }
 }

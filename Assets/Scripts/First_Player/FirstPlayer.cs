@@ -256,9 +256,8 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                  
         }
         SpeedModificator speedInPlane = other.gameObject.GetComponent<SpeedModificator>();
-        if (speedInPlane)
+        if (speedInPlane != null)
         {
-           
             moveSpeed *= speedInPlane.GetSpeedFactor(); ;
         }
 
@@ -266,11 +265,10 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     private void OnTriggerExit(Collider other)
     {
         SpeedModificator speedInPlane = other.gameObject.GetComponent<SpeedModificator>();
-        if (!speedInPlane)
+        if (speedInPlane != null)
         {
             moveSpeed = startSpeed;
         }
-       
     }
 
    

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2845499889593663712}
   - component: {fileID: 2845499889593663713}
-  - component: {fileID: 2845499889593663715}
+  - component: {fileID: 5041008752035680897}
   - component: {fileID: 2845499889593663727}
   m_Layer: 0
   m_Name: Trompline
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2845499889593663715
+--- !u!114 &5041008752035680897
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,10 +92,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2845499889593663716}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a596ec7b005e6f4da844b29908798bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 3635aa810f8eb284481b20635976c890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceUp: 2000
+  powerSpeed: 10
+  timeDeactiveInput: 1
+  forceY: 100
+  fixedDirection: 0
 --- !u!65 &2845499889593663727
 BoxCollider:
   m_ObjectHideFlags: 0

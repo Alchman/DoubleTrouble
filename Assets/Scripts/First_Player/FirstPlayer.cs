@@ -269,20 +269,13 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         {
             moveSpeed *= speedInPlane.GetSpeedFactor(); ;
         }
-        PowerUpForce powerUpForce = other.gameObject.GetComponent<PowerUpForce>();
-        if (powerUpForce)
-        {
-            Vector3 dir = Vector3.forward + Vector3.up;
-            rigidbody.AddRelativeForce(dir*powerUpForce.GetForce());
-        }
+       
         PowerUpSpeed powerUpSpeed = other.gameObject.GetComponent<PowerUpSpeed>();
         if (powerUpSpeed)
         {
             allowInput = false;
-            rigidbody.AddForce(powerUpSpeed.GetDirectionSpeed());
+            rigidbody.AddForce(powerUpSpeed.GetDirectionSpeed(transform.position));
             activeInput = StartCoroutine(ActiveInput());
-            
-
             
         }
 
@@ -302,7 +295,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     IEnumerator ActiveInput()
     {
         PowerUpSpeed powerUpSpeed = FindObjectOfType<PowerUpSpeed>();
-        yield return new WaitForSeconds(powerUpSpeed.GetTimeDeativeInput());
+        yield return new WaitForSeconds(powerUpSpeed.GetTimeDeactiveInput());
         allowInput = true;
 
     }

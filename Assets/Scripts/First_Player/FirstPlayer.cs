@@ -272,7 +272,8 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         PowerUpForce powerUpForce = other.gameObject.GetComponent<PowerUpForce>();
         if (powerUpForce)
         {
-            rigidbody.AddForce(transform.up * powerUpForce.GetForce());
+            Vector3 dir = Vector3.forward + Vector3.up;
+            rigidbody.AddRelativeForce(dir*powerUpForce.GetForce());
         }
         PowerUpSpeed powerUpSpeed = other.gameObject.GetComponent<PowerUpSpeed>();
         if (powerUpSpeed)

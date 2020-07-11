@@ -3526,7 +3526,7 @@ GameObject:
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &156114941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32006,7 +32006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 4912712045438661369, guid: 48cd511ad60f3f34393e672cc154c314, type: 3}
-  timeRespawn: 555
+  timeRespawn: 15
 --- !u!4 &1450364287
 Transform:
   m_ObjectHideFlags: 0
@@ -35049,7 +35049,7 @@ GameObject:
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1618358285
 Transform:
   m_ObjectHideFlags: 0

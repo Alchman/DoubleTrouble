@@ -21,13 +21,13 @@ public class Weapon : MonoBehaviour
     {
         magazineBulletLeft = magazineSize;
     }
-
-    public void Fire()
-    {
+ 
+    public void Fire(Vector3 target) {
+        Vector3 directionShoot = target - shootPoint.position;
         
         magazineBulletLeft--;
         
-        Bullet bullet = LeanPool.Spawn(bulletPrefab, shootPoint.position, shootPoint.rotation);
+        Bullet bullet = LeanPool.Spawn(bulletPrefab, shootPoint.position, Quaternion.LookRotation(directionShoot));
         bullet.FireBullet(bulletDamage, buletSpeed);
     }
     

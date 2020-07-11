@@ -4,6 +4,9 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] Bullet bulletPrefab;
+    [SerializeField] private Transform shootPoint;
+    
+    
     [Tooltip("скорость полета пули")] public float buletSpeed;
     [Tooltip("дамаг дял пули")] public float bulletDamage;
     [Tooltip("тип пули")] public BulletType bulletType;
@@ -19,11 +22,12 @@ public class Weapon : MonoBehaviour
         magazineBulletLeft = magazineSize;
     }
 
-    public void Fire(Quaternion rotation)
+    public void Fire()
     {
+        
         magazineBulletLeft--;
         
-        Bullet bullet = LeanPool.Spawn(bulletPrefab, transform.position, rotation);
+        Bullet bullet = LeanPool.Spawn(bulletPrefab, shootPoint.position, shootPoint.rotation);
         bullet.FireBullet(bulletDamage, buletSpeed);
     }
     

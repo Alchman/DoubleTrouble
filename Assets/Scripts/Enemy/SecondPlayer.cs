@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 enum StateSecondPlayer{
@@ -10,7 +12,6 @@ enum StateSecondPlayer{
 
 public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     private Rigidbody rb;
-
     public                              LayerMask layerMask;
     [Tooltip("активное оружие")] public Weapon    activeWeapon;
 
@@ -24,6 +25,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     private float             nextFire;
     private StateSecondPlayer currentStateSecondPlayer;
 
+    [SerializeField] private Animator animator;
 
     Dictionary<BulletType, int>   bullets   = new Dictionary<BulletType, int>();
     Dictionary<ResourceType, int> resourses = new Dictionary<ResourceType, int>();
@@ -35,6 +37,9 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     public int regenCount;
     Health     health;
     public float force;
+    private Vector3 direction;
+    private Vector3 directon2;
+    private float angle;
     
     Coroutine delayForce;
 
@@ -62,6 +67,9 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     }
 
     void Update() {
+  
+        // Debug.DrawRay(transform.position, transform.forward * 30f, Color.green, 0.1f); //взгляд от плеера ровно  вперед
+        
         switch(currentStateSecondPlayer) {
             case StateSecondPlayer.Start :
 
@@ -71,37 +79,64 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
             case StateSecondPlayer.Atack :
 
                 CheckEnemy();
-                AutoShooting();
+                // AutoShooting();
 
                 break;
             case StateSecondPlayer.Reload : break;
         }
     }
 
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(transform.position, transform.forward * 30f); //смотрим прямо
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, RadiusCanon);
+     
+        directon2 = Quaternion.AngleAxis(80, Vector3.up) * transform.forward;
+        print(directon2);
+        angle = Vector3.Angle(transform.forward, directon2);
+        print(angle);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawRay(transform.position, directon2 * 30); //смотрим по углу
+     
+    }
+
     private void CheckEnemy() {
-        Collider[] allItemsInRadius = Physics.OverlapSphere(transform.position, RadiusCanon, layerMask);
+        Collider[] allItemsInRadius = Physics.OverlapSphere(transform.position, RadiusCanon, layerMask);   //массив для всех кто попадет в радиус поражения  оружия
+        float minDistance = float.MaxValue;   
+        foreach(Collider itemEnemyPos in allItemsInRadius) {
+            var distance = Vector3.Distance(transform.position, itemEnemyPos.transform.position);  // определить дситанцию от своей позиции до позиции врага из OverlapSphere 
+           
+            direction = itemEnemyPos.transform.position - transform.position;  // вычелсить направления движения врага  для того что бы бросить в него луч
+            Debug.DrawRay(transform.position, direction, Color.yellow, 0.1f);  // желтый луч для визуального отслеживания
+            float angleEnemy = Vector3.SignedAngle(transform.forward, direction,Vector3.up);  // вычеслить угол относительно врага и ветора вперед - зеленый луч
 
-        float minDistance = float.MaxValue;
-
-        foreach(Collider item in allItemsInRadius) {
-            var distance = Vector3.Distance(transform.position, item.transform.position);
-            if(distance < minDistance) {
-                target      = item;
+            if(angleEnemy > 1 && angleEnemy < angle) {  // есои враг попал у угол обстрела, то начать стрельбу 
+                print(angleEnemy);
+                
+                animator.SetFloat("direction_blend", angleEnemy / angle);
+                AutoShooting();
+            }
+            
+            if(distance < minDistance) { // Определить врага когда  он попал в круг сферы (синий)  и записать в таргет (для стрельбы)
+                target      = itemEnemyPos;
                 minDistance = distance;
             }
         }
+        // direction = target.transform.position - transform.position;
+        // Debug.DrawRay(transform.position, direction, Color.yellow, 0.2f);
     }
 
-    private void AutoShooting() {
+    private void AutoShooting() {  // автострельба - если есть враг есть на сцене
         if(target == null) {
             return;
         }
 
-        transform.LookAt(target.transform.position);
+        // transform.LookAt(target.transform.position);
         Shoot();
     }
 
-    private void Shoot() {
+    private void Shoot() { //  метод для выстрел по врагу
         nextFire -= Time.deltaTime;
         if(nextFire <= 0) {
             if(bullets[activeWeapon.bulletType] < 0) {
@@ -111,7 +146,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
             }
 
             bullets[activeWeapon.bulletType]--;
-            activeWeapon.Fire(transform.rotation);
+            activeWeapon.Fire();
 
             if(activeWeapon.NeedsReload()) {
                 //play sound
@@ -164,9 +199,6 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
             other.transform.position = transform.position;
             delayForce = StartCoroutine(DelayForce());
             Debug.Log(1);
-            
-          
-            
         }
     }
 

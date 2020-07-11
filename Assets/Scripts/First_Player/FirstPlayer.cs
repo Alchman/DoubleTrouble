@@ -173,6 +173,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     {
         if ((Input.GetButtonDown("Fire1")))
         {
+            animator.SetTrigger("hit_leg");
             Collider[] allItemsInRadius = Physics.OverlapCapsule(capsulePosition1.position, capsulePosition2.position, radiusCheck, pushMask); ;
             float minDistance = float.MaxValue;
             Collider target = null;
@@ -209,7 +210,6 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                         break;
 
                 }
-                animator.SetTrigger("hit_leg");
                 pushable.Push(direction);
             }
             DamagebleByPush damagebleByPush = target.GetComponent<DamagebleByPush>();

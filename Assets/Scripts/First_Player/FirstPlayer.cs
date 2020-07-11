@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 {
+    [SerializeField] Animator animator;
     public LayerMask pushMask;
 
     [Header("Radius")]
@@ -118,6 +119,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
             direction *= moveSpeed;
             currentState = PlayerStates.MOVE;
+            animator.SetTrigger("run");
 
             if (Input.GetButton("Fire3"))
             {
@@ -140,6 +142,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         }
         else
         {
+            animator.SetTrigger("idle");
             currentState = PlayerStates.IDLE;
         }
 
@@ -157,6 +160,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
               
                 rigidbody.AddForce(new Vector3(0, jumpForce));
                 isGrounded = false;
+                animator.SetTrigger("jump");
             }
 
         }
@@ -205,6 +209,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                         break;
 
                 }
+                animator.SetTrigger("hit_leg");
                 pushable.Push(direction);
             }
             DamagebleByPush damagebleByPush = target.GetComponent<DamagebleByPush>();

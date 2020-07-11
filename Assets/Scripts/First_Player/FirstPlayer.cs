@@ -274,7 +274,9 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         if (powerUpSpeed)
         {
             allowInput = false;
-            rigidbody.AddForce(powerUpSpeed.GetDirectionSpeed(transform.position));
+            Vector3 moveDir = rigidbody.velocity;
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.AddForce(powerUpSpeed.GetDirectionSpeed(moveDir));
             activeInput = StartCoroutine(ActiveInput());
             
         }

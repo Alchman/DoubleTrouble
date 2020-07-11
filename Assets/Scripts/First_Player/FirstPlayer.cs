@@ -185,6 +185,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     {
         if ((Input.GetButtonDown("Fire1")))
         {
+            animator.SetTrigger("hit_leg");
             Collider[] allItemsInRadius = Physics.OverlapCapsule(capsulePosition1.position, capsulePosition2.position, radiusCheck, pushMask); ;
             float minDistance = float.MaxValue;
             Collider target = null;
@@ -221,7 +222,6 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                         break;
 
                 }
-                animator.SetTrigger("hit_leg");
                 pushable.Push(direction);
             }
             DamagebleByPush damagebleByPush = target.GetComponent<DamagebleByPush>();
@@ -265,9 +265,8 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                     pushable.Push(direction);     
         }
         SpeedModificator speedInPlane = other.gameObject.GetComponent<SpeedModificator>();
-        if (speedInPlane)
+        if (speedInPlane != null)
         {
-           
             moveSpeed *= speedInPlane.GetSpeedFactor(); ;
         }
         PowerUpForce powerUpForce = other.gameObject.GetComponent<PowerUpForce>();
@@ -293,11 +292,10 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     private void OnTriggerExit(Collider other)
     {
         SpeedModificator speedInPlane = other.gameObject.GetComponent<SpeedModificator>();
-        if (!speedInPlane)
+        if (speedInPlane != null)
         {
             moveSpeed = startSpeed;
         }
-       
     }
 
     IEnumerator ActiveInput()

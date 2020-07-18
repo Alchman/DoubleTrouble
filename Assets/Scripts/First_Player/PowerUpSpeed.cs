@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PowerUpSpeed : MonoBehaviour
 {
-    [Tooltip("Скорость которую нужно добавить игроку ")] [SerializeField] float powerSpeed;
-    [Tooltip("Время на которое отлючается ручное управления во время ускорения ")] [SerializeField] float timeDeactiveInput;
-    [Tooltip("Сила с которой его подкинет вверх по направлению движения ")] [SerializeField] float stoneThrowForce;
-    [Tooltip("Если true то эффект действует только в одном направлении, " +
-        "если false, то эффект действует по направлению вдижения игрока ")]
+    [Tooltip("Скорость которую нужно добавить игроку ")] [SerializeField] int powerSpeed = 1000;
+    [Tooltip("Время на которое отлючается ручное управления во время ускорения ")] [SerializeField] float timeDeactiveInput = 1;
+    [Tooltip("Сила с которой его подкинет вверх по направлению движения ")] [SerializeField] int throwForce = 1000;
+    [Tooltip("Если true то эффект действует только в одном направлении (зелёная стрелка положения объекта), " +
+        "если false, то эффект действует по направлению движения игрока ")]
     [SerializeField] bool fixedDirection;
 
 
@@ -23,7 +23,7 @@ public class PowerUpSpeed : MonoBehaviour
         {
             direction = playerDirection * powerSpeed;
         }
-        direction.y = stoneThrowForce;
+        direction.y = throwForce;
         return direction;
 
     }

@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4651999024791966959}
-  m_LocalRotation: {x: -0.22305275, y: -0.6710049, z: 0.6710049, w: -0.22305268}
+  m_LocalRotation: {x: -0.22305104, y: -0.6710055, z: 0.6710054, w: -0.22305103}
   m_LocalPosition: {x: 26.67, y: 1.18, z: -42.876}
   m_LocalScale: {x: 2.98, y: 1.048, z: 1}
   m_Children: []
@@ -96,8 +96,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerSpeed: 1000
-  timeDeativeInput: 1
-  forceY: 1000
+  timeDeactiveInput: 2
+  stoneThrowForce: 1000
+  fixedDirection: 1
 --- !u!65 &4651999024791966958
 BoxCollider:
   m_ObjectHideFlags: 0

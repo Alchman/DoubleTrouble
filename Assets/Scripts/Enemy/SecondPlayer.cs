@@ -34,7 +34,8 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     public int stoneCount;
     public int regenCount;
     Health     health;
-    public float force;
+    [Tooltip("Сила с которой выкинется камень из позиции второго персонажа")] [SerializeField] float stoneThrowForce;
+    [Tooltip("Время спустя которое второй персонаж выкинет камень")] [SerializeField] float delayForceTime = 3;
     
     Coroutine delayForce;
 
@@ -158,24 +159,21 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
         }
         if (other.gameObject.tag == "Stone")
         {
-            Debug.Log(tag);
+           
           rb =  other.gameObject.GetComponent<Rigidbody>();
             rb.velocity = Vector3.zero;
             other.transform.position = transform.position;
             delayForce = StartCoroutine(DelayForce());
-            Debug.Log(1);
-            
-          
-            
+      
         }
     }
 
     IEnumerator DelayForce()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(delayForceTime);
         Vector3 dir = transform.forward;
         dir.y = 1;
-        rb.AddForce(dir * force); ;
+        rb.AddForce(dir * stoneThrowForce);
 
     }
 

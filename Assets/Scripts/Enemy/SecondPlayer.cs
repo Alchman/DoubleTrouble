@@ -2,139 +2,151 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum StateSecondPlayer{
+enum StateSecondPlayer
+{
     Start,
     Atack,
     Reload
 }
 
-public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
-    private                             Rigidbody rb;
-    public                              LayerMask layerMask;
-    [Tooltip("активное оружие")] public Weapon    activeWeapon;
+public class SecondPlayer : GenericSingletonClass<SecondPlayer>
+{
+    private Rigidbody rb;
+    public LayerMask layerMask;
+    [Tooltip("активное оружие")] public Weapon activeWeapon;
 
-    [Header("Bullets")] [Tooltip("Пули для пистолета")]
+    [Header("Bullets")]
+    [Tooltip("Пули для пистолета")]
     public int pistolBullets;
 
-    [Tooltip("Пули для винтовки")]  public int rifleBullets;
+    [Tooltip("Пули для винтовки")] public int rifleBullets;
     [Tooltip("Пули для рокетницы")] public int rocketBullets;
 
-    private Collider          target;
-    private float             nextFire;
+    private Collider target;
+    private float nextFire;
     private StateSecondPlayer currentStateSecondPlayer;
 
     [SerializeField] private Animator animator;
+    [SerializeField] private Animator barricadeAnimator;
 
-    Dictionary<BulletType, int>   bullets   = new Dictionary<BulletType, int>();
+    Dictionary<BulletType, int> bullets = new Dictionary<BulletType, int>();
     Dictionary<ResourceType, int> resourses = new Dictionary<ResourceType, int>();
 
-    public int      gearsCount;
-    public int      woodCount;
-    public int      metalCount;
-    public int      stoneCount;
-    public int      regenCount;
-    Health          health;
-    public  float   force;
+    public int gearsCount;
+    public int woodCount;
+    public int metalCount;
+    public int stoneCount;
+    public int regenCount;
+    Health health;
+    [Tooltip("Сила с которой выкинется камень вторым игроком")] [SerializeField] float stoneThrowForce;
     private Vector3 direction;
     private Vector3 directon2;
-    private float   angle;
- 
+    private float angle;
 
+    [Tooltip("Время через которое выкинет камень второй игрок")] [SerializeField] float delayForceTime;
     Coroutine delayForce;
 
-    ResoursesUI tableResourses;
 
-    [Tooltip("радиус поражения для оружия")] [SerializeField]
+    [Tooltip("радиус поражения для оружия")]
+    [SerializeField]
     private float RadiusCanon = 50f; //TODO move to weapon class
 
-    void Start() {
+    void Start()
+    {
         bullets.Add(BulletType.PISTOL, pistolBullets);
-        bullets.Add(BulletType.RIFLE,  rifleBullets);
+        bullets.Add(BulletType.RIFLE, rifleBullets);
         bullets.Add(BulletType.ROCKET, rocketBullets);
 
         resourses.Add(ResourceType.GEARS, gearsCount);
-        resourses.Add(ResourceType.WOOD,  woodCount);
+        resourses.Add(ResourceType.WOOD, woodCount);
         resourses.Add(ResourceType.METAL, metalCount);
         resourses.Add(ResourceType.STONE, stoneCount);
         resourses.Add(ResourceType.REGEN, regenCount);
 
-        health         =  GetComponent<Health>();
-        rb             =  GetComponent<Rigidbody>();
-        tableResourses =  FindObjectOfType<ResoursesUI>();
+        health = GetComponent<Health>();
+        rb = GetComponent<Rigidbody>();
         health.OnDeath += DoDeath;
-        nextFire       =  1f;
+        health.OnDamage += DoDamage;
+        nextFire = 1f;
     }
 
-    void Update() {
+    void Update()
+    {
         // Debug.DrawRay(transform.position, transform.forward * 30f, Color.green, 0.1f); //взгляд от плеера ровно  вперед
 
-        switch(currentStateSecondPlayer) {
-            case StateSecondPlayer.Start :
+        switch (currentStateSecondPlayer)
+        {
+            case StateSecondPlayer.Start:
 
                 currentStateSecondPlayer = StateSecondPlayer.Atack;
                 break;
 
-            case StateSecondPlayer.Atack :
+            case StateSecondPlayer.Atack:
 
                 CheckEnemy();
                 AutoShooting();
 
                 break;
-            case StateSecondPlayer.Reload : break;
+            case StateSecondPlayer.Reload: break;
         }
     }
 
-    private void OnDrawGizmos() {
+    private void OnDrawGizmos()
+    {
         Gizmos.color = Color.green;
         Gizmos.DrawRay(transform.position, transform.forward * 30f); //смотрим прямо
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, RadiusCanon);
 
-        directon2    = Quaternion.AngleAxis(80, Vector3.up) * transform.forward;
-        angle        = Vector3.Angle(transform.forward, directon2);
+        directon2 = Quaternion.AngleAxis(80, Vector3.up) * transform.forward;
+        angle = Vector3.Angle(transform.forward, directon2);
         Gizmos.color = Color.cyan;
         Gizmos.DrawRay(transform.position, directon2 * 30); //смотрим по углу
     }
 
-    private void CheckEnemy() {
+    private void CheckEnemy()
+    {
         Collider[] allItemsInRadius =
             Physics.OverlapSphere(transform.position, RadiusCanon,
                                   layerMask); //массив для всех кто попадет в радиус поражения  оружия
         float minDistance = float.MaxValue;
         float normolizeAngle = 0;
-        foreach(Collider itemEnemyPos in allItemsInRadius) {
+        foreach (Collider itemEnemyPos in allItemsInRadius)
+        {
             var distance =
                 Vector3.Distance(transform.position,
-                                 itemEnemyPos
-                                    .transform
-                                    .position); // определить дситанцию от своей позиции до позиции врага из OverlapSphere 
+                                 itemEnemyPos.transform.position); // определить дситанцию от своей позиции до позиции врага из OverlapSphere 
             // target = itemEnemyPos;
             direction = itemEnemyPos.transform.position -
                         transform
                            .position;                                         // вычелсить направления движения врага  для того что бы бросить в него луч
             Debug.DrawRay(transform.position, direction, Color.yellow, 0.1f); // желтый луч для визуального отслеживания
-            float angleEnemy = Vector3.SignedAngle(transform.forward, direction,Vector3.up); // вычеслить угол относительно врага и ветора вперед - зеленый луч
+            float angleEnemy = Vector3.SignedAngle(transform.forward, direction, Vector3.up); // вычеслить угол относительно врага и ветора вперед - зеленый луч
 
-            if(angleEnemy > 1 && angleEnemy < angle) {
+            if (angleEnemy > 1 && angleEnemy < angle)
+            {
                 // если враг попал у угол обстрела, то начать стрельбу 
 
-                if(distance < minDistance) {
+                if (distance < minDistance)
+                {
                     // Определить врага когда  он попал в круг сферы (синий)  и записать в таргет (для стрельбы)
-                    target      = itemEnemyPos;
+                    target = itemEnemyPos;
                     minDistance = distance;
                     normolizeAngle = angleEnemy / angle;
                 }
             }
         }
-        
+
         animator.SetFloat("direction_blend", normolizeAngle);
         // direction = target.transform.position - transform.position;
         // Debug.DrawRay(transform.position, direction, Color.yellow, 0.2f);
     }
 
-    private void AutoShooting() {
+    private void AutoShooting()
+    {
         // автострельба - если есть враг есть на сцене
-        if(target == null) {
+        if (target == null)
+        {
             return;
         }
 
@@ -142,11 +154,14 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
         Shoot();
     }
 
-    private void Shoot() {
+    private void Shoot()
+    {
         //  метод для выстрел по врагу
         nextFire -= Time.deltaTime;
-        if(nextFire <= 0) {
-            if(bullets[activeWeapon.bulletType] < 0) {
+        if (nextFire <= 0)
+        {
+            if (bullets[activeWeapon.bulletType] < 0)
+            {
                 //no bullets
                 //print("no bullets");
                 return;
@@ -156,15 +171,18 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
             activeWeapon.Fire(target.transform.position);
             animator.SetTrigger("shoot");
 
-            if(activeWeapon.NeedsReload()) {
+            if (activeWeapon.NeedsReload())
+            {
                 //play sound
                 //enable animation
                 activeWeapon.Reload();
                 //print("Reload");
-                if(bullets[activeWeapon.bulletType] > 0) {
+                if (bullets[activeWeapon.bulletType] > 0)
+                {
                     nextFire = activeWeapon.reloadTime;
                 }
-                else {
+                else
+                {
                     //TODO change weapon
 
                     //state -> NO BULLETS
@@ -172,61 +190,68 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
                     nextFire = float.PositiveInfinity;
                 }
             }
-            else {
+            else
+            {
                 nextFire = activeWeapon.fireRate;
             }
         }
     }
 
-    public void AddResourses(ResourceType resourceType, int amount) {
+    public void AddResourses(ResourceType resourceType, int amount)
+    {
         resourses[resourceType] += amount;
     }
 
-    public void AddAmmo(BulletType bulletType, int amount) {
+    public void AddAmmo(BulletType bulletType, int amount)
+    {
         bullets[bulletType] += amount;
     }
 
-    public void DoDeath() {
+    public void DoDeath()
+    {
         gameObject.SetActive(false);
         print("Game Over");
     }
 
-    public void HealthUpdate(int count) {
+    public void DoDamage()
+    {
+        barricadeAnimator.SetTrigger("barrier_hit");
+    }
+
+    public void HealthUpdate(int count)
+    {
         health.ChangeHealth(count);
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == "Player") {
-            tableResourses.Show();
-        }
-
-        if(other.gameObject.tag == "Stone") {
-            Debug.Log(tag);
-            rb                       = other.gameObject.GetComponent<Rigidbody>();
-            rb.velocity              = Vector3.zero;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Stone")
+        {
+            rb = other.gameObject.GetComponent<Rigidbody>();
+            rb.velocity = Vector3.zero;
             other.transform.position = transform.position;
-            delayForce               = StartCoroutine(DelayForce());
-            Debug.Log(1);
+            delayForce = StartCoroutine(DelayForce());
+
         }
     }
 
-    IEnumerator DelayForce() {
-        yield return new WaitForSeconds(3f);
+    IEnumerator DelayForce()
+    {
+        yield return new WaitForSeconds(delayForceTime);
         Vector3 dir = transform.forward;
         dir.y = 1;
-        rb.AddForce(dir * force);
+        rb.AddForce(dir * stoneThrowForce);
         ;
     }
 
-    private void OnTriggerExit(Collider other) {
-        tableResourses.Hide();
-    }
 
-    public int GetResourses(ResourceType resourceType) {
+    public int GetResourses(ResourceType resourceType)
+    {
         return resourses[resourceType];
     }
 
-    public int GetBullets(BulletType bulletType) {
+    public int GetBullets(BulletType bulletType)
+    {
         return bullets[bulletType];
     }
 }

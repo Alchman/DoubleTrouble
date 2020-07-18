@@ -277,7 +277,7 @@ MonoBehaviour:
   forcePush: 12
   forcePushOnRun: 5
   damageFoot: 10
-  moveSpeed: 6.5
+  moveSpeed: 6.2
   jumpForce: 500
   gravityScale: -30
   whatIsGround:
@@ -288,14 +288,14 @@ MonoBehaviour:
   wallCheck: {fileID: 5033781417159426794}
   wallCheckDistance: 0.5
   forceShotIdle: 15
-  forceShotOnRun: 11
-  forceShotSpeedUp: 11
+  forceShotOnRun: 8
+  forceShotSpeedUp: 9
   hightYforShot: 2.2
   hightYforShotOnRun: 1.2
   hightYforShotSpeedUp: 1.7
   forceShotOnCollision: 4
   hightYOnCollision: 1.2
-  accelerationSpeed: 1.34
+  accelerationSpeed: 1.4
   coefSpeed: 0.6
   capsulePosition1: {fileID: 634176579}
   capsulePosition2: {fileID: 898065077}

@@ -15,7 +15,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [SerializeField] float forcePushOnRun = 3;
 
     [Header("Hight")]
-   
+
     [Header("Damage")]
     [Tooltip("Урон по врагу ударом ногой")] [SerializeField] float damageFoot = 10;
 
@@ -29,7 +29,6 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [Tooltip("Сила с которой подпрыгнет игрок")] [SerializeField] float jumpForce = 10;
     public float gravityScale = -10;
 
-
     [Tooltip("На чем стоит игрок")] [SerializeField] LayerMask whatIsGround;
     [Tooltip("Точка проверки 'земли' под ногами")] [SerializeField] Transform groundCheck;
     [Tooltip("Радиус проверки 'земли' под ногами")] [SerializeField] float groundCheckRadius = 1;
@@ -42,18 +41,13 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [Tooltip("Сила пинания на бегу")] [SerializeField] float forceShotOnRun;
     [Tooltip("Сила пинания при беге с шифтом")] [SerializeField] float forceShotSpeedUp;
 
-    
+
     [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightYforShot = 2f;
     [Tooltip("Высота на которую кидается предмет")] [SerializeField] float hightYforShotOnRun = 2f;
     [Tooltip("Высота пиннания при беге с шифтом")] [SerializeField] float hightYforShotSpeedUp;
 
-
-
-
-
     [Tooltip("Сила пинания при задевании")] [SerializeField] float forceShotOnCollision;
     [Tooltip("Высота на которую кидается предмет при его задевании")] [SerializeField] float hightYOnCollision = 1.5f;
-
 
     [Tooltip("Во сколько раз увеличиться скорость при нажатиии на shift")] [Range(0, 2)] [SerializeField] float accelerationSpeed;
 
@@ -64,9 +58,12 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [Tooltip("Позиция 1 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition1;
     [Tooltip("Позиция 2 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition2;
 
+
     Rigidbody rigidbody;
     Health health;
     PlayerStates currentState;
+    public bool allowInput = true;
+    Coroutine activeInput;
 
 
     enum PlayerStates
@@ -85,11 +82,11 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     }
 
-  private  void Update()
+    private void Update()
     {
 
         CheckEnemy();
-       
+
         Jump();
 
 
@@ -110,45 +107,52 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     private void Move()
     {
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        //direction = Vector3.ClampMagnitude(direction, moveSpeed);
-        speedPlayer = direction.magnitude;
-        if (direction.magnitude > 0)
+        if (allowInput)
         {
-            rigidbody.MoveRotation(Quaternion.LookRotation(direction));
-
-            direction *= moveSpeed;
-            currentState = PlayerStates.MOVE;
-            animator.SetTrigger("run");
-
-            if (Input.GetButton("Fire3"))
+            Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            //direction.Normalize();
+            direction = Vector3.ClampMagnitude(direction, 1f);
+            speedPlayer = direction.magnitude;
+            if (direction.magnitude > 0)
             {
-                direction *= accelerationSpeed;
-                currentState = PlayerStates.RUN;
-            }
+                rigidbody.MoveRotation(Quaternion.LookRotation(direction));
 
-            if (!isGrounded)
-            {
-                bool isWall = Physics.Raycast(wallCheck.position, direction, wallCheckDistance, whatIsGround);
-                if (isWall)
+                direction *= moveSpeed;
+                currentState = PlayerStates.MOVE;
+                animator.SetTrigger("run");
+
+                if (Input.GetButton("Fire3"))
                 {
-                    direction = Vector3.zero;
+                    direction *= accelerationSpeed;
+                    currentState = PlayerStates.RUN;
                 }
-            }
 
-            direction.y = rigidbody.velocity.y;
-            rigidbody.velocity = direction;
+                if (!isGrounded)
+                {
+                    bool isWall = Physics.Raycast(wallCheck.position, direction, wallCheckDistance, whatIsGround);
+                    if (isWall)
+                    {
+                        direction = Vector3.zero;
+                    }
+                }
+
+                direction.y = rigidbody.velocity.y;
+                rigidbody.velocity = direction;
+
+            }
+            else
+            {
+                animator.SetTrigger("idle");
+                currentState = PlayerStates.IDLE;
+            }
 
         }
         else
-        {
-            animator.SetTrigger("idle");
-            currentState = PlayerStates.IDLE;
-        }
+        {  }
 
     }
 
-  
+
     private void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -157,15 +161,13 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
             isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, whatIsGround);
             if (isGrounded)
             {
-              
+
                 rigidbody.AddForce(new Vector3(0, jumpForce));
                 isGrounded = false;
                 animator.SetTrigger("jump");
             }
 
         }
-
-
 
     }
 
@@ -193,20 +195,20 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
             Pushable pushable = target.GetComponent<Pushable>();
             if (pushable != null)
             {
-                Vector3 direction= Vector3.zero;
+                Vector3 direction = Vector3.zero;
                 switch (currentState)
                 {
                     case PlayerStates.IDLE:
-                         direction = CalculateDirection(target.transform.position, forceShotIdle, hightYforShot);
-                       
+                        direction = CalculateDirection(target.transform.position, forceShotIdle, hightYforShot);
+
                         break;
                     case PlayerStates.MOVE:
                         direction = CalculateDirection(target.transform.position, forceShotOnRun, hightYforShotOnRun);
-                      
+
                         break;
                     case PlayerStates.RUN:
                         direction = CalculateDirection(target.transform.position, forceShotSpeedUp, hightYforShotSpeedUp);
-                     
+
                         break;
 
                 }
@@ -242,18 +244,15 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     }
 
 
-   
+
 
     private void OnTriggerEnter(Collider other)
     {
         Pushable pushable = other.gameObject.GetComponent<Pushable>();
         if (pushable != null && pushable.PushOnRun)
         {
-            
-                    Vector3 direction = CalculateDirection(other.transform.position, forcePushOnRun, hightYOnCollision);
-                    pushable.Push(direction);
-
-                 
+            Vector3 direction = CalculateDirection(other.transform.position, forcePushOnRun, hightYOnCollision);
+            pushable.Push(direction);
         }
         SpeedModificator speedInPlane = other.gameObject.GetComponent<SpeedModificator>();
         if (speedInPlane != null)
@@ -261,7 +260,18 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
             moveSpeed *= speedInPlane.GetSpeedFactor(); ;
         }
 
+        PowerUpSpeed powerUpSpeed = other.gameObject.GetComponent<PowerUpSpeed>();
+        if (powerUpSpeed)
+        {
+            allowInput = false;
+            Vector3 moveDir = rigidbody.velocity.normalized;
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.AddForce(powerUpSpeed.GetDirectionSpeed(moveDir));
+            activeInput = StartCoroutine(ActiveInput());
+
+        }
     }
+
     private void OnTriggerExit(Collider other)
     {
         SpeedModificator speedInPlane = other.gameObject.GetComponent<SpeedModificator>();
@@ -271,7 +281,13 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         }
     }
 
-   
+    IEnumerator ActiveInput()
+    {
+        PowerUpSpeed powerUpSpeed = FindObjectOfType<PowerUpSpeed>();
+        yield return new WaitForSeconds(powerUpSpeed.GetTimeDeactiveInput());
+        allowInput = true;
+
+    }
 
     public void DoDeath()
     {

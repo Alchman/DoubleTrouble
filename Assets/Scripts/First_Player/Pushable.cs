@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class Pushable : MonoBehaviour
@@ -10,7 +9,11 @@ public class Pushable : MonoBehaviour
         "При значении 0.5 - с половиной." +
         "При значении 0 - не летит ")] [Range(0, 1)] [SerializeField] float massCoef=0.5f;
     [Tooltip("Можно или нельзя пнуть предмет во время бега ")] [SerializeField] bool pushOnRun;
-   
+
+    [SerializeField][Tooltip("сила удара для пинания вверх")]  private float pushEffect = 0;
+    
+    public Action PushEnemy = delegate {};
+    
     bool  isOnGround;
     Rigidbody rigidbody;
     public bool PushOnRun { get { return pushOnRun; } }
@@ -24,7 +27,9 @@ public class Pushable : MonoBehaviour
     {
         if (isOnGround || ignoreGround==true)
         {
+            PushEnemy();
             force *= massCoef;
+            force.y = +pushEffect;
             rigidbody.AddForce(force, ForceMode.Impulse);
             rigidbody.AddTorque(force, ForceMode.Impulse);  
             isOnGround = false;

@@ -174,6 +174,7 @@ MonoBehaviour:
   playerdistance: 6.5
   attackRate: 2
   damage: 20
+  animator: {fileID: 3042131416781039249}
 --- !u!114 &3014455255414052134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massCoef: 0.5
   pushOnRun: 0
+  pushEffect: 20
 --- !u!1 &5195783461553213834
 GameObject:
   m_ObjectHideFlags: 0

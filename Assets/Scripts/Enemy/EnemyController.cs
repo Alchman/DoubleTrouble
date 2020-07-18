@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
 enum StateEnemy{
     Start,
     Move,
-    Atack
+    Atack,
+    StopPush
 }
 
 public class EnemyController : MonoBehaviour{
@@ -17,9 +19,10 @@ public class EnemyController : MonoBehaviour{
     [SerializeField] [Tooltip("Частота удара")]
     private float attackRate = 1f;
 
-    [SerializeField] [Tooltip("Сила дамага для энеми")]
-    private float damage = 30f;
+    [SerializeField] [Tooltip("Сила дамага для энеми")] private float damage = 30f;
 
+    [SerializeField][Tooltip("Аниматор для врага")] private Animator animator;
+    
     private SecondPlayer secondPlayer;
     private Rigidbody    rb;
     private float        distanceToTarget;
@@ -28,6 +31,11 @@ public class EnemyController : MonoBehaviour{
     private Health       health;
     private Health       healthSecondPlayer;
     private float        nextAttack;
+    private Pushable pushable;
+    private NavMeshAgent navMeshAgent;
+    private Coroutine waitCoroutineEnemy;
+   
+    
 
     void Start() {
         rb                 =  GetComponent<Rigidbody>();
@@ -36,6 +44,9 @@ public class EnemyController : MonoBehaviour{
         health             =  GetComponent<Health>();
         healthSecondPlayer =  secondPlayer.GetComponent<Health>();
         health.OnDeath     += OnDeath;
+        pushable = GetComponent<Pushable>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        pushable.PushEnemy += Push;
     }
 
     private void Update() {
@@ -43,6 +54,12 @@ public class EnemyController : MonoBehaviour{
             case StateEnemy.Start :
 
                 currientStateEnemy = StateEnemy.Move;
+                break;
+            
+            case StateEnemy.StopPush :
+              print("все я стою");
+              // agent.isStopped = true;
+  
                 break;
 
             case StateEnemy.Move :
@@ -61,9 +78,28 @@ public class EnemyController : MonoBehaviour{
                 }
 
                 TargetAtack();
-
                 break;
         }
+    }
+
+    private void Push() {
+        print("pnuli");
+        navMeshAgent.enabled = false;
+        
+        if(waitCoroutineEnemy != null) {
+            StopCoroutine(waitCoroutineEnemy);
+        }
+        waitCoroutineEnemy = StartCoroutine(WaitPush());
+        animator.SetTrigger("death");
+        currientStateEnemy = StateEnemy.StopPush;
+    }
+
+    IEnumerator WaitPush() {
+        print("карутина стою");
+        yield return new WaitForSeconds(3);
+        navMeshAgent.enabled = true;
+        animator.SetTrigger("walk");
+        currientStateEnemy = StateEnemy.Move;
     }
 
     private void OnDeath() {

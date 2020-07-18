@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SpawnerEnemy : MonoBehaviour{
     [SerializeField] private GameObject Enemy;
-    [SerializeField] private float      timeRespawn = 12f;
+    [SerializeField][Tooltip("время респауна моба в секундах")] private float      timeRespawn = 12f;
 
     public static int CountEnemy {get; set;}
 

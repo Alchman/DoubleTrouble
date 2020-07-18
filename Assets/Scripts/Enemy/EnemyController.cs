@@ -88,7 +88,7 @@ public class EnemyController : MonoBehaviour{
             return;
         }
 
-        healthSecondPlayer.ChangeHealth(damage);
+        healthSecondPlayer.ChangeHealth(-damage);
         nextAttack = Time.time + attackRate;
     }
 }

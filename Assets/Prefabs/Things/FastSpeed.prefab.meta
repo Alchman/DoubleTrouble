@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Prefabs/Things/FastSpeed.prefab.meta
 guid: 1006ee35628b6df42af5a9b4b154a186
 PrefabImporter:
+=======
+guid: 8cfe90cb86fde2b499b8fa84aab91f84
+folderAsset: yes
+DefaultImporter:
+>>>>>>> master:Assets/Art/Active/batareika.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

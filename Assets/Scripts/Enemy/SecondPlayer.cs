@@ -42,7 +42,6 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     [Tooltip("Время через которое выкинет камень второй игрок")] [SerializeField] float delayForceTime;
     Coroutine delayForce;
 
-    ResoursesUI tableResourses;
 
     [Tooltip("радиус поражения для оружия")] [SerializeField]
     private float RadiusCanon = 50f; //TODO move to weapon class
@@ -60,7 +59,6 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
 
         health         =  GetComponent<Health>();
         rb             =  GetComponent<Rigidbody>();
-        tableResourses =  FindObjectOfType<ResoursesUI>();
         health.OnDeath += DoDeath;
         nextFire       =  1f;
     }
@@ -196,10 +194,6 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == "Player") {
-            tableResourses.Show();
-        }
-
         if(other.gameObject.tag == "Stone") {
           
             rb                       = other.gameObject.GetComponent<Rigidbody>();
@@ -218,9 +212,6 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>{
         ;
     }
 
-    private void OnTriggerExit(Collider other) {
-        tableResourses.Hide();
-    }
 
     public int GetResourses(ResourceType resourceType) {
         return resourses[resourceType];

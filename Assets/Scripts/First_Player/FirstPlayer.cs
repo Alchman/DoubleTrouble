@@ -110,8 +110,8 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         if (allowInput)
         {
             Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            direction.Normalize();
-            //direction = Vector3.ClampMagnitude(direction, moveSpeed);
+            //direction.Normalize();
+            direction = Vector3.ClampMagnitude(direction, 1f);
             speedPlayer = direction.magnitude;
             if (direction.magnitude > 0)
             {

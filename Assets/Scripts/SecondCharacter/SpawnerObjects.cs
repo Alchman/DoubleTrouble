@@ -6,7 +6,7 @@ public class SpawnerObjects : MonoBehaviour
 {
     [Tooltip("Ресурсы которые будут выпадать")] [SerializeField] private GameObject[] resources;
     [Tooltip("Время спустя которое будет спауниться предмет")] [SerializeField] private float timeRespawn = 12f;
-    [Tooltip("Вуроятность с которой будут спауниться предметы")] [SerializeField] private float chance = 0.5f;
+    [Tooltip("Вероятность с которой будут спауниться предметы")] [SerializeField] private float chance = 0.5f;
     [Tooltip("Радиус в котором будут спауниться предметы")] [SerializeField] private float radius = 5;
 
     void Start()

@@ -17,6 +17,7 @@ public class ResoursesUI : MonoBehaviour
     [Tooltip("Скорость выезда таблицы")] [SerializeField] [Range(0, 1)] float duration;
 
     RectTransform rectTransform;
+    SecondPlayer player;
 
    
 

@@ -15,9 +15,9 @@ public class DamagebleByPush : MonoBehaviour
         health = GetComponent<Health>();
     }
 
-    public void DoDamage(float damage)
+    public  void DoDamage(float damage)
     {
         damage *= damageCoef;
-        health.ChangeHealth(-damage);
+        health.ChangeHealth(damage);
     }
 }

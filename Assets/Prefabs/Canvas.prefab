@@ -204,7 +204,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 254.75977, y: -32.659912}
+  m_AnchoredPosition: {x: 254.76, y: -32.66}
   m_SizeDelta: {x: 486.05, y: 45.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1596219789580352478
@@ -1305,7 +1305,6 @@ GameObject:
   - component: {fileID: 1596219791029895701}
   - component: {fileID: 1596219791029895700}
   - component: {fileID: 1596219791029895707}
-  - component: {fileID: 5189155410484923148}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1396,21 +1395,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5189155410484923148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1596219791029895706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca2f08f7415f7941b44a1815c5dff93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PanelGameOver: {fileID: 0}
-  resourcesTable: {fileID: 1596219790568201408}
-  showResourcesDistance: 10
 --- !u!1 &1596219791066162100
 GameObject:
   m_ObjectHideFlags: 0
@@ -2166,7 +2150,7 @@ PrefabInstance:
     - target: {fileID: 452434988458371878, guid: 6da5cca0d89cb994f891f5ea1a0af56e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 11.734863
+      value: 11.735107
       objectReference: {fileID: 0}
     - target: {fileID: 452434988458371878, guid: 6da5cca0d89cb994f891f5ea1a0af56e,
         type: 3}

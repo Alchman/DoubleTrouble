@@ -21,12 +21,14 @@ public class Pushable : MonoBehaviour
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        isOnGround = true;
     }
 
     public void Push(Vector3 force, bool ignoreGround= false)
     {
         if (isOnGround || ignoreGround==true)
         {
+            rigidbody.isKinematic = false;
             PushEnemy();
             force *= massCoef;
             force.y = +pushEffect;
@@ -40,11 +42,12 @@ public class Pushable : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        ResetGround();
+        //ResetGround();
     }
 
     void ResetGround()
     {
+        rigidbody.isKinematic = true;
         isOnGround = true;
     }
 }

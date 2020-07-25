@@ -37,6 +37,8 @@ GameObject:
   - component: {fileID: 3014455255414052134}
   - component: {fileID: 6736395070302823943}
   - component: {fileID: -5288016989118730063}
+  - component: {fileID: 9018244969802438973}
+  - component: {fileID: -2967919801172795234}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -171,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  stunTime: 3
   playerdistance: 6.5
   attackRate: 2
   damage: 20
@@ -219,6 +222,34 @@ MonoBehaviour:
   massCoef: 0.5
   pushOnRun: 0
   pushEffect: 20
+--- !u!114 &9018244969802438973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912712045438661369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d59dab315025cd46ab5209992701cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageCoef: 1
+--- !u!114 &-2967919801172795234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912712045438661369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c9dfc035e8ebe4bac6487c4c5a1910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameLoot: []
+  gameLoot1: []
+  push: 15
 --- !u!1 &5195783461553213834
 GameObject:
   m_ObjectHideFlags: 0

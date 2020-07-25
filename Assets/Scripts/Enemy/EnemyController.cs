@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour{
                 break;
             
             case StateEnemy.StopPush :
-              print("все я стою");
+              //print("все я стою");
               // agent.isStopped = true;
   
                 break;
@@ -83,7 +83,7 @@ public class EnemyController : MonoBehaviour{
     }
 
     private void Push() {
-        print("pnuli");
+        //print("pnuli");
         navMeshAgent.enabled = false;
         
         if(waitCoroutineEnemy != null) {
@@ -95,7 +95,7 @@ public class EnemyController : MonoBehaviour{
     }
 
     IEnumerator WaitPush() {
-        print("карутина стою");
+        //print("карутина стою");
         yield return new WaitForSeconds(3);
         navMeshAgent.enabled = true;
         animator.SetTrigger("walk");

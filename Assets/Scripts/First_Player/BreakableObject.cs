@@ -5,9 +5,11 @@ using UnityEngine;
 public class BreakableObject : MonoBehaviour
 {
 
-    [Tooltip("Предметы которые заспаунятся при разрушении предмета с BreakableObject  ")] [SerializeField] GameObject[] gameLoot;
-    [Tooltip("Предметы которые заспаунятся при разрушении предмета с BreakableObject ")] [SerializeField] GameObject[] gameLoot1;
-    [Tooltip("Сила с которой вылетят предметы находящиеся у предмета с BreakableObject ")] [SerializeField] float push=15;
+    [Tooltip("Предметы которые заспаунятся при разрушении предмета с BreakableObject")] [SerializeField] GameObject[] gameLoot;
+    [Tooltip("Предметы которые заспаунятся при разрушении предмета с BreakableObject")] [SerializeField] GameObject[] gameLoot1;
+    [Tooltip("Сила с которой вылетят предметы находящиеся у предмета с BreakableObject")] [SerializeField] float push=15;
+    [Tooltip("Уничтожать ли объект при разрушении")] [SerializeField] bool destroyObject = true;
+
     Pushable pushable;
     Health health;
 
@@ -19,22 +21,35 @@ public class BreakableObject : MonoBehaviour
 
     public void DoDeath()
     {  
-        Destroy(gameObject);
+        if (destroyObject)
+        {
+            Destroy(gameObject);
+        }
+
         if (gameLoot != null && gameLoot.Length > 0)
         {
             var randomLoot = Random.Range(0, gameLoot.Length);
+            SpawnObject(gameLoot[randomLoot]);
+        }
+
+        if (gameLoot1 != null && gameLoot1.Length > 0)
+        {
             var randomLoot1 = Random.Range(0, gameLoot1.Length);
+            SpawnObject(gameLoot1[randomLoot1]);
+        }
+    }
 
-           GameObject loot =  Instantiate(gameLoot[randomLoot], transform.position, Quaternion.identity);
-            GameObject loot1 = Instantiate(gameLoot1[randomLoot1], transform.position, Quaternion.identity);
+    private void SpawnObject(GameObject go)
+    {
+        GameObject loot = Instantiate(go, transform.position, Quaternion.identity);
 
-            pushable = loot.GetComponent<Pushable>();
-            pushable = loot1.GetComponent<Pushable>();
+        pushable = loot.GetComponent<Pushable>();
 
+        if (pushable != null)
+        {
             Vector3 direction = new Vector3(0, 1, 0);
-            Debug.Log(direction);
             direction = direction.normalized * push;
-            pushable.Push(direction,true);
+            pushable.Push(direction, true);
         }
     }
 }

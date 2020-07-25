@@ -10,30 +10,31 @@ public class Pushable : MonoBehaviour
         "При значении 0 - не летит ")] [Range(0, 1)] [SerializeField] float massCoef=0.5f;
     [Tooltip("Можно или нельзя пнуть предмет во время бега ")] [SerializeField] bool pushOnRun;
 
-    [SerializeField][Tooltip("сила удара для пинания вверх")]  private float pushEffect = 0;
+    [Tooltip("Высота полёта предмета при ударе")] [SerializeField] float pushHeight = 10;
     
-    public Action PushEnemy = delegate {};
-    
-    bool  isOnGround;
-    Rigidbody rigidbody;
+    public Action PushObject = delegate {};
+
+    bool isOnGround;
+    Rigidbody rb;
     public bool PushOnRun { get { return pushOnRun; } }
 
     void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         isOnGround = true;
+        //Invoke(nameof(ResetGround), 0.2f);
     }
 
     public void Push(Vector3 force, bool ignoreGround= false)
     {
         if (isOnGround || ignoreGround==true)
         {
-            rigidbody.isKinematic = false;
-            PushEnemy();
+            //rb.isKinematic = false;
+            PushObject();
             force *= massCoef;
-            force.y = +pushEffect;
-            rigidbody.AddForce(force, ForceMode.Impulse);
-            rigidbody.AddTorque(force, ForceMode.Impulse);  
+            force.y = +pushHeight;
+            rb.AddForce(force, ForceMode.Impulse);
+            rb.AddTorque(force, ForceMode.Impulse);  
             isOnGround = false;
 
             Invoke(nameof(ResetGround), 1f);
@@ -42,12 +43,14 @@ public class Pushable : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //ResetGround();
+        ResetGround();
     }
 
     void ResetGround()
     {
-        rigidbody.isKinematic = true;
+        //rb.isKinematic = true;
         isOnGround = true;
     }
+
+
 }

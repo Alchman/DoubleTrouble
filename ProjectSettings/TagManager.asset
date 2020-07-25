@@ -14,6 +14,7 @@ TagManager:
   - PlusSpeed
   - SpeedUp
   - Stone
+  - UI
   layers:
   - Default
   - TransparentFX

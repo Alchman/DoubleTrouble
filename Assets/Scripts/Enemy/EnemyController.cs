@@ -46,7 +46,7 @@ public class EnemyController : MonoBehaviour{
         health.OnDeath     += OnDeath;
         pushable = GetComponent<Pushable>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        pushable.PushEnemy += Push;
+        pushable.PushObject += Push;
     }
 
     private void Update() {

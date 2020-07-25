@@ -247,7 +247,7 @@ MonoBehaviour:
   rocketBullets: 0
   animator: {fileID: 260361754930306482}
   barricadeAnimator: {fileID: 0}
-  gearsCount: 0
+  gearsCount: 888
   woodCount: 0
   metalCount: 0
   stoneCount: 0

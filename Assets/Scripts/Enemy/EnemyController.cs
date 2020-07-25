@@ -37,8 +37,6 @@ public class EnemyController : MonoBehaviour{
     private NavMeshAgent navMeshAgent;
     private Coroutine waitCoroutineEnemy;
    
-    
-
     void Start() {
         rb                 =  GetComponent<Rigidbody>();
         secondPlayer       =  SecondPlayer.Instance;

@@ -47,6 +47,10 @@ public class Health : MonoBehaviour
             if (damageDealer.layerMask == (damageDealer.layerMask | (1 << gameObject.layer)))
             {
                 ChangeHealth(-damageDealer.damage);
+                if (other.CompareTag("Stone"))
+                { 
+                       QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHOBJTOENEMY);
+                }
             }
         }
 

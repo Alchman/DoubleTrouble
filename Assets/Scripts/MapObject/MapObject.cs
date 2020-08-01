@@ -14,13 +14,14 @@ public class MapObject : MonoBehaviour{
         pushable = GetComponent<Pushable>();
         pushable.PushObject += PuchControl;
     }
-
+ 
     private void PuchControl() {
         // print("PuchControl");
-        if(coroutineOfKinematic != null) {
+           if(coroutineOfKinematic != null) {
             StopCoroutine(coroutineOfKinematic);
         }
-            coroutineOfKinematic = StartCoroutine(OfKinematic());
+        coroutineOfKinematic = StartCoroutine(OfKinematic());
+        
     }
 
     IEnumerator OfKinematic() {
@@ -29,5 +30,6 @@ public class MapObject : MonoBehaviour{
         yield return new WaitForSeconds(timeOfKinematic);
         rb.isKinematic = true;
     }
+    
 }
 

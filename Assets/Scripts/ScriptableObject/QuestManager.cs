@@ -23,75 +23,51 @@ public class QuestManager : GenericSingletonClass<QuestManager>
         MOVE = 0,
         JUMP = 1,
         PUSH = 2
-
     }
+
     void Start()
     {
         currentQuest = QuestStates.MOVE;
         Quest quest = allQuests[(int)currentQuest];
         textQuest.text = quest.text;
         image.sprite = quest.image;
-      
-
-
     }
 
 
     public void QuestsFinish()
     {
+        //Debug.Log("quests finish: " + currentQuest);
         currentQuest++;
+        //Debug.Log("start quest: " + currentQuest);
         Quest nextQuest = allQuests[(int)currentQuest];
         textQuest.text = nextQuest.text;
         image.sprite = nextQuest.image;
-        Debug.Log("quests finish");
-      
-      
-
     }
 
     IEnumerator DelayQuest(float delay)
     {
-        Debug.Log("delay");
+        //Debug.Log("delay start");
 
-       
-            yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(delay);
 
-
-            Debug.Log("questFinish");
-
-            QuestsFinish();
-
-       
-
-
-
-
-
-
+        //Debug.Log("delay finish");
+        QuestsFinish();
+        delayQuests = null;
     }
 
     public void CheckQuests(QuestStates quest)
     {
-
         if (currentQuest == quest)
         {
-
-          
-            if (delayQuests != null)
+            if (delayQuests == null)
             {
-                Debug.Log("!null");
-              
+            //    Debug.Log("Finish Quest with delay: " + currentQuest);
+
                 float delay = allQuests[(int)currentQuest].delay;
                 delayQuests = StartCoroutine(DelayQuest(delay));
-
-            }
-            else
-            {
-                Debug.Log("null");
-
             }
         }
-          
+
     }
 
 

@@ -1,12 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour{
 
     [SerializeField] private GameObject PanelGameOver;
 
     [Header("Resources")]
+    [SerializeField] public Text gears;
+    [SerializeField] public Text rifle;
+
     [SerializeField] private ResoursesUI resourcesTable;
     [SerializeField] private float showResourcesDistance = 10f;
+
 
     private Health health;
     private SecondPlayer secondPlayer;
@@ -18,6 +23,9 @@ public class UiManager : MonoBehaviour{
 
     private void Update()
     {
+
+
+        ShowResources();
         float distance = Vector3.Distance(SecondPlayer.Instance.transform.position, FirstPlayer.Instance.transform.position);
         if (distance < showResourcesDistance)
         {
@@ -33,5 +41,11 @@ public class UiManager : MonoBehaviour{
         //PanelGameOver.SetActive(true);
         // Time.timeScale = 0;
 
+    }
+
+    public void ShowResources()
+    {
+        gears.text = SecondPlayer.Instance.GetResourses(ResourceType.GEARS).ToString();
+        rifle.text = SecondPlayer.Instance.GetBullets(BulletType.RIFLE).ToString();
     }
 }

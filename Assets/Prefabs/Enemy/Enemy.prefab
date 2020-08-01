@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba11f23a3220484ba1d936c7a5bb61b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.6
   stunTime: 3
   playerdistance: 6.5
   attackRate: 2
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massCoef: 0.5
   pushOnRun: 0
-  pushEffect: 20
+  pushHeight: 10
 --- !u!114 &9018244969802438973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +250,7 @@ MonoBehaviour:
   gameLoot: []
   gameLoot1: []
   push: 15
+  destroyObject: 1
 --- !u!1 &5195783461553213834
 GameObject:
   m_ObjectHideFlags: 0

@@ -3349,8 +3349,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PanelGameOver: {fileID: 0}
-  gears: {fileID: 0}
-  rifle: {fileID: 0}
+  gears: {fileID: 1756482494975356304}
+  rifle: {fileID: 170720543328683983}
   resourcesTable: {fileID: 679599562}
   showResourcesDistance: 10
 --- !u!114 &582132488

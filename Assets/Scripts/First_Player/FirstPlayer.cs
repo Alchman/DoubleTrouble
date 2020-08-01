@@ -135,6 +135,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                 {
                     direction *= accelerationSpeed;
                     currentState = PlayerStates.RUN;
+                    QuestManager.Instance.CheckQuests(QuestManager.QuestStates.RUN);
 
                 }
 
@@ -185,6 +186,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     {
         if ((Input.GetButtonDown("Fire1")))
         {
+            
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 return;
@@ -201,8 +203,12 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                 {
                     target = item;
                     minDistance = distance;
+                   
+                  
                 }
             }
+          
+          
             if (target == null)
             {
                 return;
@@ -228,7 +234,17 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
                 }
                 pushable.Push(direction);
-                QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSH);
+             
+                if (target.CompareTag("Enemy"))
+                {
+                    QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHENEMY);
+                }
+                else
+                {
+                    QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSH);
+                    QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHOBj);
+                }
+
             }
             DamagebleByPush damagebleByPush = target.GetComponent<DamagebleByPush>();
             if (damagebleByPush != null)

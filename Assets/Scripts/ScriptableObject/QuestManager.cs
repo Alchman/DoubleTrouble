@@ -21,8 +21,14 @@ public class QuestManager : GenericSingletonClass<QuestManager>
     public enum QuestStates
     {
         MOVE = 0,
-        JUMP = 1,
-        PUSH = 2
+        PUSH = 1,
+        PUSHOBj = 2,
+        PUSHTOMIKE = 3,
+        JUMP = 4,
+        RUN= 5,
+        PUSHENEMY = 6,
+        PUSHOBJTOENEMY = 7
+      
     }
 
     void Start()

@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 8454200238788197541}
   - component: {fileID: 6834122594591396662}
   - component: {fileID: 254017659}
-  m_Layer: 0
+  - component: {fileID: 3128986377761376204}
+  m_Layer: 9
   m_Name: batareika_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4002490292745003756}
   m_LocalRotation: {x: 0.02734636, y: 0.63164735, z: 0.03351143, w: 0.7740484}
   m_LocalPosition: {x: 25.818176, y: -0.0040283203, z: -33.229004}
-  m_LocalScale: {x: 0.07, y: 0.07000001, z: 0.07}
+  m_LocalScale: {x: 0.065, y: 0.07000001, z: 0.065}
   m_Children:
   - {fileID: 7742127491595745711}
   m_Father: {fileID: 0}
@@ -78,7 +79,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massCoef: 1
   pushOnRun: 0
+  pushHeight: 10
 --- !u!114 &254017659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4002490292745003756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf27a9e43fb2b64e8eaaad7315bff08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 0
+  count: 20
+--- !u!114 &3128986377761376204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

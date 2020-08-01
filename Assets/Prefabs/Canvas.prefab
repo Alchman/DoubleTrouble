@@ -9854,7 +9854,6 @@ GameObject:
   - component: {fileID: 2790193713852008639}
   - component: {fileID: 5728639263258993578}
   - component: {fileID: 910615131605532216}
-  - component: {fileID: 43135204}
   m_Layer: 5
   m_Name: Panel_characters
   m_TagString: Untagged
@@ -9922,23 +9921,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &43135204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8488546302567483074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca2f08f7415f7941b44a1815c5dff93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PanelGameOver: {fileID: 0}
-  gears: {fileID: 1756482494975356304}
-  rifle: {fileID: 170720543328683983}
-  resourcesTable: {fileID: 0}
-  showResourcesDistance: 10
 --- !u!1 &8605588945923127599
 GameObject:
   m_ObjectHideFlags: 0
@@ -10871,12 +10853,12 @@ PrefabInstance:
     - target: {fileID: 452434988831913327, guid: 6da5cca0d89cb994f891f5ea1a0af56e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 4.508789
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 452434988831913327, guid: 6da5cca0d89cb994f891f5ea1a0af56e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -38.1
+      value: -65
       objectReference: {fileID: 0}
     - target: {fileID: 452434988831913327, guid: 6da5cca0d89cb994f891f5ea1a0af56e,
         type: 3}
@@ -10887,6 +10869,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 452434988831913327, guid: 6da5cca0d89cb994f891f5ea1a0af56e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 452434988831913327, guid: 6da5cca0d89cb994f891f5ea1a0af56e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 452434988831913327, guid: 6da5cca0d89cb994f891f5ea1a0af56e,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 452434989669391754, guid: 6da5cca0d89cb994f891f5ea1a0af56e,
         type: 3}

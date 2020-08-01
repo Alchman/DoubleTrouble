@@ -37,6 +37,11 @@ public class ScenesConfiguration : MonoBehaviour
 
 
     }
+    public void ActiveMenu()
+    {
+        Time.timeScale = 0;
+        enabledMenu.SetActive(true);
+    }
 
 
     // Update is called once per frame

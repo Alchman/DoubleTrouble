@@ -81,7 +81,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!114 &5041008752035680897
 MonoBehaviour:
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerSpeed: 1000
   timeDeactiveInput: 1
-  stoneThrowForce: 1000
+  throwForce: 1000
   fixedDirection: 0
 --- !u!65 &2845499889593663727
 BoxCollider:

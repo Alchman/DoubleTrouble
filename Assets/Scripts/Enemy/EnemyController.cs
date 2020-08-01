@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour{
     [SerializeField] [Tooltip("Скорость передвижения")]
     private float speed = 1f;
 
+    [SerializeField][Tooltip("Время стана для моба")] private float stunTime =3;
+    
     [SerializeField] [Tooltip("Дистанция до плеера для атаки")]
     private float playerdistance = 5f;
 
@@ -35,8 +37,6 @@ public class EnemyController : MonoBehaviour{
     private NavMeshAgent navMeshAgent;
     private Coroutine waitCoroutineEnemy;
    
-    
-
     void Start() {
         rb                 =  GetComponent<Rigidbody>();
         secondPlayer       =  SecondPlayer.Instance;
@@ -46,7 +46,7 @@ public class EnemyController : MonoBehaviour{
         health.OnDeath     += OnDeath;
         pushable = GetComponent<Pushable>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        pushable.PushEnemy += Push;
+        pushable.PushObject += Push;
     }
 
     private void Update() {
@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour{
                 break;
             
             case StateEnemy.StopPush :
-              print("все я стою");
+              //print("все я стою");
               // agent.isStopped = true;
   
                 break;
@@ -83,7 +83,8 @@ public class EnemyController : MonoBehaviour{
     }
 
     private void Push() {
-        print("pnuli");
+        //print("pnuli");
+        GetComponent<Rigidbody>().isKinematic = false;
         navMeshAgent.enabled = false;
         
         if(waitCoroutineEnemy != null) {
@@ -95,14 +96,17 @@ public class EnemyController : MonoBehaviour{
     }
 
     IEnumerator WaitPush() {
-        print("карутина стою");
-        yield return new WaitForSeconds(3);
+        //print("карутина стою");
+        yield return new WaitForSeconds(stunTime);
         navMeshAgent.enabled = true;
         animator.SetTrigger("walk");
+        GetComponent<Rigidbody>().isKinematic = true;
         currientStateEnemy = StateEnemy.Move;
     }
 
     private void OnDeath() {
+        agent.isStopped = true;
+        navMeshAgent.enabled = false;
         Destroy(gameObject);
     }
 

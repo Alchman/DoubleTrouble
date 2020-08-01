@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: 'Kick 3 objects (left mouse button) '
   image: {fileID: 0}
-  delay: 5
+  delay: 0

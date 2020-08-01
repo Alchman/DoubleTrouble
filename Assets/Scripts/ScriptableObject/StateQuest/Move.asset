@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: Use W,A,S,D to move
   image: {fileID: 21300000, guid: 604a67d3b8089e34a8e458bc4762031f, type: 3}
-  delay: 10
+  delay: 5

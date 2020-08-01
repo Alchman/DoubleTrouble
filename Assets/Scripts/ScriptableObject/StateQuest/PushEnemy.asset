@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: 'Kick enemy creature 4 times  '
   image: {fileID: 0}
-  delay: 5
+  delay: 0

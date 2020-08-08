@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 {
@@ -105,14 +106,22 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         rigidbody.AddForce(gravity, ForceMode.Acceleration);
     }
 
-    private void Move()
+    public void Move()
     {
         if (allowInput)
         {
             Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+
             //direction.Normalize();
             direction = Vector3.ClampMagnitude(direction, 1f);
             speedPlayer = direction.magnitude;
+            if (speedPlayer > 0)
+            {
+                QuestManager.Instance.CheckQuests(QuestManager.QuestStates.MOVE);
+
+
+            }
             if (direction.magnitude > 0)
             {
                 rigidbody.MoveRotation(Quaternion.LookRotation(direction));
@@ -121,10 +130,13 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                 currentState = PlayerStates.MOVE;
                 animator.SetTrigger("run");
 
+
                 if (Input.GetButton("Fire3"))
                 {
                     direction *= accelerationSpeed;
                     currentState = PlayerStates.RUN;
+                    QuestManager.Instance.CheckQuests(QuestManager.QuestStates.RUN);
+
                 }
 
                 if (!isGrounded)
@@ -148,7 +160,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
         }
         else
-        {  }
+        { }
 
     }
 
@@ -157,14 +169,13 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-
             isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, whatIsGround);
             if (isGrounded)
             {
-
                 rigidbody.AddForce(new Vector3(0, jumpForce));
                 isGrounded = false;
                 animator.SetTrigger("jump");
+                QuestManager.Instance.CheckQuests(QuestManager.QuestStates.JUMP);
             }
 
         }
@@ -175,6 +186,12 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     {
         if ((Input.GetButtonDown("Fire1")))
         {
+            
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
             animator.SetTrigger("hit_leg");
             Collider[] allItemsInRadius = Physics.OverlapCapsule(capsulePosition1.position, capsulePosition2.position, radiusCheck, pushMask); ;
             float minDistance = float.MaxValue;
@@ -186,8 +203,12 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                 {
                     target = item;
                     minDistance = distance;
+                   
+                  
                 }
             }
+          
+          
             if (target == null)
             {
                 return;
@@ -213,6 +234,17 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
                 }
                 pushable.Push(direction);
+             
+                if (target.CompareTag("Enemy"))
+                {
+                    QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHENEMY);
+                }
+                else
+                {
+                    QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSH);
+                    QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHOBj);
+                }
+
             }
             DamagebleByPush damagebleByPush = target.GetComponent<DamagebleByPush>();
             if (damagebleByPush != null)

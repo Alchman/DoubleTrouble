@@ -17,7 +17,8 @@ public class QuestManager : GenericSingletonClass<QuestManager>
 
     QuestStates currentQuest;
 
-
+    int currentOfTime = 0;
+    int numberOfTimes= 0;
     public enum QuestStates
     {
         MOVE = 0,
@@ -37,26 +38,26 @@ public class QuestManager : GenericSingletonClass<QuestManager>
         Quest quest = allQuests[(int)currentQuest];
         textQuest.text = quest.text;
         image.sprite = quest.image;
+       numberOfTimes = quest.numberOfTime;
     }
 
 
     public void QuestsFinish()
     {
-        //Debug.Log("quests finish: " + currentQuest);
+        
         currentQuest++;
-        //Debug.Log("start quest: " + currentQuest);
         Quest nextQuest = allQuests[(int)currentQuest];
         textQuest.text = nextQuest.text;
         image.sprite = nextQuest.image;
+        currentOfTime = 0;
+        numberOfTimes = nextQuest.numberOfTime;
+
     }
 
     IEnumerator DelayQuest(float delay)
     {
-        //Debug.Log("delay start");
-
+       
         yield return new WaitForSeconds(delay);
-
-        //Debug.Log("delay finish");
         QuestsFinish();
         delayQuests = null;
     }
@@ -65,13 +66,25 @@ public class QuestManager : GenericSingletonClass<QuestManager>
     {
         if (currentQuest == quest)
         {
-            if (delayQuests == null)
+            currentOfTime++;
+            Debug.Log(currentOfTime);
+            if (currentOfTime >= numberOfTimes)
             {
-            //    Debug.Log("Finish Quest with delay: " + currentQuest);
+                
+                Debug.Log(currentOfTime);
+                if (delayQuests == null)
+                {
+                    float delay = allQuests[(int)currentQuest].delay;
+                    delayQuests = StartCoroutine(DelayQuest(delay));
 
-                float delay = allQuests[(int)currentQuest].delay;
-                delayQuests = StartCoroutine(DelayQuest(delay));
+
+                }
             }
+         
+        
+          
+               
+            
         }
 
     }

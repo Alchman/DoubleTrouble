@@ -85,19 +85,14 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     private void Update()
     {
-
         CheckEnemy();
-
         Jump();
-
-
     }
 
     private void FixedUpdate()
     {
         Move();
         ApplyGravity();
-
     }
 
     public void ApplyGravity()

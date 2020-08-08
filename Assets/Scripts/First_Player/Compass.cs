@@ -18,7 +18,7 @@ public class Compass : MonoBehaviour
         Vector3 dir = SecondPlayer.Instance.transform.position - FirstPlayer.Instance.transform.position;
         Quaternion missionDirection = Quaternion.LookRotation(dir);
 
-        missionDirection.z = missionDirection.y ;
+        missionDirection.z = -missionDirection.y ;
         missionDirection.x = 0;
         missionDirection.y = 0;
 

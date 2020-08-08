@@ -10,6 +10,7 @@ public class Quest : ScriptableObject
     [SerializeField] public string text;
     [SerializeField] public Sprite image;
     [SerializeField] public float delay;
+    [SerializeField] public int numberOfTime;
 
   
 

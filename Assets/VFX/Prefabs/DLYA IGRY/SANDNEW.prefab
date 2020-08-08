@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6909957562623599222}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.93, y: -0.32229555, z: -25.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -41,7 +41,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6909957562623599222}
   serializedVersion: 6
-  lengthInSec: 0.81
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -52,7 +52,7 @@ ParticleSystem:
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
-  useRigidbodyForVelocity: 1
+  useRigidbodyForVelocity: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -116,8 +116,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1.5
-      minScalar: 0.9
+      scalar: 0.6
+      minScalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -222,8 +222,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.9622642, g: 0.80531734, b: 0.35857958, a: 0.38431373}
-      maxColor: {r: 0.3882353, g: 0.21214403, b: 0.10196077, a: 0.22745098}
+      minColor: {r: 0.7735849, g: 0.6055197, b: 0.33205768, a: 0.38431373}
+      maxColor: {r: 0.3962264, g: 0.28447092, b: 0.21493414, a: 0.22745098}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -284,9 +284,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     startSize:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 1.5
-      minScalar: 0.3
+      minMaxState: 0
+      scalar: 0.6
+      minScalar: 0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -337,7 +337,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -390,7 +390,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 0
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -668,7 +668,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0.5, y: 0, z: 0}
     m_Rotation: {x: 180, y: 0, z: 0}
-    m_Scale: {x: 0.5, y: 0.5, z: 0.5}
+    m_Scale: {x: 1, y: 0.5, z: 0.5}
     placementMode: 1
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -920,7 +920,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 15
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -984,7 +984,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.10713959
+          value: 0.44047546
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -4800,7 +4800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3579369612357451046
 Transform:
   m_ObjectHideFlags: 0

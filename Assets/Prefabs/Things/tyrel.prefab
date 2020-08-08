@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 61464825126344618}
   - component: {fileID: 61464825126344619}
   - component: {fileID: 61464825126344620}
+  - component: {fileID: 1327910891}
   m_Layer: 9
   m_Name: tyrel
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61464825126344621}
-  m_LocalRotation: {x: -0, y: -0.34731644, z: -0, w: 0.937748}
+  m_LocalRotation: {x: 0, y: -0.34732038, z: 0, w: 0.9377465}
   m_LocalPosition: {x: 28.679, y: 0.555, z: -23.961}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -78,6 +79,19 @@ MonoBehaviour:
   massCoef: 1
   pushOnRun: 0
   pushHeight: 10
+--- !u!114 &1327910891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61464825126344621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2adacac60115ca040a9c6c90db1545ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeOfKinematic: 4
 --- !u!1001 &61464823964828628
 PrefabInstance:
   m_ObjectHideFlags: 0

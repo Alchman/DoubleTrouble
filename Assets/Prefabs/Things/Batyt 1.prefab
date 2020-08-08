@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massCoef: 1
   pushOnRun: 0
-  pushHeight: 10
+  pushHeight: 9
 --- !u!114 &153044712
 MonoBehaviour:
   m_ObjectHideFlags: 0

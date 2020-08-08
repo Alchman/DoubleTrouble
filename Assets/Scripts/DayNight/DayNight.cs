@@ -39,6 +39,6 @@ public class DayNight : GenericSingletonClass<DayNight>{
         }
 
         ProgressDay = (float) (Hours * 60 + Minutes) / 1440;
-        print(timeFromStart);
+        // print(timeFromStart);
     }
 }

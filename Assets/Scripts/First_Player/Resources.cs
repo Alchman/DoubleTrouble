@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Resources : MonoBehaviour
 {
     [Tooltip("Присвоение предмету определенного ресурса")] public ResourceType resourceType;
-    [Tooltip("Количество ресурса ")] [SerializeField] int count=1;
+    [Tooltip("Количество ресурса ")] public int count=1;
 
     private void OnTriggerEnter(Collider other)
     {

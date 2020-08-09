@@ -57536,6 +57536,7 @@ Transform:
   - {fileID: 304301333}
   - {fileID: 1510702633}
   - {fileID: 5006512736140902267}
+  - {fileID: 1828495344}
   m_Father: {fileID: 0}
   m_RootOrder: 105
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -81921,6 +81922,96 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1b8a5f559c055341ab55b42f77e912e, type: 3}
+--- !u!1001 &1828495343
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1251499561}
+    m_Modifications:
+    - target: {fileID: 4844244480814156666, guid: 4ead3ec1b0d1df849818af21d11f7433,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -304.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844244480814156666, guid: 4ead3ec1b0d1df849818af21d11f7433,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 16.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844244480814156666, guid: 4ead3ec1b0d1df849818af21d11f7433,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -86.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844244480814156666, guid: 4ead3ec1b0d1df849818af21d11f7433,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.08406037
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844244480814156666, guid: 4ead3ec1b0d1df849818af21d11f7433,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.922225
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844244480814156666, guid: 4ead3ec1b0d1df849818af21d11f7433,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.08115998
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844244480814156666, guid: 4ead3ec1b0d1df849818af21d11f7433,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.36857554
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844244480814156666, guid: 4ead3ec1b0d1df849818af21d11f7433,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 82
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844244480814156666, guid: 4ead3ec1b0d1df849818af21d11f7433,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -12.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844244480814156666, guid: 4ead3ec1b0d1df849818af21d11f7433,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -137.03001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844244480814156666, guid: 4ead3ec1b0d1df849818af21d11f7433,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 5.591
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844244480814156666, guid: 4ead3ec1b0d1df849818af21d11f7433,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.3405166
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844244480814156666, guid: 4ead3ec1b0d1df849818af21d11f7433,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.3405166
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844244480814156666, guid: 4ead3ec1b0d1df849818af21d11f7433,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.3405163
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458164070120814953, guid: 4ead3ec1b0d1df849818af21d11f7433,
+        type: 3}
+      propertyPath: m_Name
+      value: BoatCabin (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4ead3ec1b0d1df849818af21d11f7433, type: 3}
+--- !u!4 &1828495344 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4844244480814156666, guid: 4ead3ec1b0d1df849818af21d11f7433,
+    type: 3}
+  m_PrefabInstance: {fileID: 1828495343}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1829235244 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6316012159238810080, guid: 0f0a1a2210624e244b9d938d4fa08602,

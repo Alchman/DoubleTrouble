@@ -411,6 +411,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BAG
       objectReference: {fileID: 0}
+    - target: {fileID: 1632464365081432084, guid: 3b10e070e978c5040a0bcbd90cc5ea80,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5682308207847001275, guid: 3b10e070e978c5040a0bcbd90cc5ea80,
         type: 3}
       propertyPath: m_LocalPosition.x

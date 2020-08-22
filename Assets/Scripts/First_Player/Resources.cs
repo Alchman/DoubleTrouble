@@ -13,11 +13,7 @@ public class Resources : MonoBehaviour
         {
             Destroy(gameObject,1f);
             SecondPlayer.Instance.AddResourses(resourceType, count);
-            if (resourceType == ResourceType.REGEN)
-            {
-                Debug.Log("work");
-                QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHTOMIKE);
-            }
+           
            
         }
     }

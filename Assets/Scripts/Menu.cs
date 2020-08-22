@@ -53,7 +53,8 @@ public class Menu : MonoBehaviour
       
         Time.timeScale = 0;
         pause = true;
-       
+        enabledMenu.SetActive(true);
+
     }
 
     public void PauseEnabled()
@@ -65,6 +66,10 @@ public class Menu : MonoBehaviour
 
     public void ContinueGame()
     {
+        PauseEnabled();
+        enabledMenu.SetActive(false);
+
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Debug.DrawRay(transform.position, transform.forward * 100, Color.yellow);
         RaycastHit hit;

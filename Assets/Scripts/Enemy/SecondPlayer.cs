@@ -11,7 +11,7 @@ enum StateSecondPlayer
 
 public class SecondPlayer : GenericSingletonClass<SecondPlayer>
 {
-    private Rigidbody rb;
+
     public LayerMask layerMask;
     [Tooltip("активное оружие")] public Weapon activeWeapon;
 
@@ -37,6 +37,8 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     public int metalCount;
     public int stoneCount;
     public int regenCount;
+
+
     Health health;
     [Tooltip("Сила с которой выкинется камень вторым игроком")] [SerializeField] float stoneThrowForce;
     private Vector3 direction;
@@ -63,8 +65,9 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         resourses.Add(ResourceType.STONE, stoneCount);
         resourses.Add(ResourceType.REGEN, regenCount);
 
+
         health = GetComponent<Health>();
-        rb = GetComponent<Rigidbody>();
+    
         health.OnDeath += DoDeath;
         health.OnDamage += DoDamage;
         nextFire = 1f;
@@ -201,6 +204,10 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     {
         resourses[resourceType] += amount;
     }
+    public void MinusResourses(ResourceType resourceType, int amount)
+    {
+        resourses[resourceType] -= amount;
+    }
 
     public void AddAmmo(BulletType bulletType, int amount)
     {
@@ -227,23 +234,29 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     {
         if (other.gameObject.tag == "Stone")
         {
-            rb = other.gameObject.GetComponent<Rigidbody>();
-            rb.velocity = Vector3.zero;
-            other.transform.position = transform.position;
-            delayForce = StartCoroutine(DelayForce());
-
+            Ejection(other.gameObject, delayForceTime, stoneThrowForce);
         }
     }
 
-    IEnumerator DelayForce()
+    public void Ejection(GameObject gameObject , float delay,float force)
     {
-        yield return new WaitForSeconds(delayForceTime);
-        Vector3 dir = transform.forward;
-        dir.y = 1;
-        rb.AddForce(dir * stoneThrowForce);
-        ;
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        gameObject.transform.position = transform.position;
+        StartCoroutine(DelayForce(rb, delay, force));
+
     }
 
+    IEnumerator DelayForce(Rigidbody rigidbody, float delay, float force)
+    {
+        yield return new WaitForSeconds(delay);
+        Vector3 dir = transform.forward;
+        dir.y = 1;
+        rigidbody.AddForce(dir * force);
+
+    }
+
+   
 
     public int GetResourses(ResourceType resourceType)
     {

@@ -15,3 +15,4 @@ MonoBehaviour:
   text: 'Kick 3 objects (left mouse button) '
   image: {fileID: 0}
   delay: 0
+  numberOfTime: 10

@@ -15,3 +15,4 @@ MonoBehaviour:
   text: Kick first aid to Mike
   image: {fileID: 0}
   delay: 0
+  numberOfTime: 2

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0eaaca5e0ef12f478788312c93061ff, type: 3}
   m_Name: PushObjectToEnemy
   m_EditorClassIdentifier: 
-  text: 
-  image: {fileID: 0}
+  text: Push objects to enemy
+  image: {fileID: 21300000, guid: 3b4cc563bc0684645a31ac18c5223481, type: 3}
   delay: 0
+  numberOfTime: 2

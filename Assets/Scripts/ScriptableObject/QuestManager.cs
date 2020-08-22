@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,15 +10,24 @@ public class QuestManager : GenericSingletonClass<QuestManager>
 
     [SerializeField] Text textQuest;
     [SerializeField] Image image;
+    [SerializeField] GameObject questUi;
 
+    [SerializeField] QuestStates lastQuest;
+
+
+
+    public Text currentTime;
+  
 
     [SerializeField] Quest[] allQuests;
 
     private Coroutine delayQuests;
 
     QuestStates currentQuest;
+    int id;
 
-
+    int currentOfTime = 0;
+    int numberOfTimes;
     public enum QuestStates
     {
         MOVE = 0,
@@ -33,30 +43,48 @@ public class QuestManager : GenericSingletonClass<QuestManager>
 
     void Start()
     {
+       
+
         currentQuest = QuestStates.MOVE;
         Quest quest = allQuests[(int)currentQuest];
         textQuest.text = quest.text;
         image.sprite = quest.image;
-    }
+       numberOfTimes = quest.numberOfTime;
+ 
+       currentTime.text = currentOfTime + "/" + numberOfTimes;
+
+}
 
 
     public void QuestsFinish()
     {
-        //Debug.Log("quests finish: " + currentQuest);
+
+       
         currentQuest++;
-        //Debug.Log("start quest: " + currentQuest);
+        
+       
         Quest nextQuest = allQuests[(int)currentQuest];
-        textQuest.text = nextQuest.text;
+
+       
+     
         image.sprite = nextQuest.image;
+        currentOfTime = 0;
+        numberOfTimes = nextQuest.numberOfTime;
+        textQuest.text = nextQuest.text;
+        currentTime.text = currentOfTime + "/" + numberOfTimes;
+        if (currentQuest == lastQuest )
+        {
+            questUi.gameObject.SetActive(false);
+        }
+
+
+
     }
 
     IEnumerator DelayQuest(float delay)
     {
-        //Debug.Log("delay start");
-
+       
         yield return new WaitForSeconds(delay);
-
-        //Debug.Log("delay finish");
         QuestsFinish();
         delayQuests = null;
     }
@@ -65,13 +93,31 @@ public class QuestManager : GenericSingletonClass<QuestManager>
     {
         if (currentQuest == quest)
         {
-            if (delayQuests == null)
+            if (numberOfTimes > 0)
             {
-            //    Debug.Log("Finish Quest with delay: " + currentQuest);
-
-                float delay = allQuests[(int)currentQuest].delay;
-                delayQuests = StartCoroutine(DelayQuest(delay));
+                currentOfTime++;
+                currentTime.text = currentOfTime + "/" + numberOfTimes;
+                currentTime.gameObject.SetActive(true);
+               
             }
+            else
+            {
+                currentTime.gameObject.SetActive(false);
+            }
+            
+            if (currentOfTime >= numberOfTimes)
+            {
+                if (delayQuests == null)
+                {
+                    float delay = allQuests[(int)currentQuest].delay;
+                    delayQuests = StartCoroutine(DelayQuest(delay));
+                }
+            }
+         
+        
+          
+               
+            
         }
 
     }

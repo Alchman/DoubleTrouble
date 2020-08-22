@@ -15,3 +15,4 @@ MonoBehaviour:
   text: 'Kick enemy creature 4 times  '
   image: {fileID: 0}
   delay: 0
+  numberOfTime: 3

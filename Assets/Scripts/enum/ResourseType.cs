@@ -2,8 +2,9 @@
 {
     GEARS,
     WOOD,
-    METAL,
-    STONE,
-    REGEN
+    METAL
+   
+   
+   
 }
 

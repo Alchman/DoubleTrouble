@@ -11,12 +11,15 @@ public class Craft : MonoBehaviour
     [SerializeField] Button buttonCreate;
     [SerializeField] float delay = 0;
 
+    [SerializeField] Text countText;
+
 
 
 
     void Update()
     {
         Check();
+
     }
 
     public void Create()
@@ -32,11 +35,13 @@ public class Craft : MonoBehaviour
         {
 
             buttonCreate.interactable = true;
+            countText.text = countTurrel.ToString();
 
         }
         else
         {
             buttonCreate.interactable = false;
+            countText.text = countTurrel.ToString();
         }
     }
 }

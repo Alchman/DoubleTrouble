@@ -68,7 +68,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     
         health.OnDeath += DoDeath;
         health.OnDamage += DoDamage;
-        nextFire = 1f;
+      
     }
 
     void Update()

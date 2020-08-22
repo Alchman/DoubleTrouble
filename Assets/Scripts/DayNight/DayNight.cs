@@ -4,10 +4,10 @@ using UnityEngine;
 public class DayNight : GenericSingletonClass<DayNight>{
     [SerializeField] [Tooltip("количество минут в дне")]
     private int DayDuration = 240; // 4 минуты
+    [SerializeField][Tooltip("Начало дня в часах")] private float startDayHour;
 
     public Action TimeChanged = delegate {
                                 };
-
     private float minuteDuration;
     private float hourDuration;
     private float timeFromStart;
@@ -18,10 +18,12 @@ public class DayNight : GenericSingletonClass<DayNight>{
     public float ProgressDay {get; private set;}
 
     private int lastMinute;
-
+ 
     void Start() {
         hourDuration   = (float) DayDuration / 24;
         minuteDuration = hourDuration        / 60;
+        timeFromStart = startDayHour * hourDuration;
+
     }
 
     void Update() {
@@ -37,5 +39,6 @@ public class DayNight : GenericSingletonClass<DayNight>{
         }
 
         ProgressDay = (float) (Hours * 60 + Minutes) / 1440;
+        // print(timeFromStart);
     }
 }

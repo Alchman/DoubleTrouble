@@ -10,7 +10,7 @@ public class LightDayNight : MonoBehaviour{
     private void Start() {
         DayNight.Instance.TimeChanged += UpdateLightForDay;
     }
-
+ 
     void UpdateLightForDay() {
         directionLight.color = colorNightDay.Evaluate(DayNight.Instance.ProgressDay);
     }

@@ -13,18 +13,21 @@ public class EnemyController : MonoBehaviour{
     [SerializeField] [Tooltip("Скорость передвижения")]
     private float speed = 1f;
 
-    [SerializeField][Tooltip("Время стана для моба")] private float stunTime =3;
-    
+    [SerializeField] [Tooltip("Время стана для моба")]
+    private float stunTime = 3;
+
     [SerializeField] [Tooltip("Дистанция до плеера для атаки")]
     private float playerdistance = 5f;
 
     [SerializeField] [Tooltip("Частота удара")]
     private float attackRate = 1f;
 
-    [SerializeField] [Tooltip("Сила дамага для энеми")] private float damage = 30f;
+    [SerializeField] [Tooltip("Сила дамага для энеми")]
+    private float damage = 30f;
 
-    [SerializeField][Tooltip("Аниматор для врага")] private Animator animator;
-    
+    [SerializeField] [Tooltip("Аниматор для врага")]
+    private Animator animator;
+
     private SecondPlayer secondPlayer;
     private Rigidbody    rb;
     private float        distanceToTarget;
@@ -33,19 +36,19 @@ public class EnemyController : MonoBehaviour{
     private Health       health;
     private Health       healthSecondPlayer;
     private float        nextAttack;
-    private Pushable pushable;
+    private Pushable     pushable;
     private NavMeshAgent navMeshAgent;
-    private Coroutine waitCoroutineEnemy;
-   
+    private Coroutine    waitCoroutineEnemy;
+
     void Start() {
-        rb                 =  GetComponent<Rigidbody>();
-        secondPlayer       =  SecondPlayer.Instance;
-        agent              =  GetComponent<NavMeshAgent>();
-        health             =  GetComponent<Health>();
-        healthSecondPlayer =  secondPlayer.GetComponent<Health>();
-        health.OnDeath     += OnDeath;
-        pushable = GetComponent<Pushable>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        rb                  =  GetComponent<Rigidbody>();
+        secondPlayer        =  SecondPlayer.Instance;
+        agent               =  GetComponent<NavMeshAgent>();
+        health              =  GetComponent<Health>();
+        healthSecondPlayer  =  secondPlayer.GetComponent<Health>();
+        health.OnDeath      += OnDeath;
+        pushable            =  GetComponent<Pushable>();
+        navMeshAgent        =  GetComponent<NavMeshAgent>();
         pushable.PushObject += Push;
     }
 
@@ -55,11 +58,11 @@ public class EnemyController : MonoBehaviour{
 
                 currientStateEnemy = StateEnemy.Move;
                 break;
-            
+
             case StateEnemy.StopPush :
-              //print("все я стою");
-              // agent.isStopped = true;
-  
+                //print("все я стою");
+                // agent.isStopped = true;
+
                 break;
 
             case StateEnemy.Move :
@@ -85,11 +88,12 @@ public class EnemyController : MonoBehaviour{
     private void Push() {
         //print("pnuli");
         GetComponent<Rigidbody>().isKinematic = false;
-        navMeshAgent.enabled = false;
-        
+        navMeshAgent.enabled                  = false;
+
         if(waitCoroutineEnemy != null) {
             StopCoroutine(waitCoroutineEnemy);
         }
+
         waitCoroutineEnemy = StartCoroutine(WaitPush());
         animator.SetTrigger("death");
         currientStateEnemy = StateEnemy.StopPush;
@@ -101,11 +105,11 @@ public class EnemyController : MonoBehaviour{
         navMeshAgent.enabled = true;
         animator.SetTrigger("walk");
         GetComponent<Rigidbody>().isKinematic = true;
-        currientStateEnemy = StateEnemy.Move;
+        currientStateEnemy                    = StateEnemy.Move;
     }
 
     private void OnDeath() {
-        agent.isStopped = true;
+        // agent.isStopped = true;
         navMeshAgent.enabled = false;
         Destroy(gameObject);
     }

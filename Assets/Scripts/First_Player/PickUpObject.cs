@@ -1,17 +1,20 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUpObject : MonoBehaviour
-{
-    private void OnCollisionEnter(Collision other) {
+public class PickUpObject : MonoBehaviour{
+    private Resources resources;
+    private void Awake() {
+        resources = GetComponent<Resources>();
+    }
 
+    private void OnCollisionEnter(Collision other) {
 
         if(other.collider.transform.CompareTag("Player")) {
             print("pickUp " + transform.name);
+            ResourceType currentRes = resources.resourceType;
+            int currentCount = resources.count;
+        SecondPlayer.Instance.AddResourses(currentRes, currentCount);
         Destroy(gameObject);
-        SecondPlayer.Instance.AddResourses(ResourceType.GEARS, 300);
         }
       
     }

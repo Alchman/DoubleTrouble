@@ -12,7 +12,7 @@ public class AmmoPack : MonoBehaviour
     {
         if (other.gameObject.tag == "SecondPlayer")
         {
-            Destroy(gameObject);
+            Destroy(gameObject,1f);
             SecondPlayer.Instance.AddAmmo(bulletType, amount);
 
         }

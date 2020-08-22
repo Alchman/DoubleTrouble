@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 61464825126344620}
   - component: {fileID: 1327910891}
   - component: {fileID: 1116384087}
+  - component: {fileID: 1669663056715854406}
+  - component: {fileID: -2473570656614422066}
   m_Layer: 9
   m_Name: tyrel
   m_TagString: Untagged
@@ -118,6 +120,42 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1669663056715854406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61464825126344621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638adb61d872ce14f8e6533a1e6a1740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &-2473570656614422066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61464825126344621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47c400e010bc5645a3ede0ec93723dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 3546202016324729024, guid: 86b8a24df54fbd641b5dc1a4e1aee84a,
+    type: 3}
+  shootPoint: {fileID: 61464825126344617}
+  buletSpeed: 51
+  bulletDamage: 51
+  bulletType: 1
+  magazineSize: 0
+  reloadTime: 0
+  fireRate: 1
 --- !u!1001 &12678197
 PrefabInstance:
   m_ObjectHideFlags: 0

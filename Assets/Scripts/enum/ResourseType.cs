@@ -4,6 +4,7 @@
     WOOD,
     METAL,
     STONE,
-    REGEN
+    REGEN,
+    TURREL
 }
 

@@ -13,6 +13,7 @@ public class Regeneration : MonoBehaviour
         {
             Destroy(gameObject,1f);
             SecondPlayer.Instance.HealthUpdate(health);
+            QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHTOMIKE);
         }
     }
 }

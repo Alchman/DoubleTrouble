@@ -15,3 +15,4 @@ MonoBehaviour:
   text: 'Press left mouse button to kick objects '
   image: {fileID: 21300000, guid: 09ab62ba22a34674d9d48288e872128b, type: 3}
   delay: 0
+  numberOfTime: 2

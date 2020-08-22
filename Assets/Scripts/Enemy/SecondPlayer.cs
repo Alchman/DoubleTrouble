@@ -35,8 +35,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     public int gearsCount;
     public int woodCount;
     public int metalCount;
-    public int stoneCount;
-    public int regenCount;
+  
 
 
     Health health;
@@ -62,8 +61,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         resourses.Add(ResourceType.GEARS, gearsCount);
         resourses.Add(ResourceType.WOOD, woodCount);
         resourses.Add(ResourceType.METAL, metalCount);
-        resourses.Add(ResourceType.STONE, stoneCount);
-        resourses.Add(ResourceType.REGEN, regenCount);
+      
 
 
         health = GetComponent<Health>();

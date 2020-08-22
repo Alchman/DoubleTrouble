@@ -2,9 +2,9 @@
 {
     GEARS,
     WOOD,
-    METAL,
-    STONE,
-    REGEN,
-    TURREL
+    METAL
+   
+   
+   
 }
 

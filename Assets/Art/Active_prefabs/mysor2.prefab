@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 8474197942023167601}
   - component: {fileID: 8474197942023167603}
   - component: {fileID: 8474197942023167604}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: mysor2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485134454316041626}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -267,8 +267,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1ba57069dca5c489aad4e4d6541434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  massCoef: 1
+  massCoef: 0.31
   pushOnRun: 0
+  pushHeight: 10
 --- !u!1 &595424966362018731
 GameObject:
   m_ObjectHideFlags: 0

@@ -26040,7 +26040,7 @@ PrefabInstance:
     - target: {fileID: 7805921321293276861, guid: 7b4df99fb29089641a533eb4abb2ba2b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.421938
+      value: -23.44
       objectReference: {fileID: 0}
     - target: {fileID: 7805921321293276861, guid: 7b4df99fb29089641a533eb4abb2ba2b,
         type: 3}
@@ -57112,7 +57112,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2021380263}
-  m_RootOrder: 50
+  m_RootOrder: 47
   m_LocalEulerAnglesHint: {x: 0, y: 167.837, z: 0}
 --- !u!1001 &1164162304
 PrefabInstance:
@@ -99045,10 +99045,10 @@ Transform:
   - {fileID: 1691317998}
   - {fileID: 827562565}
   - {fileID: 1380948679}
-  - {fileID: 2045672420}
+  - {fileID: 1163961442}
   - {fileID: 1108120284}
   - {fileID: 488834948}
-  - {fileID: 1163961442}
+  - {fileID: 2045672420}
   - {fileID: 1301326756}
   - {fileID: 1633819122}
   - {fileID: 2050891727}
@@ -99738,11 +99738,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: mysor2
       objectReference: {fileID: 0}
-    - target: {fileID: 485134454316041626, guid: 7ff47018de1410f48b3458baf426a91c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 3522046835467843465, guid: 7ff47018de1410f48b3458baf426a91c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -99797,11 +99792,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8474197942023167605, guid: 7ff47018de1410f48b3458baf426a91c,
-        type: 3}
-      propertyPath: m_Mass
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ff47018de1410f48b3458baf426a91c, type: 3}
@@ -100073,7 +100063,7 @@ Transform:
   m_LocalScale: {x: 0.5789734, y: 0.5789734, z: 0.5789734}
   m_Children: []
   m_Father: {fileID: 2021380263}
-  m_RootOrder: 47
+  m_RootOrder: 50
   m_LocalEulerAnglesHint: {x: 0, y: 26.569002, z: 0}
 --- !u!1001 &2046121083
 PrefabInstance:

@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1ba57069dca5c489aad4e4d6541434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  massCoef: 1
+  massCoef: 0.83
   pushOnRun: 1
   pushHeight: 10
 --- !u!114 &2612372480219510241

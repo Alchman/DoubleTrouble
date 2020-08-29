@@ -371,8 +371,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   activeWeapon: {fileID: 591051536}
-  pistolBullets: 55
-  rifleBullets: 55
+  pistolBullets: 15
+  rifleBullets: 15
   rocketBullets: 0
   audioSource: {fileID: 7786536494308905167}
   animator: {fileID: 260361754930306482}
@@ -384,6 +384,7 @@ MonoBehaviour:
   delayForceTime: 2
   RadiusCanon: 30
   shootSound: {fileID: 8300000, guid: b80713152ce869e4c9857602a2961427, type: 3}
+  noAmmoSound: {fileID: 8300000, guid: 62f70435d0c06ad4e8f8c5f309a61128, type: 3}
 --- !u!114 &1749342862
 MonoBehaviour:
   m_ObjectHideFlags: 0

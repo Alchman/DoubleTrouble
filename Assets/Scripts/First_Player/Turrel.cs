@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Turrel : MonoBehaviour
 {
-    private float RadiusCanon = 50f;
+    [SerializeField]private float RadiusCanon = 50f;
     public LayerMask layerMask;
 
     private Vector3 direction;
@@ -65,16 +65,21 @@ public class Turrel : MonoBehaviour
 
     private void AutoShooting()
     {
-        Debug.Log(target);
-        // автострельба - если есть враг есть на сцене
-        if (target == null)
+        nextFire -= Time.deltaTime;
+        if (nextFire <= 0)
         {
-            return;
-        }
+            Debug.Log(target);
+            // автострельба - если есть враг есть на сцене
+            if (target == null)
+            {
+                return;
+            }
 
-        // transform.LookAt(target.transform.position);
-        Shoot();
-        Debug.Log("Shot");
+            // transform.LookAt(target.transform.position);
+            Shoot();
+            Debug.Log("Shot");
+            nextFire = activeWeapon.fireRate;
+        }
     }
 
 
@@ -89,5 +94,11 @@ public class Turrel : MonoBehaviour
             Debug.Log("Shoot");
 
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, RadiusCanon);
     }
 }

@@ -6,6 +6,9 @@ public class Turrel : MonoBehaviour
 {
     [SerializeField]private float RadiusCanon = 50f;
     public LayerMask layerMask;
+    
+    [Header("Audio")]
+    [SerializeField] private AudioClip shootSound;
 
     private Vector3 direction;
     private float nextFire;
@@ -14,6 +17,7 @@ public class Turrel : MonoBehaviour
     private Collider target;
 
     private float angle;
+    private AudioSource audioSource;
 
     
     Dictionary<BulletType, int> bullets = new Dictionary<BulletType, int>();
@@ -22,6 +26,7 @@ public class Turrel : MonoBehaviour
     {
         nextFire = 1f;
         activeWeapon = GetComponent<Weapon>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -87,6 +92,7 @@ public class Turrel : MonoBehaviour
             activeWeapon.Fire(target.transform.position);
             Debug.Log("Shoot");
             nextFire = activeWeapon.fireRate;
+            audioSource.PlayOneShot(shootSound);
         }
       
     }

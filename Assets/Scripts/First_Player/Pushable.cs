@@ -12,6 +12,7 @@ public class Pushable : MonoBehaviour
 
     [Tooltip("Высота полёта предмета при ударе")] [SerializeField] float pushHeight = 10;
     [SerializeField] private AudioClip impactSound;
+    private Animator animator;
     
     public Action PushObject = delegate {};
 
@@ -19,8 +20,8 @@ public class Pushable : MonoBehaviour
     Rigidbody rb;
     public bool PushOnRun { get { return pushOnRun; } }
 
-    void Awake()
-    {
+    void Awake() {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         isOnGround = true;
         //Invoke(nameof(ResetGround), 0.2f);
@@ -28,8 +29,9 @@ public class Pushable : MonoBehaviour
 
     public void Push(Vector3 force, bool ignoreGround= false)
     {
+       
         if (isOnGround || ignoreGround == true)
-        {
+        { 
             //rb.isKinematic = false;
             PushObject();
             force *= massCoef;
@@ -37,9 +39,12 @@ public class Pushable : MonoBehaviour
             rb.AddForce(force, ForceMode.Impulse);
             rb.AddTorque(force, ForceMode.Impulse);
             isOnGround = false;
+           
             
             if (impactSound != null)
             {
+      
+                AnimPushBanka();
                 AudioManager.PlaySound(impactSound);
             }
 
@@ -47,7 +52,7 @@ public class Pushable : MonoBehaviour
             Invoke(nameof(ResetGround), 1f);
         }
     }
-
+    
     private void OnCollisionEnter(Collision collision)
     {
         ResetGround();
@@ -57,6 +62,15 @@ public class Pushable : MonoBehaviour
     {
         //rb.isKinematic = true;
         isOnGround = true;
+    }
+
+    private void AnimPushBanka() {
+
+        if(animator != null) {
+            animator.SetTrigger("Sand_Poof");
+        }
+   
+        
     }
 
 

@@ -58,7 +58,11 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [Header("Position")]
     [Tooltip("Позиция 1 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition1;
     [Tooltip("Позиция 2 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition2;
-
+        
+    public Health Health
+    {
+        get { return health; }
+    }
 
     Rigidbody rigidbody;
     Health health;

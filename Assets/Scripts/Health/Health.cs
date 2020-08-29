@@ -27,6 +27,10 @@ public class Health : MonoBehaviour
     public void ChangeHealth(float amount)
     {
         HealthLeft += amount;
+        if (HealthLeft > maxHealth)
+        {
+            HealthLeft = maxHealth;
+        }
         OnHealthUpdate();
         if (amount < 0)
         {

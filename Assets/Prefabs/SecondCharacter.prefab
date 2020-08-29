@@ -377,7 +377,7 @@ MonoBehaviour:
   audioSource: {fileID: 7786536494308905167}
   animator: {fileID: 260361754930306482}
   barricadeAnimator: {fileID: 0}
-  gearsCount: 888
+  gearsCount: 4000
   woodCount: 0
   metalCount: 0
   stoneThrowForce: 500

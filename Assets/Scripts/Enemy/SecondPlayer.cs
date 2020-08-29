@@ -57,6 +57,8 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
 
 
     [Header("Sounds")] [SerializeField] private AudioClip shootSound;
+    
+    [Header("EffectShot")] [SerializeField] private ParticleSystem shootEffect;
 
     void Start()
     {
@@ -177,6 +179,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
             bullets[activeWeapon.bulletType]--;
             activeWeapon.Fire(target.transform.position);
             audioSource.PlayOneShot(shootSound);
+            shootEffect.Play();
             animator.SetTrigger("shoot");
 
             if (activeWeapon.NeedsReload())

@@ -255,6 +255,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceType: 0
   count: 20
+  animEffectLoot: {fileID: 0}
+  waitEffect: 1
 --- !u!114 &8474197942023167604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +272,7 @@ MonoBehaviour:
   massCoef: 0.31
   pushOnRun: 0
   pushHeight: 10
+  impactSound: {fileID: 0}
 --- !u!1 &595424966362018731
 GameObject:
   m_ObjectHideFlags: 0

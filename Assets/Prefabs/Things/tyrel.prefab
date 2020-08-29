@@ -157,7 +157,7 @@ MonoBehaviour:
   bulletType: 1
   magazineSize: 0
   reloadTime: 0
-  fireRate: 20
+  fireRate: 1
 --- !u!1001 &12678197
 PrefabInstance:
   m_ObjectHideFlags: 0

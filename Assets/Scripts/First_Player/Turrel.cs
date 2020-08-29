@@ -65,21 +65,15 @@ public class Turrel : MonoBehaviour
 
     private void AutoShooting()
     {
-        nextFire -= Time.deltaTime;
-        if (nextFire <= 0)
+        if (target == null)
         {
-            Debug.Log(target);
-            // автострельба - если есть враг есть на сцене
-            if (target == null)
-            {
-                return;
-            }
-
-            // transform.LookAt(target.transform.position);
-            Shoot();
-            Debug.Log("Shot");
-            nextFire = activeWeapon.fireRate;
+            return;
         }
+
+        Shoot();
+        Debug.Log("Shot");
+     
+     
     }
 
 
@@ -92,8 +86,9 @@ public class Turrel : MonoBehaviour
            
             activeWeapon.Fire(target.transform.position);
             Debug.Log("Shoot");
-
+            nextFire = activeWeapon.fireRate;
         }
+      
     }
 
     private void OnDrawGizmos()

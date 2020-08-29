@@ -75,6 +75,8 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         health.OnDeath += DoDeath;
         health.OnDamage += DoDamage;
       
+        directon2 = Quaternion.AngleAxis(80, Vector3.up) * transform.forward;
+        angle = Vector3.Angle(transform.forward, directon2);
     }
 
     void Update()
@@ -105,8 +107,6 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, RadiusCanon);
 
-        directon2 = Quaternion.AngleAxis(80, Vector3.up) * transform.forward;
-        angle = Vector3.Angle(transform.forward, directon2);
         Gizmos.color = Color.cyan;
         Gizmos.DrawRay(transform.position, directon2 * 30); //смотрим по углу
     }
@@ -155,7 +155,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         // автострельба - если есть враг есть на сцене
         if (target == null)
         {
-            print("No target");
+            // print("No target");
             return;
         }
 

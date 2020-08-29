@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0eaaca5e0ef12f478788312c93061ff, type: 3}
-  m_Name: PushObjects
+  m_Name: 3_PushObjects
   m_EditorClassIdentifier: 
   text: 'Kick 3 objects (left mouse button) '
-  image: {fileID: 0}
-  delay: 0
-  numberOfTime: 10
+  image: {fileID: 21300000, guid: 39dd667cdf82f944bb0b90dd55babea6, type: 3}
+  delay: 1
+  numberOfTime: 3

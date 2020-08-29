@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0eaaca5e0ef12f478788312c93061ff, type: 3}
-  m_Name: Jump
+  m_Name: 5_Jump
   m_EditorClassIdentifier: 
   text: 'Press space button to jump,  jump 5 times '
-  image: {fileID: 21300000, guid: 39aa3f02fe686794c94bd17211024118, type: 3}
-  delay: 0
+  image: {fileID: 21300000, guid: 4dcda8967cd34a34c82ac2227f487909, type: 3}
+  delay: 1
   numberOfTime: 5

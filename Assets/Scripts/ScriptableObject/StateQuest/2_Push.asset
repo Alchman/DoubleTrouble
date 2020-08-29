@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0eaaca5e0ef12f478788312c93061ff, type: 3}
-  m_Name: Push
+  m_Name: 2_Push
   m_EditorClassIdentifier: 
   text: 'Press left mouse button to kick objects '
-  image: {fileID: 21300000, guid: 09ab62ba22a34674d9d48288e872128b, type: 3}
-  delay: 0
+  image: {fileID: 21300000, guid: e5c476a31e7d12d448b0a776275955a6, type: 3}
+  delay: 2
   numberOfTime: 2

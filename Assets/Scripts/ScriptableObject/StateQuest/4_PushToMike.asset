@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0eaaca5e0ef12f478788312c93061ff, type: 3}
-  m_Name: PushToMike
+  m_Name: 4_PushToMike
   m_EditorClassIdentifier: 
   text: Kick first aid to Mike
-  image: {fileID: 0}
-  delay: 0
-  numberOfTime: 2
+  image: {fileID: 21300000, guid: 942e4b09387a00e41b6be233eee0d2ff, type: 3}
+  delay: 1
+  numberOfTime: 1

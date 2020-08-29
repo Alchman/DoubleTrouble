@@ -26,8 +26,11 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     private float nextFire;
     private StateSecondPlayer currentStateSecondPlayer;
 
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private Animator animator;
     [SerializeField] private Animator barricadeAnimator;
+    
+    
 
     Dictionary<BulletType, int> bullets = new Dictionary<BulletType, int>();
     Dictionary<ResourceType, int> resourses = new Dictionary<ResourceType, int>();
@@ -51,6 +54,9 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     [Tooltip("радиус поражения для оружия")]
     [SerializeField]
     private float RadiusCanon = 50f; //TODO move to weapon class
+
+
+    [Header("Sounds")] [SerializeField] private AudioClip shootSound;
 
     void Start()
     {
@@ -170,6 +176,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
 
             bullets[activeWeapon.bulletType]--;
             activeWeapon.Fire(target.transform.position);
+            audioSource.PlayOneShot(shootSound);
             animator.SetTrigger("shoot");
 
             if (activeWeapon.NeedsReload())

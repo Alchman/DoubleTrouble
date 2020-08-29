@@ -56,8 +56,12 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     private float RadiusCanon = 50f; //TODO move to weapon class
 
 
-    [Header("Sounds")] [SerializeField] private AudioClip shootSound;
+    [Header("Sounds")] 
+    [SerializeField] private AudioClip shootSound;
+    [SerializeField] private AudioClip noAmmoSound;
 
+    private bool hasAmmo; //just for sound effect
+    
     void Start()
     {
         bullets.Add(BulletType.PISTOL, pistolBullets);
@@ -96,7 +100,8 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
                 AutoShooting();
 
                 break;
-            case StateSecondPlayer.Reload: break;
+            case StateSecondPlayer.Reload: 
+                break;
         }
     }
 
@@ -169,12 +174,19 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         nextFire -= Time.deltaTime;
         if (nextFire <= 0)
         {
-            if (bullets[activeWeapon.bulletType] < 0)
+            if (bullets[activeWeapon.bulletType] <= 0)
             {
                 //no bullets
                 //print("no bullets");
+                if (hasAmmo)
+                {
+                    audioSource.PlayOneShot(noAmmoSound);
+                    hasAmmo = false;
+                }
                 return;
             }
+
+            hasAmmo = true;
 
             bullets[activeWeapon.bulletType]--;
             activeWeapon.Fire(target.transform.position);

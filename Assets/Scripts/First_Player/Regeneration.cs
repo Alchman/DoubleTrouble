@@ -5,7 +5,7 @@ using UnityEngine;
 public class Regeneration : MonoBehaviour
 {
 
-    [Tooltip("Кол-во восстановления здоровья ")] [SerializeField] int health=30;
+    [Tooltip("Кол-во восстановления здоровья ")] public int health=30;
 
     private void OnTriggerEnter(Collider other)
     {

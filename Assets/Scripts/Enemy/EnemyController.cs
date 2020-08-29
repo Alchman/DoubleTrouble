@@ -6,7 +6,8 @@ enum StateEnemy{
     Start,
     Move,
     Atack,
-    StopPush
+    StopPush,
+    Dead
 }
 
 public class EnemyController : MonoBehaviour{
@@ -28,6 +29,9 @@ public class EnemyController : MonoBehaviour{
     [SerializeField] [Tooltip("Аниматор для врага")]
     private Animator animator;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip dieSound;
+
     private SecondPlayer secondPlayer;
     private Rigidbody    rb;
     private float        distanceToTarget;
@@ -39,8 +43,11 @@ public class EnemyController : MonoBehaviour{
     private Pushable     pushable;
     private NavMeshAgent navMeshAgent;
     private Coroutine    waitCoroutineEnemy;
+    private AudioSource audioSource;
 
-    void Start() {
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
         rb                  =  GetComponent<Rigidbody>();
         secondPlayer        =  SecondPlayer.Instance;
         agent               =  GetComponent<NavMeshAgent>();
@@ -82,6 +89,8 @@ public class EnemyController : MonoBehaviour{
 
                 TargetAtack();
                 break;
+            case StateEnemy.Dead:
+                break;
         }
     }
 
@@ -110,8 +119,11 @@ public class EnemyController : MonoBehaviour{
 
     private void OnDeath() {
         // agent.isStopped = true;
+        audioSource.PlayOneShot(dieSound);
         navMeshAgent.enabled = false;
-        Destroy(gameObject);
+        animator.SetTrigger("death");
+        currientStateEnemy = StateEnemy.Dead;
+        Destroy(gameObject, 1f);
     }
 
     private void MoveToTarget() {

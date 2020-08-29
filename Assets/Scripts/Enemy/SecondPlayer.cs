@@ -127,7 +127,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
             direction = itemEnemyPos.transform.position -
                         transform
                            .position;                                         // вычелсить направления движения врага  для того что бы бросить в него луч
-            Debug.DrawRay(transform.position, direction, Color.yellow, 0.1f); // желтый луч для визуального отслеживания
+            //Debug.DrawRay(transform.position, direction, Color.yellow, 0.1f); // желтый луч для визуального отслеживания
             float angleEnemy = Vector3.SignedAngle(transform.forward, direction, Vector3.up); // вычеслить угол относительно врага и ветора вперед - зеленый луч
 
             if (angleEnemy > 1 && angleEnemy < angle)
@@ -137,6 +137,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
                 if (distance < minDistance)
                 {
                     // Определить врага когда  он попал в круг сферы (синий)  и записать в таргет (для стрельбы)
+                    //Debug.DrawRay(transform.position, direction, Color.yellow, 1f);
                     target = itemEnemyPos;
                     minDistance = distance;
                     normolizeAngle = angleEnemy / angle;
@@ -154,6 +155,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         // автострельба - если есть враг есть на сцене
         if (target == null)
         {
+            print("No target");
             return;
         }
 

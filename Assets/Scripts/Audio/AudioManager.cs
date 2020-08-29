@@ -6,8 +6,8 @@ public class AudioManager : GenericSingletonClass<AudioManager>
 {
     [SerializeField] AudioSource effects;
 
-    public void PlaySound(AudioClip sound)
+    public static void PlaySound(AudioClip sound)
     {
-        effects.PlayOneShot(sound);
+        Instance.effects.PlayOneShot(sound);
     }
 }

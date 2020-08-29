@@ -26,8 +26,11 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     private float nextFire;
     private StateSecondPlayer currentStateSecondPlayer;
 
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private Animator animator;
     [SerializeField] private Animator barricadeAnimator;
+    
+    
 
     Dictionary<BulletType, int> bullets = new Dictionary<BulletType, int>();
     Dictionary<ResourceType, int> resourses = new Dictionary<ResourceType, int>();
@@ -52,6 +55,9 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     [SerializeField]
     private float RadiusCanon = 50f; //TODO move to weapon class
 
+
+    [Header("Sounds")] [SerializeField] private AudioClip shootSound;
+
     void Start()
     {
         bullets.Add(BulletType.PISTOL, pistolBullets);
@@ -69,6 +75,8 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         health.OnDeath += DoDeath;
         health.OnDamage += DoDamage;
       
+        directon2 = Quaternion.AngleAxis(80, Vector3.up) * transform.forward;
+        angle = Vector3.Angle(transform.forward, directon2);
     }
 
     void Update()
@@ -99,8 +107,6 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, RadiusCanon);
 
-        directon2 = Quaternion.AngleAxis(80, Vector3.up) * transform.forward;
-        angle = Vector3.Angle(transform.forward, directon2);
         Gizmos.color = Color.cyan;
         Gizmos.DrawRay(transform.position, directon2 * 30); //смотрим по углу
     }
@@ -121,7 +127,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
             direction = itemEnemyPos.transform.position -
                         transform
                            .position;                                         // вычелсить направления движения врага  для того что бы бросить в него луч
-            Debug.DrawRay(transform.position, direction, Color.yellow, 0.1f); // желтый луч для визуального отслеживания
+            //Debug.DrawRay(transform.position, direction, Color.yellow, 0.1f); // желтый луч для визуального отслеживания
             float angleEnemy = Vector3.SignedAngle(transform.forward, direction, Vector3.up); // вычеслить угол относительно врага и ветора вперед - зеленый луч
 
             if (angleEnemy > 1 && angleEnemy < angle)
@@ -131,6 +137,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
                 if (distance < minDistance)
                 {
                     // Определить врага когда  он попал в круг сферы (синий)  и записать в таргет (для стрельбы)
+                    //Debug.DrawRay(transform.position, direction, Color.yellow, 1f);
                     target = itemEnemyPos;
                     minDistance = distance;
                     normolizeAngle = angleEnemy / angle;
@@ -148,6 +155,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         // автострельба - если есть враг есть на сцене
         if (target == null)
         {
+            // print("No target");
             return;
         }
 
@@ -170,6 +178,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
 
             bullets[activeWeapon.bulletType]--;
             activeWeapon.Fire(target.transform.position);
+            audioSource.PlayOneShot(shootSound);
             animator.SetTrigger("shoot");
 
             if (activeWeapon.NeedsReload())

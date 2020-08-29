@@ -4764,9 +4764,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2536299696274290708}
   - component: {fileID: 2536299696274290709}
-  - component: {fileID: 2536299696274290710}
+  - component: {fileID: 2536299696274290711}
   - component: {fileID: 2536299696274290707}
   - component: {fileID: 1083112871653267672}
+  - component: {fileID: 769548211}
   m_Layer: 9
   m_Name: korm
   m_TagString: Untagged
@@ -4804,7 +4805,7 @@ CapsuleCollider:
   m_Height: 0.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.17, z: 0}
---- !u!114 &2536299696274290710
+--- !u!114 &2536299696274290711
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4813,12 +4814,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2536299696274290696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e1ba57069dca5c489aad4e4d6541434, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cf27a9e43fb2b64e8eaaad7315bff08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  massCoef: 1
-  pushOnRun: 0
-  pushHeight: 10
+  resourceType: 0
+  count: 1
 --- !u!54 &2536299696274290707
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4827,7 +4827,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2536299696274290696}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -4854,25 +4854,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!95 &589064498730865959
-Animator:
-  serializedVersion: 3
+--- !u!114 &769548211
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5770045933357253277}
+  m_GameObject: {fileID: 2536299696274290696}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8ad434fc1221f8449b19c021886efa6e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cdf1727648a1184aa6dfba09dca9a38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1687850678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5041,12 +5034,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6b5093207d9219f469a5e6b5cfb927cf, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4e0bf413e1d50a43914b8a914ce3305, type: 3}
---- !u!1 &5770045933357253277 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: a4e0bf413e1d50a43914b8a914ce3305,
-    type: 3}
-  m_PrefabInstance: {fileID: 2536299697165638548}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7370153900527366286 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: a4e0bf413e1d50a43914b8a914ce3305,

@@ -16,7 +16,7 @@ public class BreakableObject : MonoBehaviour
     void Start()
     {
         health = GetComponent<Health>();
-        health.OnDeath = DoDeath;
+        health.OnDeath += DoDeath;
     }
 
     public void DoDeath()

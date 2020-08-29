@@ -7,9 +7,18 @@ public class AmmoPack : MonoBehaviour
     [Tooltip("Выбор типа пули ")] public BulletType bulletType;
     [Tooltip("Количество пуль в паке ")] [SerializeField] int amount= 10;
 
-    [SerializeField][Tooltip("эффект лута")]            private Animator animEffectLoot;
-    [SerializeField][Tooltip("время ожидания эффекта")] private float    waitEffect =1;
+   [SerializeField][Tooltip("время ожидания эффекта")] private float    waitEffect =1;
     // Achive_Patrons
+    
+    private AnimEffect animEffectLoot;
+    private Animator   animator;
+    private void Start() {
+        animEffectLoot = FindObjectOfType<AnimEffect>();
+        animator       = animEffectLoot.GetComponent<Animator>();
+    }
+    
+    
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "SecondPlayer")
@@ -23,7 +32,7 @@ public class AmmoPack : MonoBehaviour
     
     IEnumerator EffectWait() {
         yield return new WaitForSeconds(waitEffect);
-        animEffectLoot.SetTrigger("Achive_Patrons");
+        animator.SetTrigger("Achive_Patrons");
         Destroy(gameObject);
     }
 }

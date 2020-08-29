@@ -1,11 +1,23 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerAnimationHelper : MonoBehaviour
 {
     [SerializeField] AudioSource playerAudio;
     [SerializeField] AudioClip[] footsteps;
+
+    [SerializeField]  FirstPlayer firstPlayer;
+
+    private void Awake()
+    {
+        if (firstPlayer == null)
+        {
+            firstPlayer = GetComponentInParent<FirstPlayer>();
+        }
+    }
 
     public void FootstepSound()
     {
@@ -21,5 +33,10 @@ public class PlayerAnimationHelper : MonoBehaviour
     public void FootstepSoundRight()
     {
 
+    }
+
+    public void HitObjects()
+    {
+        firstPlayer.HitObjects();
     }
 }

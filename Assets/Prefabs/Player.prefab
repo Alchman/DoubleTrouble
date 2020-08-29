@@ -156,6 +156,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fc8da02e95435406f89db024451a0bb8, type: 3}
   - {fileID: 8300000, guid: fd944e20ee6444efa87cef28957898aa, type: 3}
   - {fileID: 8300000, guid: baf4414d6c8024046bb96cce835fbe26, type: 3}
+  - {fileID: 8300000, guid: 027dcff294339478d98ba358c0aeb528, type: 3}
+  firstPlayer: {fileID: 5402778585764555489}
 --- !u!1 &5402778585948708903
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +376,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_Volume: 0.498
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -85,7 +85,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     private void Update()
     {
-        CheckEnemy();
+        CheckPush();
         Jump();
     }
 
@@ -177,7 +177,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     }
 
-    public void CheckEnemy()
+    public void CheckPush()
     {
         if ((Input.GetButtonDown("Fire1")))
         {
@@ -188,64 +188,69 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
             }
 
             animator.SetTrigger("hit_leg");
-            Collider[] allItemsInRadius = Physics.OverlapCapsule(capsulePosition1.position, capsulePosition2.position, radiusCheck, pushMask); ;
-            float minDistance = float.MaxValue;
-            Collider target = null;
-            foreach (Collider item in allItemsInRadius)
+        }
+    }
+
+    public void HitObjects()
+    {
+        Collider[] allItemsInRadius =
+            Physics.OverlapCapsule(capsulePosition1.position, capsulePosition2.position, radiusCheck, pushMask);
+        ;
+        float minDistance = float.MaxValue;
+        Collider target = null;
+        foreach (Collider item in allItemsInRadius)
+        {
+            var distance = Vector3.Distance(transform.position, item.transform.position);
+            if (distance < minDistance)
             {
-                var distance = Vector3.Distance(transform.position, item.transform.position);
-                if (distance < minDistance)
-                {
-                    target = item;
-                    minDistance = distance;
-                   
-                  
-                }
+                target = item;
+                minDistance = distance;
             }
-          
-          
-            if (target == null)
+        }
+
+
+        if (target == null)
+        {
+            return;
+        }
+
+        Pushable pushable = target.GetComponent<Pushable>();
+        if (pushable != null)
+        {
+            Vector3 direction = Vector3.zero;
+            switch (currentState)
             {
-                return;
+                case PlayerStates.IDLE:
+                    direction = CalculateDirection(target.transform.position, forceShotIdle, hightYforShot);
+
+                    break;
+                case PlayerStates.MOVE:
+                    direction = CalculateDirection(target.transform.position, forceShotOnRun, hightYforShotOnRun);
+
+                    break;
+                case PlayerStates.RUN:
+                    direction = CalculateDirection(target.transform.position, forceShotSpeedUp, hightYforShotSpeedUp);
+
+                    break;
             }
-            Pushable pushable = target.GetComponent<Pushable>();
-            if (pushable != null)
+
+            pushable.Push(direction);
+
+            if (target.CompareTag("Enemy"))
             {
-                Vector3 direction = Vector3.zero;
-                switch (currentState)
-                {
-                    case PlayerStates.IDLE:
-                        direction = CalculateDirection(target.transform.position, forceShotIdle, hightYforShot);
-
-                        break;
-                    case PlayerStates.MOVE:
-                        direction = CalculateDirection(target.transform.position, forceShotOnRun, hightYforShotOnRun);
-
-                        break;
-                    case PlayerStates.RUN:
-                        direction = CalculateDirection(target.transform.position, forceShotSpeedUp, hightYforShotSpeedUp);
-
-                        break;
-
-                }
-                pushable.Push(direction);
-             
-                if (target.CompareTag("Enemy"))
-                {
-                    QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHENEMY);
-                }
-                else
-                {
-                    QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSH);
-                    QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHOBj);
-                }
-
+                QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHENEMY);
             }
-            DamagebleByPush damagebleByPush = target.GetComponent<DamagebleByPush>();
-            if (damagebleByPush != null)
+            else
             {
-                damagebleByPush.DoDamage(damageFoot);
+                QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSH);
+                QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHOBj);
             }
+        }
+
+        DamagebleByPush damagebleByPush = target.GetComponent<DamagebleByPush>();
+        if (damagebleByPush != null)
+        {
+            damagebleByPush.DoDamage(damageFoot);
         }
     }
 

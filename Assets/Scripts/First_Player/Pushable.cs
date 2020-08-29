@@ -11,6 +11,7 @@ public class Pushable : MonoBehaviour
     [Tooltip("Можно или нельзя пнуть предмет во время бега ")] [SerializeField] bool pushOnRun;
 
     [Tooltip("Высота полёта предмета при ударе")] [SerializeField] float pushHeight = 10;
+    [SerializeField] private AudioClip impactSound;
     
     public Action PushObject = delegate {};
 
@@ -27,15 +28,21 @@ public class Pushable : MonoBehaviour
 
     public void Push(Vector3 force, bool ignoreGround= false)
     {
-        if (isOnGround || ignoreGround==true)
+        if (isOnGround || ignoreGround == true)
         {
             //rb.isKinematic = false;
             PushObject();
             force *= massCoef;
             force.y = +pushHeight;
             rb.AddForce(force, ForceMode.Impulse);
-            rb.AddTorque(force, ForceMode.Impulse);  
+            rb.AddTorque(force, ForceMode.Impulse);
             isOnGround = false;
+            
+            if (impactSound != null)
+            {
+                AudioManager.PlaySound(impactSound);
+            }
+
 
             Invoke(nameof(ResetGround), 1f);
         }

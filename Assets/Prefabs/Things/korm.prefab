@@ -4820,6 +4820,7 @@ MonoBehaviour:
   massCoef: 1
   pushOnRun: 0
   pushHeight: 10
+  impactSound: {fileID: 8300000, guid: f9063307b101ad14f8ef5a770365109b, type: 3}
 --- !u!114 &2536299696274290711
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 130862155876864255}
   - component: {fileID: 2862789886984493788}
   - component: {fileID: 8454200238788197541}
-  - component: {fileID: 6834122594591396662}
   - component: {fileID: 254017659}
   - component: {fileID: 254017655}
+  - component: {fileID: 6310578098224487405}
   m_Layer: 9
   m_Name: batareika_prefab
   m_TagString: Untagged
@@ -66,21 +66,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6834122594591396662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4002490292745003756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e1ba57069dca5c489aad4e4d6541434, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  massCoef: 1
-  pushOnRun: 0
-  pushHeight: 10
 --- !u!114 &254017659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,6 +92,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdf1727648a1184aa6dfba09dca9a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6310578098224487405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4002490292745003756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf27a9e43fb2b64e8eaaad7315bff08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 0
+  count: 20
 --- !u!1 &6427551060485483335
 GameObject:
   m_ObjectHideFlags: 0

@@ -58,7 +58,11 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [Header("Position")]
     [Tooltip("Позиция 1 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition1;
     [Tooltip("Позиция 2 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition2;
-
+        
+    public Health Health
+    {
+        get { return health; }
+    }
 
     Rigidbody rigidbody;
     Health health;
@@ -177,6 +181,8 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     }
 
+    private bool pushInProgress = false;
+
     public void CheckPush()
     {
         if ((Input.GetButtonDown("Fire1")))
@@ -187,12 +193,14 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                 return;
             }
 
+            pushInProgress = true;
             animator.SetTrigger("hit_leg");
         }
     }
 
     public void HitObjects()
     {
+        pushInProgress = false;
         Collider[] allItemsInRadius =
             Physics.OverlapCapsule(capsulePosition1.position, capsulePosition2.position, radiusCheck, pushMask);
         ;
@@ -280,6 +288,8 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     private void OnTriggerEnter(Collider other)
     {
+        if(pushInProgress) {return;}
+        
         Pushable pushable = other.gameObject.GetComponent<Pushable>();
         if (pushable != null && pushable.PushOnRun)
         {

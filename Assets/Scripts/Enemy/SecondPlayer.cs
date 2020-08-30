@@ -11,7 +11,6 @@ enum StateSecondPlayer
 
 public class SecondPlayer : GenericSingletonClass<SecondPlayer>
 {
-
     public LayerMask layerMask;
     [Tooltip("активное оружие")] public Weapon activeWeapon;
 
@@ -29,8 +28,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private Animator animator;
     [SerializeField] private Animator barricadeAnimator;
-    
-    
+    [SerializeField][Tooltip("эффект для выстрела из пистолета")] private ParticleSystem effectShoot;
 
     Dictionary<BulletType, int> bullets = new Dictionary<BulletType, int>();
     Dictionary<ResourceType, int> resourses = new Dictionary<ResourceType, int>();
@@ -77,8 +75,6 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         resourses.Add(ResourceType.WOOD, woodCount);
         resourses.Add(ResourceType.METAL, metalCount);
       
-
-
         health = GetComponent<Health>();
     
         health.OnDeath += DoDeath;
@@ -196,6 +192,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
             bullets[activeWeapon.bulletType]--;
             activeWeapon.Fire(target.transform.position);
             audioSource.PlayOneShot(shootSound);
+            effectShoot.Play();
             animator.SetTrigger("shoot");
 
             if (activeWeapon.NeedsReload())

@@ -39,7 +39,7 @@ public class Health : MonoBehaviour
 
         if (HealthLeft <= 0)
         {
-            Debug.Log(1111);
+            // Debug.Log(1111);
             OnDeath();
         }
     }

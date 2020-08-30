@@ -38,7 +38,7 @@ public class Turrel : MonoBehaviour
 
     private void CheckEnemy()
     {
-        Debug.Log("Check");
+        // Debug.Log("Check");
         Collider[] allItemsInRadius =
             Physics.OverlapSphere(transform.position, RadiusCanon,
                                   layerMask); //массив для всех кто попадет в радиус поражения  оружия
@@ -76,7 +76,7 @@ public class Turrel : MonoBehaviour
         }
 
         Shoot();
-        Debug.Log("Shot");
+        // Debug.Log("Shot");
      
      
     }
@@ -90,7 +90,7 @@ public class Turrel : MonoBehaviour
         {
            
             activeWeapon.Fire(target.transform.position);
-            Debug.Log("Shoot");
+            // Debug.Log("Shoot");
             nextFire = activeWeapon.fireRate;
             audioSource.PlayOneShot(shootSound);
         }

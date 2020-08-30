@@ -59,7 +59,12 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     [Header("Sounds")] 
     [SerializeField] private AudioClip shootSound;
     [SerializeField] private AudioClip noAmmoSound;
-
+    
+    public Health Health
+    {
+        get { return health; }
+    }
+    
     private bool hasAmmo; //just for sound effect
     
     void Start()
@@ -236,7 +241,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     public void DoDeath()
     {
         gameObject.SetActive(false);
-        print("Game Over");
+        // print("Game Over");
     }
 
     public void DoDamage()

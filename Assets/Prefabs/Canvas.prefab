@@ -7152,7 +7152,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ok
+  m_Text: CONTINUE
 --- !u!114 &5458528242725229096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9108,7 +9108,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Mike is dead.\r\r\r\r Do you wand to start over?"
+  m_Text: "Mike is dead.\r\r\r\r"
 --- !u!114 &5753526569787293570
 MonoBehaviour:
   m_ObjectHideFlags: 0

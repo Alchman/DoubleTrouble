@@ -189,6 +189,7 @@ MonoBehaviour:
   gameLoot:
   - {fileID: 7557027107649329746, guid: 25a0ccf572b2785439e1c40946f8f01e, type: 3}
   - {fileID: 7557027107649329746, guid: 4a70957f381b0ca44aefac285e4ea126, type: 3}
+  - {fileID: 4002490292745003756, guid: 005bd50ee460d2048900bd2485bf2d9c, type: 3}
   gameLoot1:
   - {fileID: 7557027107649329746, guid: 25a0ccf572b2785439e1c40946f8f01e, type: 3}
   - {fileID: 7557027107649329746, guid: 4a70957f381b0ca44aefac285e4ea126, type: 3}
@@ -234,6 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massCoef: 0.5
   pushOnRun: 0
+  returnDamage: 0
   pushHeight: 10
   impactSound: {fileID: 8300000, guid: 95afa45673db3884b94b890e5658c88c, type: 3}
 --- !u!114 &5996528695860531127

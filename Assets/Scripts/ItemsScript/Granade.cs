@@ -15,7 +15,6 @@ public class Granade : MonoBehaviour{
             if(other.CompareTag("Enemy")) {
                 animator.SetTrigger("Granata_Explosion");
                 Destroy(other.gameObject);
-               print("granata popala"); 
             }
             
         }

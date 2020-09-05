@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 public class Resources : MonoBehaviour
 {
@@ -15,8 +16,11 @@ public class Resources : MonoBehaviour
     
     private AnimEffect  animEffectLoot;
     private Animator   animator;
+    private Rigidbody rb;
     
-    private void Start() {
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
         animEffectLoot = FindObjectOfType<AnimEffect>();
         animator       = animEffectLoot.GetComponent<Animator>();
     }
@@ -28,6 +32,8 @@ public class Resources : MonoBehaviour
         {
             // Destroy(gameObject,1f);
             StartCoroutine(EffectWait());
+            rb.isKinematic = true;
+            gameObject.transform.DOMove(SecondPlayer.Instance.transform.position, SecondPlayer.Instance.takeItemTime);
             SecondPlayer.Instance.AddResourses(resourceType, count);
             QuestManager.Instance.CheckQuests(QuestManager.QuestStates.KICKBIGCHUNK);
         }

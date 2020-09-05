@@ -10,7 +10,7 @@ enum StateEnemy{
     Dead
 }
 
-public class EnemyController : MonoBehaviour{
+public class EnemyController : MonoBehaviour {
     [SerializeField] [Tooltip("Скорость передвижения")]
     private float speed = 1f;
 
@@ -23,8 +23,10 @@ public class EnemyController : MonoBehaviour{
     [SerializeField] [Tooltip("Частота удара")]
     private float attackRate = 1f;
 
-    [SerializeField] [Tooltip("Сила дамага для энеми")]
+    [SerializeField] [Tooltip("Сила дамага для энеми по второму персонажу")]
     private float damage = 30f;
+    
+    public int DamagePlayer { get; set; } 
 
     [SerializeField] [Tooltip("Аниматор для врага")]
     private Animator animator;
@@ -33,12 +35,14 @@ public class EnemyController : MonoBehaviour{
     [SerializeField] private AudioClip dieSound;
 
     private SecondPlayer secondPlayer;
+    private FirstPlayer firstPlayer;
     private Rigidbody    rb;
     private float        distanceToTarget;
     private NavMeshAgent agent;
     private StateEnemy   currientStateEnemy;
     private Health       health;
     private Health       healthSecondPlayer;
+    private Health       healthFirstPlayer;
     private float        nextAttack;
     private Pushable     pushable;
     private NavMeshAgent navMeshAgent;
@@ -49,9 +53,11 @@ public class EnemyController : MonoBehaviour{
     {
         audioSource = GetComponent<AudioSource>();
         rb                  =  GetComponent<Rigidbody>();
+        firstPlayer        =   FirstPlayer.Instance;
         secondPlayer        =  SecondPlayer.Instance;
         agent               =  GetComponent<NavMeshAgent>();
         health              =  GetComponent<Health>();
+        healthFirstPlayer   =    firstPlayer.GetComponent<Health>();
         healthSecondPlayer  =  secondPlayer.GetComponent<Health>();
         health.OnDeath      += OnDeath;
         pushable            =  GetComponent<Pushable>();
@@ -147,4 +153,11 @@ public class EnemyController : MonoBehaviour{
         healthSecondPlayer.ChangeHealth(-damage);
         nextAttack = Time.time + attackRate;
     }
+
+   
+       
+    
+    
+       
+   
 }

@@ -59,24 +59,18 @@ public class QuestManager : GenericSingletonClass<QuestManager>
     public void QuestsFinish()
     {
 
-       
         currentQuest++;
-        
-       
+        if (currentQuest == lastQuest)
+        {
+            questUi.gameObject.SetActive(false);
+        }
         Quest nextQuest = allQuests[(int)currentQuest];
-
-       
-     
         image.sprite = nextQuest.image;
         currentOfTime = 0;
         numberOfTimes = nextQuest.numberOfTime;
         textQuest.text = nextQuest.text;
         currentTime.text = currentOfTime + "/" + numberOfTimes;
-        if (currentQuest == lastQuest )
-        {
-            questUi.gameObject.SetActive(false);
-        }
-
+      
 
 
     }
@@ -113,11 +107,6 @@ public class QuestManager : GenericSingletonClass<QuestManager>
                     delayQuests = StartCoroutine(DelayQuest(delay));
                 }
             }
-         
-        
-          
-               
-            
         }
 
     }

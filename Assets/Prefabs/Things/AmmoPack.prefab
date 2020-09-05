@@ -190,6 +190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletType: 1
   amount: 50
+  animEffectLoot: {fileID: 0}
+  waitEffect: 1
 --- !u!95 &1872278461
 Animator:
   serializedVersion: 3

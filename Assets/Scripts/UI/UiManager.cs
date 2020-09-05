@@ -11,6 +11,10 @@ public class UiManager : MonoBehaviour{
 
     [SerializeField] private ResoursesUI resourcesTable;
     [SerializeField] private float showResourcesDistance = 10f;
+    
+    [Header("Health")]
+    [SerializeField] public HealthUI firstPlayerHealth;
+    [SerializeField] public HealthUI secondPlayerHealth;
 
 
     private Health health;
@@ -19,6 +23,9 @@ public class UiManager : MonoBehaviour{
     private void Start() {
         health = SecondPlayer.Instance.GetComponent<Health>();
         health.OnDeath += GameOver;
+
+        firstPlayerHealth.SetHealth(FirstPlayer.Instance.Health);
+        secondPlayerHealth.SetHealth(SecondPlayer.Instance.Health);
     }
 
     private void Update()
@@ -38,7 +45,8 @@ public class UiManager : MonoBehaviour{
     }
 
     private void GameOver() {
-        //PanelGameOver.SetActive(true);
+        PanelGameOver.SetActive(true);
+        health.OnDeath -= GameOver;
         // Time.timeScale = 0;
 
     }

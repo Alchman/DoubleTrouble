@@ -4820,6 +4820,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceType: 0
   count: 1
+  animEffectLoot: {fileID: 0}
+  waitEffect: 1
 --- !u!54 &2536299696274290707
 Rigidbody:
   m_ObjectHideFlags: 0

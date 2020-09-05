@@ -27,6 +27,10 @@ public class Health : MonoBehaviour
     public void ChangeHealth(float amount)
     {
         HealthLeft += amount;
+        if (HealthLeft > maxHealth)
+        {
+            HealthLeft = maxHealth;
+        }
         OnHealthUpdate();
         if (amount < 0)
         {
@@ -35,7 +39,7 @@ public class Health : MonoBehaviour
 
         if (HealthLeft <= 0)
         {
-            Debug.Log(1111);
+            // Debug.Log(1111);
             OnDeath();
         }
     }

@@ -11,7 +11,6 @@ enum StateSecondPlayer
 
 public class SecondPlayer : GenericSingletonClass<SecondPlayer>
 {
-
     public LayerMask layerMask;
     [Tooltip("активное оружие")] public Weapon activeWeapon;
 
@@ -29,8 +28,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private Animator animator;
     [SerializeField] private Animator barricadeAnimator;
-    
-    
+    [SerializeField][Tooltip("эффект для выстрела из пистолета")] private ParticleSystem effectShoot;
 
     Dictionary<BulletType, int> bullets = new Dictionary<BulletType, int>();
     Dictionary<ResourceType, int> resourses = new Dictionary<ResourceType, int>();
@@ -56,8 +54,17 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     private float RadiusCanon = 50f; //TODO move to weapon class
 
 
-    [Header("Sounds")] [SerializeField] private AudioClip shootSound;
-
+    [Header("Sounds")] 
+    [SerializeField] private AudioClip shootSound;
+    [SerializeField] private AudioClip noAmmoSound;
+    
+    public Health Health
+    {
+        get { return health; }
+    }
+    
+    private bool hasAmmo; //just for sound effect
+    
     void Start()
     {
         bullets.Add(BulletType.PISTOL, pistolBullets);
@@ -68,8 +75,6 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         resourses.Add(ResourceType.WOOD, woodCount);
         resourses.Add(ResourceType.METAL, metalCount);
       
-
-
         health = GetComponent<Health>();
     
         health.OnDeath += DoDeath;
@@ -96,7 +101,8 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
                 AutoShooting();
 
                 break;
-            case StateSecondPlayer.Reload: break;
+            case StateSecondPlayer.Reload: 
+                break;
         }
     }
 
@@ -169,16 +175,24 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         nextFire -= Time.deltaTime;
         if (nextFire <= 0)
         {
-            if (bullets[activeWeapon.bulletType] < 0)
+            if (bullets[activeWeapon.bulletType] <= 0)
             {
                 //no bullets
                 //print("no bullets");
+                if (hasAmmo)
+                {
+                    audioSource.PlayOneShot(noAmmoSound);
+                    hasAmmo = false;
+                }
                 return;
             }
+
+            hasAmmo = true;
 
             bullets[activeWeapon.bulletType]--;
             activeWeapon.Fire(target.transform.position);
             audioSource.PlayOneShot(shootSound);
+            effectShoot.Play();
             animator.SetTrigger("shoot");
 
             if (activeWeapon.NeedsReload())
@@ -224,7 +238,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     public void DoDeath()
     {
         gameObject.SetActive(false);
-        print("Game Over");
+        // print("Game Over");
     }
 
     public void DoDamage()

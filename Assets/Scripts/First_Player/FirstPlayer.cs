@@ -242,10 +242,15 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                     break;
             }
 
-            pushable.Push(direction);
+           
+            int returnDamage = pushable.Push(direction);
+            Debug.Log("222");
+            Health.ChangeHealth(-returnDamage);
+            Debug.Log(returnDamage);
 
             if (target.CompareTag("Enemy"))
             {
+                
                 QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHENEMY);
             }
             else

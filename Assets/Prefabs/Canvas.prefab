@@ -3527,7 +3527,7 @@ MonoBehaviour:
   textQuest: {fileID: 3782657958746896434}
   image: {fileID: 7703486829556226625}
   questUi: {fileID: 168376873484520837}
-  lastQuest: 7
+  lastQuest: 9
   currentTime: {fileID: 5589497835508323685}
   allQuests:
   - {fileID: 11400000, guid: c4bd1b1c0873f2448b695fecf79b6115, type: 2}
@@ -3538,6 +3538,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cad54e8e13f05d844884b8ab7b8bfe48, type: 2}
   - {fileID: 11400000, guid: d4c5c2e9e3288594aa53a596aaa342ad, type: 2}
   - {fileID: 11400000, guid: fc2f5e86623799b47a7d4388bcb7a0f5, type: 2}
+  - {fileID: 11400000, guid: 55976e676f0e75a4cb49f512427d23bd, type: 2}
+  - {fileID: 11400000, guid: d7df18cd4d317fe40a9e830ad489f43f, type: 2}
 --- !u!114 &582132494
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -51,7 +51,6 @@ public class Pushable : MonoBehaviour
 
 
             Invoke(nameof(ResetGround), 1f);
-            Debug.Log("1111");
             return returnDamage;
         }
         return  0;

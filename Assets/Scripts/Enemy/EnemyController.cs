@@ -128,7 +128,9 @@ public class EnemyController : MonoBehaviour {
     }
 
     private void BloodHitAffect() {
+        if(effectBlood) {
         effectBlood.Play();
+        }
     }
 
     private void OnDeath() {
@@ -136,8 +138,11 @@ public class EnemyController : MonoBehaviour {
         audioSource.PlayOneShot(dieSound);
         navMeshAgent.enabled = false;
         animator.SetTrigger("death");
+
+        if(effectDeath != null) {
         effectDeath.gameObject.SetActive(true);
         effectDeath.Play();
+        }
         currientStateEnemy = StateEnemy.Dead;
         Destroy(gameObject, 1.7f);
     }

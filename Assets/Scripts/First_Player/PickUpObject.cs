@@ -1,7 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-public class PickUpObject : MonoBehaviour{
+public class PickUpObject : MonoBehaviour
+{
     private Resources resources;
     private Regeneration regeneration;
     

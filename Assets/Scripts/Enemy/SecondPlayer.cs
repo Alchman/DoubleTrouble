@@ -42,7 +42,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     Health health;
     [Tooltip("Сила с которой выкинется камень вторым игроком")] [SerializeField] float stoneThrowForce;
     private Vector3 direction;
-    private Vector3 directon2;
+    private Vector3 direction2;
     private float angle;
 
     [Tooltip("Время через которое выкинет камень второй игрок")] [SerializeField] float delayForceTime;
@@ -52,6 +52,8 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     [Tooltip("радиус поражения для оружия")]
     [SerializeField]
     private float RadiusCanon = 50f; //TODO move to weapon class
+    [SerializeField] 
+    private int maxViewAngle = 80;
 
 
     [Header("Sounds")] 
@@ -80,8 +82,8 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         health.OnDeath += DoDeath;
         health.OnDamage += DoDamage;
       
-        directon2 = Quaternion.AngleAxis(80, Vector3.up) * transform.forward;
-        angle = Vector3.Angle(transform.forward, directon2);
+        direction2 = Quaternion.AngleAxis(maxViewAngle, Vector3.up) * transform.forward;
+        angle = Vector3.Angle(transform.forward, direction2);
     }
 
     void Update()
@@ -114,7 +116,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         Gizmos.DrawWireSphere(transform.position, RadiusCanon);
 
         Gizmos.color = Color.cyan;
-        Gizmos.DrawRay(transform.position, directon2 * 30); //смотрим по углу
+        Gizmos.DrawRay(transform.position, direction2 * 30); //смотрим по углу
     }
 
     private void CheckEnemy()
@@ -272,12 +274,11 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     {
         yield return new WaitForSeconds(delay);
         Vector3 dir = transform.forward;
+        dir = Quaternion.AngleAxis(Random.Range(0, maxViewAngle), Vector3.up) * dir;
         dir.y = 1;
         rigidbody.AddForce(dir * force);
 
     }
-
-   
 
     public int GetResourses(ResourceType resourceType)
     {

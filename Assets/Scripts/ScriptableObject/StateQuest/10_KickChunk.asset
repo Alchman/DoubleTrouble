@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 10_KickChunk
   m_EditorClassIdentifier: 
   text: Kick big chunk of resources to Mike
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 74e53c71ba054aa42997a9bbd5468b7b, type: 3}
   delay: 3
   numberOfTime: 1

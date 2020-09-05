@@ -37,7 +37,9 @@ public class QuestManager : GenericSingletonClass<QuestManager>
         JUMP = 4,
         RUN= 5,
         PUSHENEMY = 6,
-        PUSHOBJTOENEMY = 7
+        PUSHOBJTOENEMY = 7,
+        COLLECTRESOURSES = 8,
+        KICKBIGCHUNK = 9
       
     }
 
@@ -58,7 +60,10 @@ public class QuestManager : GenericSingletonClass<QuestManager>
 
     public void QuestsFinish()
     {
-
+        if (currentQuest == lastQuest)
+        {
+            questUi.gameObject.SetActive(false);
+        }
         currentQuest++;
       
         Quest nextQuest = allQuests[(int)currentQuest];
@@ -104,10 +109,7 @@ public class QuestManager : GenericSingletonClass<QuestManager>
                     delayQuests = StartCoroutine(DelayQuest(delay));
                 }
             }
-            if (currentQuest == lastQuest)
-            {
-                questUi.gameObject.SetActive(false);
-            }
+           
         }
        
        

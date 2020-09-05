@@ -223,6 +223,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SAND First Aid
       objectReference: {fileID: 0}
+    - target: {fileID: 4618225182597131864, guid: 2da07285d38aeeb47a5046888afe2739,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4618225182597131865, guid: 2da07285d38aeeb47a5046888afe2739,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -19,7 +19,7 @@ public class HealthUI : MonoBehaviour
     {
         if (health == null)
         {
-            Debug.LogWarning("Health object is not set!");
+            // Debug.LogWarning("Health object is not set!");
             return;
         }
         health.OnHealthUpdate += HealthUpdate;

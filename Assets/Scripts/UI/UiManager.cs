@@ -46,6 +46,7 @@ public class UiManager : MonoBehaviour{
 
     private void GameOver() {
         PanelGameOver.SetActive(true);
+        health.OnDeath -= GameOver;
         // Time.timeScale = 0;
 
     }

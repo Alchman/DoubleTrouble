@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 enum StateSecondPlayer
 {
@@ -11,10 +12,13 @@ enum StateSecondPlayer
 
 public class SecondPlayer : GenericSingletonClass<SecondPlayer>
 {
+    [Header("Effects")] public float takeItemTime = 0.2f;
+    
+    
     public LayerMask layerMask;
+    [Header("Bullets")]
     [Tooltip("активное оружие")] public Weapon activeWeapon;
 
-    [Header("Bullets")]
     [Tooltip("Пули для пистолета")]
     public int pistolBullets;
 
@@ -257,6 +261,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     {
         if (other.gameObject.tag == "Stone")
         {
+            other.gameObject.transform.DOMove(transform.position, takeItemTime);
             Ejection(other.gameObject, delayForceTime, stoneThrowForce);
         }
     }
@@ -265,7 +270,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     {
         Rigidbody rb = gameObject.GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
-        gameObject.transform.position = transform.position;
+        //gameObject.transform.position = transform.position;
         StartCoroutine(DelayForce(rb, delay, force));
 
     }

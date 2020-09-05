@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class AmmoPack : MonoBehaviour
 {
@@ -12,7 +13,10 @@ public class AmmoPack : MonoBehaviour
     
     private AnimEffect animEffectLoot;
     private Animator   animator;
+    private Rigidbody rb;
+    
     private void Start() {
+        rb = GetComponent<Rigidbody>();
         animEffectLoot = FindObjectOfType<AnimEffect>();
         animator       = animEffectLoot.GetComponent<Animator>();
     }
@@ -24,6 +28,8 @@ public class AmmoPack : MonoBehaviour
         if (other.gameObject.tag == "SecondPlayer")
         {
             StartCoroutine(EffectWait());
+            rb.isKinematic = true;
+            gameObject.transform.DOMove(SecondPlayer.Instance.transform.position, SecondPlayer.Instance.takeItemTime);
             // Destroy(gameObject,1f);
             SecondPlayer.Instance.AddAmmo(bulletType, amount);
 

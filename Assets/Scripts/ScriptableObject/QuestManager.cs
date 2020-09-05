@@ -58,15 +58,8 @@ public class QuestManager : GenericSingletonClass<QuestManager>
 
     public void QuestsFinish()
     {
-
-       
         currentQuest++;
-        
-       
         Quest nextQuest = allQuests[(int)currentQuest];
-
-       
-     
         image.sprite = nextQuest.image;
         currentOfTime = 0;
         numberOfTimes = nextQuest.numberOfTime;
@@ -76,9 +69,6 @@ public class QuestManager : GenericSingletonClass<QuestManager>
         {
             questUi.gameObject.SetActive(false);
         }
-
-
-
     }
 
     IEnumerator DelayQuest(float delay)
@@ -114,15 +104,9 @@ public class QuestManager : GenericSingletonClass<QuestManager>
                 }
             }
          
-        
-          
-               
-            
         }
 
     }
-
-
 }
 
 

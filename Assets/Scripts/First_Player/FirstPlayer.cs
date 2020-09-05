@@ -244,9 +244,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
            
             int returnDamage = pushable.Push(direction);
-            Debug.Log("222");
             Health.ChangeHealth(-returnDamage);
-            Debug.Log(returnDamage);
 
             if (target.CompareTag("Enemy"))
             {

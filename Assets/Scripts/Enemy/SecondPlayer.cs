@@ -263,8 +263,6 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
 
     }
 
-   
-
     public int GetResourses(ResourceType resourceType)
     {
         return resourses[resourceType];

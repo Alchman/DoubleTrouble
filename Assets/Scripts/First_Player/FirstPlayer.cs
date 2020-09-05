@@ -279,9 +279,6 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         return direction;
     }
 
-
-
-
     private void OnTriggerEnter(Collider other)
     {
         if(pushInProgress) {return;}
@@ -306,8 +303,8 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
             rigidbody.velocity = Vector3.zero;
             rigidbody.AddForce(powerUpSpeed.GetDirectionSpeed(moveDir));
             activeInput = StartCoroutine(ActiveInput());
-
         }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -327,9 +324,16 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     }
 
+    public void HealthUpdate(int count)
+    {
+        health.ChangeHealth(count);
+    }
     public void DoDeath()
     {
         Destroy(gameObject);
     }
+
+
+    
 
 }

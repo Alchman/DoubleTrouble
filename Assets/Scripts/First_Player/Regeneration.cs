@@ -5,14 +5,16 @@ using UnityEngine;
 public class Regeneration : MonoBehaviour
 {
 
-    [Tooltip("Кол-во восстановления здоровья ")] [SerializeField] int health=30;
+    [Tooltip("Кол-во восстановления здоровья для второго игрока ")] [SerializeField] int healthSecondPlayer = 30;
+   // [Tooltip("Кол-во восстановления здоровья для первого игрока ")] 
+    public int HealthPlayer { get; set; }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "SecondPlayer")
         {
             Destroy(gameObject,1f);
-            SecondPlayer.Instance.HealthUpdate(health);
+            SecondPlayer.Instance.HealthUpdate(healthSecondPlayer);
             QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHTOMIKE);
         }
     }

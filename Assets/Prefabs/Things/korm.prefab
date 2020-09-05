@@ -4767,7 +4767,8 @@ GameObject:
   - component: {fileID: 2536299696274290711}
   - component: {fileID: 2536299696274290707}
   - component: {fileID: 1083112871653267672}
-  - component: {fileID: 769548211}
+  - component: {fileID: 2145001389019790286}
+  - component: {fileID: -173027851459454240}
   m_Layer: 9
   m_Name: korm
   m_TagString: Untagged
@@ -4854,7 +4855,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &769548211
+--- !u!114 &2145001389019790286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536299696274290696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6f9b62fdb734dc4e9ff0446eb0e75b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSecondPlayer: 30
+  healthPlayer: 30
+--- !u!114 &-173027851459454240
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

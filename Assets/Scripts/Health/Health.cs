@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
     [Tooltip("Максимальное количество здоровья")]
     float maxHealth;
 
-    public float HealthLeft { get; private set; }
+    public float HealthLeft  { get; private set; }
 
     public float MaxHealth
     {

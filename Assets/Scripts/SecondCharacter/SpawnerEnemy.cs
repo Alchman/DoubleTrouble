@@ -6,6 +6,7 @@ public class SpawnerEnemy : MonoBehaviour{
     [SerializeField] private List<GameObject> enemys;
     // [SerializeField] private GameObject Enemy;
     [SerializeField][Tooltip("время респауна моба в секундах")] private float      timeRespawn = 12f;
+    [SerializeField][Tooltip("Дилэй начала спауна врагов")] private int      firstSpawnDelay = 20;
 
     public static int CountEnemy {get; set;}
 
@@ -14,6 +15,7 @@ public class SpawnerEnemy : MonoBehaviour{
     }
 
     IEnumerator SpawnEnemy() {
+        yield return new WaitForSeconds(firstSpawnDelay);
         while(true) {
             Spawner();
             yield return new WaitForSeconds(timeRespawn);

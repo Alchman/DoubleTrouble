@@ -1,7 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-public class PickUpObject : MonoBehaviour{
+public class PickUpObject : MonoBehaviour
+{
     private Resources resources;
     private Regeneration regeneration;
     
@@ -18,6 +19,7 @@ public class PickUpObject : MonoBehaviour{
                 ResourceType currentRes = resources.resourceType;
                 int currentCount = resources.count;
                 SecondPlayer.Instance.AddResourses(currentRes, currentCount);
+                QuestManager.Instance.CheckQuests(QuestManager.QuestStates.COLLECTRESOURSES);
             }
 
             if (regeneration != null)

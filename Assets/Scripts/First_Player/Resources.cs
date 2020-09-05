@@ -29,6 +29,7 @@ public class Resources : MonoBehaviour
             // Destroy(gameObject,1f);
             StartCoroutine(EffectWait());
             SecondPlayer.Instance.AddResourses(resourceType, count);
+            QuestManager.Instance.CheckQuests(QuestManager.QuestStates.KICKBIGCHUNK);
         }
     }
     

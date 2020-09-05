@@ -9,6 +9,7 @@ public class Pushable : MonoBehaviour
         "При значении 0.5 - с половиной." +
         "При значении 0 - не летит ")] [Range(0, 1)] [SerializeField] float massCoef=0.5f;
     [Tooltip("Можно или нельзя пнуть предмет во время бега ")] [SerializeField] bool pushOnRun;
+    [SerializeField] int returnDamage;
 
     [Tooltip("Высота полёта предмета при ударе")] [SerializeField] float pushHeight = 10;
     [SerializeField] private AudioClip impactSound;
@@ -27,7 +28,7 @@ public class Pushable : MonoBehaviour
         //Invoke(nameof(ResetGround), 0.2f);
     }
 
-    public void Push(Vector3 force, bool ignoreGround= false)
+    public int Push(Vector3 force, bool ignoreGround= false)
     {
        
         if (isOnGround || ignoreGround == true)
@@ -50,7 +51,10 @@ public class Pushable : MonoBehaviour
 
 
             Invoke(nameof(ResetGround), 1f);
+            return returnDamage;
         }
+        return  0;
+      
     }
     
     private void OnCollisionEnter(Collision collision)

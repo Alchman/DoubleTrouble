@@ -176,7 +176,7 @@ MonoBehaviour:
   playerdistance: 6.5
   attackRate: 2
   damage: 20
-  animator: {fileID: 0}
+  animator: {fileID: 3777292215161522662}
   dieSound: {fileID: 0}
 --- !u!114 &3014455255414052134
 MonoBehaviour:
@@ -221,6 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massCoef: 0.5
   pushOnRun: 0
+  returnDamage: 0
   pushHeight: 10
   impactSound: {fileID: 0}
 --- !u!114 &9018244969802438973

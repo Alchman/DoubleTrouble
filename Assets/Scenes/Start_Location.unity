@@ -42724,6 +42724,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 152391394}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &862149246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1877963742}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 862149247}
+  m_Layer: 0
+  m_Name: craborun (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &862149247
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1877963742}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862149246}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &862241621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63641,18 +63671,18 @@ PrefabInstance:
     - target: {fileID: 6853129740116757730, guid: c7182cae46ecaee4a9c2ea60db13de14,
         type: 3}
       propertyPath: enemys.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6853129740116757730, guid: c7182cae46ecaee4a9c2ea60db13de14,
         type: 3}
       propertyPath: enemys.Array.data[1]
       value: 
-      objectReference: {fileID: 4912712045438661369, guid: b65b6e56c61d9c6458e9f44405b77bd4,
+      objectReference: {fileID: 4912712045438661369, guid: 0dd6015e7d2c5c5488d2b2520b70463a,
         type: 3}
     - target: {fileID: 6853129740116757730, guid: c7182cae46ecaee4a9c2ea60db13de14,
         type: 3}
       propertyPath: timeRespawn
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6853129740116757730, guid: c7182cae46ecaee4a9c2ea60db13de14,
         type: 3}
@@ -63790,7 +63820,8 @@ PrefabInstance:
         type: 3}
       propertyPath: enemys.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4912712045438661369, guid: b28371c7a664898438f1dfebbf3df979,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7182cae46ecaee4a9c2ea60db13de14, type: 3}
 --- !u!1001 &1232095028
@@ -89312,7 +89343,7 @@ PrefabInstance:
     - target: {fileID: 7805921321293276861, guid: 32b40f5456fca6d488cf90a48773d65c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7805921321293276861, guid: 32b40f5456fca6d488cf90a48773d65c,
         type: 3}
@@ -108521,7 +108552,7 @@ PrefabInstance:
     - target: {fileID: 2709108914071407799, guid: 49efeb0162f27384b946c570401968cf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2709108914071407799, guid: 49efeb0162f27384b946c570401968cf,
         type: 3}

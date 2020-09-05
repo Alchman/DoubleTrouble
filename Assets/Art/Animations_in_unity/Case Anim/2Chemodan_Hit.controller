@@ -112,11 +112,11 @@ AnimatorController:
   m_Name: 2Chemodan_Hit
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Chenodan_Hit2
+  - m_Name: Sand_Poof
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 0}
   - m_Name: Chemodan_Destroy2
     m_Type: 9
@@ -199,7 +199,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Chenodan_Hit2
+    m_ConditionEvent: Sand_Poof
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 508783133023880006}

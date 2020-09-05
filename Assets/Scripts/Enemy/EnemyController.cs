@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+// ReSharper disable All
 
 enum StateEnemy{
     Start,
@@ -28,6 +29,12 @@ public class EnemyController : MonoBehaviour{
 
     [SerializeField] [Tooltip("Аниматор для врага")]
     private Animator animator;
+    
+    [SerializeField] [Tooltip("Эффект крови")]
+    private ParticleSystem effectBlood;
+    
+    [SerializeField] [Tooltip("Эффект крови")]
+    private ParticleSystem effectDeath;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip dieSound;
@@ -54,6 +61,7 @@ public class EnemyController : MonoBehaviour{
         health              =  GetComponent<Health>();
         healthSecondPlayer  =  secondPlayer.GetComponent<Health>();
         health.OnDeath      += OnDeath;
+        health.OnDamage     += BloodHitAffect;
         pushable            =  GetComponent<Pushable>();
         navMeshAgent        =  GetComponent<NavMeshAgent>();
         pushable.PushObject += Push;
@@ -73,15 +81,11 @@ public class EnemyController : MonoBehaviour{
                 break;
 
             case StateEnemy.Move :
-
                 agent.isStopped = false;
-
                 MoveToTarget();
                 break;
             case StateEnemy.Atack :
-
                 agent.isStopped = true;
-
                 distanceToTarget = Vector3.Distance(transform.position, secondPlayer.transform.position);
                 if(distanceToTarget > 7) {
                     currientStateEnemy = StateEnemy.Move;
@@ -117,13 +121,19 @@ public class EnemyController : MonoBehaviour{
         currientStateEnemy                    = StateEnemy.Move;
     }
 
+    private void BloodHitAffect() {
+        effectBlood.Play();
+    }
+
     private void OnDeath() {
         // agent.isStopped = true;
         audioSource.PlayOneShot(dieSound);
         navMeshAgent.enabled = false;
         animator.SetTrigger("death");
+        effectDeath.gameObject.SetActive(true);
+        effectDeath.Play();
         currientStateEnemy = StateEnemy.Dead;
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 1.7f);
     }
 
     private void MoveToTarget() {

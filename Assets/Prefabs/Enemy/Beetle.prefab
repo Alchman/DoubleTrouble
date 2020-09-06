@@ -367,17 +367,17 @@ PrefabInstance:
     - target: {fileID: 5255699729034364938, guid: 24c01feeffc960c458e33a6e71635313,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.201
       objectReference: {fileID: 0}
     - target: {fileID: 5255699729034364938, guid: 24c01feeffc960c458e33a6e71635313,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.14
+      value: -0.045
       objectReference: {fileID: 0}
     - target: {fileID: 5255699729034364938, guid: 24c01feeffc960c458e33a6e71635313,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.021
       objectReference: {fileID: 0}
     - target: {fileID: 5255699729034364938, guid: 24c01feeffc960c458e33a6e71635313,
         type: 3}
@@ -445,6 +445,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RanaMONSTROV
       objectReference: {fileID: 0}
+    - target: {fileID: 5938514812490425272, guid: c59c7aa838538f74687fc6154b91ef44,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6111968423138740858, guid: c59c7aa838538f74687fc6154b91ef44,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -458,7 +463,7 @@ PrefabInstance:
     - target: {fileID: 6111968423138740858, guid: c59c7aa838538f74687fc6154b91ef44,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.45
+      value: -0.61
       objectReference: {fileID: 0}
     - target: {fileID: 6111968423138740858, guid: c59c7aa838538f74687fc6154b91ef44,
         type: 3}

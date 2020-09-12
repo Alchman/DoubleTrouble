@@ -228,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massCoef: 0.5
   pushOnRun: 0
-  returnDamage: 100
+  returnDamage: 20
   pushHeight: 10
   impactSound: {fileID: 8300000, guid: 9df477617efc1ed4e877256747124d73, type: 3}
 --- !u!114 &9018244969802438973

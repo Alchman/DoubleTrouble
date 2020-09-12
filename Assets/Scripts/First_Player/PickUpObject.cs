@@ -26,6 +26,7 @@ public class PickUpObject : MonoBehaviour
             if (regeneration != null)
             {
                 FirstPlayer.Instance.Health.ChangeHealth(regeneration.health);
+                FirstPlayer.Instance.GetEffectHealFirstPlayer();
             }
             
             Destroy(gameObject);

@@ -121,10 +121,13 @@ public class EnemyController : MonoBehaviour {
     IEnumerator WaitPush() {
         //print("карутина стою");
         yield return new WaitForSeconds(stunTime);
-        navMeshAgent.enabled = true;
-        animator.SetTrigger("walk");
-        GetComponent<Rigidbody>().isKinematic = true;
-        currientStateEnemy                    = StateEnemy.Move;
+        if (currientStateEnemy != StateEnemy.Dead)
+        {
+            navMeshAgent.enabled = true;                                
+            animator.SetTrigger("walk");                                
+            GetComponent<Rigidbody>().isKinematic = true;               
+            currientStateEnemy                    = StateEnemy.Move;
+        }
     }
 
     private void BloodHitAffect() {

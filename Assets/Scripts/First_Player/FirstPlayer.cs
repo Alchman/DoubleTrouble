@@ -7,6 +7,8 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 {
     [SerializeField] Animator animator;
     [SerializeField] Animator animator2;
+    [SerializeField] private ParticleSystem effctFirstPlayer;
+    
     public LayerMask pushMask;
 
     [Header("Radius")]
@@ -90,7 +92,6 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     private void Update()
     {
-        print(isGrounded + "  zemlya ");
         CheckPush();
         Jump();
     }
@@ -359,7 +360,10 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         Destroy(gameObject);
     }
 
-
+    public void GetEffectHealFirstPlayer() {
+        effctFirstPlayer.gameObject.SetActive(true);
+        effctFirstPlayer.Play();
+    }
 
 
 }

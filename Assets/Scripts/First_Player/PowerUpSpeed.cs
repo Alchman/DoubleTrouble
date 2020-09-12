@@ -14,6 +14,7 @@ public class PowerUpSpeed : MonoBehaviour
 
     public Vector3 GetDirectionSpeed(Vector3 playerDirection)
     {
+        QuestManager.Instance.CheckQuests(QuestManager.QuestStates.JUMPPAD);
         Vector3 direction;
         if (fixedDirection)
         {
@@ -25,6 +26,7 @@ public class PowerUpSpeed : MonoBehaviour
         }
         direction.y = throwForce;
         return direction;
+      
 
     }
     public float GetTimeDeactiveInput()

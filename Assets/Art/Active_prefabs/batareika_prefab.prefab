@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceType: 0
   count: 20
+  waitEffect: 1
 --- !u!114 &254017655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceType: 0
   count: 20
+  waitEffect: 1
 --- !u!1 &6427551060485483335
 GameObject:
   m_ObjectHideFlags: 0

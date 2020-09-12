@@ -24,6 +24,7 @@ public class BreakableObject : MonoBehaviour
         if (destroyObject)
         {
             Destroy(gameObject);
+            QuestManager.Instance.CheckQuests(QuestManager.QuestStates.DESTROYSUITCASE);
         }
 
         if (gameLoot != null && gameLoot.Length > 0)

@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 {
     [SerializeField] Animator animator;
+    [SerializeField] Animator animator2;
     public LayerMask pushMask;
 
     [Header("Radius")]
@@ -58,7 +59,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [Header("Position")]
     [Tooltip("Позиция 1 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition1;
     [Tooltip("Позиция 2 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition2;
-        
+
     public Health Health
     {
         get { return health; }
@@ -89,12 +90,14 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     private void Update()
     {
+        print(isGrounded + "  zemlya ");
         CheckPush();
         Jump();
     }
 
     private void FixedUpdate()
     {
+     
         Move();
         ApplyGravity();
     }
@@ -118,8 +121,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
             if (speedPlayer > 0)
             {
                 QuestManager.Instance.CheckQuests(QuestManager.QuestStates.MOVE);
-
-
+           
             }
             if (direction.magnitude > 0)
             {
@@ -128,8 +130,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                 direction *= moveSpeed;
                 currentState = PlayerStates.MOVE;
                 animator.SetTrigger("run");
-
-
+                // animator2.SetBool("Hero_Sand", true);
                 if (Input.GetButton("Fire3"))
                 {
                     direction *= accelerationSpeed;
@@ -143,17 +144,20 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                     bool isWall = Physics.Raycast(wallCheck.position, direction, wallCheckDistance, whatIsGround);
                     if (isWall)
                     {
+              
                         direction = Vector3.zero;
                     }
                 }
 
                 direction.y = rigidbody.velocity.y;
                 rigidbody.velocity = direction;
-
+                
             }
             else
             {
                 animator.SetTrigger("idle");
+                // animator2.SetBool("Hero_Sand", false);
+                animator2.SetInteger("Sand", 2);
                 currentState = PlayerStates.IDLE;
             }
 
@@ -163,14 +167,16 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     }
 
-
     private void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+         
+            animator2.SetInteger("Sand", 2);
             isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, whatIsGround);
             if (isGrounded)
             {
+                animator2.SetInteger("Sand", 2);
                 rigidbody.AddForce(new Vector3(0, jumpForce));
                 isGrounded = false;
                 animator.SetTrigger("jump");
@@ -187,7 +193,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     {
         if ((Input.GetButtonDown("Fire1")))
         {
-            
+
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 return;
@@ -242,13 +248,13 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                     break;
             }
 
-           
+
             int returnDamage = pushable.Push(direction);
             Health.ChangeHealth(-returnDamage);
 
             if (target.CompareTag("Enemy"))
             {
-                
+
                 QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHENEMY);
             }
             else
@@ -256,6 +262,15 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                 QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSH);
                 QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHOBj);
             }
+
+            if (target.CompareTag("Batut"))
+            {
+                QuestManager.Instance.CheckQuests(QuestManager.QuestStates.KICKPAD);
+            }
+           
+           
+            
+
         }
 
         DamagebleByPush damagebleByPush = target.GetComponent<DamagebleByPush>();
@@ -288,8 +303,8 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     private void OnTriggerEnter(Collider other)
     {
-        if(pushInProgress) {return;}
-        
+        if (pushInProgress) { return; }
+
         Pushable pushable = other.gameObject.GetComponent<Pushable>();
         if (pushable != null && pushable.PushOnRun)
         {
@@ -341,6 +356,6 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     }
 
 
-    
+
 
 }

@@ -172,6 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massCoef: 1
   pushOnRun: 1
+  returnDamage: 0
   pushHeight: 10
   impactSound: {fileID: 8300000, guid: 95afa45673db3884b94b890e5658c88c, type: 3}
 --- !u!114 &177768289215402288
@@ -187,8 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: 0
-  count: 20
-  animEffectLoot: {fileID: 0}
+  count: 550
   waitEffect: 1
 --- !u!1001 &2114669639648062469
 PrefabInstance:

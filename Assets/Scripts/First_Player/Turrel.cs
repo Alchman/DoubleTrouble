@@ -77,10 +77,7 @@ public class Turrel : MonoBehaviour
 
         Shoot();
         // Debug.Log("Shot");
-     
-     
     }
-
 
     private void Shoot()
     {

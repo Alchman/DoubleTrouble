@@ -7,13 +7,18 @@ public class CraftManager : MonoBehaviour
 {
     private GameObject itemObject;
     private int itemCost;
+    
+   
+    
     [SerializeField] float force;
     [SerializeField] Button[] buttonCreate;
     [SerializeField] float delay = 0;
-
     [SerializeField] Text[] countText;
-
     [SerializeField] Item[] allItems;
+
+   
+
+
 
     Item item;
 
@@ -33,8 +38,7 @@ public class CraftManager : MonoBehaviour
         item = allItems[index];
         itemCost = item.cost;
         itemObject = item.item;
-      
-      
+       
     }
 
 
@@ -42,11 +46,16 @@ public class CraftManager : MonoBehaviour
     public void Create(int indexItem)
     {
         ChoiseItem(indexItem);
-       
         SecondPlayer.Instance.MinusResourses(ResourceType.GEARS, itemCost);
         GameObject game = Instantiate(itemObject, SecondPlayer.Instance.transform.position, Quaternion.identity);
         SecondPlayer.Instance.Ejection(game, delay, force);
         Check();
+        QuestManager.Instance.CheckItemQuest(QuestManager.QuestStates.CRAFTJUMPPAD, item.itemType);
+        QuestManager.Instance.CheckItemQuest(QuestManager.QuestStates.CRAFTTURREL, item.itemType);
+        QuestManager.Instance.CheckQuests(QuestManager.QuestStates.CRAFTJUMPPAD);
+        QuestManager.Instance.CheckQuests(QuestManager.QuestStates.CRAFTTURREL);
+
+
 
     }
 

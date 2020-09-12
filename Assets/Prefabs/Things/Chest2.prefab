@@ -188,11 +188,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameLoot:
   - {fileID: 7557027107649329746, guid: 25a0ccf572b2785439e1c40946f8f01e, type: 3}
-  - {fileID: 7557027107649329746, guid: 4a70957f381b0ca44aefac285e4ea126, type: 3}
+  - {fileID: 2536299696274290696, guid: ef6c2fd6f55e94d4887bd702afe8cb6f, type: 3}
+  - {fileID: 7557027107649329746, guid: 32b40f5456fca6d488cf90a48773d65c, type: 3}
   gameLoot1:
   - {fileID: 7557027107649329746, guid: 25a0ccf572b2785439e1c40946f8f01e, type: 3}
   - {fileID: 7557027107649329746, guid: 4a70957f381b0ca44aefac285e4ea126, type: 3}
-  push: 10
+  push: 40
   destroyObject: 1
 --- !u!114 &509897795
 MonoBehaviour:
@@ -234,6 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massCoef: 0.5
   pushOnRun: 0
+  returnDamage: 0
   pushHeight: 10
   impactSound: {fileID: 8300000, guid: 95afa45673db3884b94b890e5658c88c, type: 3}
 --- !u!114 &1439024774

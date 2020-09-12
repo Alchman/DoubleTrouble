@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 177768289215402288}
   m_Layer: 9
   m_Name: Detail 1
-  m_TagString: ThingsOnGround
+  m_TagString: FlightRecorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: 0
-  count: 550
+  count: 20
   waitEffect: 1
 --- !u!1001 &2114669639648062469
 PrefabInstance:

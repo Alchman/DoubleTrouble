@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cd6900b551320242895d48aeed2b037, type: 3}
-  m_Name: Chest
+  m_Name: Grenade
   m_EditorClassIdentifier: 
-  item: {fileID: 7557027107649329746, guid: 40a1d68d53737f44ba021560d2c21e59, type: 3}
-  cost: 450
+  item: {fileID: 9175620185435923535, guid: 8c2057b95dc6ea4458c568a542aba2d0, type: 3}
+  cost: 120
   buy: {fileID: 0}
-  itemType: 2
+  itemType: 5

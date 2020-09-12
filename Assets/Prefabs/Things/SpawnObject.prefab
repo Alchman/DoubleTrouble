@@ -46,7 +46,8 @@ MonoBehaviour:
   resources:
   - {fileID: 7557027107649329746, guid: 4a70957f381b0ca44aefac285e4ea126, type: 3}
   - {fileID: 7557027107649329746, guid: 40a1d68d53737f44ba021560d2c21e59, type: 3}
-  - {fileID: 7557027107649329746, guid: d3df7fc2c3d14f6419bcae724de8062e, type: 3}
+  resourceBox: {fileID: 7557027107649329746, guid: d3df7fc2c3d14f6419bcae724de8062e,
+    type: 3}
   timeRespawn: 5
   chance: 0.5
   radius: 15

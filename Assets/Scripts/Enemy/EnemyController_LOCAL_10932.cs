@@ -147,11 +147,11 @@ public class EnemyController : MonoBehaviour {
         effectDeath.Play();
         }
         currientStateEnemy = StateEnemy.Dead;
-        // BoxCollider boxCol = gameObject.GetComponent<BoxCollider>();
-        // boxCol.enabled = false;
-        SetLayerMask();
-        Destroy(gameObject, 3.5f);
+        BoxCollider boxCol = gameObject.GetComponent<BoxCollider>();
+        boxCol.enabled = false;
+        Destroy(gameObject, 3f);
         QuestManager.Instance.CheckQuests(QuestManager.QuestStates.DESTROYMONSTERS);
+
     }
 
     private void MoveToTarget() {
@@ -174,10 +174,6 @@ public class EnemyController : MonoBehaviour {
         animator.SetTrigger("attack");      
         healthSecondPlayer.ChangeHealth(-damage);
         nextAttack = Time.time + attackRate;
-    }
-
-    public void SetLayerMask() {
-        gameObject.layer = 0;
     }
 
 }

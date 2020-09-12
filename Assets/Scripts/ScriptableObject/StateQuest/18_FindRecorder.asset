@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd6900b551320242895d48aeed2b037, type: 3}
-  m_Name: Chest
+  m_Script: {fileID: 11500000, guid: a0eaaca5e0ef12f478788312c93061ff, type: 3}
+  m_Name: 18_FindRecorder
   m_EditorClassIdentifier: 
-  item: {fileID: 7557027107649329746, guid: 40a1d68d53737f44ba021560d2c21e59, type: 3}
-  cost: 450
-  buy: {fileID: 0}
-  itemType: 2
+  text: Explore suitcases to find flight recorder
+  image: {fileID: 21300000, guid: 46e1867ddfe8c0b489b10d485030754f, type: 3}
+  delay: 1
+  numberOfTime: 1
+  itemToCraft: 4

@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366090a6ef056904ca782e960e15f39c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1900
+  maxHealth: 200
 --- !u!114 &6736395070302823943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massCoef: 0.5
   pushOnRun: 0
-  returnDamage: 0
+  returnDamage: 60
   pushHeight: 10
   impactSound: {fileID: 8300000, guid: 2b87b13e11d50674986187a3a93f6967, type: 3}
 --- !u!114 &9018244969802438973

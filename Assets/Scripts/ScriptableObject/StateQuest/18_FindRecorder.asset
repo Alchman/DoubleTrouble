@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0eaaca5e0ef12f478788312c93061ff, type: 3}
-  m_Name: 17_CraftTurrel
+  m_Name: 18_FindRecorder
   m_EditorClassIdentifier: 
-  text: Craft 3 turrets
-  image: {fileID: 21300000, guid: ce483b8dbbbf30e4a991d1e89e878d01, type: 3}
+  text: Explore suitcases to find flight recorder
+  image: {fileID: 21300000, guid: 46e1867ddfe8c0b489b10d485030754f, type: 3}
   delay: 1
   numberOfTime: 1
-  itemToCraft: 0
+  itemToCraft: 4

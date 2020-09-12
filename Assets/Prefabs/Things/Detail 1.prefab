@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 177768289215402288}
   m_Layer: 9
   m_Name: Detail 1
-  m_TagString: ThingsOnGround
+  m_TagString: FlightRecorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,6 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massCoef: 1
   pushOnRun: 1
+  returnDamage: 0
   pushHeight: 10
   impactSound: {fileID: 8300000, guid: 95afa45673db3884b94b890e5658c88c, type: 3}
 --- !u!114 &177768289215402288
@@ -188,7 +189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceType: 0
   count: 20
-  animEffectLoot: {fileID: 0}
   waitEffect: 1
 --- !u!1001 &2114669639648062469
 PrefabInstance:

@@ -16,6 +16,7 @@ TagManager:
   - Stone
   - UI
   - Batut
+  - FlightRecorder
   layers:
   - Default
   - TransparentFX

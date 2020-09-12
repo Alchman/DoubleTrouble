@@ -27,7 +27,7 @@ public class QuestManager : GenericSingletonClass<QuestManager>
 
     private Coroutine delayQuests;
 
-    QuestStates currentQuest;
+    public QuestStates currentQuest;
     int id;
 
     int currentOfTime = 0;
@@ -50,7 +50,8 @@ public class QuestManager : GenericSingletonClass<QuestManager>
         DESTROYSUITCASE = 13, 
         DESTROYMONSTERS = 14,
         CRAFTJUMPPAD = 15,
-        CRAFTTURREL = 16
+        CRAFTTURREL = 16,
+        FINDRECORDER = 17
 
 
 

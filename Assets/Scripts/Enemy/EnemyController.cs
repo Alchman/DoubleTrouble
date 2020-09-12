@@ -147,6 +147,8 @@ public class EnemyController : MonoBehaviour {
         BoxCollider boxCol = gameObject.GetComponent<BoxCollider>();
         boxCol.enabled = false;
         Destroy(gameObject, 3f);
+        QuestManager.Instance.CheckQuests(QuestManager.QuestStates.DESTROYMONSTERS);
+
     }
 
     private void MoveToTarget() {

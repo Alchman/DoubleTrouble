@@ -8,6 +8,7 @@ public class Resources : MonoBehaviour
     [Tooltip("Количество ресурса ")] public int count=1;
 
     [SerializeField][Tooltip("время ожидания эффекта")] private float    waitEffect =1;
+    [Tooltip("Дилей включения триггера ")] public float triggerDelay = 2f;
     
     // Achive_Patrons
     //  Achive_Shest
@@ -23,11 +24,15 @@ public class Resources : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animEffectLoot = FindObjectOfType<AnimEffect>();
         animator       = animEffectLoot.GetComponent<Animator>();
+        delay = triggerDelay;
     }
     
  
+    private float delay;
     private void OnTriggerEnter(Collider other)
     {
+        if (delay > 0) return;
+        
         if (other.gameObject.tag == "SecondPlayer")
         {
             // Destroy(gameObject,1f);
@@ -37,6 +42,11 @@ public class Resources : MonoBehaviour
             SecondPlayer.Instance.AddResourses(resourceType, count);
             QuestManager.Instance.CheckQuests(QuestManager.QuestStates.KICKBIGCHUNK);
         }
+    }
+    
+    private void Update()
+    {
+        delay -= Time.deltaTime;
     }
     
     IEnumerator EffectWait() {

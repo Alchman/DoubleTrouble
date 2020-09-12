@@ -11,7 +11,9 @@ public class Quest : ScriptableObject
     [SerializeField] public Sprite image;
     [SerializeField] public float delay;
     [SerializeField] public int numberOfTime;
+    [SerializeField] public QuestManager.TypeItem itemToCraft;
 
-  
+
+
 
 }

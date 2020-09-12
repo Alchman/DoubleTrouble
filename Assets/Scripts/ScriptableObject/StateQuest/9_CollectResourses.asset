@@ -15,4 +15,5 @@ MonoBehaviour:
   text: Collect craft resources 5 times
   image: {fileID: 21300000, guid: f0c08d2d4dbc1aa4bb37676560a512a1, type: 3}
   delay: 0
-  numberOfTime: 5
+  numberOfTime: 1
+  itemToCraft: 4

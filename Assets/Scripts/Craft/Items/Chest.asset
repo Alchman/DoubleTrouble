@@ -15,3 +15,4 @@ MonoBehaviour:
   item: {fileID: 2536299696274290696, guid: ef6c2fd6f55e94d4887bd702afe8cb6f, type: 3}
   cost: 50
   buy: {fileID: 0}
+  itemType: 2

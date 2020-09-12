@@ -170,7 +170,7 @@ public class EnemyController : MonoBehaviour {
         if(Time.time < nextAttack) {
             return;
         }
-
+        animator.SetTrigger("attack");      
         healthSecondPlayer.ChangeHealth(-damage);
         nextAttack = Time.time + attackRate;
     }

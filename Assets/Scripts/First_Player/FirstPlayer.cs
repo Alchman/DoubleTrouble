@@ -8,6 +8,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [SerializeField] Animator animator;
     [SerializeField] Animator animator2;
     [SerializeField] private ParticleSystem effctFirstPlayer;
+    [SerializeField] private ParticleSystem effctGetDropConstruct;
     
     public LayerMask pushMask;
 
@@ -356,6 +357,12 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         Destroy(gameObject);
     }
 
+    public void GetEffectConstructFirstPlayer() {
+        effctGetDropConstruct.gameObject.SetActive(true);
+        effctGetDropConstruct.Play();
+    }
+    
+    
     public void GetEffectHealFirstPlayer() {
         effctFirstPlayer.gameObject.SetActive(true);
         effctFirstPlayer.Play();

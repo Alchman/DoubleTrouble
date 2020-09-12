@@ -16,6 +16,7 @@ public class PickUpObject : MonoBehaviour
         if(other.collider.transform.CompareTag("Player")) {
             if (resources != null)
             {
+                FirstPlayer.Instance.GetEffectConstructFirstPlayer();
                 ResourceType currentRes = resources.resourceType;
                 int currentCount = resources.count;
                 SecondPlayer.Instance.AddResourses(currentRes, currentCount);

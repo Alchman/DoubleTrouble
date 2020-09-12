@@ -228,7 +228,7 @@ MonoBehaviour:
   pushOnRun: 0
   returnDamage: 0
   pushHeight: 10
-  impactSound: {fileID: 0}
+  impactSound: {fileID: 8300000, guid: 9df477617efc1ed4e877256747124d73, type: 3}
 --- !u!114 &9018244969802438973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,7 +549,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: e7158029a29b9b54d8a1e6ec50d91d6d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e7158029a29b9b54d8a1e6ec50d91d6d,
         type: 3}
@@ -559,7 +559,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: e7158029a29b9b54d8a1e6ec50d91d6d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e7158029a29b9b54d8a1e6ec50d91d6d,
         type: 3}
@@ -574,7 +574,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: e7158029a29b9b54d8a1e6ec50d91d6d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e7158029a29b9b54d8a1e6ec50d91d6d,
         type: 3}

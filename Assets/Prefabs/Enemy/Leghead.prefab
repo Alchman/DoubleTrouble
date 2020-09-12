@@ -180,7 +180,7 @@ MonoBehaviour:
   playerdistance: 6.5
   attackRate: 2
   damage: 20
-  animator: {fileID: 0}
+  animator: {fileID: 5858652674146693131}
   effectBlood: {fileID: 527147201992889635}
   effectDeath: {fileID: 4934734037789603622}
   dieSound: {fileID: 0}
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366090a6ef056904ca782e960e15f39c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 400
 --- !u!114 &6736395070302823943
 MonoBehaviour:
   m_ObjectHideFlags: 0

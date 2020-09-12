@@ -144,8 +144,9 @@ public class EnemyController : MonoBehaviour {
         effectDeath.Play();
         }
         currientStateEnemy = StateEnemy.Dead;
-        Destroy(gameObject, 1.7f);
-        QuestManager.Instance.CheckQuests(QuestManager.QuestStates.DESTROYMONSTERS);
+        BoxCollider boxCol = gameObject.GetComponent<BoxCollider>();
+        boxCol.enabled = false;
+        Destroy(gameObject, 3f);
     }
 
     private void MoveToTarget() {
@@ -170,10 +171,4 @@ public class EnemyController : MonoBehaviour {
         nextAttack = Time.time + attackRate;
     }
 
-   
-       
-    
-    
-       
-   
 }

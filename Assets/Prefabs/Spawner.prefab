@@ -45,8 +45,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemys:
   - {fileID: 4912712045438661369, guid: 48cd511ad60f3f34393e672cc154c314, type: 3}
-  - {fileID: 0}
+  - {fileID: 4912712045438661369, guid: 0dd6015e7d2c5c5488d2b2520b70463a, type: 3}
   - {fileID: 4912712045438661369, guid: 0dd6015e7d2c5c5488d2b2520b70463a, type: 3}
   - {fileID: 4912712045438661369, guid: b28371c7a664898438f1dfebbf3df979, type: 3}
-  timeRespawn: 60
-  firstSpawnDelay: 20
+  - {fileID: 4912712045438661369, guid: b845359513dc78d4c90fc34990a8db3d, type: 3}
+  - {fileID: 4912712045438661369, guid: 01fb071b5392bf442ba0f6df05bb1041, type: 3}
+  timeRespawn: 5
+  firstSpawnDelay: 70

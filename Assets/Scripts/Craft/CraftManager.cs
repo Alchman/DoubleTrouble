@@ -7,7 +7,6 @@ public class CraftManager : MonoBehaviour
 {
     private GameObject itemObject;
     private int itemCost;
-    private int enumItem;
     
    
     
@@ -51,6 +50,12 @@ public class CraftManager : MonoBehaviour
         GameObject game = Instantiate(itemObject, SecondPlayer.Instance.transform.position, Quaternion.identity);
         SecondPlayer.Instance.Ejection(game, delay, force);
         Check();
+        QuestManager.Instance.CheckItemQuest(QuestManager.QuestStates.CRAFTJUMPPAD, item.itemType);
+        QuestManager.Instance.CheckItemQuest(QuestManager.QuestStates.CRAFTTURREL, item.itemType);
+        QuestManager.Instance.CheckQuests(QuestManager.QuestStates.CRAFTJUMPPAD);
+        QuestManager.Instance.CheckQuests(QuestManager.QuestStates.CRAFTTURREL);
+
+
 
     }
 

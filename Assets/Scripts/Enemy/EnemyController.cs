@@ -145,6 +145,7 @@ public class EnemyController : MonoBehaviour {
         }
         currientStateEnemy = StateEnemy.Dead;
         Destroy(gameObject, 1.7f);
+        QuestManager.Instance.CheckQuests(QuestManager.QuestStates.DESTROYMONSTERS);
     }
 
     private void MoveToTarget() {

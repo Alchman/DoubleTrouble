@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd6900b551320242895d48aeed2b037, type: 3}
-  m_Name: JumpPad
+  m_Script: {fileID: 11500000, guid: a0eaaca5e0ef12f478788312c93061ff, type: 3}
+  m_Name: 17_CraftTurrel
   m_EditorClassIdentifier: 
-  item: {fileID: 6232021685349337018, guid: 0867a363be9e6a0449748862325dff9d, type: 3}
-  cost: 300
-  buy: {fileID: 0}
-  itemType: 3
+  text: Craft 3 turrets
+  image: {fileID: 0}
+  delay: 1
+  numberOfTime: 1
+  itemToCraft: 0

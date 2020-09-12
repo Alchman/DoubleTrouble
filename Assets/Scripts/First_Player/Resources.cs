@@ -2,7 +2,7 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class Resources : GenericSingletonClass<Resources>
+public class Resources : MonoBehaviour
 {
     [Tooltip("Присвоение предмету определенного ресурса")] public ResourceType resourceType;
     [Tooltip("Количество ресурса ")] public int count=1;

@@ -44,13 +44,16 @@ public class QuestManager : GenericSingletonClass<QuestManager>
         PUSHOBJTOENEMY = 7,
         COLLECTRESOURSES = 8,
         KICKBIGCHUNK = 9,
-       // CRAFTJUMPPAD = 10
         KICKPAD =10,
         JUMPPAD = 11,
         COLLECTCOUNTRESOURS= 12,
-        DESTROYSUITCASE = 13 
+        DESTROYSUITCASE = 13, 
+        DESTROYMONSTERS = 14,
+        CRAFTJUMPPAD = 15,
+        CRAFTTURREL = 16
 
-      
+
+
     }
 
     void Start()
@@ -95,23 +98,22 @@ public class QuestManager : GenericSingletonClass<QuestManager>
         delayQuests = null;
     }
 
-    public void CheckQuests(QuestStates quest)
+    public void CheckItemQuest(QuestStates quest, TypeItem typeItem)
+    {
+        if (currentQuest == quest && typeItem == allQuests[(int)currentQuest].itemToCraft)
+        {
+            CheckQuests(quest);
+        }
+    }
+
+    public void CheckQuests(QuestStates quest, int amount = 1)
     {
         if (currentQuest == quest)
         {
-            if (currentQuest == QuestStates.COLLECTCOUNTRESOURS)
-            {
-
-               
-               currentOfTime += Resources.Instance.count;
-                currentTime.text = currentOfTime + "/" + numberOfTimes;
-                currentTime.gameObject.SetActive(true);
-
-            }
-
+           
             if (numberOfTimes > 0)
             {
-                currentOfTime++;
+                currentOfTime+= amount;
                 currentTime.text = currentOfTime + "/" + numberOfTimes;
                 currentTime.gameObject.SetActive(true);
                

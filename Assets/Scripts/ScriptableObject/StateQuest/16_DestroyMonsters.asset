@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0eaaca5e0ef12f478788312c93061ff, type: 3}
-  m_Name: 7_PushEnemy
+  m_Name: 16_DestroyMonsters
   m_EditorClassIdentifier: 
-  text: 'Kick enemy creature 4 times  '
-  image: {fileID: 21300000, guid: ebc9029ecfc15b041b978ce90aceed94, type: 3}
+  text: Destroy with Mike 11 any monsters
+  image: {fileID: 21300000, guid: fa42af08bed646341ac6b62a5982d595, type: 3}
   delay: 1
-  numberOfTime: 4
-  itemToCraft: 4
+  numberOfTime: 2
+  itemToCraft: 0

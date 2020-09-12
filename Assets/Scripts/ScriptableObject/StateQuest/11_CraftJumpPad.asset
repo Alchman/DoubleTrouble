@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0eaaca5e0ef12f478788312c93061ff, type: 3}
-  m_Name: 7_PushEnemy
+  m_Name: 11_CraftJumpPad
   m_EditorClassIdentifier: 
-  text: 'Kick enemy creature 4 times  '
-  image: {fileID: 21300000, guid: ebc9029ecfc15b041b978ce90aceed94, type: 3}
+  text: Craft "jump pad" (go to Mike to craft)
+  image: {fileID: 21300000, guid: 6a8778d972544b242863c47d641db43b, type: 3}
   delay: 1
-  numberOfTime: 4
-  itemToCraft: 4
+  numberOfTime: 1
+  itemToCraft: 3

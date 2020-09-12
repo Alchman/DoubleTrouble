@@ -157,6 +157,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fd944e20ee6444efa87cef28957898aa, type: 3}
   - {fileID: 8300000, guid: baf4414d6c8024046bb96cce835fbe26, type: 3}
   - {fileID: 8300000, guid: 027dcff294339478d98ba358c0aeb528, type: 3}
+  animator: {fileID: 8535779795690922487}
   firstPlayer: {fileID: 5402778585764555489}
 --- !u!1 &5402778585948708903
 GameObject:
@@ -290,6 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4802674782797503357}
+  animator2: {fileID: 8535779795690922487}
   pushMask:
     serializedVersion: 2
     m_Bits: 1536

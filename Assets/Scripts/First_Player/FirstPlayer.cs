@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 {
     [SerializeField] Animator animator;
+    [SerializeField] Animator animator2;
     public LayerMask pushMask;
 
     [Header("Radius")]
@@ -89,12 +90,14 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     private void Update()
     {
+        print(isGrounded + "  zemlya ");
         CheckPush();
         Jump();
     }
 
     private void FixedUpdate()
     {
+     
         Move();
         ApplyGravity();
     }
@@ -118,8 +121,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
             if (speedPlayer > 0)
             {
                 QuestManager.Instance.CheckQuests(QuestManager.QuestStates.MOVE);
-
-
+           
             }
             if (direction.magnitude > 0)
             {
@@ -128,8 +130,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                 direction *= moveSpeed;
                 currentState = PlayerStates.MOVE;
                 animator.SetTrigger("run");
-
-
+                // animator2.SetBool("Hero_Sand", true);
                 if (Input.GetButton("Fire3"))
                 {
                     direction *= accelerationSpeed;
@@ -143,17 +144,20 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                     bool isWall = Physics.Raycast(wallCheck.position, direction, wallCheckDistance, whatIsGround);
                     if (isWall)
                     {
+              
                         direction = Vector3.zero;
                     }
                 }
 
                 direction.y = rigidbody.velocity.y;
                 rigidbody.velocity = direction;
-
+                
             }
             else
             {
                 animator.SetTrigger("idle");
+                // animator2.SetBool("Hero_Sand", false);
+                animator2.SetInteger("Sand", 2);
                 currentState = PlayerStates.IDLE;
             }
 
@@ -163,14 +167,16 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     }
 
-
     private void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+         
+            animator2.SetInteger("Sand", 2);
             isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, whatIsGround);
             if (isGrounded)
             {
+                animator2.SetInteger("Sand", 2);
                 rigidbody.AddForce(new Vector3(0, jumpForce));
                 isGrounded = false;
                 animator.SetTrigger("jump");

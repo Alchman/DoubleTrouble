@@ -20,6 +20,7 @@ public class PickUpObject : MonoBehaviour
                 int currentCount = resources.count;
                 SecondPlayer.Instance.AddResourses(currentRes, currentCount);
                 QuestManager.Instance.CheckQuests(QuestManager.QuestStates.COLLECTRESOURSES);
+                QuestManager.Instance.CheckQuests(QuestManager.QuestStates.COLLECTCOUNTRESOURS);
             }
 
             if (regeneration != null)

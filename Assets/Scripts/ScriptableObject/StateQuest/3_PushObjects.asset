@@ -16,3 +16,4 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: 39dd667cdf82f944bb0b90dd55babea6, type: 3}
   delay: 1
   numberOfTime: 3
+  itemToCraft: 4

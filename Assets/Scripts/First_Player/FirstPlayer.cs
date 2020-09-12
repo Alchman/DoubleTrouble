@@ -58,7 +58,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     [Header("Position")]
     [Tooltip("Позиция 1 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition1;
     [Tooltip("Позиция 2 круга видимости предметов перед игроком ")] [SerializeField] Transform capsulePosition2;
-        
+
     public Health Health
     {
         get { return health; }
@@ -187,7 +187,7 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     {
         if ((Input.GetButtonDown("Fire1")))
         {
-            
+
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 return;
@@ -242,13 +242,13 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                     break;
             }
 
-           
+
             int returnDamage = pushable.Push(direction);
             Health.ChangeHealth(-returnDamage);
 
             if (target.CompareTag("Enemy"))
             {
-                
+
                 QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHENEMY);
             }
             else
@@ -256,6 +256,15 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
                 QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSH);
                 QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHOBj);
             }
+
+            if (target.CompareTag("Batut"))
+            {
+                QuestManager.Instance.CheckQuests(QuestManager.QuestStates.KICKPAD);
+            }
+           
+           
+            
+
         }
 
         DamagebleByPush damagebleByPush = target.GetComponent<DamagebleByPush>();
@@ -288,8 +297,8 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     private void OnTriggerEnter(Collider other)
     {
-        if(pushInProgress) {return;}
-        
+        if (pushInProgress) { return; }
+
         Pushable pushable = other.gameObject.GetComponent<Pushable>();
         if (pushable != null && pushable.PushOnRun)
         {
@@ -341,6 +350,6 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     }
 
 
-    
+
 
 }

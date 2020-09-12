@@ -8,6 +8,7 @@ public class Item : ScriptableObject
     [SerializeField] public GameObject item;
     [SerializeField] public int cost;
     [SerializeField] public GameButton buy;
+   
 
-  
+
 }

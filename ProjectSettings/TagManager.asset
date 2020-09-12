@@ -15,6 +15,7 @@ TagManager:
   - SpeedUp
   - Stone
   - UI
+  - Batut
   layers:
   - Default
   - TransparentFX

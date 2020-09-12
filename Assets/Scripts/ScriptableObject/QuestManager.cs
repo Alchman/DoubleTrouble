@@ -13,6 +13,10 @@ public class QuestManager : GenericSingletonClass<QuestManager>
     [SerializeField] GameObject questUi;
 
     [SerializeField] QuestStates lastQuest;
+   
+    [SerializeField] public TypeItem typeItem;
+
+    public enum TypeItem { TURELL, AID, CHEST,BATUT, NONE }
 
 
 
@@ -39,7 +43,13 @@ public class QuestManager : GenericSingletonClass<QuestManager>
         PUSHENEMY = 6,
         PUSHOBJTOENEMY = 7,
         COLLECTRESOURSES = 8,
-        KICKBIGCHUNK = 9
+        KICKBIGCHUNK = 9,
+       // CRAFTJUMPPAD = 10
+        KICKPAD =10,
+        JUMPPAD = 11,
+        COLLECTCOUNTRESOURS= 12,
+        DESTROYSUITCASE = 13 
+
       
     }
 
@@ -89,6 +99,16 @@ public class QuestManager : GenericSingletonClass<QuestManager>
     {
         if (currentQuest == quest)
         {
+            if (currentQuest == QuestStates.COLLECTCOUNTRESOURS)
+            {
+
+               
+               currentOfTime += Resources.Instance.count;
+                currentTime.text = currentOfTime + "/" + numberOfTimes;
+                currentTime.gameObject.SetActive(true);
+
+            }
+
             if (numberOfTimes > 0)
             {
                 currentOfTime++;

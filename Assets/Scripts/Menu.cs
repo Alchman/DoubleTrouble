@@ -29,22 +29,16 @@ public class Menu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            enabledMenu.SetActive(true);
+           // enabledMenu.SetActive(true);
 
             if (!pause)
             {
                 PauseActive();
-              
-
             }
             else
             {
-                PauseEnabled();
-                enabledMenu.SetActive(false);
+                PauseDisable();
             }
-          
-          
-
         }
     }
 
@@ -57,16 +51,17 @@ public class Menu : MonoBehaviour
 
     }
 
-    public void PauseEnabled()
+    public void PauseDisable()
     {
         Time.timeScale = 1;
         pause = false;
+        enabledMenu.SetActive(false);
        
     }
 
     public void ContinueGame()
     {
-        PauseEnabled();
+        PauseDisable();
         enabledMenu.SetActive(false);
 
 

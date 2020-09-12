@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd6900b551320242895d48aeed2b037, type: 3}
   m_Name: Chest
   m_EditorClassIdentifier: 
-  item: {fileID: 2536299696274290696, guid: ef6c2fd6f55e94d4887bd702afe8cb6f, type: 3}
-  cost: 50
+  item: {fileID: 7557027107649329746, guid: 40a1d68d53737f44ba021560d2c21e59, type: 3}
+  cost: 450
   buy: {fileID: 0}
   itemType: 2

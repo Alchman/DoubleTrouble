@@ -151,6 +151,7 @@ public class EnemyController : MonoBehaviour {
         // boxCol.enabled = false;
         SetLayerMask();
         Destroy(gameObject, 3.5f);
+        QuestManager.Instance.CheckQuests(QuestManager.QuestStates.DESTROYMONSTERS);
     }
 
     private void MoveToTarget() {

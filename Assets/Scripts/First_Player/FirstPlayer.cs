@@ -269,6 +269,10 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
             {
                 QuestManager.Instance.CheckQuests(QuestManager.QuestStates.KICKPAD);
             }
+            if (target.CompareTag("FlightRecorder"))
+            {
+                QuestManager.Instance.CheckQuests(QuestManager.QuestStates.FINDRECORDER);
+            }
            
            
             

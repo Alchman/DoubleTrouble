@@ -16,7 +16,7 @@ public class QuestManager : GenericSingletonClass<QuestManager>
    
     [SerializeField] public TypeItem typeItem;
 
-    public enum TypeItem { TURELL, AID, CHEST,BATUT, NONE }
+    public enum TypeItem { TURELL, AID, CHEST,BATUT, KORM, GRENADE, NONE }
 
 
 
@@ -44,12 +44,12 @@ public class QuestManager : GenericSingletonClass<QuestManager>
         PUSHOBJTOENEMY = 7,
         COLLECTRESOURSES = 8,
         KICKBIGCHUNK = 9,
-        KICKPAD =10,
-        JUMPPAD = 11,
-        COLLECTCOUNTRESOURS= 12,
-        DESTROYSUITCASE = 13, 
-        DESTROYMONSTERS = 14,
-        CRAFTJUMPPAD = 15,
+        CRAFTJUMPPAD = 10,
+        KICKPAD =11,
+        JUMPPAD = 12,
+        COLLECTCOUNTRESOURS= 13,
+        DESTROYSUITCASE = 14, 
+        DESTROYMONSTERS = 15,
         CRAFTTURREL = 16,
         FINDRECORDER = 17
 

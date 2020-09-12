@@ -8,7 +8,8 @@ public class PlayerAnimationHelper : MonoBehaviour
 {
     [SerializeField] AudioSource playerAudio;
     [SerializeField] AudioClip[] footsteps;
-
+    [SerializeField] private Animator animator;
+    
     [SerializeField]  FirstPlayer firstPlayer;
 
     private void Awake()
@@ -38,5 +39,9 @@ public class PlayerAnimationHelper : MonoBehaviour
     public void HitObjects()
     {
         firstPlayer.HitObjects();
+    }
+
+    public void Sand() {
+        animator.SetInteger("Sand", 1);
     }
 }

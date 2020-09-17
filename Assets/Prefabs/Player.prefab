@@ -317,9 +317,9 @@ MonoBehaviour:
   forceShotIdle: 15
   forceShotOnRun: 8
   forceShotSpeedUp: 9
-  hightYforShot: 2.2
-  hightYforShotOnRun: 1.2
-  hightYforShotSpeedUp: 1.7
+  hightYforShot: 1.1
+  hightYforShotOnRun: 0.6
+  hightYforShotSpeedUp: 6
   forceShotOnCollision: 4
   hightYOnCollision: 1.2
   accelerationSpeed: 1.4

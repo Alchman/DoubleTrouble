@@ -56,7 +56,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1347434189373752242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.01, y: 0, z: 0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5957270615669595010}
@@ -74,7 +74,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.01
+  m_Volume: 0.568
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -82,10 +82,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 5
-  MaxDistance: 10
+  MinDistance: 1
+  MaxDistance: 85.62
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -118,7 +118,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -403,19 +403,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   activeWeapon: {fileID: 591051536}
-  pistolBullets: 150
-  rifleBullets: 150
+  pistolBullets: 50
+  rifleBullets: 50
   rocketBullets: 0
   audioSource: {fileID: 7786536494308905167}
   animator: {fileID: 260361754930306482}
   barricadeAnimator: {fileID: 0}
   effectShoot: {fileID: 2168109517541798361}
-  gearsCount: 4000
+  gearsCount: 0
   woodCount: 0
   metalCount: 0
   stoneThrowForce: 390
   delayForceTime: 2
-  RadiusCanon: 30
+  RadiusCanon: 20
   maxViewAngle: 80
   shootSound: {fileID: 8300000, guid: b80713152ce869e4c9857602a2961427, type: 3}
   noAmmoSound: {fileID: 8300000, guid: 62f70435d0c06ad4e8f8c5f309a61128, type: 3}

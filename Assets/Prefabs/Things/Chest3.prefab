@@ -187,13 +187,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameLoot:
-  - {fileID: 7557027107649329746, guid: 25a0ccf572b2785439e1c40946f8f01e, type: 3}
+  - {fileID: 4002490292745003756, guid: 005bd50ee460d2048900bd2485bf2d9c, type: 3}
   - {fileID: 2536299696274290696, guid: ef6c2fd6f55e94d4887bd702afe8cb6f, type: 3}
   - {fileID: 4002490292745003756, guid: 005bd50ee460d2048900bd2485bf2d9c, type: 3}
+  - {fileID: 4002490292745003756, guid: 005bd50ee460d2048900bd2485bf2d9c, type: 3}
+  - {fileID: 749041294178439367, guid: 4ab6ab35b77eb1d4cbc41c08bfd302b1, type: 3}
   gameLoot1:
   - {fileID: 7557027107649329746, guid: 25a0ccf572b2785439e1c40946f8f01e, type: 3}
   - {fileID: 7557027107649329746, guid: 4a70957f381b0ca44aefac285e4ea126, type: 3}
-  push: 10
+  push: 30
   destroyObject: 1
 --- !u!114 &509897795
 MonoBehaviour:

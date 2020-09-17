@@ -157,11 +157,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba11f23a3220484ba1d936c7a5bb61b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.6
-  stunTime: 3
+  speed: 0.5
+  stunTime: 0.5
   playerdistance: 6.5
   attackRate: 2
-  damage: 20
+  damage: 10
   animator: {fileID: 5708838037265266089}
   effectBlood: {fileID: 9132588354191613390}
   effectDeath: {fileID: 2430602235574672295}
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366090a6ef056904ca782e960e15f39c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 150
+  maxHealth: 700
 --- !u!114 &6736395070302823943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a0fe9a0fe0f0b4e9d05bd131cd5d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 300
+  damage: 10
   layerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -237,7 +237,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c9dfc035e8ebe4bac6487c4c5a1910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameLoot: []
+  gameLoot:
+  - {fileID: 4002490292745003756, guid: 005bd50ee460d2048900bd2485bf2d9c, type: 3}
+  - {fileID: 4002490292745003756, guid: 005bd50ee460d2048900bd2485bf2d9c, type: 3}
+  - {fileID: 4002490292745003756, guid: 005bd50ee460d2048900bd2485bf2d9c, type: 3}
   gameLoot1: []
   push: 15
   destroyObject: 0

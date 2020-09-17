@@ -303,7 +303,7 @@ MonoBehaviour:
   radiusCheck: 1.3
   forcePush: 12
   forcePushOnRun: 5
-  damageFoot: 10
+  damageFoot: 20
   moveSpeed: 6.2
   jumpForce: 500
   gravityScale: -30
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366090a6ef056904ca782e960e15f39c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 800
 --- !u!81 &1489160368668764851
 AudioListener:
   m_ObjectHideFlags: 0

@@ -436,12 +436,17 @@ PrefabInstance:
     - target: {fileID: 4618225182597132199, guid: 2da07285d38aeeb47a5046888afe2739,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
-      value: 0.16862746
+      value: 0.10980392
       objectReference: {fileID: 0}
     - target: {fileID: 4618225182597132199, guid: 2da07285d38aeeb47a5046888afe2739,
         type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4618225182597132199, guid: 2da07285d38aeeb47a5046888afe2739,
+        type: 3}
+      propertyPath: InitialModule.startColor.minColor.a
+      value: 0.07058824
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2da07285d38aeeb47a5046888afe2739, type: 3}

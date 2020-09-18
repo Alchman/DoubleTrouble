@@ -461,6 +461,16 @@ PrefabInstance:
       propertyPath: ShapeModule.m_Scale.z
       value: 1.7
       objectReference: {fileID: 0}
+    - target: {fileID: 3367574155667011022, guid: da041b0706adb4b40b0b331ca96f00a7,
+        type: 3}
+      propertyPath: InitialModule.startColor.minColor.a
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 3367574155667011022, guid: da041b0706adb4b40b0b331ca96f00a7,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.16078432
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da041b0706adb4b40b0b331ca96f00a7, type: 3}
 --- !u!4 &7139525954229347751 stripped

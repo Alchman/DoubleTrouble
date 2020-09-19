@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CraftManager : MonoBehaviour
+public class CraftManager : GenericSingletonClass<CraftManager>
 {
     private GameObject itemObject;
     private int itemCost;
@@ -16,14 +16,11 @@ public class CraftManager : MonoBehaviour
     [SerializeField] Text[] countText;
     [SerializeField] Item[] allItems;
 
-   
-
-
-
     Item item;
 
     public void Start()
     {
+        Check();
         for (int i = 0; i < buttonCreate.Length; i++)
         {
             countText[i].text = allItems[i].cost.ToString();
@@ -31,16 +28,12 @@ public class CraftManager : MonoBehaviour
     }
 
 
-
     public void ChoiseItem(int index)
     {
-
         item = allItems[index];
         itemCost = item.cost;
         itemObject = item.item;
-       
     }
-
 
 
     public void Create(int indexItem)
@@ -54,9 +47,6 @@ public class CraftManager : MonoBehaviour
         QuestManager.Instance.CheckItemQuest(QuestManager.QuestStates.CRAFTTURREL, item.itemType);
         QuestManager.Instance.CheckQuests(QuestManager.QuestStates.CRAFTJUMPPAD);
         QuestManager.Instance.CheckQuests(QuestManager.QuestStates.CRAFTTURREL);
-
-
-
     }
 
     public void Check()
@@ -70,11 +60,8 @@ public class CraftManager : MonoBehaviour
           
             }
             else
-            {
-
+            { 
                 buttonCreate[i].interactable = false;
-             
-
             }
 
 

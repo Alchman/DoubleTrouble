@@ -35,9 +35,10 @@ public class SpawnerObjects : MonoBehaviour
     {
         if (QuestManager.Instance.currentQuest == QuestManager.QuestStates.FINDRECORDER)
         {
+            Debug.Log(111111);
             if (Random.value <= chance)
             {
-                Debug.Log("!!!!!!!");
+                Debug.Log("!!!!!!!SPAWN!!!!!");
                 Vector2 randomPoint = Random.insideUnitCircle * radius;
                 Vector3 pos = transform.position + new Vector3(randomPoint.x, 0, randomPoint.y);
                 Instantiate(resourceBox, pos, Quaternion.identity);

@@ -34,6 +34,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     [SerializeField] private Animator barricadeAnimator;
     [SerializeField][Tooltip("эффект для выстрела из пистолета")] private ParticleSystem effectShoot;
     [SerializeField][Tooltip("эффект тряски барикады")] private ParticleSystem baricadeEffect;
+    [SerializeField][Tooltip("эффект стрелки")] private ParticleSystem arrowEffect;
 
     Dictionary<BulletType, int> bullets = new Dictionary<BulletType, int>();
     Dictionary<ResourceType, int> resourses = new Dictionary<ResourceType, int>();
@@ -266,8 +267,11 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     {
         if (other.gameObject.tag == "Stone")
         {
+            
             other.gameObject.transform.DOMove(transform.position, takeItemTime);
             Ejection(other.gameObject, delayForceTime, stoneThrowForce);
+        
+            arrowEffect.Play();
         }
     }
 

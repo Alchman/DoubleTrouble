@@ -411,6 +411,7 @@ MonoBehaviour:
   barricadeAnimator: {fileID: 0}
   effectShoot: {fileID: 2168109517541798361}
   baricadeEffect: {fileID: 0}
+  arrowEffect: {fileID: 0}
   gearsCount: 0
   woodCount: 0
   metalCount: 0

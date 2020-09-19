@@ -33,6 +33,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     [SerializeField] private Animator animator;
     [SerializeField] private Animator barricadeAnimator;
     [SerializeField][Tooltip("эффект для выстрела из пистолета")] private ParticleSystem effectShoot;
+    [SerializeField][Tooltip("эффект тряски барикады")] private ParticleSystem baricadeEffect;
 
     Dictionary<BulletType, int> bullets = new Dictionary<BulletType, int>();
     Dictionary<ResourceType, int> resourses = new Dictionary<ResourceType, int>();
@@ -40,8 +41,6 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     public int gearsCount;
     public int woodCount;
     public int metalCount;
-  
-
 
     Health health;
     [Tooltip("Сила с которой выкинется камень вторым игроком")] [SerializeField] float stoneThrowForce;
@@ -63,6 +62,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     [Header("Sounds")] 
     [SerializeField] private AudioClip shootSound;
     [SerializeField] private AudioClip noAmmoSound;
+    [SerializeField] private AudioClip kickBaricadeSound;
     
     public Health Health
     {
@@ -250,6 +250,11 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     public void DoDamage()
     {
         barricadeAnimator.SetTrigger("barrier_hit");
+        baricadeEffect.gameObject.SetActive(true);
+        audioSource.PlayOneShot(kickBaricadeSound);
+        if(!baricadeEffect.isPlaying) {
+        baricadeEffect.Play();
+        }
     }
 
     public void HealthUpdate(int count)

@@ -21,8 +21,8 @@ public class UiManager : MonoBehaviour{
     private SecondPlayer secondPlayer;
 
     private void Start() {
-        health = SecondPlayer.Instance.GetComponent<Health>();
-        health.OnDeath += GameOver;
+        SecondPlayer.Instance.Health.OnDeath += GameOver;
+        FirstPlayer.Instance.Health.OnDeath += GameOver;
 
         firstPlayerHealth.SetHealth(FirstPlayer.Instance.Health);
         secondPlayerHealth.SetHealth(SecondPlayer.Instance.Health);

@@ -19,8 +19,14 @@ public class Menu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pause = false;
-        enabledMenu.SetActive(false);
+        if (Application.isEditor)
+        {
+            PauseDisable();
+        }
+        else
+        {
+            PauseActive();
+        }
 
     }
 
@@ -58,6 +64,12 @@ public class Menu : MonoBehaviour
         enabledMenu.SetActive(false);
        
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+    
 
     public void ContinueGame()
     {

@@ -4880,16 +4880,16 @@ Canvas:
   m_GameObject: {fileID: 1596219791029895706}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 1
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -969150553
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &1596219791029895700
@@ -4962,6 +4962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d95be01a40461a141ad2fe5763109619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstQuest: 0
   textQuest: {fileID: 3782657958746896434}
   image: {fileID: 7703486829556226625}
   questUi: {fileID: 168376873484520837}
@@ -4987,6 +4988,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8fd10f9eb46c94f499539aa363a36431, type: 2}
   - {fileID: 11400000, guid: becbf45deaa897c4fa17f1e47ac2e57c, type: 2}
   - {fileID: 11400000, guid: 7ebe9ce2d35918f469892ad1b8e6a3d1, type: 2}
+  - {fileID: 11400000, guid: 1393c2fa376184c4f9fe6e2dca094fac, type: 2}
+  - {fileID: 11400000, guid: 74c128be06feea04c8d38d53810261f7, type: 2}
+  - {fileID: 11400000, guid: 7a4dfb0c59bce1947a9c61c383d2255b, type: 2}
   currentQuest: 0
 --- !u!114 &582132494
 MonoBehaviour:
@@ -27962,7 +27966,7 @@ PrefabInstance:
     - target: {fileID: 2671680912994577598, guid: d394149a1307e9b4288214af2de8f981,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -332
       objectReference: {fileID: 0}
     - target: {fileID: 2671680912994577598, guid: d394149a1307e9b4288214af2de8f981,
         type: 3}
@@ -28054,10 +28058,35 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3256692492782501784, guid: d394149a1307e9b4288214af2de8f981,
+        type: 3}
+      propertyPath: InitialModule.rotation3D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3256692492782501784, guid: d394149a1307e9b4288214af2de8f981,
+        type: 3}
+      propertyPath: InitialModule.startRotationX.scalar
+      value: -0.7853981
+      objectReference: {fileID: 0}
     - target: {fileID: 4035549861605910783, guid: d394149a1307e9b4288214af2de8f981,
         type: 3}
       propertyPath: m_Name
       value: UIMenuu
+      objectReference: {fileID: 0}
+    - target: {fileID: 9146105243412620157, guid: d394149a1307e9b4288214af2de8f981,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -969150553
+      objectReference: {fileID: 0}
+    - target: {fileID: 9146105243412620157, guid: d394149a1307e9b4288214af2de8f981,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9146105243412620157, guid: d394149a1307e9b4288214af2de8f981,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d394149a1307e9b4288214af2de8f981, type: 3}
@@ -28079,10 +28108,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmokeforUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1036249018804746779, guid: 9c89aa9b5cb86764e862d7f1f6d2dfe6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3083711611725955130, guid: 9c89aa9b5cb86764e862d7f1f6d2dfe6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1051
+      value: -319
       objectReference: {fileID: 0}
     - target: {fileID: 3083711611725955130, guid: 9c89aa9b5cb86764e862d7f1f6d2dfe6,
         type: 3}

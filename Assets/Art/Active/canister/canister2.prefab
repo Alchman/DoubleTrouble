@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3888912813177164875}
   - component: {fileID: 5356339531991472618}
   - component: {fileID: 8906687168081479765}
+  - component: {fileID: 2671869123294756237}
   m_Layer: 0
   m_Name: canister2
   m_TagString: Untagged
@@ -105,6 +106,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 724e1bb05751e6a43b8337cd19c757a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2671869123294756237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3298015457808867479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94462639ac80a4948b8bea5a9b345594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2393330262797375828

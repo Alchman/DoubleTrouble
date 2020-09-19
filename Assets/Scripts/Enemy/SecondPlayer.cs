@@ -73,8 +73,9 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     private bool hasAmmo; //just for sound effect
     private bool lowHealth; //just for sound effect
     
-    void Start()
+    public override void Awake()
     {
+        base.Awake();
         bullets.Add(BulletType.PISTOL, pistolBullets);
         bullets.Add(BulletType.RIFLE, rifleBullets);
         bullets.Add(BulletType.ROCKET, rocketBullets);

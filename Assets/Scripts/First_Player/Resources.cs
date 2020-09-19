@@ -41,6 +41,7 @@ public class Resources : MonoBehaviour
             gameObject.transform.DOMove(SecondPlayer.Instance.transform.position, SecondPlayer.Instance.takeItemTime);
             SecondPlayer.Instance.AddResourses(resourceType, count);
             QuestManager.Instance.CheckQuests(QuestManager.QuestStates.KICKBIGCHUNK);
+            SecondPlayer.Instance.PlayCollectObjectSound();
         }
     }
     

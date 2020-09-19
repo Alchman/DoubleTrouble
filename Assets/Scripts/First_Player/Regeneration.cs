@@ -43,6 +43,7 @@ public class Regeneration : MonoBehaviour
             gameObject.transform.DOMove(SecondPlayer.Instance.transform.position, SecondPlayer.Instance.takeItemTime);
             SecondPlayer.Instance.HealthUpdate(health);
             QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHTOMIKE);
+            SecondPlayer.Instance.PlayCollectObjectSound();
         }
     }
 

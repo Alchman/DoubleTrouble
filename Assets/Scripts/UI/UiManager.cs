@@ -37,6 +37,7 @@ public class UiManager : MonoBehaviour {
         if (distance < showResourcesDistance)
         {
             resourcesTable.Show();
+            CraftManager.Instance.Check();
         }
         else
         {

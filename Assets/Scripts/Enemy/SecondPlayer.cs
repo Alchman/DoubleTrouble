@@ -14,7 +14,6 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
 {
     [Header("Effects")] public float takeItemTime = 0.2f;
     
-    
     public LayerMask layerMask;
     [Header("Bullets")]
     [Tooltip("активное оружие")] public Weapon activeWeapon;
@@ -63,7 +62,9 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     [Header("Sounds")] 
     [SerializeField] private AudioClip shootSound;
     [SerializeField] private AudioClip noAmmoSound;
+    [SerializeField] private AudioClip lowHPSound;
     [SerializeField] private AudioClip kickBaricadeSound;
+    [SerializeField] private AudioClip collectObjectSound;
     
     public Health Health
     {
@@ -71,6 +72,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     }
     
     private bool hasAmmo; //just for sound effect
+    private bool lowHealth; //just for sound effect
     
     void Start()
     {
@@ -188,7 +190,8 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
                 //print("no bullets");
                 if (hasAmmo)
                 {
-                    audioSource.PlayOneShot(noAmmoSound);
+                    AudioManager.PlaySound(noAmmoSound);
+                    //audioSource.PlayOneShot(noAmmoSound);
                     hasAmmo = false;
                 }
                 return;
@@ -254,7 +257,20 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         baricadeEffect.gameObject.SetActive(true);
         audioSource.PlayOneShot(kickBaricadeSound);
         if(!baricadeEffect.isPlaying) {
-        baricadeEffect.Play();
+            baricadeEffect.Play();
+        }
+
+        if (Health.HealthLeft < Health.MaxHealth * 0.3f)
+        {
+            if (!lowHealth)
+            {
+                AudioManager.PlaySound(lowHPSound);
+                lowHealth = true;
+            }
+        }
+        else
+        {
+            lowHealth = false;
         }
     }
 
@@ -302,5 +318,10 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     public int GetBullets(BulletType bulletType)
     {
         return bullets[bulletType];
+    }
+
+    public void PlayCollectObjectSound()
+    {
+        AudioManager.PlaySound(collectObjectSound);
     }
 }

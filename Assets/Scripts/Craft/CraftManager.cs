@@ -10,6 +10,7 @@ public class CraftManager : MonoBehaviour
     
    
     
+    [SerializeField] AudioClip craftSound;
     [SerializeField] float force;
     [SerializeField] Button[] buttonCreate;
     [SerializeField] float delay = 0;
@@ -49,6 +50,7 @@ public class CraftManager : MonoBehaviour
         SecondPlayer.Instance.MinusResourses(ResourceType.GEARS, itemCost);
         GameObject game = Instantiate(itemObject, SecondPlayer.Instance.transform.position, Quaternion.identity);
         SecondPlayer.Instance.Ejection(game, delay, force);
+        AudioManager.PlaySound(craftSound);
         Check();
         QuestManager.Instance.CheckItemQuest(QuestManager.QuestStates.CRAFTJUMPPAD, item.itemType);
         QuestManager.Instance.CheckItemQuest(QuestManager.QuestStates.CRAFTTURREL, item.itemType);

@@ -5015,6 +5015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf743844878837499cd3e024ee73210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  craftSound: {fileID: 8300000, guid: a1d74beaa38f03b46b2c2b101e8f375e, type: 3}
   force: 300
   buttonCreate:
   - {fileID: 8801051364600291035}

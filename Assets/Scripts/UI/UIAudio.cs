@@ -6,6 +6,8 @@ public class UIAudio : GenericSingletonClass<UIAudio>
 {
     public AudioClip clickSound;
     public AudioClip closeSound;
+    public AudioClip gameOverSound;
+    public AudioClip startSound;
     
     
     private AudioSource audioSource;
@@ -14,6 +16,8 @@ public class UIAudio : GenericSingletonClass<UIAudio>
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        
+        audioSource.PlayOneShot(startSound);
     }
 
     public void ClickSound()
@@ -25,5 +29,13 @@ public class UIAudio : GenericSingletonClass<UIAudio>
     {
         audioSource.PlayOneShot(Instance.closeSound);
     }
-    
+
+    public void PlaySound(AudioClip sound)
+    {
+        audioSource.PlayOneShot(sound);
+    }
+    public void GameOverSound()
+    {
+        audioSource.PlayOneShot(Instance.gameOverSound);
+    }
 }

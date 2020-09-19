@@ -5,6 +5,10 @@ using UnityEngine.EventSystems;
 
 public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 {
+    [Header("Sounds")]
+    public AudioClip pickupSound;
+    
+    [Header("Config")]
     [SerializeField] Animator animator;
     [SerializeField] Animator animator2;
     [SerializeField] private ParticleSystem effctFirstPlayer;
@@ -358,18 +362,22 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
     }
     public void DoDeath()
     {
-        Destroy(gameObject);
+        transform.rotation = Quaternion.Euler(0, 0, 90);
+        Destroy(this);
     }
 
     public void GetEffectConstructFirstPlayer() {
+        
         effctGetDropConstruct.gameObject.SetActive(true);
         effctGetDropConstruct.Play();
+        AudioManager.PlaySound(pickupSound);
     }
     
     
     public void GetEffectHealFirstPlayer() {
         effctFirstPlayer.gameObject.SetActive(true);
         effctFirstPlayer.Play();
+        AudioManager.PlaySound(pickupSound);
     }
 
 

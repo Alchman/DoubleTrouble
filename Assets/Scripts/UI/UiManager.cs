@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UiManager : MonoBehaviour{
+public class UiManager : MonoBehaviour {
 
     [SerializeField] private GameObject PanelGameOver;
 
@@ -17,7 +18,6 @@ public class UiManager : MonoBehaviour{
     [SerializeField] public HealthUI secondPlayerHealth;
 
 
-    private Health health;
     private SecondPlayer secondPlayer;
 
     private void Start() {
@@ -45,10 +45,17 @@ public class UiManager : MonoBehaviour{
     }
 
     private void GameOver() {
+        UIAudio.Instance.GameOverSound();
+        // health.OnDeath -= GameOver;
+        
         PanelGameOver.SetActive(true);
-        health.OnDeath -= GameOver;
-        // Time.timeScale = 0;
+        Time.timeScale = 0;
 
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void ShowResources()

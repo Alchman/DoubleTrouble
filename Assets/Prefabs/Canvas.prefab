@@ -418,7 +418,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &477825396
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3129,9 +3129,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5966092445364635942}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 5189155410484923148}
+        m_MethodName: Restart
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5052,6 +5052,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickSound: {fileID: 8300000, guid: fc2f2ccb3fe472b43a776143ae57a833, type: 3}
   closeSound: {fileID: 8300000, guid: aa9b6fc255d6c52438e5e772ab9832f0, type: 3}
+  gameOverSound: {fileID: 8300000, guid: 8706ca029baa0d242ae94e8609648ffa, type: 3}
+  startSound: {fileID: 8300000, guid: adefb4e08768a38428f78699ab0c1454, type: 3}
 --- !u!82 &3347756855715733503
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13648,7 +13650,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CONTINUE
+  m_Text: RESTART
 --- !u!114 &5458528242725229096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15836,7 +15838,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Mike is dead.\r\r\r\r"
+  m_Text: One of your characters is dead.
 --- !u!114 &5753526569787293570
 MonoBehaviour:
   m_ObjectHideFlags: 0

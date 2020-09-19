@@ -13,7 +13,11 @@ public class PickUpObject : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
 
-        if(other.collider.transform.CompareTag("Player")) {
+        if(other.collider.transform.CompareTag("Player"))
+        {
+
+            bool playSound = false;
+                
             if (resources != null)
             {
                 FirstPlayer.Instance.GetEffectConstructFirstPlayer();

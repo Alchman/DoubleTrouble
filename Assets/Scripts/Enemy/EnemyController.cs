@@ -177,7 +177,7 @@ public class EnemyController : MonoBehaviour {
     }
 
     public void SetLayerMask() {
-        gameObject.layer = 0;
+        gameObject.layer = 17;
     }
 
 }

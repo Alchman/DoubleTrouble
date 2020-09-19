@@ -11,6 +11,7 @@ public class PowerUpSpeed : MonoBehaviour
         "если false, то эффект действует по направлению движения игрока ")]
     [SerializeField] bool fixedDirection;
 
+    [SerializeField] private ParticleSystem batytEffect;
 
     public Vector3 GetDirectionSpeed(Vector3 playerDirection)
     {
@@ -19,10 +20,12 @@ public class PowerUpSpeed : MonoBehaviour
         if (fixedDirection)
         {
             direction = transform.up * powerSpeed;
+            batytEffect.Play();
         }
         else
         {
             direction = playerDirection * powerSpeed;
+            batytEffect.Play();
         }
         direction.y = throwForce;
         return direction;

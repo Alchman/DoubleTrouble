@@ -18,11 +18,6 @@ public class QuestManager : GenericSingletonClass<QuestManager>
    
     [SerializeField] public TypeItem typeItem;
 
-    [SerializeField] GameObject oil;
-
-    [SerializeField] GameObject airplane;
-
-
     public enum TypeItem { TURELL, AID, CHEST,BATUT, KORM, GRENADE, NONE }
 
 
@@ -71,7 +66,7 @@ public class QuestManager : GenericSingletonClass<QuestManager>
     void Start()
     {
 
-        oil.gameObject.SetActive(false);
+        Canister.Instance.gameObject.SetActive(false);
         currentQuest = firstQuest;
         Quest quest = allQuests[(int)currentQuest];
         textQuest.text = quest.text;
@@ -79,6 +74,19 @@ public class QuestManager : GenericSingletonClass<QuestManager>
        numberOfTimes = quest.numberOfTime;
  
        currentTime.text = currentOfTime + "/" + numberOfTimes;
+       
+       
+
+       if (currentQuest == QuestStates.FINDAIRPLANE || currentQuest == QuestStates.ESCAPE)
+       {
+              
+           Compass.Instance.questLocation = Airplane.Instance.transform ;
+       }
+       else if (currentQuest == QuestStates.FINDOIL)
+       {
+           Canister.Instance.gameObject.SetActive(true);
+           Compass.Instance.questLocation = Canister.Instance.transform;
+       }
 
 }
 
@@ -97,14 +105,10 @@ public class QuestManager : GenericSingletonClass<QuestManager>
         numberOfTimes = nextQuest.numberOfTime;
         textQuest.text = nextQuest.text;
         currentTime.text = currentOfTime + "/" + numberOfTimes;
-      
-
-
     }
 
     IEnumerator DelayQuest(float delay)
     {
-       
         yield return new WaitForSeconds(delay);
         QuestsFinish();
         delayQuests = null;
@@ -126,12 +130,12 @@ public class QuestManager : GenericSingletonClass<QuestManager>
             if (currentQuest == QuestStates.FINDAIRPLANE || currentQuest == QuestStates.ESCAPE)
             {
               
-                Compass.Instance.questLocation = airplane.transform ;
+                Compass.Instance.questLocation = Airplane.Instance.transform ;
             }
             if (currentQuest == QuestStates.FINDOIL)
             {
-                oil.gameObject.SetActive(true);
-                Compass.Instance.questLocation = oil.transform;
+                Canister.Instance.gameObject.SetActive(true);
+                Compass.Instance.questLocation = Canister.Instance.transform;
             }
            
            

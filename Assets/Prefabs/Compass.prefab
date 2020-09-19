@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 781515270743808302}
   - component: {fileID: 1005225320993597452}
   m_Layer: 5
-  m_Name: ArrowBlue (1)
+  m_Name: Arrow Quest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,13 +224,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8396226, g: 0.13861692, b: 0.13861692, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d9f9226d96ef88e4cadcfff576545d68, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 99d8f7adcf0071d4e84348b45325d806, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

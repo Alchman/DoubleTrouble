@@ -16,6 +16,11 @@ public class QuestManager : GenericSingletonClass<QuestManager>
    
     [SerializeField] public TypeItem typeItem;
 
+    [SerializeField] GameObject oil;
+
+    [SerializeField] GameObject airplane;
+
+
     public enum TypeItem { TURELL, AID, CHEST,BATUT, KORM, GRENADE, NONE }
 
 
@@ -51,7 +56,11 @@ public class QuestManager : GenericSingletonClass<QuestManager>
         DESTROYSUITCASE = 14, 
         DESTROYMONSTERS = 15,
         CRAFTTURREL = 16,
-        FINDRECORDER = 17
+        FINDRECORDER = 17,
+        FINDAIRPLANE = 18,
+        FINDOIL = 19,
+        ESCAPE = 20
+
 
 
 
@@ -59,9 +68,9 @@ public class QuestManager : GenericSingletonClass<QuestManager>
 
     void Start()
     {
-       
 
-        currentQuest = QuestStates.MOVE;
+        oil.gameObject.SetActive(false);
+        currentQuest = QuestStates.FINDOIL;
         Quest quest = allQuests[(int)currentQuest];
         textQuest.text = quest.text;
         image.sprite = quest.image;
@@ -109,9 +118,23 @@ public class QuestManager : GenericSingletonClass<QuestManager>
 
     public void CheckQuests(QuestStates quest, int amount = 1)
     {
-        if (currentQuest == quest)
+        if (currentQuest == quest )
         {
+
+            if (currentQuest == QuestStates.FINDAIRPLANE || currentQuest == QuestStates.ESCAPE)
+            {
+              
+                Compass.Instance.questLocation = airplane.transform ;
+            }
+            if (currentQuest == QuestStates.FINDOIL)
+            {
+                oil.gameObject.SetActive(true);
+                Compass.Instance.questLocation = oil.transform;
+            }
            
+           
+
+
             if (numberOfTimes > 0)
             {
                 currentOfTime+= amount;

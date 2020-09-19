@@ -15,8 +15,18 @@ public class PickUpObject : MonoBehaviour
 
         if(other.collider.transform.CompareTag("Player"))
         {
-
-            bool playSound = false;
+            if (regeneration != null)
+            {
+                if (FirstPlayer.Instance.Health.HealthLeft < FirstPlayer.Instance.Health.MaxHealth)
+                {
+                    FirstPlayer.Instance.Health.ChangeHealth(regeneration.health);
+                    FirstPlayer.Instance.GetEffectHealFirstPlayer();
+                }
+                else
+                {
+                    return;
+                }
+            }
                 
             if (resources != null)
             {
@@ -28,12 +38,6 @@ public class PickUpObject : MonoBehaviour
                 QuestManager.Instance.CheckQuests(QuestManager.QuestStates.COLLECTCOUNTRESOURS, currentCount );
             }
 
-            if (regeneration != null)
-            {
-                FirstPlayer.Instance.Health.ChangeHealth(regeneration.health);
-                FirstPlayer.Instance.GetEffectHealFirstPlayer();
-            }
-            
             Destroy(gameObject);
         }
       

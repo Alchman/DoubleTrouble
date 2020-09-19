@@ -14,7 +14,6 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
 {
     [Header("Effects")] public float takeItemTime = 0.2f;
     
-    
     public LayerMask layerMask;
     [Header("Bullets")]
     [Tooltip("активное оружие")] public Weapon activeWeapon;
@@ -63,6 +62,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     [SerializeField] private AudioClip shootSound;
     [SerializeField] private AudioClip noAmmoSound;
     [SerializeField] private AudioClip kickBaricadeSound;
+    [SerializeField] private AudioClip collectObjectSound;
     
     public Health Health
     {
@@ -298,5 +298,10 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     public int GetBullets(BulletType bulletType)
     {
         return bullets[bulletType];
+    }
+
+    public void PlayCollectObjectSound()
+    {
+        AudioManager.PlaySound(collectObjectSound);
     }
 }

@@ -32,7 +32,7 @@ public class AmmoPack : MonoBehaviour
             gameObject.transform.DOMove(SecondPlayer.Instance.transform.position, SecondPlayer.Instance.takeItemTime);
             // Destroy(gameObject,1f);
             SecondPlayer.Instance.AddAmmo(bulletType, amount);
-
+            SecondPlayer.Instance.PlayCollectObjectSound();
         }
     }
     

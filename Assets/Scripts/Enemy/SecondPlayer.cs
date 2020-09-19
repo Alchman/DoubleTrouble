@@ -61,6 +61,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     [Header("Sounds")] 
     [SerializeField] private AudioClip shootSound;
     [SerializeField] private AudioClip noAmmoSound;
+    [SerializeField] private AudioClip lowHPSound;
     [SerializeField] private AudioClip kickBaricadeSound;
     [SerializeField] private AudioClip collectObjectSound;
     
@@ -70,6 +71,7 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
     }
     
     private bool hasAmmo; //just for sound effect
+    private bool lowHealth; //just for sound effect
     
     void Start()
     {
@@ -187,7 +189,8 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
                 //print("no bullets");
                 if (hasAmmo)
                 {
-                    audioSource.PlayOneShot(noAmmoSound);
+                    AudioManager.PlaySound(noAmmoSound);
+                    //audioSource.PlayOneShot(noAmmoSound);
                     hasAmmo = false;
                 }
                 return;
@@ -253,7 +256,20 @@ public class SecondPlayer : GenericSingletonClass<SecondPlayer>
         baricadeEffect.gameObject.SetActive(true);
         audioSource.PlayOneShot(kickBaricadeSound);
         if(!baricadeEffect.isPlaying) {
-        baricadeEffect.Play();
+            baricadeEffect.Play();
+        }
+
+        if (Health.HealthLeft < Health.MaxHealth * 0.3f)
+        {
+            if (!lowHealth)
+            {
+                AudioManager.PlaySound(lowHPSound);
+                lowHealth = true;
+            }
+        }
+        else
+        {
+            lowHealth = false;
         }
     }
 

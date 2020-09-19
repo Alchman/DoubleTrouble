@@ -7,6 +7,8 @@ using static UnityEngine.Random;
 
 public class QuestManager : GenericSingletonClass<QuestManager>
 {
+    [SerializeField] QuestStates firstQuest = QuestStates.MOVE;
+    
 
     [SerializeField] Text textQuest;
     [SerializeField] Image image;
@@ -70,7 +72,7 @@ public class QuestManager : GenericSingletonClass<QuestManager>
     {
 
         oil.gameObject.SetActive(false);
-        currentQuest = QuestStates.FINDOIL;
+        currentQuest = firstQuest;
         Quest quest = allQuests[(int)currentQuest];
         textQuest.text = quest.text;
         image.sprite = quest.image;

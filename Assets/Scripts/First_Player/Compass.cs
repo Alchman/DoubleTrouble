@@ -7,7 +7,6 @@ public class Compass : MonoBehaviour
 {
     public RectTransform arrow;
 
-
     private void Update()
     {
         ChangeMissionDirection();
@@ -23,6 +22,6 @@ public class Compass : MonoBehaviour
         missionDirection.y = 0;
 
         arrow.localRotation = missionDirection;
-    }
+    }    
 
 }

@@ -2,9 +2,12 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UiManager : MonoBehaviour {
+public class UiManager : GenericSingletonClass<UiManager>
+
+{
 
     [SerializeField] private GameObject PanelGameOver;
+    [SerializeField] private GameObject PanelVictory;
 
     [Header("Resources")]
     [SerializeField] public Text gears;
@@ -50,6 +53,13 @@ public class UiManager : MonoBehaviour {
         // health.OnDeath -= GameOver;
         
         PanelGameOver.SetActive(true);
+        Time.timeScale = 0;
+
+    }
+
+    public void Victory()
+    {
+        PanelVictory.SetActive(true);
         Time.timeScale = 0;
 
     }

@@ -30,7 +30,6 @@ public class QuestManager : GenericSingletonClass<QuestManager>
     private Coroutine delayQuests;
 
     public QuestStates currentQuest;
-    int id;
 
     int currentOfTime = 0;
     int numberOfTimes;
@@ -80,6 +79,7 @@ public class QuestManager : GenericSingletonClass<QuestManager>
        if (currentQuest == QuestStates.FINDAIRPLANE || currentQuest == QuestStates.ESCAPE)
        {
               
+           
            Compass.Instance.questLocation = Airplane.Instance.transform ;
        }
        else if (currentQuest == QuestStates.FINDOIL)
@@ -95,7 +95,9 @@ public class QuestManager : GenericSingletonClass<QuestManager>
     {
         if (currentQuest == lastQuest)
         {
+            Debug.Log(1);
             questUi.gameObject.SetActive(false);
+            UiManager.Instance.Victory();
         }
         currentQuest++;
       

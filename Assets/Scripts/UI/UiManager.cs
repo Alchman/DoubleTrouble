@@ -59,6 +59,8 @@ public class UiManager : GenericSingletonClass<UiManager>
 
     public void Victory()
     {
+        UIAudio.Instance.VictorySound();
+
         PanelVictory.SetActive(true);
         Time.timeScale = 0;
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.Random;
@@ -8,13 +9,13 @@ using static UnityEngine.Random;
 public class QuestManager : GenericSingletonClass<QuestManager>
 {
     [SerializeField] QuestStates firstQuest = QuestStates.MOVE;
-    
 
+
+    public Text currentTime;
     [SerializeField] Text textQuest;
     [SerializeField] Image image;
     [SerializeField] GameObject questUi;
 
-    [SerializeField] QuestStates lastQuest;
    
     [SerializeField] public TypeItem typeItem;
 
@@ -22,9 +23,9 @@ public class QuestManager : GenericSingletonClass<QuestManager>
 
 
 
-    public Text currentTime;
-  
 
+
+    QuestStates lastQuest;
     [SerializeField] Quest[] allQuests;
 
     private Coroutine delayQuests;
@@ -56,14 +57,11 @@ public class QuestManager : GenericSingletonClass<QuestManager>
         FINDAIRPLANE = 18,
         FINDOIL = 19,
         ESCAPE = 20
-
-
-
-
     }
 
     void Start()
     {
+        lastQuest = Enum.GetValues(typeof(QuestStates)).Cast<QuestStates>().Last();
 
         Canister.Instance.gameObject.SetActive(false);
         currentQuest = firstQuest;
@@ -73,8 +71,8 @@ public class QuestManager : GenericSingletonClass<QuestManager>
        numberOfTimes = quest.numberOfTime;
  
        currentTime.text = currentOfTime + "/" + numberOfTimes;
-       
-       
+
+        
 
        if (currentQuest == QuestStates.FINDAIRPLANE || currentQuest == QuestStates.ESCAPE)
        {
@@ -93,20 +91,39 @@ public class QuestManager : GenericSingletonClass<QuestManager>
 
     public void QuestsFinish()
     {
+        //print("Quest finished: " + currentQuest);
         if (currentQuest == lastQuest)
         {
-            Debug.Log(1);
             questUi.gameObject.SetActive(false);
             UiManager.Instance.Victory();
+            return;
         }
+
+
+        //Start new quest
         currentQuest++;
-      
+        //print("Start quest: " + currentQuest);
+
         Quest nextQuest = allQuests[(int)currentQuest];
         image.sprite = nextQuest.image;
         currentOfTime = 0;
         numberOfTimes = nextQuest.numberOfTime;
         textQuest.text = nextQuest.text;
         currentTime.text = currentOfTime + "/" + numberOfTimes;
+
+        currentTime.gameObject.SetActive(numberOfTimes > 0);
+
+
+        if (currentQuest == QuestStates.FINDAIRPLANE || currentQuest == QuestStates.ESCAPE)
+        {
+
+            Compass.Instance.questLocation = Airplane.Instance.transform;
+        }
+        else if (currentQuest == QuestStates.FINDOIL)
+        {
+            Canister.Instance.gameObject.SetActive(true);
+            Compass.Instance.questLocation = Canister.Instance.transform;
+        }
     }
 
     IEnumerator DelayQuest(float delay)
@@ -126,33 +143,21 @@ public class QuestManager : GenericSingletonClass<QuestManager>
 
     public void CheckQuests(QuestStates quest, int amount = 1)
     {
+        if (delayQuests != null)
+        {
+            return;
+        }
+
         if (currentQuest == quest )
         {
-
-            if (currentQuest == QuestStates.FINDAIRPLANE || currentQuest == QuestStates.ESCAPE)
-            {
-              
-                Compass.Instance.questLocation = Airplane.Instance.transform ;
-            }
-            if (currentQuest == QuestStates.FINDOIL)
-            {
-                Canister.Instance.gameObject.SetActive(true);
-                Compass.Instance.questLocation = Canister.Instance.transform;
-            }
-           
-           
-
+            //print("Check current quest: " + currentQuest);
 
             if (numberOfTimes > 0)
             {
-                currentOfTime+= amount;
+                currentOfTime += amount;
                 currentTime.text = currentOfTime + "/" + numberOfTimes;
                 currentTime.gameObject.SetActive(true);
                
-            }
-            else
-            {
-                currentTime.gameObject.SetActive(false);
             }
             
             if (currentOfTime >= numberOfTimes)

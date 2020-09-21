@@ -10,6 +10,12 @@ public class BreakableObject : MonoBehaviour
     [Tooltip("Сила с которой вылетят предметы находящиеся у предмета с BreakableObject")] [SerializeField] float push=15;
     [Tooltip("Уничтожать ли объект при разрушении")] [SerializeField] bool destroyObject = true;
 
+    [Header("Чёрны ящик")]
+    [Tooltip("Может ли из объекта выпасть чёрный ящик по квесту")] [SerializeField] bool canSpawnRecorder = false;
+    [Tooltip("Шанс спауна чёрного ящика при активном квесте")] [SerializeField] float recorderChance = 0.5f;
+    [Tooltip("Префаб чёрного ящика")] [SerializeField] private GameObject resourceBox;
+
+
     Pushable pushable;
     Health health;
 
@@ -27,6 +33,15 @@ public class BreakableObject : MonoBehaviour
             QuestManager.Instance.CheckQuests(QuestManager.QuestStates.DESTROYSUITCASE);
         }
 
+
+        if (canSpawnRecorder && QuestManager.Instance.currentQuest == QuestManager.QuestStates.FINDRECORDER)
+        {
+            if (Random.value <= recorderChance)
+            {
+                SpawnObject(resourceBox);
+            }
+        }
+
         if (gameLoot != null && gameLoot.Length > 0)
         {
             var randomLoot = Random.Range(0, gameLoot.Length);
@@ -42,6 +57,7 @@ public class BreakableObject : MonoBehaviour
 
     private void SpawnObject(GameObject go)
     {
+
         GameObject loot = Instantiate(go, transform.position, Quaternion.identity);
 
         pushable = loot.GetComponent<Pushable>();

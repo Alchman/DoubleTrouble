@@ -47,8 +47,8 @@ public class CraftManager : GenericSingletonClass<CraftManager>
         Check();
         QuestManager.Instance.CheckItemQuest(QuestManager.QuestStates.CRAFTJUMPPAD, item.itemType);
         QuestManager.Instance.CheckItemQuest(QuestManager.QuestStates.CRAFTTURREL, item.itemType);
-        QuestManager.Instance.CheckQuests(QuestManager.QuestStates.CRAFTJUMPPAD);
-        QuestManager.Instance.CheckQuests(QuestManager.QuestStates.CRAFTTURREL);
+        //QuestManager.Instance.CheckQuests(QuestManager.QuestStates.CRAFTJUMPPAD);
+        //QuestManager.Instance.CheckQuests(QuestManager.QuestStates.CRAFTTURREL);
     }
 
     public void Check()

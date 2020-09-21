@@ -7,6 +7,7 @@ public class UIAudio : GenericSingletonClass<UIAudio>
     public AudioClip clickSound;
     public AudioClip closeSound;
     public AudioClip gameOverSound;
+    public AudioClip vitorySound;
     public AudioClip startSound;
     
     
@@ -37,5 +38,9 @@ public class UIAudio : GenericSingletonClass<UIAudio>
     public void GameOverSound()
     {
         audioSource.PlayOneShot(Instance.gameOverSound);
+    }
+    public void VictorySound()
+    {
+        audioSource.PlayOneShot(Instance.vitorySound);
     }
 }

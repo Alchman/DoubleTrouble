@@ -2163,7 +2163,7 @@ RectTransform:
   - {fileID: 8754903523619027851}
   - {fileID: 6771681543183418872}
   m_Father: {fileID: 1596219791029895702}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -4844,13 +4844,13 @@ RectTransform:
   - {fileID: 477825396}
   - {fileID: 458933338162249617}
   - {fileID: 6481056609250958587}
-  - {fileID: 6442362888346547952}
   - {fileID: 484900053678582391}
   - {fileID: 5130860487639301424}
   - {fileID: 1933323932526285640}
   - {fileID: 2790193713852008639}
   - {fileID: 1780025145751927913}
   - {fileID: 7441849703790996081}
+  - {fileID: 6442362888346547952}
   - {fileID: 496753785291042861}
   - {fileID: 4732159833034292988}
   - {fileID: 6947140853725745085}
@@ -4944,6 +4944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PanelGameOver: {fileID: 5966092445364635942}
+  PanelVictory: {fileID: 7053088664719540365}
   gears: {fileID: 1756482494975356304}
   rifle: {fileID: 170720543328683983}
   resourcesTable: {fileID: 679599562}
@@ -4963,12 +4964,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstQuest: 0
+  currentTime: {fileID: 5589497835508323685}
   textQuest: {fileID: 3782657958746896434}
   image: {fileID: 7703486829556226625}
   questUi: {fileID: 168376873484520837}
-  lastQuest: 17
   typeItem: 0
-  currentTime: {fileID: 5589497835508323685}
   allQuests:
   - {fileID: 11400000, guid: c4bd1b1c0873f2448b695fecf79b6115, type: 2}
   - {fileID: 11400000, guid: f8dc2549f4425514198d9c4ce5b3ba27, type: 2}
@@ -5020,7 +5020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   craftSound: {fileID: 8300000, guid: a1d74beaa38f03b46b2c2b101e8f375e, type: 3}
-  force: 300
+  force: 600
   buttonCreate:
   - {fileID: 8801051364600291035}
   - {fileID: 1653158292768682681}
@@ -5058,6 +5058,7 @@ MonoBehaviour:
   clickSound: {fileID: 8300000, guid: fc2f2ccb3fe472b43a776143ae57a833, type: 3}
   closeSound: {fileID: 8300000, guid: aa9b6fc255d6c52438e5e772ab9832f0, type: 3}
   gameOverSound: {fileID: 8300000, guid: 8706ca029baa0d242ae94e8609648ffa, type: 3}
+  vitorySound: {fileID: 8300000, guid: 45b5a8bfcd5c264428850c9e54293c4b, type: 3}
   startSound: {fileID: 8300000, guid: adefb4e08768a38428f78699ab0c1454, type: 3}
 --- !u!82 &3347756855715733503
 AudioSource:
@@ -14846,7 +14847,7 @@ RectTransform:
   - {fileID: 2430664992716860941}
   - {fileID: 4246136880061494238}
   m_Father: {fileID: 1596219791029895702}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15308,7 +15309,7 @@ RectTransform:
   - {fileID: 5566554433656276930}
   - {fileID: 5871471625982496919}
   m_Father: {fileID: 1596219791029895702}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15750,7 +15751,7 @@ RectTransform:
   - {fileID: 1866965094984226489}
   - {fileID: 6281531156505651326}
   m_Father: {fileID: 1596219791029895702}
-  m_RootOrder: 5
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -21160,7 +21161,7 @@ RectTransform:
   - {fileID: 916053393}
   - {fileID: 1547038832}
   m_Father: {fileID: 1596219791029895702}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -21784,20 +21785,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7053088664719540365}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5648469662709313394}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 582132494}
+        m_MethodName: Quit
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -26702,7 +26692,7 @@ RectTransform:
   - {fileID: 1465277949}
   - {fileID: 4419595442260096219}
   m_Father: {fileID: 1596219791029895702}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -26855,7 +26845,7 @@ RectTransform:
   - {fileID: 8185700438134085315}
   - {fileID: 4022693773463334093}
   m_Father: {fileID: 1596219791029895702}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -28081,7 +28071,7 @@ PrefabInstance:
     - target: {fileID: 9146105243412620157, guid: d394149a1307e9b4288214af2de8f981,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9146105243412620157, guid: d394149a1307e9b4288214af2de8f981,
         type: 3}

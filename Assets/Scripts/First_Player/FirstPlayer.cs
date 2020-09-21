@@ -260,22 +260,21 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
             if (target.CompareTag("Enemy"))
             {
-
                 QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHENEMY);
+            }
+            else if (target.CompareTag("Batut"))
+            {
+                QuestManager.Instance.CheckQuests(QuestManager.QuestStates.KICKPAD);
+            }
+            else if (target.CompareTag("FlightRecorder"))
+            {
+                Destroy(target.gameObject);
+                QuestManager.Instance.CheckQuests(QuestManager.QuestStates.FINDRECORDER);
             }
             else
             {
                 QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSH);
                 QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHOBj);
-            }
-
-            if (target.CompareTag("Batut"))
-            {
-                QuestManager.Instance.CheckQuests(QuestManager.QuestStates.KICKPAD);
-            }
-            if (target.CompareTag("FlightRecorder"))
-            {
-                QuestManager.Instance.CheckQuests(QuestManager.QuestStates.FINDRECORDER);
             }
            
            

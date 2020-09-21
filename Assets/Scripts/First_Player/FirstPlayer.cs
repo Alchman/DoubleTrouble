@@ -85,10 +85,16 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         MOVE,
         RUN
     }
-    void Start()
+
+    public override void Awake()
     {
+        base.Awake();
         health = GetComponent<Health>();
         rigidbody = GetComponent<Rigidbody>();
+    }
+
+    void Start()
+    {
         health.OnDeath += DoDeath;
         startSpeed = moveSpeed;
         currentState = PlayerStates.IDLE;
@@ -289,19 +295,20 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
         }
     }
 
-    void OnDrawGizmos()
-    {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(capsulePosition1.position, radiusCheck);
-        Gizmos.DrawWireSphere(capsulePosition2.position, radiusCheck);
+    //void OnDrawGizmos()
+    //{
+    //    // Draw a yellow sphere at the transform's position
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(capsulePosition1.position, radiusCheck);
+    //    Gizmos.DrawWireSphere(capsulePosition2.position, radiusCheck);
 
 
-        Gizmos.color = Color.green;
-        Gizmos.DrawRay(wallCheck.position, transform.forward * wallCheckDistance);
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawRay(wallCheck.position, transform.forward * wallCheckDistance);
 
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
-    }
+    //    Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    //}
+
     Vector3 CalculateDirection(Vector3 from, float forcePush, float hightY)
     {
         var direction = from - transform.position;

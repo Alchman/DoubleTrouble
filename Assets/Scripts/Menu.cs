@@ -75,6 +75,7 @@ public class Menu : GenericSingletonClass<Menu>
     {
         PauseDisable();
         enabledMenu.SetActive(false);
+        UIAudio.Instance.StartGameSound();
 
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

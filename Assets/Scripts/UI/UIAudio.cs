@@ -17,8 +17,6 @@ public class UIAudio : GenericSingletonClass<UIAudio>
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        
-        audioSource.PlayOneShot(startSound);
     }
 
     public void ClickSound()
@@ -35,6 +33,12 @@ public class UIAudio : GenericSingletonClass<UIAudio>
     {
         audioSource.PlayOneShot(sound);
     }
+
+    public void StartGameSound()
+    {
+        audioSource.PlayOneShot(startSound);
+    }
+
     public void GameOverSound()
     {
         audioSource.PlayOneShot(Instance.gameOverSound);

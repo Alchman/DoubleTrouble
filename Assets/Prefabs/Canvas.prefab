@@ -2162,6 +2162,7 @@ RectTransform:
   - {fileID: 7115764394553763685}
   - {fileID: 8754903523619027851}
   - {fileID: 6771681543183418872}
+  - {fileID: 8619652969566933352}
   m_Father: {fileID: 1596219791029895702}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4968,6 +4969,7 @@ MonoBehaviour:
   textQuest: {fileID: 3782657958746896434}
   image: {fileID: 7703486829556226625}
   questUi: {fileID: 168376873484520837}
+  checkmark: {fileID: 6775634010023221859}
   typeItem: 0
   allQuests:
   - {fileID: 11400000, guid: c4bd1b1c0873f2448b695fecf79b6115, type: 2}
@@ -5058,8 +5060,9 @@ MonoBehaviour:
   clickSound: {fileID: 8300000, guid: fc2f2ccb3fe472b43a776143ae57a833, type: 3}
   closeSound: {fileID: 8300000, guid: aa9b6fc255d6c52438e5e772ab9832f0, type: 3}
   gameOverSound: {fileID: 8300000, guid: 8706ca029baa0d242ae94e8609648ffa, type: 3}
-  vitorySound: {fileID: 8300000, guid: 45b5a8bfcd5c264428850c9e54293c4b, type: 3}
+  vitorySound: {fileID: 8300000, guid: cc62726149fd000488111430bbb6a3a6, type: 3}
   startSound: {fileID: 8300000, guid: adefb4e08768a38428f78699ab0c1454, type: 3}
+  questFinishedSound: {fileID: 8300000, guid: d62bd268ebc7d434889230a18f330280, type: 3}
 --- !u!82 &3347756855715733503
 AudioSource:
   m_ObjectHideFlags: 0
@@ -15787,6 +15790,80 @@ MonoBehaviour:
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6775634010023221859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8619652969566933352}
+  - component: {fileID: 1968824200208667750}
+  - component: {fileID: 5221112939821756473}
+  m_Layer: 5
+  m_Name: Checkmark
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8619652969566933352
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6775634010023221859}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.95, y: 0.95, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5130860487639301424}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 42.2, y: 125.1}
+  m_SizeDelta: {x: 54.2, y: 61.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1968824200208667750
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6775634010023221859}
+  m_CullTransparentMesh: 0
+--- !u!114 &5221112939821756473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6775634010023221859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6313726, g: 0.8117648, b: 0.050980397, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 311b17549df557a43a1a75ac29df0f1a, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

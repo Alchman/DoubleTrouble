@@ -15,11 +15,12 @@ public class QuestManager : GenericSingletonClass<QuestManager>
     [SerializeField] Text textQuest;
     [SerializeField] Image image;
     [SerializeField] GameObject questUi;
+    [SerializeField] GameObject checkmark;
 
-   
+
     [SerializeField] public TypeItem typeItem;
 
-    public enum TypeItem { TURELL, AID, CHEST,BATUT, KORM, GRENADE, NONE }
+    public enum TypeItem { TURELL, AID, CHEST, BATUT, KORM, GRENADE, NONE }
 
 
 
@@ -41,16 +42,16 @@ public class QuestManager : GenericSingletonClass<QuestManager>
         PUSHOBj = 2,
         PUSHTOMIKE = 3,
         JUMP = 4,
-        RUN= 5,
+        RUN = 5,
         PUSHENEMY = 6,
         PUSHOBJTOENEMY = 7,
         COLLECTRESOURSES = 8,
         KICKBIGCHUNK = 9,
         CRAFTJUMPPAD = 10,
-        KICKPAD =11,
+        KICKPAD = 11,
         JUMPPAD = 12,
-        COLLECTCOUNTRESOURS= 13,
-        DESTROYSUITCASE = 14, 
+        COLLECTCOUNTRESOURS = 13,
+        DESTROYSUITCASE = 14,
         DESTROYMONSTERS = 15,
         CRAFTTURREL = 16,
         FINDRECORDER = 17,
@@ -68,25 +69,24 @@ public class QuestManager : GenericSingletonClass<QuestManager>
         Quest quest = allQuests[(int)currentQuest];
         textQuest.text = quest.text;
         image.sprite = quest.image;
-       numberOfTimes = quest.numberOfTime;
- 
-       currentTime.text = currentOfTime + "/" + numberOfTimes;
+        numberOfTimes = quest.numberOfTime;
 
-        
+        currentTime.text = currentOfTime + "/" + numberOfTimes;
+        currentTime.gameObject.SetActive(numberOfTimes > 0);
 
-       if (currentQuest == QuestStates.FINDAIRPLANE || currentQuest == QuestStates.ESCAPE)
-       {
-              
-           
-           Compass.Instance.questLocation = Airplane.Instance.transform ;
-       }
-       else if (currentQuest == QuestStates.FINDOIL)
-       {
-           Canister.Instance.gameObject.SetActive(true);
-           Compass.Instance.questLocation = Canister.Instance.transform;
-       }
 
-}
+        if (currentQuest == QuestStates.FINDAIRPLANE || currentQuest == QuestStates.ESCAPE)
+        {
+            Compass.Instance.questLocation = Airplane.Instance.transform;
+        }
+        else if (currentQuest == QuestStates.FINDOIL)
+        {
+            Canister.Instance.gameObject.SetActive(true);
+            Compass.Instance.questLocation = Canister.Instance.transform;
+        }
+
+        checkmark.SetActive(false);
+    }
 
 
     public void QuestsFinish()
@@ -98,7 +98,6 @@ public class QuestManager : GenericSingletonClass<QuestManager>
             UiManager.Instance.Victory();
             return;
         }
-
 
         //Start new quest
         currentQuest++;
@@ -128,9 +127,13 @@ public class QuestManager : GenericSingletonClass<QuestManager>
 
     IEnumerator DelayQuest(float delay)
     {
+        UIAudio.Instance.QuestSound();
+        currentTime.gameObject.SetActive(false);
+        checkmark.SetActive(true);
         yield return new WaitForSeconds(delay);
         QuestsFinish();
         delayQuests = null;
+        checkmark.SetActive(false);
     }
 
     public void CheckItemQuest(QuestStates quest, TypeItem typeItem)
@@ -148,7 +151,7 @@ public class QuestManager : GenericSingletonClass<QuestManager>
             return;
         }
 
-        if (currentQuest == quest )
+        if (currentQuest == quest)
         {
             //print("Check current quest: " + currentQuest);
 
@@ -156,10 +159,8 @@ public class QuestManager : GenericSingletonClass<QuestManager>
             {
                 currentOfTime += amount;
                 currentTime.text = currentOfTime + "/" + numberOfTimes;
-                currentTime.gameObject.SetActive(true);
-               
             }
-            
+
             if (currentOfTime >= numberOfTimes)
             {
                 if (delayQuests == null)
@@ -168,10 +169,10 @@ public class QuestManager : GenericSingletonClass<QuestManager>
                     delayQuests = StartCoroutine(DelayQuest(delay));
                 }
             }
-           
+
         }
-       
-       
+
+
 
     }
 

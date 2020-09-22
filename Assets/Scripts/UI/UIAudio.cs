@@ -9,8 +9,9 @@ public class UIAudio : GenericSingletonClass<UIAudio>
     public AudioClip gameOverSound;
     public AudioClip vitorySound;
     public AudioClip startSound;
-    
-    
+    public AudioClip questFinishedSound;
+
+
     private AudioSource audioSource;
     
     // Start is called before the first frame update
@@ -46,5 +47,9 @@ public class UIAudio : GenericSingletonClass<UIAudio>
     public void VictorySound()
     {
         audioSource.PlayOneShot(Instance.vitorySound);
+    }
+    public void QuestSound()
+    {
+        audioSource.PlayOneShot(Instance.questFinishedSound);
     }
 }

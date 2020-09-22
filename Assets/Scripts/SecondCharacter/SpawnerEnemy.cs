@@ -10,6 +10,11 @@ public class SpawnerEnemy : MonoBehaviour{
 
     public static int CountEnemy {get; set;}
 
+    private void Awake()
+    {
+        CountEnemy = 0;
+    }
+
     void Start() {
         StartCoroutine(SpawnEnemy());
     }

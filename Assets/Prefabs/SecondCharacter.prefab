@@ -403,8 +403,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   activeWeapon: {fileID: 591051536}
-  pistolBullets: 50
-  rifleBullets: 50
+  pistolBullets: 0
+  rifleBullets: 0
   rocketBullets: 0
   audioSource: {fileID: 7786536494308905167}
   animator: {fileID: 260361754930306482}

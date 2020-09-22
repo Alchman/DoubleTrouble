@@ -33,6 +33,7 @@ public class AmmoPack : MonoBehaviour
             // Destroy(gameObject,1f);
             SecondPlayer.Instance.AddAmmo(bulletType, amount);
             SecondPlayer.Instance.PlayCollectObjectSound();
+            QuestManager.Instance.CheckQuests(QuestManager.QuestStates.PUSHTOMIKE);
         }
     }
     

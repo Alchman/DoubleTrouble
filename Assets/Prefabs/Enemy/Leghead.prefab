@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366090a6ef056904ca782e960e15f39c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1100
+  maxHealth: 900
 --- !u!114 &6736395070302823943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +261,9 @@ MonoBehaviour:
   gameLoot1: []
   push: 15
   destroyObject: 0
+  canSpawnRecorder: 0
+  recorderChance: 0.5
+  resourceBox: {fileID: 0}
 --- !u!1 &5195783461553213834
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,7 +660,7 @@ PrefabInstance:
     - target: {fileID: 6111968423138740858, guid: c59c7aa838538f74687fc6154b91ef44,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.61
+      value: -0.615
       objectReference: {fileID: 0}
     - target: {fileID: 6111968423138740858, guid: c59c7aa838538f74687fc6154b91ef44,
         type: 3}

@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1ba57069dca5c489aad4e4d6541434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  massCoef: 0.33
+  massCoef: 0.4
   pushOnRun: 0
   returnDamage: 0
   pushHeight: 9

@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitEffect: 1
-  health: 300
+  health: 3000
   triggerDelay: 2
 --- !u!1001 &1606619086
 PrefabInstance:

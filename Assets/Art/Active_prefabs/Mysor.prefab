@@ -78,6 +78,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massCoef: 1
   pushOnRun: 0
+  returnDamage: 0
+  pushHeight: 10
+  impactSound: {fileID: 0}
 --- !u!114 &1176595018161137978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,7 +94,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: 0
-  count: 20
+  count: 300
+  waitEffect: 1
+  triggerDelay: 2
 --- !u!1001 &2339373848086325028
 PrefabInstance:
   m_ObjectHideFlags: 0

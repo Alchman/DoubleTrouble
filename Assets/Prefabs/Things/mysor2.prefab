@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: 0
-  count: 120
+  count: 150
   waitEffect: 1
   triggerDelay: 2
 --- !u!114 &8738333480313047849

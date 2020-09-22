@@ -256,7 +256,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: 0
-  count: 20
+  count: 300
+  waitEffect: 1
+  triggerDelay: 2
 --- !u!114 &8474197942023167604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   massCoef: 0.432
   pushOnRun: 0
+  returnDamage: 0
   pushHeight: 10
   impactSound: {fileID: 0}
 --- !u!95 &3263003743918768961

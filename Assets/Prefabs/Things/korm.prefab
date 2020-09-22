@@ -4769,6 +4769,8 @@ GameObject:
   - component: {fileID: 1083112871653267672}
   - component: {fileID: 2145001389019790286}
   - component: {fileID: -173027851459454240}
+  - component: {fileID: 8843278785729954146}
+  - component: {fileID: 4204869498864060990}
   m_Layer: 9
   m_Name: korm
   m_TagString: Untagged
@@ -4821,6 +4823,7 @@ MonoBehaviour:
   resourceType: 0
   count: 1
   waitEffect: 1
+  triggerDelay: 2
 --- !u!54 &2536299696274290707
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4870,6 +4873,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitEffect: 1
   health: 300
+  triggerDelay: 2
 --- !u!114 &-173027851459454240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4882,6 +4886,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdf1727648a1184aa6dfba09dca9a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8843278785729954146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536299696274290696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e1ba57069dca5c489aad4e4d6541434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  massCoef: 0.8
+  pushOnRun: 0
+  returnDamage: 0
+  pushHeight: 10
+  impactSound: {fileID: 0}
+--- !u!65 &4204869498864060990
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536299696274290696}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.3429547, z: 0.3}
+  m_Center: {x: 0, y: 0.17877796, z: 0}
 --- !u!1001 &1687850678
 PrefabInstance:
   m_ObjectHideFlags: 0

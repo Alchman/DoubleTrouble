@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba11f23a3220484ba1d936c7a5bb61b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.6
+  speed: 0.4
   stunTime: 6
   playerdistance: 6.5
   attackRate: 4
@@ -261,6 +261,9 @@ MonoBehaviour:
   gameLoot1: []
   push: 15
   destroyObject: 0
+  canSpawnRecorder: 0
+  recorderChance: 0.5
+  resourceBox: {fileID: 0}
 --- !u!1 &5195783461553213834
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,7 +620,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: e7158029a29b9b54d8a1e6ec50d91d6d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.325
+      value: -0.413
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e7158029a29b9b54d8a1e6ec50d91d6d,
         type: 3}

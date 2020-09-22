@@ -4771,6 +4771,7 @@ GameObject:
   - component: {fileID: -173027851459454240}
   - component: {fileID: 8843278785729954146}
   - component: {fileID: 4204869498864060990}
+  - component: {fileID: 5406263555165302671}
   m_Layer: 9
   m_Name: korm
   m_TagString: Untagged
@@ -4821,7 +4822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceType: 0
-  count: 1
+  count: 3
   waitEffect: 1
   triggerDelay: 2
 --- !u!54 &2536299696274290707
@@ -4916,6 +4917,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.3429547, z: 0.3}
   m_Center: {x: 0, y: 0.17877796, z: 0}
+--- !u!114 &5406263555165302671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536299696274290696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a0fe9a0fe0f0b4e9d05bd131cd5d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 100
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &1687850678
 PrefabInstance:
   m_ObjectHideFlags: 0

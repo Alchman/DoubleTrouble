@@ -32,6 +32,7 @@ GameObject:
   - component: {fileID: 42350517}
   - component: {fileID: 42350519}
   - component: {fileID: 153044712}
+  - component: {fileID: 2994036994325792178}
   m_Layer: 9
   m_Name: Batyt 1
   m_TagString: Batut
@@ -83,8 +84,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.76, y: 0.58, z: 1.73}
-  m_Center: {x: 0, y: 0.16, z: 0}
+  m_Size: {x: 1.76, y: 0.55021244, z: 1.73}
+  m_Center: {x: 0, y: 0.28000012, z: 0}
 --- !u!114 &42350519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1ba57069dca5c489aad4e4d6541434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  massCoef: 0.4
+  massCoef: 0.3
   pushOnRun: 0
   returnDamage: 0
   pushHeight: 9
@@ -115,6 +116,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeOfKinematic: 1
+--- !u!114 &2994036994325792178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6232021685349337018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a0fe9a0fe0f0b4e9d05bd131cd5d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 150
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &3677505302053894711
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -375,17 +392,22 @@ PrefabInstance:
     - target: {fileID: 2845499889593663727, guid: 901ef5cf0deb55e46bf6edb66cf625a3,
         type: 3}
       propertyPath: m_Size.x
-      value: 1
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 2845499889593663727, guid: 901ef5cf0deb55e46bf6edb66cf625a3,
         type: 3}
       propertyPath: m_Size.y
-      value: 1
+      value: 4.32
       objectReference: {fileID: 0}
     - target: {fileID: 2845499889593663727, guid: 901ef5cf0deb55e46bf6edb66cf625a3,
         type: 3}
       propertyPath: m_Size.z
-      value: 1
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2845499889593663727, guid: 901ef5cf0deb55e46bf6edb66cf625a3,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 5041008752035680897, guid: 901ef5cf0deb55e46bf6edb66cf625a3,
         type: 3}

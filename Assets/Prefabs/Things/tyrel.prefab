@@ -156,11 +156,11 @@ MonoBehaviour:
     type: 3}
   shootPoint: {fileID: 61464825126344617}
   buletSpeed: 51
-  bulletDamage: 51
+  bulletDamage: 40
   bulletType: 1
   magazineSize: 0
   reloadTime: 0
-  fireRate: 1
+  fireRate: 2
 --- !u!82 &6270922023242701371
 AudioSource:
   m_ObjectHideFlags: 0

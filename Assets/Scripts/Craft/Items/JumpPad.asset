@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: JumpPad
   m_EditorClassIdentifier: 
   item: {fileID: 6232021685349337018, guid: 0867a363be9e6a0449748862325dff9d, type: 3}
-  cost: 300
+  cost: 200
   buy: {fileID: 0}
   itemType: 3

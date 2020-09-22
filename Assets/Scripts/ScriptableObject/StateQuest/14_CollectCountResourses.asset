@@ -15,5 +15,5 @@ MonoBehaviour:
   text: Collect 200 units of craft resources
   image: {fileID: 21300000, guid: 10c5ab6d3e5143b4cb1580eb052e717e, type: 3}
   delay: 1
-  numberOfTime: 20
+  numberOfTime: 200
   itemToCraft: 0

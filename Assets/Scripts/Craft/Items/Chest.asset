@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Chest
   m_EditorClassIdentifier: 
   item: {fileID: 7557027107649329746, guid: 40a1d68d53737f44ba021560d2c21e59, type: 3}
-  cost: 450
+  cost: 300
   buy: {fileID: 0}
   itemType: 2

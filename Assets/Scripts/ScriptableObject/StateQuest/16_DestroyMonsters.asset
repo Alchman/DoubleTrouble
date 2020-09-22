@@ -15,5 +15,5 @@ MonoBehaviour:
   text: Destroy with Mike 11 any monsters
   image: {fileID: 21300000, guid: fa42af08bed646341ac6b62a5982d595, type: 3}
   delay: 1
-  numberOfTime: 2
+  numberOfTime: 11
   itemToCraft: 0

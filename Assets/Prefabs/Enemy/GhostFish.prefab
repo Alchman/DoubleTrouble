@@ -228,7 +228,7 @@ MonoBehaviour:
   pushOnRun: 0
   returnDamage: 110
   pushHeight: 10
-  impactSound: {fileID: 8300000, guid: 2b87b13e11d50674986187a3a93f6967, type: 3}
+  impactSound: {fileID: 8300000, guid: 4da06f937550e1e4eb274d86d96a1039, type: 3}
 --- !u!114 &9018244969802438973
 MonoBehaviour:
   m_ObjectHideFlags: 0

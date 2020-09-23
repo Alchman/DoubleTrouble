@@ -240,6 +240,9 @@ MonoBehaviour:
   gameLoot1: []
   push: 15
   destroyObject: 0
+  canSpawnRecorder: 0
+  recorderChance: 0.5
+  resourceBox: {fileID: 0}
 --- !u!95 &2971418672435776913
 Animator:
   serializedVersion: 3

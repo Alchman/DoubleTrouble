@@ -163,7 +163,7 @@ MonoBehaviour:
   animator: {fileID: 2971418672435776913}
   effectBlood: {fileID: 530052601153174276}
   effectDeath: {fileID: 1509997613814843015}
-  dieSound: {fileID: 0}
+  dieSound: {fileID: 8300000, guid: 6ef840abe491ba045b51a3c3d37c01b6, type: 3}
 --- !u!114 &3014455255414052134
 MonoBehaviour:
   m_ObjectHideFlags: 0

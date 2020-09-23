@@ -182,7 +182,7 @@ MonoBehaviour:
   animator: {fileID: 3777292215161522662}
   effectBlood: {fileID: 9047154757091506632}
   effectDeath: {fileID: 2051281389751886877}
-  dieSound: {fileID: 0}
+  dieSound: {fileID: 8300000, guid: 6ef840abe491ba045b51a3c3d37c01b6, type: 3}
 --- !u!114 &3014455255414052134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
   pushOnRun: 0
   returnDamage: 110
   pushHeight: 10
-  impactSound: {fileID: 8300000, guid: 4da06f937550e1e4eb274d86d96a1039, type: 3}
+  impactSound: {fileID: 8300000, guid: 9df477617efc1ed4e877256747124d73, type: 3}
 --- !u!114 &9018244969802438973
 MonoBehaviour:
   m_ObjectHideFlags: 0

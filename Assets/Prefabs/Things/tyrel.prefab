@@ -160,7 +160,7 @@ MonoBehaviour:
   bulletType: 1
   magazineSize: 0
   reloadTime: 0
-  fireRate: 2
+  fireRate: 2.2
 --- !u!82 &6270922023242701371
 AudioSource:
   m_ObjectHideFlags: 0

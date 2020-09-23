@@ -4903,7 +4903,7 @@ MonoBehaviour:
   pushOnRun: 0
   returnDamage: 0
   pushHeight: 10
-  impactSound: {fileID: 0}
+  impactSound: {fileID: 8300000, guid: aa9b6fc255d6c52438e5e772ab9832f0, type: 3}
 --- !u!65 &4204869498864060990
 BoxCollider:
   m_ObjectHideFlags: 0

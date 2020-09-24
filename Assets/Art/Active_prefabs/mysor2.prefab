@@ -276,7 +276,7 @@ MonoBehaviour:
   pushOnRun: 0
   returnDamage: 0
   pushHeight: 10
-  impactSound: {fileID: 0}
+  impactSound: {fileID: 8300000, guid: 18a87c3efe8684740abe96e023de444d, type: 3}
 --- !u!95 &3263003743918768961
 Animator:
   serializedVersion: 3

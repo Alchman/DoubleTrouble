@@ -4772,6 +4772,7 @@ GameObject:
   - component: {fileID: 8843278785729954146}
   - component: {fileID: 4204869498864060990}
   - component: {fileID: 5406263555165302671}
+  - component: {fileID: 2144620253550439333}
   m_Layer: 9
   m_Name: korm
   m_TagString: Untagged
@@ -4933,6 +4934,19 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!65 &2144620253550439333
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536299696274290696}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.43, y: 0.46, z: 0.3}
+  m_Center: {x: 0, y: 0.178778, z: 0}
 --- !u!1001 &1687850678
 PrefabInstance:
   m_ObjectHideFlags: 0

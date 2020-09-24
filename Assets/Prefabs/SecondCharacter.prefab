@@ -417,7 +417,7 @@ MonoBehaviour:
   metalCount: 0
   stoneThrowForce: 700
   delayForceTime: 2
-  RadiusCanon: 15
+  RadiusCanon: 17
   maxViewAngle: 80
   shootSound: {fileID: 8300000, guid: b80713152ce869e4c9857602a2961427, type: 3}
   noAmmoSound: {fileID: 8300000, guid: 62f70435d0c06ad4e8f8c5f309a61128, type: 3}

@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1000
-  radius: 7
+  radius: 4.5
   pushForce: 5
 --- !u!65 &792975927898092481
 BoxCollider:

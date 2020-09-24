@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7803828848761135265}
   - component: {fileID: 1452184196067664666}
   - component: {fileID: 1009458148034738681}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: fungus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,8 +89,8 @@ MeshCollider:
   m_GameObject: {fileID: 8150517931336718722}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
+  m_Enabled: 0
+  serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5169190559981273074, guid: 0a113b32d0988be4d83c591440f1a2b9, type: 3}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5438347344700679562}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: fungus1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,9 +117,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9017259512356427673}
-  m_LocalRotation: {x: -0, y: -0.8858987, z: -0, w: 0.4638789}
+  m_LocalRotation: {x: 0, y: -0.88590014, z: 0, w: 0.46387598}
   m_LocalPosition: {x: -10.8, y: 0.27, z: -44.5}
-  m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
+  m_LocalScale: {x: 0.0050000004, y: 0.005, z: 0.0050000004}
   m_Children:
   - {fileID: 8477965923070374992}
   m_Father: {fileID: 0}

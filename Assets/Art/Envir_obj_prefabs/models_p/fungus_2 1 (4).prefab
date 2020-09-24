@@ -23,9 +23,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2511189187315691642}
-  m_LocalRotation: {x: -0.08045397, y: -0.9576482, z: -0.03256361, w: 0.27454835}
+  m_LocalRotation: {x: -0.08045472, y: -0.9576478, z: -0.032561045, w: 0.2745496}
   m_LocalPosition: {x: -52.06, y: 0.69000006, z: 29.04}
-  m_LocalScale: {x: 0.0069999998, y: 0.0069999998, z: 0.007}
+  m_LocalScale: {x: 0.009682401, y: 0.0096824, z: 0.009682402}
   m_Children:
   - {fileID: 9179080753561975132}
   m_Father: {fileID: 0}
@@ -120,8 +120,8 @@ MeshCollider:
   m_GameObject: {fileID: 4486776895768561727}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
+  m_Enabled: 0
+  serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -462981019419857548, guid: d28c9caac473bcf478a31c92e9cf1db9, type: 3}

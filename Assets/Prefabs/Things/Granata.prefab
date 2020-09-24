@@ -130,9 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca31fbfe41ac611498cc449401f94462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1000
-  radius: 4.5
-  pushForce: 5
+  damage: 900
+  radius: 2.5
+  pushForce: 3
 --- !u!65 &792975927898092481
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -131,7 +131,7 @@ MonoBehaviour:
   damage: 150
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!1001 &3677505302053894711
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -293,7 +293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee105fb77e7eaa4a8d8a246cbae343c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupSound: {fileID: 8300000, guid: 6ed6c3c93650347e291c17c8caa25890, type: 3}
+  pickupSound: {fileID: 8300000, guid: 9d355ceec736ccc4a9ba7606712662e7, type: 3}
+  legSound: {fileID: 8300000, guid: f34287567ad5b7e4ebd361c2878e0e52, type: 3}
   animator: {fileID: 4802674782797503357}
   animator2: {fileID: 8535779795690922487}
   effctFirstPlayer: {fileID: 5522928702369793418}

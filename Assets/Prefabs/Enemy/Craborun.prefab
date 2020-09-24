@@ -166,6 +166,7 @@ MonoBehaviour:
   effectBlood: {fileID: 9132588354191613390}
   effectDeath: {fileID: 2430602235574672295}
   dieSound: {fileID: 8300000, guid: 6ef840abe491ba045b51a3c3d37c01b6, type: 3}
+  hitSound: {fileID: 8300000, guid: 42523db948081af4eab5de57db098408, type: 3}
 --- !u!114 &3014455255414052134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +260,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.41
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -273,7 +274,7 @@ AudioSource:
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
-  BypassReverbZones: 0
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:

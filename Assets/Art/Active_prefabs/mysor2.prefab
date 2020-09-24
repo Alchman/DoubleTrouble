@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 8474197942023167603}
   - component: {fileID: 8474197942023167604}
   - component: {fileID: 3263003743918768961}
+  - component: {fileID: 6804481978610346453}
   m_Layer: 9
   m_Name: mysor2
   m_TagString: Untagged
@@ -295,6 +296,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6804481978610346453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485134454316041626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a0fe9a0fe0f0b4e9d05bd131cd5d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 300
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &595424966362018731
 GameObject:
   m_ObjectHideFlags: 0

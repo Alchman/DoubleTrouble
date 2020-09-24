@@ -7,7 +7,8 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 {
     [Header("Sounds")]
     public AudioClip pickupSound;
-    
+    public AudioClip legSound;
+
     [Header("Config")]
     [SerializeField] Animator animator;
     [SerializeField] Animator animator2;
@@ -218,10 +219,11 @@ public class FirstPlayer : GenericSingletonClass<FirstPlayer>
 
     public void HitObjects()
     {
+        AudioManager.PlaySound(legSound);
         pushInProgress = false;
         Collider[] allItemsInRadius =
             Physics.OverlapCapsule(capsulePosition1.position, capsulePosition2.position, radiusCheck, pushMask);
-        ;
+
         float minDistance = float.MaxValue;
         Collider target = null;
         foreach (Collider item in allItemsInRadius)

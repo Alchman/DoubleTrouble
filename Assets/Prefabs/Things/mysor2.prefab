@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 8738333480313047854}
   - component: {fileID: 8738333480313047849}
   - component: {fileID: 2420173235105109532}
-  - component: {fileID: 2603979016625362019}
+  - component: {fileID: 6505720568922610960}
   m_Layer: 9
   m_Name: mysor2
   m_TagString: Untagged
@@ -446,7 +446,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2603979016625362019
+--- !u!114 &6505720568922610960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -458,10 +458,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a0fe9a0fe0f0b4e9d05bd131cd5d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1000
+  damage: 300
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!1 &948831644681807415
 GameObject:
   m_ObjectHideFlags: 0

@@ -185,6 +185,7 @@ MonoBehaviour:
   effectBlood: {fileID: 8075901786855413928}
   effectDeath: {fileID: 4975801614779162443}
   dieSound: {fileID: 8300000, guid: 6ef840abe491ba045b51a3c3d37c01b6, type: 3}
+  hitSound: {fileID: 8300000, guid: 42523db948081af4eab5de57db098408, type: 3}
 --- !u!114 &3014455255414052134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +262,9 @@ MonoBehaviour:
   gameLoot1: []
   push: 15
   destroyObject: 0
+  canSpawnRecorder: 0
+  recorderChance: 0.5
+  resourceBox: {fileID: 0}
 --- !u!82 &6429700085428131702
 AudioSource:
   m_ObjectHideFlags: 0
@@ -273,7 +277,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0

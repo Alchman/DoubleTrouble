@@ -40,6 +40,7 @@ public class EnemyController : MonoBehaviour {
 
     [Header("Sounds")]
     [SerializeField] private AudioClip dieSound;
+    [SerializeField] private AudioClip hitSound;
 
     private SecondPlayer secondPlayer;
     private FirstPlayer firstPlayer;
@@ -67,7 +68,7 @@ public class EnemyController : MonoBehaviour {
         healthFirstPlayer   =    firstPlayer.GetComponent<Health>();
         healthSecondPlayer  =  secondPlayer.GetComponent<Health>();
         health.OnDeath      += OnDeath;
-        health.OnDamage     += BloodHitAffect;
+        health.OnDamage     += DamageEffect;
         pushable            =  GetComponent<Pushable>();
         navMeshAgent        =  GetComponent<NavMeshAgent>();
         pushable.PushObject += Push;
@@ -130,9 +131,12 @@ public class EnemyController : MonoBehaviour {
         }
     }
 
-    private void BloodHitAffect() {
-        if(effectBlood) {
-        effectBlood.Play();
+    private void DamageEffect()
+    {
+        Push();
+        audioSource.PlayOneShot(hitSound);
+        if (effectBlood) {
+            effectBlood.Play();
         }
     }
 

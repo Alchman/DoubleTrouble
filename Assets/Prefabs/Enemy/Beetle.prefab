@@ -258,8 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameLoot:
-  - {fileID: 4002490292745003756, guid: 005bd50ee460d2048900bd2485bf2d9c, type: 3}
-  - {fileID: 4002490292745003756, guid: 005bd50ee460d2048900bd2485bf2d9c, type: 3}
+  - {fileID: 7557027107649329746, guid: 32b40f5456fca6d488cf90a48773d65c, type: 3}
   gameLoot1: []
   push: 15
   destroyObject: 0

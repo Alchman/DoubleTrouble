@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: 1
-  amount: 20
+  amount: 25
   waitEffect: 1
 --- !u!95 &1872278461
 Animator:
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a0fe9a0fe0f0b4e9d05bd131cd5d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 300
+  damage: 90
   layerMask:
     serializedVersion: 2
     m_Bits: 1024

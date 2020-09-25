@@ -17,21 +17,21 @@ public class Pushable : MonoBehaviour
     
     public Action PushObject = delegate {};
 
-    bool isOnGround;
+    public bool IsOnGround { get; private set; }
     Rigidbody rb;
     public bool PushOnRun { get { return pushOnRun; } }
 
     void Awake() {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        isOnGround = true;
+        IsOnGround = true;
         //Invoke(nameof(ResetGround), 0.2f);
     }
 
     public int Push(Vector3 force, bool ignoreGround= false)
     {
        
-        if (isOnGround || ignoreGround == true)
+        if (IsOnGround || ignoreGround == true)
         { 
             //rb.isKinematic = false;
             PushObject();
@@ -39,7 +39,7 @@ public class Pushable : MonoBehaviour
             force.y = +pushHeight;
             rb.AddForce(force, ForceMode.Impulse);
             rb.AddTorque(force, ForceMode.Impulse);
-            isOnGround = false;
+            IsOnGround = false;
            
             
             if (impactSound != null)
@@ -50,7 +50,7 @@ public class Pushable : MonoBehaviour
             }
 
 
-            Invoke(nameof(ResetGround), 1f);
+            Invoke(nameof(ResetGround), 3f);
             return returnDamage;
         }
         return  0;
@@ -65,7 +65,7 @@ public class Pushable : MonoBehaviour
     void ResetGround()
     {
         //rb.isKinematic = true;
-        isOnGround = true;
+        IsOnGround = true;
     }
 
     private void AnimPushBanka() {

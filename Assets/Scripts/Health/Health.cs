@@ -49,6 +49,11 @@ public class Health : MonoBehaviour
         DamageDealer damageDealer = other.GetComponent<DamageDealer>();
         if (damageDealer != null)
         {
+            Pushable pushable = damageDealer.GetComponent<Pushable>();
+            if (pushable != null && pushable.IsOnGround)
+            {
+                return;
+            }
             if (damageDealer.layerMask == (damageDealer.layerMask | (1 << gameObject.layer)))
             {
                 ChangeHealth(-damageDealer.damage);
